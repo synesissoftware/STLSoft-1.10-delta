@@ -1,9 +1,13 @@
 
 # directories (by name)
 
+ideas/
+
 # directories (by pattern)
 
 # files (by name)
+
+list_changes.cmd
 
 # files (by pattern)
 
@@ -25,6 +29,6 @@
 *.scc
 *.so
 *.swp
-*.vcproj.user
-*.vcxproj.user
+*.vcproj*.user
+*.vcxproj*.user
 
