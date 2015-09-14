@@ -1,0 +1,53 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.stlsoft.algorithm.literal_copy"=.\algorithm\test.unit.stlsoft.algorithm.literal_copy\vc6\test.unit.stlsoft.algorithm.literal_copy.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.algorithm.pod"=.\algorithm\test.unit.stlsoft.algorithm.pod\vc6\test.unit.stlsoft.algorithm.pod.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.algorithm.unordered_unique"=.\algorithm\test.unit.stlsoft.algorithm.unordered_unique\vc6\test.unit.stlsoft.algorithm.unordered_unique.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

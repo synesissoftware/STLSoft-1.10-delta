@@ -1,0 +1,77 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.scratch.comstl.conversion.interface_cast"=.\comstl\conversion\test.scratch.comstl.conversion.interface_cast\vc6\test.scratch.comstl.conversion.interface_cast.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.comstl.conversion.method_cast"=.\comstl\conversion\test.scratch.comstl.conversion.method_cast\vc6\test.scratch.comstl.conversion.method_cast.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.stlsoft.error.error_desc"=.\stlsoft\error\test.scratch.stlsoft.error.error_desc\vc6\test.scratch.stlsoft.error.error_desc.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.stlsoft.util.value"=.\stlsoft\util\test.scratch.stlsoft.util.value\vc6\test.scratch.stlsoft.util.value.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.winstl.performance.threadtimes_counter"=.\winstl\performance\test.scratch.winstl.performance.threadtimes_counter\vc6\test.scratch.winstl.performance.threadtimes_counter.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

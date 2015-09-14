@@ -1,0 +1,979 @@
+############################################################################
+# File:     build/gcc34.win32/makefile
+#
+# Purpose:  Makefile for STLSoft 1.10 for GCC 3.4 (Windows, 32-bit)
+#
+############################################################################
+
+
+############################################################################
+# Environment
+
+ifndef STLSOFT
+$(error STLSOFT must be defined)
+endif # !STLSOFT
+
+ifndef XTESTS_C_ROOT
+$(error XTESTS_C_ROOT must be defined)
+endif # !XTESTS_C_ROOT
+
+############################################################################
+# Macros
+
+TEST_VERBOSITY		=	2
+
+INCL_STLSOFT_1_10	=	../../include
+INCL_STLSOFT		=	$(STLSOFT)/include
+INCL_XTESTS			=	$(XTESTS_C_ROOT)/include
+LIB_XTESTS			=	$(XTESTS_C_ROOT)/lib
+
+STLSOFT_INCLUDES	=	-I$(INCL_STLSOFT_1_10) -I$(INCL_STLSOFT)
+
+############################################################################
+# Externally-specifiable Targets
+
+default:	build
+
+clean:
+	@if exist *.obj del /f *.obj
+
+help:
+	@echo "make [build | clean | compile | help | test]"
+
+build:	\
+ build.unit\
+ build.component\
+ \
+
+build.all:	\
+ build.unit\
+ build.component\
+ build.performance\
+ build.scratch\
+\
+
+build.component:	\
+ build.component.comstl\
+ build.component.platformstl\
+ build.component.stlsoft\
+ build.component.winstl\
+ \
+
+build.unit:	\
+ build.unit.comstl\
+ build.unit.platformstl\
+ build.unit.stlsoft\
+ build.unit.winstl\
+ \
+
+build.performance:	\
+ build.performance.comstl\
+ build.performance.platformstl\
+ build.performance.stlsoft\
+ build.performance.winstl\
+ \
+
+build.scratch:	\
+ build.scratch.comstl\
+ build.scratch.platformstl\
+ build.scratch.stlsoft\
+ build.scratch.winstl\
+ \
+
+build.component.comstl:	check.bin.dir \
+ ..\..\bin\test.component.comstl.collections.collection_sequence.gcc34.exe\
+ \
+
+build.component.platformstl:	check.bin.dir \
+ ..\..\bin\test.component.platformstl.filesystem.file_lines.gcc34.exe\
+ ..\..\bin\test.component.platformstl.filesystem.filesystem_traits.1.gcc34.exe\
+ ..\..\bin\test.component.platformstl.filesystem.properties_file.gcc34.exe\
+ ..\..\bin\test.component.platformstl.filesystem.readdir_sequence.gcc34.exe\
+ ..\..\bin\test.component.platformstl.performance.performance_counter.gcc34.exe\
+ \
+
+build.component.stlsoft:	check.bin.dir \
+ ..\..\bin\test.component.stlsoft.iterator.FILE_iterator.gcc34.exe\
+ \
+
+build.component.winstl:	check.bin.dir \
+ ..\..\bin\test.component.winstl.filesystem.findfile_sequence.gcc34.exe\
+ ..\..\bin\test.component.winstl.filesystem.hrw_file_lines.gcc34.exe\
+ ..\..\bin\test.component.winstl.filesystem.memory_map_functions.C.gcc34.exe\
+ ..\..\bin\test.component.winstl.filesystem.memory_map_functions.gcc34.exe\
+ ..\..\bin\test.component.winstl.filesystem.memory_mapped_file_view_handle.gcc34.exe\
+ ..\..\bin\test.component.winstl.filesystem.readonly_memory_mapped_file.gcc34.exe\
+ ..\..\bin\test.component.winstl.synch.semaphore.gcc34.exe\
+ ..\..\bin\test.component.winstl.system.console_functions.gcc34.exe\
+ ..\..\bin\test.component.winstl.system.environment_variable.gcc34.exe\
+ ..\..\bin\test.component.winstl.system.system_directory.gcc34.exe\
+ ..\..\bin\test.component.winstl.system.temporary_directory.gcc34.exe\
+ ..\..\bin\test.component.winstl.system.windows_directory.gcc34.exe\
+ \
+
+build.performance.comstl:	check.bin.dir \
+ \
+
+build.performance.platformstl:	check.bin.dir \
+ ..\..\bin\test.component.platformstl.performance.performance_counter.gcc34.exe\
+ \
+
+build.performance.stlsoft:	check.bin.dir \
+ ..\..\bin\test.performance.stlsoft.conversion.truncation_test.gcc34.exe\
+ \
+
+build.performance.winstl:	check.bin.dir \
+ ..\..\bin\test.scratch.winstl.performance.threadtimes_counter.gcc34.exe\
+ \
+
+build.scratch.comstl:	check.bin.dir \
+ ..\..\bin\test.scratch.comstl.conversion.interface_cast.gcc34.exe\
+ ..\..\bin\test.scratch.comstl.conversion.method_cast.gcc34.exe\
+ \
+
+build.scratch.platformstl:	check.bin.dir \
+ \
+
+build.scratch.stlsoft:	check.bin.dir \
+ ..\..\bin\test.scratch.stlsoft.error.error_desc.gcc34.exe\
+ ..\..\bin\test.scratch.stlsoft.iterator.associative_select_iterator.gcc34.exe\
+ ..\..\bin\test.scratch.stlsoft.smartptr.scoped_handle.gcc34.exe\
+ ..\..\bin\test.scratch.stlsoft.util.rand.gcc34.exe\
+ \
+
+build.scratch.winstl:	check.bin.dir \
+ ..\..\bin\test.scratch.winstl.performance.threadtimes_counter.gcc34.exe\
+ \
+
+build.unit.comstl:	check.bin.dir \
+ ..\..\bin\test.unit.comstl.shims.access.string.GUID.gcc34.exe\
+ ..\..\bin\test.unit.comstl.shims.access.string.VARIANT.gcc34.exe\
+ ..\..\bin\test.unit.comstl.string.BSTR_functions.C.gcc34.exe\
+ ..\..\bin\test.unit.comstl.string.BSTR_functions.gcc34.exe\
+ ..\..\bin\test.unit.comstl.util.GUID_functions.gcc34.exe\
+ ..\..\bin\test.unit.comstl.util.variant.gcc34.exe\
+ ..\..\bin\test.unit.comstl.util.VARIANT_functions.gcc34.exe\
+ \
+
+build.unit.platformstl:	check.bin.dir \
+ ..\..\bin\test.unit.platformstl.system.str_set.gcc34.exe\
+ \
+
+build.unit.stlsoft:	check.bin.dir \
+ ..\..\bin\test.unit.stlsoft.algorithm.literal_copy.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.algorithm.pod.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.collection.edge_case_index_sequence.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.fixed_arrays.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.frequency_map.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.initialised_array.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.layered_map.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.partially_initialised_array.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.container.pod_vector.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.conversion.integer_to_array.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.conversion.integer_to_hex_string.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.conversion.string_to_integer.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.conversion.truncation_test.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.conversion.union_cast.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.error.error_desc.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.exception.exception_string.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.filesystem.read_line.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.functional.bit_operations.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.associative_eraser_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.associative_select_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.eraser_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.filter_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.preferential_insert_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.sorted_eraser_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.string_concatenator_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.transform_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.iterator.unsorted_eraser_iterator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.memory.auto_buffer.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.meta.is_printf_type.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.shims.access.string.std.time.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.smartptr.scoped_handle.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.smartptr.scoped_method.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.smartptr.scoped_ptr.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.smartptr.shared_ptr.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.replace_functions.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.shim_string.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.simple_string.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.slice_functions.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.split_functions.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.static_string.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.string_registry.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.string_slice.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.string_tokeniser.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.string_view.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.string.tokeniser_functions.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.tr1.smartptr.scoped_ptr.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.bit_functions.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.exception_string_creator.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.has_bom.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.minmax.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.must_init.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.rand.gcc34.exe\
+ ..\..\bin\test.unit.stlsoft.util.string_switch.gcc34.exe\
+ \
+
+build.unit.winstl:	check.bin.dir \
+ ..\..\bin\test.unit.winstl.filesystem.filesystem_traits.1.gcc34.exe\
+ ..\..\bin\test.unit.winstl.filesystem.filesystem_traits.2.gcc34.exe\
+ ..\..\bin\test.unit.winstl.filesystem.findvolume_sequence.gcc34.exe\
+ ..\..\bin\test.unit.winstl.filesystem.memory_mapped_file.gcc34.exe\
+ ..\..\bin\test.unit.winstl.filesystem.path.gcc34.exe\
+ ..\..\bin\test.unit.winstl.filesystem.path_functions.gcc34.exe\
+ ..\..\bin\test.unit.winstl.registry.reg_delete_tree.gcc34.exe\
+ ..\..\bin\test.unit.winstl.registry.reg_value.gcc34.exe\
+ ..\..\bin\test.unit.winstl.synch.w4mo.gcc34.exe\
+ ..\..\bin\test.unit.winstl.system.commandline_parser.gcc34.exe\
+ ..\..\bin\test.unit.winstl.system.searchpath_sequence.gcc34.exe\
+ ..\..\bin\test.unit.winstl.system.system_traits.1.gcc34.exe\
+ ..\..\bin\test.unit.winstl.system.system_traits.2.gcc34.exe\
+ \
+
+
+test:	\
+ build.unit\
+ build.component\
+ test.unit\
+ test.component\
+ \
+
+test.component:	\
+ test.component.comstl\
+ test.component.platformstl\
+ test.component.stlsoft\
+ test.component.winstl\
+ \
+
+test.unit:	\
+ test.unit.comstl\
+ test.unit.platformstl\
+ test.unit.stlsoft\
+ test.unit.winstl\
+ \
+
+test.performance:	\
+ test.performance.comstl\
+ test.performance.platformstl\
+ test.performance.stlsoft\
+ test.performance.winstl\
+ \
+
+test.scratch:	\
+ test.scratch.comstl\
+ test.scratch.platformstl\
+ test.scratch.stlsoft\
+ test.scratch.winstl\
+ \
+
+test.all:	\
+ build.all\
+ test.unit\
+ test.component\
+ test.performance\
+ test.scratch\
+ \
+
+test.component.comstl:	build.component.comstl
+	@echo Running component tests for comstl
+	..\..\bin\test.component.comstl.collections.collection_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.component.platformstl:	build.component.platformstl
+	@echo Running component tests for platformstl
+	..\..\bin\test.component.platformstl.filesystem.file_lines.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.platformstl.filesystem.filesystem_traits.1.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.platformstl.filesystem.properties_file.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.platformstl.filesystem.readdir_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.platformstl.performance.performance_counter.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.component.stlsoft:	build.component.stlsoft
+	@echo Running component tests for stlsoft
+	..\..\bin\test.component.stlsoft.iterator.FILE_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.component.winstl:	build.component.winstl
+	@echo Running component tests for winstl
+	..\..\bin\test.component.winstl.filesystem.findfile_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.filesystem.hrw_file_lines.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.filesystem.memory_map_functions.C.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.filesystem.memory_map_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.filesystem.memory_mapped_file_view_handle.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.filesystem.readonly_memory_mapped_file.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.synch.semaphore.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.system.console_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.system.environment_variable.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.system.system_directory.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.system.temporary_directory.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.component.winstl.system.windows_directory.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.performance.comstl:	build.performance.comstl
+	@echo Running performance tests for comstl
+
+test.performance.platformstl:	build.performance.platformstl
+	@echo Running performance tests for platformstl
+	..\..\bin\test.component.platformstl.performance.performance_counter.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.performance.stlsoft:	build.performance.stlsoft
+	@echo Running performance tests for stlsoft
+	..\..\bin\test.performance.stlsoft.conversion.truncation_test.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.performance.winstl:	build.performance.winstl
+	@echo Running performance tests for winstl
+	..\..\bin\test.scratch.winstl.performance.threadtimes_counter.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.scratch.comstl:	build.scratch.comstl
+	@echo Running scratch tests for comstl
+	..\..\bin\test.scratch.comstl.conversion.interface_cast.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.scratch.comstl.conversion.method_cast.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.scratch.platformstl:	build.scratch.platformstl
+	@echo Running scratch tests for platformstl
+
+test.scratch.stlsoft:	build.scratch.stlsoft
+	@echo Running scratch tests for stlsoft
+	..\..\bin\test.scratch.stlsoft.error.error_desc.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.scratch.stlsoft.iterator.associative_select_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.scratch.stlsoft.smartptr.scoped_handle.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.scratch.stlsoft.util.rand.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.scratch.winstl:	build.scratch.winstl
+	@echo Running scratch tests for winstl
+	..\..\bin\test.scratch.winstl.performance.threadtimes_counter.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.unit.comstl:	build.unit.comstl
+	@echo Running unit tests for comstl
+	..\..\bin\test.unit.comstl.shims.access.string.GUID.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.shims.access.string.VARIANT.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.string.BSTR_functions.C.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.string.BSTR_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.util.GUID_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.util.variant.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.comstl.util.VARIANT_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.unit.platformstl:	build.unit.platformstl
+	@echo Running unit tests for platformstl
+	..\..\bin\test.unit.platformstl.system.str_set.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.unit.stlsoft:	build.unit.stlsoft
+	@echo Running unit tests for stlsoft
+	..\..\bin\test.unit.stlsoft.algorithm.literal_copy.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.algorithm.pod.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.collection.edge_case_index_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.fixed_arrays.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.frequency_map.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.initialised_array.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.layered_map.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.partially_initialised_array.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.container.pod_vector.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.conversion.integer_to_array.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.conversion.integer_to_hex_string.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.conversion.string_to_integer.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.conversion.truncation_test.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.conversion.union_cast.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.error.error_desc.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.exception.exception_string.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.filesystem.read_line.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.functional.bit_operations.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.associative_eraser_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.associative_select_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.eraser_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.filter_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.preferential_insert_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.sorted_eraser_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.string_concatenator_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.transform_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.iterator.unsorted_eraser_iterator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.memory.auto_buffer.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.meta.is_printf_type.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.shims.access.string.std.time.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.smartptr.scoped_handle.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.smartptr.scoped_method.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.smartptr.scoped_ptr.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.smartptr.shared_ptr.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.replace_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.shim_string.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.simple_string.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.slice_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.split_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.static_string.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.string_registry.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.string_slice.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.string_tokeniser.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.string_view.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.string.tokeniser_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.tr1.smartptr.scoped_ptr.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.bit_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.exception_string_creator.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.has_bom.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.minmax.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.must_init.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.rand.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.stlsoft.util.string_switch.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+test.unit.winstl:	build.unit.winstl
+	@echo Running unit tests for winstl
+	..\..\bin\test.unit.winstl.filesystem.filesystem_traits.1.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.filesystem.filesystem_traits.2.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.filesystem.findvolume_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.filesystem.memory_mapped_file.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.filesystem.path.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.filesystem.path_functions.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.registry.reg_delete_tree.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.registry.reg_value.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.synch.w4mo.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.system.commandline_parser.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.system.searchpath_sequence.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.system.system_traits.1.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+	..\..\bin\test.unit.winstl.system.system_traits.2.gcc34.exe --verbosity=$(TEST_VERBOSITY)
+
+ \
+
+############################################################################
+# Helper Targets
+
+check.lib.dir:              makefile
+	@-if not exist ..\..\lib\NUL mkdir ..\..\lib
+
+check.bin.dir:              makefile
+	@-if not exist ..\..\bin\NUL mkdir ..\..\bin
+
+
+
+############################################################################
+# Internal Targets
+
+########################################
+# comstl:
+
+..\..\bin\test.component.comstl.collections.collection_sequence.gcc34.exe:	.\test.component.comstl.collections.collection_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.comstl.collections.collection_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.component.comstl.collections.collection_sequence.obj:	..\..\test\component\comstl\collections\test.component.comstl.collections.collection_sequence\test.component.comstl.collections.collection_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\comstl\collections\test.component.comstl.collections.collection_sequence\test.component.comstl.collections.collection_sequence.cpp
+
+..\..\bin\test.scratch.comstl.conversion.interface_cast.gcc34.exe:	.\test.scratch.comstl.conversion.interface_cast.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.comstl.conversion.interface_cast.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.scratch.comstl.conversion.interface_cast.obj:	..\..\test\scratch\comstl\conversion\test.scratch.comstl.conversion.interface_cast\test.scratch.comstl.conversion.interface_cast.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\comstl\conversion\test.scratch.comstl.conversion.interface_cast\test.scratch.comstl.conversion.interface_cast.cpp
+
+..\..\bin\test.scratch.comstl.conversion.method_cast.gcc34.exe:	.\test.scratch.comstl.conversion.method_cast.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.comstl.conversion.method_cast.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.scratch.comstl.conversion.method_cast.obj:	..\..\test\scratch\comstl\conversion\test.scratch.comstl.conversion.method_cast\test.scratch.comstl.conversion.method_cast.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\comstl\conversion\test.scratch.comstl.conversion.method_cast\test.scratch.comstl.conversion.method_cast.cpp
+
+..\..\bin\test.unit.comstl.shims.access.string.GUID.gcc34.exe:	.\test.unit.comstl.shims.access.string.GUID.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.shims.access.string.GUID.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.shims.access.string.GUID.obj:	..\..\test\unit\comstl\shims\access\string\test.unit.comstl.shims.access.string.guid\test.unit.comstl.shims.access.string.GUID.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\shims\access\string\test.unit.comstl.shims.access.string.guid\test.unit.comstl.shims.access.string.GUID.cpp
+
+..\..\bin\test.unit.comstl.shims.access.string.VARIANT.gcc34.exe:	.\test.unit.comstl.shims.access.string.VARIANT.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.shims.access.string.VARIANT.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.shims.access.string.VARIANT.obj:	..\..\test\unit\comstl\shims\access\string\test.unit.comstl.shims.access.string.variant\test.unit.comstl.shims.access.string.VARIANT.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\shims\access\string\test.unit.comstl.shims.access.string.variant\test.unit.comstl.shims.access.string.VARIANT.cpp
+
+..\..\bin\test.unit.comstl.string.BSTR_functions.C.gcc34.exe:	.\test.unit.comstl.string.BSTR_functions.C.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.string.BSTR_functions.C.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.string.BSTR_functions.C.obj:	..\..\test\unit\comstl\string\test.unit.comstl.string.BSTR_functions.C\test.unit.comstl.string.BSTR_functions.C.c
+	gcc -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\string\test.unit.comstl.string.BSTR_functions.C\test.unit.comstl.string.BSTR_functions.C.c
+
+..\..\bin\test.unit.comstl.string.BSTR_functions.gcc34.exe:	.\test.unit.comstl.string.BSTR_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.string.BSTR_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.string.BSTR_functions.obj:	..\..\test\unit\comstl\string\test.unit.comstl.string.BSTR_functions\test.unit.comstl.string.BSTR_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\string\test.unit.comstl.string.BSTR_functions\test.unit.comstl.string.BSTR_functions.cpp
+
+..\..\bin\test.unit.comstl.util.GUID_functions.gcc34.exe:	.\test.unit.comstl.util.GUID_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.util.GUID_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.util.GUID_functions.obj:	..\..\test\unit\comstl\util\test.unit.comstl.util.GUID_functions\test.unit.comstl.util.GUID_functions.c
+	gcc -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\util\test.unit.comstl.util.GUID_functions\test.unit.comstl.util.GUID_functions.c
+
+..\..\bin\test.unit.comstl.util.variant.gcc34.exe:	.\test.unit.comstl.util.variant.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.util.variant.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.util.variant.obj:	..\..\test\unit\comstl\util\test.unit.comstl.util.variant\test.unit.comstl.util.variant.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\util\test.unit.comstl.util.variant\test.unit.comstl.util.variant.cpp
+
+..\..\bin\test.unit.comstl.util.VARIANT_functions.gcc34.exe:	.\test.unit.comstl.util.VARIANT_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.comstl.util.VARIANT_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -luuid
+.\test.unit.comstl.util.VARIANT_functions.obj:	..\..\test\unit\comstl\util\test.unit.comstl.util.VARIANT_functions\test.unit.comstl.util.VARIANT_functions.c
+	gcc -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\comstl\util\test.unit.comstl.util.VARIANT_functions\test.unit.comstl.util.VARIANT_functions.c
+
+
+############################################################################
+# Internal Targets
+
+########################################
+# platformstl:
+
+..\..\bin\test.component.platformstl.filesystem.file_lines.gcc34.exe:	.\test.component.platformstl.filesystem.file_lines.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.platformstl.filesystem.file_lines.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.platformstl.filesystem.file_lines.obj:	..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.file_lines\test.component.platformstl.filesystem.file_lines.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.file_lines\test.component.platformstl.filesystem.file_lines.cpp
+
+..\..\bin\test.component.platformstl.filesystem.filesystem_traits.1.gcc34.exe:	.\test.component.platformstl.filesystem.filesystem_traits.1.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.platformstl.filesystem.filesystem_traits.1.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.platformstl.filesystem.filesystem_traits.1.obj:	..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.filesystem_traits.1\test.component.platformstl.filesystem.filesystem_traits.1.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.filesystem_traits.1\test.component.platformstl.filesystem.filesystem_traits.1.cpp
+
+..\..\bin\test.component.platformstl.filesystem.properties_file.gcc34.exe:	.\test.component.platformstl.filesystem.properties_file.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.platformstl.filesystem.properties_file.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.platformstl.filesystem.properties_file.obj:	..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.properties_file\test.component.platformstl.filesystem.properties_file.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.properties_file\test.component.platformstl.filesystem.properties_file.cpp
+
+..\..\bin\test.component.platformstl.filesystem.readdir_sequence.gcc34.exe:	.\test.component.platformstl.filesystem.readdir_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.platformstl.filesystem.readdir_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.platformstl.filesystem.readdir_sequence.obj:	..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.readdir_sequence\test.component.platformstl.filesystem.readdir_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\platformstl\filesystem\test.component.platformstl.filesystem.readdir_sequence\test.component.platformstl.filesystem.readdir_sequence.cpp
+
+..\..\bin\test.component.platformstl.performance.performance_counter.gcc34.exe:	.\test.component.platformstl.performance.performance_counter.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.platformstl.performance.performance_counter.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.platformstl.performance.performance_counter.obj:	..\..\test\component\platformstl\performance\test.component.platformstl.performance.performance_counter\test.component.platformstl.performance.performance_counter.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\platformstl\performance\test.component.platformstl.performance.performance_counter\test.component.platformstl.performance.performance_counter.cpp
+
+..\..\bin\test.unit.platformstl.system.str_set.gcc34.exe:	.\test.unit.platformstl.system.str_set.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.platformstl.system.str_set.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.platformstl.system.str_set.obj:	..\..\test\unit\platformstl\system\test.unit.platformstl.system.str_set\test.unit.platformstl.system.str_set.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\platformstl\system\test.unit.platformstl.system.str_set\test.unit.platformstl.system.str_set.cpp
+
+
+############################################################################
+# Internal Targets
+
+########################################
+# stlsoft:
+
+..\..\bin\test.component.stlsoft.iterator.FILE_iterator.gcc34.exe:	.\test.component.stlsoft.iterator.FILE_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.stlsoft.iterator.FILE_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.component.stlsoft.iterator.FILE_iterator.obj:	..\..\test\component\stlsoft\iterator\test.component.stlsoft.iterator.FILE_iterator\test.component.stlsoft.iterator.FILE_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\stlsoft\iterator\test.component.stlsoft.iterator.FILE_iterator\test.component.stlsoft.iterator.FILE_iterator.cpp
+
+..\..\bin\test.performance.stlsoft.conversion.truncation_test.gcc34.exe:	.\test.performance.stlsoft.conversion.truncation_test.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.performance.stlsoft.conversion.truncation_test.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.performance.stlsoft.conversion.truncation_test.obj:	..\..\test\performance\stlsoft\conversion\test.performance.stlsoft.conversion.truncation_test\test.performance.stlsoft.conversion.truncation_test.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\performance\stlsoft\conversion\test.performance.stlsoft.conversion.truncation_test\test.performance.stlsoft.conversion.truncation_test.cpp
+
+..\..\bin\test.scratch.stlsoft.error.error_desc.gcc34.exe:	.\test.scratch.stlsoft.error.error_desc.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.stlsoft.error.error_desc.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.scratch.stlsoft.error.error_desc.obj:	..\..\test\scratch\stlsoft\error\test.scratch.stlsoft.error.error_desc\test.scratch.stlsoft.error.error_desc.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\stlsoft\error\test.scratch.stlsoft.error.error_desc\test.scratch.stlsoft.error.error_desc.cpp
+
+..\..\bin\test.scratch.stlsoft.iterator.associative_select_iterator.gcc34.exe:	.\test.scratch.stlsoft.iterator.associative_select_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.stlsoft.iterator.associative_select_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.scratch.stlsoft.iterator.associative_select_iterator.obj:	..\..\test\scratch\stlsoft\iterator\test.scratch.stlsoft.iterator.associative_select_iterator\test.scratch.stlsoft.iterator.associative_select_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\stlsoft\iterator\test.scratch.stlsoft.iterator.associative_select_iterator\test.scratch.stlsoft.iterator.associative_select_iterator.cpp
+
+..\..\bin\test.scratch.stlsoft.smartptr.scoped_handle.gcc34.exe:	.\test.scratch.stlsoft.smartptr.scoped_handle.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.stlsoft.smartptr.scoped_handle.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.scratch.stlsoft.smartptr.scoped_handle.obj:	..\..\test\scratch\stlsoft\smartptr\test.scratch.stlsoft.smartptr.scoped_handle\test.scratch.stlsoft.smartptr.scoped_handle.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\stlsoft\smartptr\test.scratch.stlsoft.smartptr.scoped_handle\test.scratch.stlsoft.smartptr.scoped_handle.cpp
+
+..\..\bin\test.scratch.stlsoft.util.rand.gcc34.exe:	.\test.scratch.stlsoft.util.rand.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.stlsoft.util.rand.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.scratch.stlsoft.util.rand.obj:	..\..\test\scratch\stlsoft\util\test.scratch.stlsoft.util.rand\test.scratch.stlsoft.util.rand.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\stlsoft\util\test.scratch.stlsoft.util.rand\test.scratch.stlsoft.util.rand.cpp
+
+..\..\bin\test.unit.stlsoft.algorithm.literal_copy.gcc34.exe:	.\test.unit.stlsoft.algorithm.literal_copy.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.algorithm.literal_copy.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.algorithm.literal_copy.obj:	..\..\test\unit\stlsoft\algorithm\test.unit.stlsoft.algorithm.literal_copy\test.unit.stlsoft.algorithm.literal_copy.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\algorithm\test.unit.stlsoft.algorithm.literal_copy\test.unit.stlsoft.algorithm.literal_copy.cpp
+
+..\..\bin\test.unit.stlsoft.algorithm.pod.gcc34.exe:	.\test.unit.stlsoft.algorithm.pod.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.algorithm.pod.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.algorithm.pod.obj:	..\..\test\unit\stlsoft\algorithm\test.unit.stlsoft.algorithm.pod\test.unit.stlsoft.algorithm.pod.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\algorithm\test.unit.stlsoft.algorithm.pod\test.unit.stlsoft.algorithm.pod.cpp
+
+..\..\bin\test.unit.stlsoft.collection.edge_case_index_sequence.gcc34.exe:	.\test.unit.stlsoft.collection.edge_case_index_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.collection.edge_case_index_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.collection.edge_case_index_sequence.obj:	..\..\test\unit\stlsoft\collection\test.unit.stlsoft.collection.edge_case_index_sequence\test.unit.stlsoft.collection.edge_case_index_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\collection\test.unit.stlsoft.collection.edge_case_index_sequence\test.unit.stlsoft.collection.edge_case_index_sequence.cpp
+
+..\..\bin\test.unit.stlsoft.container.fixed_arrays.gcc34.exe:	.\test.unit.stlsoft.container.fixed_arrays.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.fixed_arrays.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.fixed_arrays.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.fixed_arrays\test.unit.stlsoft.container.fixed_arrays.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.fixed_arrays\test.unit.stlsoft.container.fixed_arrays.cpp
+
+..\..\bin\test.unit.stlsoft.container.frequency_map.gcc34.exe:	.\test.unit.stlsoft.container.frequency_map.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.frequency_map.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.frequency_map.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.frequency_map\test.unit.stlsoft.container.frequency_map.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.frequency_map\test.unit.stlsoft.container.frequency_map.cpp
+
+..\..\bin\test.unit.stlsoft.container.initialised_array.gcc34.exe:	.\test.unit.stlsoft.container.initialised_array.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.initialised_array.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.initialised_array.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.initialised_array\test.unit.stlsoft.container.initialised_array.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.initialised_array\test.unit.stlsoft.container.initialised_array.cpp
+
+..\..\bin\test.unit.stlsoft.container.layered_map.gcc34.exe:	.\test.unit.stlsoft.container.layered_map.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.layered_map.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.layered_map.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.layered_map\test.unit.stlsoft.container.layered_map.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.layered_map\test.unit.stlsoft.container.layered_map.cpp
+
+..\..\bin\test.unit.stlsoft.container.partially_initialised_array.gcc34.exe:	.\test.unit.stlsoft.container.partially_initialised_array.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.partially_initialised_array.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.partially_initialised_array.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.partially_initialised_array\test.unit.stlsoft.container.partially_initialised_array.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.partially_initialised_array\test.unit.stlsoft.container.partially_initialised_array.cpp
+
+..\..\bin\test.unit.stlsoft.container.pod_vector.gcc34.exe:	.\test.unit.stlsoft.container.pod_vector.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.container.pod_vector.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.container.pod_vector.obj:	..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.pod_vector\test.unit.stlsoft.container.pod_vector.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\container\test.unit.stlsoft.container.pod_vector\test.unit.stlsoft.container.pod_vector.cpp
+
+..\..\bin\test.unit.stlsoft.conversion.integer_to_array.gcc34.exe:	.\test.unit.stlsoft.conversion.integer_to_array.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.conversion.integer_to_array.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.conversion.integer_to_array.obj:	..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.integer_to_array\test.unit.stlsoft.conversion.integer_to_array.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.integer_to_array\test.unit.stlsoft.conversion.integer_to_array.cpp
+
+..\..\bin\test.unit.stlsoft.conversion.integer_to_hex_string.gcc34.exe:	.\test.unit.stlsoft.conversion.integer_to_hex_string.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.conversion.integer_to_hex_string.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.conversion.integer_to_hex_string.obj:	..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.integer_to_hex_string\test.unit.stlsoft.conversion.integer_to_hex_string.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.integer_to_hex_string\test.unit.stlsoft.conversion.integer_to_hex_string.cpp
+
+..\..\bin\test.unit.stlsoft.conversion.string_to_integer.gcc34.exe:	.\test.unit.stlsoft.conversion.string_to_integer.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.conversion.string_to_integer.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.conversion.string_to_integer.obj:	..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.string_to_integer\test.unit.stlsoft.conversion.string_to_integer.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.string_to_integer\test.unit.stlsoft.conversion.string_to_integer.cpp
+
+..\..\bin\test.unit.stlsoft.conversion.truncation_test.gcc34.exe:	.\test.unit.stlsoft.conversion.truncation_test.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.conversion.truncation_test.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.conversion.truncation_test.obj:	..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.truncation_test\test.unit.stlsoft.conversion.truncation_test.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.truncation_test\test.unit.stlsoft.conversion.truncation_test.cpp
+
+..\..\bin\test.unit.stlsoft.conversion.union_cast.gcc34.exe:	.\test.unit.stlsoft.conversion.union_cast.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.conversion.union_cast.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.conversion.union_cast.obj:	..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.union_cast\test.unit.stlsoft.conversion.union_cast.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\conversion\test.unit.stlsoft.conversion.union_cast\test.unit.stlsoft.conversion.union_cast.cpp
+
+..\..\bin\test.unit.stlsoft.error.error_desc.gcc34.exe:	.\test.unit.stlsoft.error.error_desc.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.error.error_desc.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.error.error_desc.obj:	..\..\test\unit\stlsoft\error\test.unit.stlsoft.error.error_desc\test.unit.stlsoft.error.error_desc.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\error\test.unit.stlsoft.error.error_desc\test.unit.stlsoft.error.error_desc.cpp
+
+..\..\bin\test.unit.stlsoft.exception.exception_string.gcc34.exe:	.\test.unit.stlsoft.exception.exception_string.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.exception.exception_string.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.exception.exception_string.obj:	..\..\test\unit\stlsoft\exception\test.unit.stlsoft.exception.exception_string\test.unit.stlsoft.exception.exception_string.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\exception\test.unit.stlsoft.exception.exception_string\test.unit.stlsoft.exception.exception_string.cpp
+
+..\..\bin\test.unit.stlsoft.filesystem.read_line.gcc34.exe:	.\test.unit.stlsoft.filesystem.read_line.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.filesystem.read_line.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.filesystem.read_line.obj:	..\..\test\unit\stlsoft\filesystem\test.unit.stlsoft.filesystem.read_line\test.unit.stlsoft.filesystem.read_line.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\filesystem\test.unit.stlsoft.filesystem.read_line\test.unit.stlsoft.filesystem.read_line.cpp
+
+..\..\bin\test.unit.stlsoft.functional.bit_operations.gcc34.exe:	.\test.unit.stlsoft.functional.bit_operations.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.functional.bit_operations.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.functional.bit_operations.obj:	..\..\test\unit\stlsoft\functional\test.unit.stlsoft.functional.bit_operations\test.unit.stlsoft.functional.bit_operations.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\functional\test.unit.stlsoft.functional.bit_operations\test.unit.stlsoft.functional.bit_operations.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.associative_eraser_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.associative_eraser_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.associative_eraser_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.associative_eraser_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.associative_eraser_iterator\test.unit.stlsoft.iterator.associative_eraser_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.associative_eraser_iterator\test.unit.stlsoft.iterator.associative_eraser_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.associative_select_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.associative_select_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.associative_select_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.associative_select_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.associative_select_iterator\test.unit.stlsoft.iterator.associative_select_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.associative_select_iterator\test.unit.stlsoft.iterator.associative_select_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.eraser_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.eraser_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.eraser_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.eraser_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.eraser_iterator\test.unit.stlsoft.iterator.eraser_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.eraser_iterator\test.unit.stlsoft.iterator.eraser_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.filter_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.filter_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.filter_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.filter_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.filter_iterator\test.unit.stlsoft.iterator.filter_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.filter_iterator\test.unit.stlsoft.iterator.filter_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.preferential_insert_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.preferential_insert_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.preferential_insert_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.preferential_insert_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.preferential_insert_iterator\test.unit.stlsoft.iterator.preferential_insert_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.preferential_insert_iterator\test.unit.stlsoft.iterator.preferential_insert_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.sorted_eraser_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.sorted_eraser_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.sorted_eraser_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.sorted_eraser_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.sorted_eraser_iterator\test.unit.stlsoft.iterator.sorted_eraser_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.sorted_eraser_iterator\test.unit.stlsoft.iterator.sorted_eraser_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.string_concatenator_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.string_concatenator_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.string_concatenator_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.string_concatenator_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.string_concatenator_iterator\test.unit.stlsoft.iterator.string_concatenator_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.string_concatenator_iterator\test.unit.stlsoft.iterator.string_concatenator_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.transform_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.transform_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.transform_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.transform_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.transform_iterator\test.unit.stlsoft.iterator.transform_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.transform_iterator\test.unit.stlsoft.iterator.transform_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.iterator.unsorted_eraser_iterator.gcc34.exe:	.\test.unit.stlsoft.iterator.unsorted_eraser_iterator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.iterator.unsorted_eraser_iterator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.iterator.unsorted_eraser_iterator.obj:	..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.unsorted_eraser_iterator\test.unit.stlsoft.iterator.unsorted_eraser_iterator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\iterator\test.unit.stlsoft.iterator.unsorted_eraser_iterator\test.unit.stlsoft.iterator.unsorted_eraser_iterator.cpp
+
+..\..\bin\test.unit.stlsoft.memory.auto_buffer.gcc34.exe:	.\test.unit.stlsoft.memory.auto_buffer.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.memory.auto_buffer.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.memory.auto_buffer.obj:	..\..\test\unit\stlsoft\memory\test.unit.stlsoft.memory.auto_buffer\test.unit.stlsoft.memory.auto_buffer.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\memory\test.unit.stlsoft.memory.auto_buffer\test.unit.stlsoft.memory.auto_buffer.cpp
+
+..\..\bin\test.unit.stlsoft.meta.is_printf_type.gcc34.exe:	.\test.unit.stlsoft.meta.is_printf_type.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.meta.is_printf_type.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.meta.is_printf_type.obj:	..\..\test\unit\stlsoft\meta\test.unit.stlsoft.meta.is_printf_type\test.unit.stlsoft.meta.is_printf_type.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\meta\test.unit.stlsoft.meta.is_printf_type\test.unit.stlsoft.meta.is_printf_type.cpp
+
+..\..\bin\test.unit.stlsoft.shims.access.string.std.time.gcc34.exe:	.\test.unit.stlsoft.shims.access.string.std.time.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.shims.access.string.std.time.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.shims.access.string.std.time.obj:	..\..\test\unit\stlsoft\shims\access\string\test.unit.stlsoft.shims.access.string.std.time\test.unit.stlsoft.shims.access.string.std.time.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\shims\access\string\test.unit.stlsoft.shims.access.string.std.time\test.unit.stlsoft.shims.access.string.std.time.cpp
+
+..\..\bin\test.unit.stlsoft.smartptr.scoped_handle.gcc34.exe:	.\test.unit.stlsoft.smartptr.scoped_handle.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.smartptr.scoped_handle.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.smartptr.scoped_handle.obj:	..\..\test\unit\stlsoft\smartptr\scoped_handle\test.unit.stlsoft.smartptr.scoped_handle\test.unit.stlsoft.smartptr.scoped_handle.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\smartptr\scoped_handle\test.unit.stlsoft.smartptr.scoped_handle\test.unit.stlsoft.smartptr.scoped_handle.cpp
+
+..\..\bin\test.unit.stlsoft.smartptr.scoped_method.gcc34.exe:	.\test.unit.stlsoft.smartptr.scoped_method.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.smartptr.scoped_method.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.smartptr.scoped_method.obj:	..\..\test\unit\stlsoft\smartptr\scoped_method\test.unit.stlsoft.smartptr.scoped_method\test.unit.stlsoft.smartptr.scoped_method.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\smartptr\scoped_method\test.unit.stlsoft.smartptr.scoped_method\test.unit.stlsoft.smartptr.scoped_method.cpp
+
+..\..\bin\test.unit.stlsoft.smartptr.scoped_ptr.gcc34.exe:	.\test.unit.stlsoft.smartptr.scoped_ptr.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.smartptr.scoped_ptr.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.smartptr.scoped_ptr.obj:	..\..\test\unit\stlsoft\smartptr\scoped_ptr\test.unit.stlsoft.smartptr.scoped_ptr\test.unit.stlsoft.smartptr.scoped_ptr.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\smartptr\scoped_ptr\test.unit.stlsoft.smartptr.scoped_ptr\test.unit.stlsoft.smartptr.scoped_ptr.cpp
+
+..\..\bin\test.unit.stlsoft.smartptr.shared_ptr.gcc34.exe:	.\test.unit.stlsoft.smartptr.shared_ptr.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.smartptr.shared_ptr.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.smartptr.shared_ptr.obj:	..\..\test\unit\stlsoft\smartptr\shared_ptr\test.unit.stlsoft.smartptr.shared_ptr\test.unit.stlsoft.smartptr.shared_ptr.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\smartptr\shared_ptr\test.unit.stlsoft.smartptr.shared_ptr\test.unit.stlsoft.smartptr.shared_ptr.cpp
+
+..\..\bin\test.unit.stlsoft.string.replace_functions.gcc34.exe:	.\test.unit.stlsoft.string.replace_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.replace_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.replace_functions.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.replace_functions\test.unit.stlsoft.string.replace_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.replace_functions\test.unit.stlsoft.string.replace_functions.cpp
+
+..\..\bin\test.unit.stlsoft.string.shim_string.gcc34.exe:	.\test.unit.stlsoft.string.shim_string.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.shim_string.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.shim_string.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.shim_string\test.unit.stlsoft.string.shim_string.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.shim_string\test.unit.stlsoft.string.shim_string.cpp
+
+..\..\bin\test.unit.stlsoft.string.simple_string.gcc34.exe:	.\test.unit.stlsoft.string.simple_string.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.simple_string.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.simple_string.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.simple_string\test.unit.stlsoft.string.simple_string.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.simple_string\test.unit.stlsoft.string.simple_string.cpp
+
+..\..\bin\test.unit.stlsoft.string.slice_functions.gcc34.exe:	.\test.unit.stlsoft.string.slice_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.slice_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.slice_functions.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.slice_functions\test.unit.stlsoft.string.slice_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.slice_functions\test.unit.stlsoft.string.slice_functions.cpp
+
+..\..\bin\test.unit.stlsoft.string.split_functions.gcc34.exe:	.\test.unit.stlsoft.string.split_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.split_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.split_functions.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.split_functions\test.unit.stlsoft.string.split_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.split_functions\test.unit.stlsoft.string.split_functions.cpp
+
+..\..\bin\test.unit.stlsoft.string.static_string.gcc34.exe:	.\test.unit.stlsoft.string.static_string.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.static_string.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.static_string.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.static_string\test.unit.stlsoft.string.static_string.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.static_string\test.unit.stlsoft.string.static_string.cpp
+
+..\..\bin\test.unit.stlsoft.string.string_registry.gcc34.exe:	.\test.unit.stlsoft.string.string_registry.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.string_registry.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.string_registry.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_registry\test.unit.stlsoft.string.string_registry.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_registry\test.unit.stlsoft.string.string_registry.cpp
+
+..\..\bin\test.unit.stlsoft.string.string_slice.gcc34.exe:	.\test.unit.stlsoft.string.string_slice.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.string_slice.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.string_slice.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_slice\test.unit.stlsoft.string.string_slice.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_slice\test.unit.stlsoft.string.string_slice.cpp
+
+..\..\bin\test.unit.stlsoft.string.string_tokeniser.gcc34.exe:	.\test.unit.stlsoft.string.string_tokeniser.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.string_tokeniser.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.string_tokeniser.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_tokeniser\test.unit.stlsoft.string.string_tokeniser.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_tokeniser\test.unit.stlsoft.string.string_tokeniser.cpp
+
+..\..\bin\test.unit.stlsoft.string.string_view.gcc34.exe:	.\test.unit.stlsoft.string.string_view.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.string_view.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.string_view.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_view\test.unit.stlsoft.string.string_view.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.string_view\test.unit.stlsoft.string.string_view.cpp
+
+..\..\bin\test.unit.stlsoft.string.tokeniser_functions.gcc34.exe:	.\test.unit.stlsoft.string.tokeniser_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.string.tokeniser_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.string.tokeniser_functions.obj:	..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.tokeniser_functions\test.unit.stlsoft.string.tokeniser_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\string\test.unit.stlsoft.string.tokeniser_functions\test.unit.stlsoft.string.tokeniser_functions.cpp
+
+..\..\bin\test.unit.stlsoft.tr1.smartptr.scoped_ptr.gcc34.exe:	.\test.unit.stlsoft.tr1.smartptr.scoped_ptr.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.tr1.smartptr.scoped_ptr.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.tr1.smartptr.scoped_ptr.obj:	..\..\test\unit\stlsoft\tr1\smartptr\scoped_ptr\test.unit.stlsoft.tr1.smartptr.scoped_ptr\test.unit.stlsoft.tr1.smartptr.scoped_ptr.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\tr1\smartptr\scoped_ptr\test.unit.stlsoft.tr1.smartptr.scoped_ptr\test.unit.stlsoft.tr1.smartptr.scoped_ptr.cpp
+
+..\..\bin\test.unit.stlsoft.util.bit_functions.gcc34.exe:	.\test.unit.stlsoft.util.bit_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.bit_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.bit_functions.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.bit_functions\test.unit.stlsoft.util.bit_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.bit_functions\test.unit.stlsoft.util.bit_functions.cpp
+
+..\..\bin\test.unit.stlsoft.util.exception_string_creator.gcc34.exe:	.\test.unit.stlsoft.util.exception_string_creator.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.exception_string_creator.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.exception_string_creator.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.exception_string_creator\test.unit.stlsoft.util.exception_string_creator.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.exception_string_creator\test.unit.stlsoft.util.exception_string_creator.cpp
+
+..\..\bin\test.unit.stlsoft.util.has_bom.gcc34.exe:	.\test.unit.stlsoft.util.has_bom.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.has_bom.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.has_bom.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.has_bom\test.unit.stlsoft.util.has_bom.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.has_bom\test.unit.stlsoft.util.has_bom.cpp
+
+..\..\bin\test.unit.stlsoft.util.minmax.gcc34.exe:	.\test.unit.stlsoft.util.minmax.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.minmax.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.minmax.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.minmax\test.unit.stlsoft.util.minmax.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.minmax\test.unit.stlsoft.util.minmax.cpp
+
+..\..\bin\test.unit.stlsoft.util.must_init.gcc34.exe:	.\test.unit.stlsoft.util.must_init.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.must_init.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.must_init.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.must_init\test.unit.stlsoft.util.must_init.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.must_init\test.unit.stlsoft.util.must_init.cpp
+
+..\..\bin\test.unit.stlsoft.util.rand.gcc34.exe:	.\test.unit.stlsoft.util.rand.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.rand.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.rand.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.rand\test.unit.stlsoft.util.rand.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.rand\test.unit.stlsoft.util.rand.cpp
+
+..\..\bin\test.unit.stlsoft.util.string_switch.gcc34.exe:	.\test.unit.stlsoft.util.string_switch.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.stlsoft.util.string_switch.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32 
+.\test.unit.stlsoft.util.string_switch.obj:	..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.string_switch\test.unit.stlsoft.util.string_switch.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\stlsoft\util\test.unit.stlsoft.util.string_switch\test.unit.stlsoft.util.string_switch.cpp
+
+
+############################################################################
+# Internal Targets
+
+########################################
+# winstl:
+
+..\..\bin\test.component.winstl.filesystem.findfile_sequence.gcc34.exe:	.\test.component.winstl.filesystem.findfile_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.findfile_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.findfile_sequence.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.findfile_sequence\test.component.winstl.filesystem.findfile_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.findfile_sequence\test.component.winstl.filesystem.findfile_sequence.cpp
+
+..\..\bin\test.component.winstl.filesystem.hrw_file_lines.gcc34.exe:	.\test.component.winstl.filesystem.hrw_file_lines.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.hrw_file_lines.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.hrw_file_lines.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.hrw_file_lines\test.component.winstl.filesystem.hrw_file_lines.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.hrw_file_lines\test.component.winstl.filesystem.hrw_file_lines.cpp
+
+..\..\bin\test.component.winstl.filesystem.memory_map_functions.C.gcc34.exe:	.\test.component.winstl.filesystem.memory_map_functions.C.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.memory_map_functions.C.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.memory_map_functions.C.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_map_functions.C\test.component.winstl.filesystem.memory_map_functions.C.c
+	gcc -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_map_functions.C\test.component.winstl.filesystem.memory_map_functions.C.c
+
+..\..\bin\test.component.winstl.filesystem.memory_map_functions.gcc34.exe:	.\test.component.winstl.filesystem.memory_map_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.memory_map_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.memory_map_functions.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_map_functions\test.component.winstl.filesystem.memory_map_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_map_functions\test.component.winstl.filesystem.memory_map_functions.cpp
+
+..\..\bin\test.component.winstl.filesystem.memory_mapped_file_view_handle.gcc34.exe:	.\test.component.winstl.filesystem.memory_mapped_file_view_handle.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.memory_mapped_file_view_handle.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.memory_mapped_file_view_handle.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_mapped_file_view_handle\test.component.winstl.filesystem.memory_mapped_file_view_handle.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.memory_mapped_file_view_handle\test.component.winstl.filesystem.memory_mapped_file_view_handle.cpp
+
+..\..\bin\test.component.winstl.filesystem.readonly_memory_mapped_file.gcc34.exe:	.\test.component.winstl.filesystem.readonly_memory_mapped_file.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.filesystem.readonly_memory_mapped_file.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.filesystem.readonly_memory_mapped_file.obj:	..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.readonly_memory_mapped_file\test.component.winstl.filesystem.readonly_memory_mapped_file.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\filesystem\test.component.winstl.filesystem.readonly_memory_mapped_file\test.component.winstl.filesystem.readonly_memory_mapped_file.cpp
+
+..\..\bin\test.component.winstl.synch.semaphore.gcc34.exe:	.\test.component.winstl.synch.semaphore.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.synch.semaphore.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.synch.semaphore.obj:	..\..\test\component\winstl\synch\test.component.winstl.synch.semaphore\test.component.winstl.synch.semaphore.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\synch\test.component.winstl.synch.semaphore\test.component.winstl.synch.semaphore.cpp
+
+..\..\bin\test.component.winstl.system.console_functions.gcc34.exe:	.\test.component.winstl.system.console_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.system.console_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.system.console_functions.obj:	..\..\test\component\winstl\system\test.component.winstl.system.console_functions\test.component.winstl.system.console_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\system\test.component.winstl.system.console_functions\test.component.winstl.system.console_functions.cpp
+
+..\..\bin\test.component.winstl.system.environment_variable.gcc34.exe:	.\test.component.winstl.system.environment_variable.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.system.environment_variable.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.system.environment_variable.obj:	..\..\test\component\winstl\system\test.component.winstl.system.environment_variable\test.component.winstl.system.environment_variable.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\system\test.component.winstl.system.environment_variable\test.component.winstl.system.environment_variable.cpp
+
+..\..\bin\test.component.winstl.system.system_directory.gcc34.exe:	.\test.component.winstl.system.system_directory.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.system.system_directory.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.system.system_directory.obj:	..\..\test\component\winstl\system\test.component.winstl.system.system_directory\test.component.winstl.system.system_directory.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\system\test.component.winstl.system.system_directory\test.component.winstl.system.system_directory.cpp
+
+..\..\bin\test.component.winstl.system.temporary_directory.gcc34.exe:	.\test.component.winstl.system.temporary_directory.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.system.temporary_directory.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.system.temporary_directory.obj:	..\..\test\component\winstl\system\test.component.winstl.system.temporary_directory\test.component.winstl.system.temporary_directory.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\system\test.component.winstl.system.temporary_directory\test.component.winstl.system.temporary_directory.cpp
+
+..\..\bin\test.component.winstl.system.windows_directory.gcc34.exe:	.\test.component.winstl.system.windows_directory.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.component.winstl.system.windows_directory.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.component.winstl.system.windows_directory.obj:	..\..\test\component\winstl\system\test.component.winstl.system.windows_directory\test.component.winstl.system.windows_directory.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\component\winstl\system\test.component.winstl.system.windows_directory\test.component.winstl.system.windows_directory.cpp
+
+..\..\bin\mmap.gcc34.exe:	.\mmap.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\mmap.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\mmap.obj:	..\..\test\scratch\winstl\filesystem\mmap\mmap.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\winstl\filesystem\mmap\mmap.cpp
+
+..\..\bin\test.scratch.winstl.performance.threadtimes_counter.gcc34.exe:	.\test.scratch.winstl.performance.threadtimes_counter.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.scratch.winstl.performance.threadtimes_counter.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.scratch.winstl.performance.threadtimes_counter.obj:	..\..\test\scratch\winstl\performance\test.scratch.winstl.performance.threadtimes_counter\test.scratch.winstl.performance.threadtimes_counter.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\scratch\winstl\performance\test.scratch.winstl.performance.threadtimes_counter\test.scratch.winstl.performance.threadtimes_counter.cpp
+
+..\..\bin\test.unit.winstl.filesystem.filesystem_traits.1.gcc34.exe:	.\test.unit.winstl.filesystem.filesystem_traits.1.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.filesystem_traits.1.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.filesystem_traits.1.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.filesystem_traits.1\test.unit.winstl.filesystem.filesystem_traits.1.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.filesystem_traits.1\test.unit.winstl.filesystem.filesystem_traits.1.cpp
+
+..\..\bin\test.unit.winstl.filesystem.filesystem_traits.2.gcc34.exe:	.\test.unit.winstl.filesystem.filesystem_traits.2.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.filesystem_traits.2.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.filesystem_traits.2.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.filesystem_traits.2\test.unit.winstl.filesystem.filesystem_traits.2.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.filesystem_traits.2\test.unit.winstl.filesystem.filesystem_traits.2.cpp
+
+..\..\bin\test.unit.winstl.filesystem.findvolume_sequence.gcc34.exe:	.\test.unit.winstl.filesystem.findvolume_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.findvolume_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.findvolume_sequence.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.findvolume_sequence\test.unit.winstl.filesystem.findvolume_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.findvolume_sequence\test.unit.winstl.filesystem.findvolume_sequence.cpp
+
+..\..\bin\test.unit.winstl.filesystem.memory_mapped_file.gcc34.exe:	.\test.unit.winstl.filesystem.memory_mapped_file.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.memory_mapped_file.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.memory_mapped_file.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.memory_mapped_file\test.unit.winstl.filesystem.memory_mapped_file.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.memory_mapped_file\test.unit.winstl.filesystem.memory_mapped_file.cpp
+
+..\..\bin\test.unit.winstl.filesystem.path.gcc34.exe:	.\test.unit.winstl.filesystem.path.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.path.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.path.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.path\test.unit.winstl.filesystem.path.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.path\test.unit.winstl.filesystem.path.cpp
+
+..\..\bin\test.unit.winstl.filesystem.path_functions.gcc34.exe:	.\test.unit.winstl.filesystem.path_functions.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.filesystem.path_functions.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.filesystem.path_functions.obj:	..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.path_functions\test.unit.winstl.filesystem.path_functions.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\filesystem\test.unit.winstl.filesystem.path_functions\test.unit.winstl.filesystem.path_functions.cpp
+
+..\..\bin\test.unit.winstl.registry.reg_delete_tree.gcc34.exe:	.\test.unit.winstl.registry.reg_delete_tree.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.registry.reg_delete_tree.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.registry.reg_delete_tree.obj:	..\..\test\unit\winstl\registry\test.unit.winstl.registry.reg_delete_tree\test.unit.winstl.registry.reg_delete_tree.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\registry\test.unit.winstl.registry.reg_delete_tree\test.unit.winstl.registry.reg_delete_tree.cpp
+
+..\..\bin\test.unit.winstl.registry.reg_value.gcc34.exe:	.\test.unit.winstl.registry.reg_value.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.registry.reg_value.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.registry.reg_value.obj:	..\..\test\unit\winstl\registry\test.unit.winstl.registry.reg_value\test.unit.winstl.registry.reg_value.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\registry\test.unit.winstl.registry.reg_value\test.unit.winstl.registry.reg_value.cpp
+
+..\..\bin\test.unit.winstl.synch.w4mo.gcc34.exe:	.\test.unit.winstl.synch.w4mo.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.synch.w4mo.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.synch.w4mo.obj:	..\..\test\unit\winstl\synch\test.unit.winstl.synch.w4mo\test.unit.winstl.synch.w4mo.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\synch\test.unit.winstl.synch.w4mo\test.unit.winstl.synch.w4mo.cpp
+
+..\..\bin\test.unit.winstl.system.commandline_parser.gcc34.exe:	.\test.unit.winstl.system.commandline_parser.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.system.commandline_parser.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.system.commandline_parser.obj:	..\..\test\unit\winstl\system\test.unit.winstl.system.commandline_parser\test.unit.winstl.system.commandline_parser.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\system\test.unit.winstl.system.commandline_parser\test.unit.winstl.system.commandline_parser.cpp
+
+..\..\bin\test.unit.winstl.system.searchpath_sequence.gcc34.exe:	.\test.unit.winstl.system.searchpath_sequence.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.system.searchpath_sequence.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.system.searchpath_sequence.obj:	..\..\test\unit\winstl\system\test.unit.winstl.system.searchpath_sequence\test.unit.winstl.system.searchpath_sequence.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\system\test.unit.winstl.system.searchpath_sequence\test.unit.winstl.system.searchpath_sequence.cpp
+
+..\..\bin\test.unit.winstl.system.system_traits.1.gcc34.exe:	.\test.unit.winstl.system.system_traits.1.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.system.system_traits.1.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.system.system_traits.1.obj:	..\..\test\unit\winstl\system\test.unit.winstl.system.system_traits.1\test.unit.winstl.system.system_traits.1.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\system\test.unit.winstl.system.system_traits.1\test.unit.winstl.system.system_traits.1.cpp
+
+..\..\bin\test.unit.winstl.system.system_traits.2.gcc34.exe:	.\test.unit.winstl.system.system_traits.2.obj
+	g++  -Wl,--library-path $(LIB_XTESTS)    -o $@  .\test.unit.winstl.system.system_traits.2.obj   -lxtests.0.core.gcc34   -ladvapi32 -lkernel32 -luser32  -lole32 -loleaut32 -lshlwapi -luuid
+.\test.unit.winstl.system.system_traits.2.obj:	..\..\test\unit\winstl\system\test.unit.winstl.system.system_traits.2\test.unit.winstl.system.system_traits.2.cpp
+	g++ -c   -DWIN32         $(STLSOFT_INCLUDES)  -I$(INCL_XTESTS)  -o $@ ..\..\test\unit\winstl\system\test.unit.winstl.system.system_traits.2\test.unit.winstl.system.system_traits.2.cpp
+
+############################################################################

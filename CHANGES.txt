@@ -1,0 +1,1256 @@
+============================================================================
+STLSoft -  Changes
+
+; Created:  29th March 2002
+; Updated:  14th October 2010
+
+============================================================================
+
+
+    ************************************
+    * Change key:                      *
+    *                                  *
+    *  ~  means something has changed  *
+    *  +  means a new addition         *
+    *  -  means removal of something   *
+    *  *  means a general bullet-point *
+    *                                  *
+    ************************************
+
+
+14th October 2010 - 1.10.1 alpha 15 (delta)
+===========================================
+
+Summary:
+--------
+
+ * added stlsoft/container/initialised_array.hpp
+ * added stlsoft/container/partially_initialised_array.hpp
+ * added stlsoft/iterator/associative_eraser_iterator.hpp:
+ * added stlsoft/iterator/sorted_eraser_iterator.hpp:
+ * added stlsoft/iterator/unsorted_eraser_iterator.hpp:
+ * added stlsoft/string/replace_functions.hpp
+ * added stlsoft/synch/refcount_policies.hpp
+ * added stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp
+ * added stlsoft/tr1/nullptr.hpp
+ * added stlsoft/util/bit_functions.h:
+ * added stlsoft/util/bits/count_functions.h:
+ * added stlsoft/util/bits/xor_functions.h:
+ * added stlsoft/util/exception_string_creator.hpp
+ * added stlsoft/util/string_switch.hpp
+ * renamed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL() to STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE(); removed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(); added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_RETURN_EXTERNAL(); added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_EXTERNAL()
+ * added winstl/filesystem/file_seek_functions.h:
+ * added winstl/filesystem/file_size_functions.h:
+ * added winstl/filesystem/handles/memory_mapped_file_view_handle.hpp:
+ * added winstl/filesystem/handles/os_file_handle.hpp:
+ * added winstl/system/temporary_directory.hpp
+ * added try_string_to_<>() function suite (stlsoft/conversion/string_to_integer.hpp)
+ * added flush(), seek_from_start(), seek_relative(), seek_from(), and tell() to FILE_stream
+ * added swap() to shim_string
+ * added equal() to simple_string
+ * added swap() to string_slice
+ * added substr() to string_view
+ * performance improvements to string_view
+ * added data(), size(), swap(), and sized-string constructor to exception_string
+ * added comstl_C_BSTR_len() / comstl::added BSTR_len()
+ * added platformstl::thread_shareable_FILE_stream
+ * added platformstl/synch/refcount_policies.hpp
+ * added platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp
+ * added winstl_C_file_create_file_a/w(), winstl_C_file_create_always_a/w(), winstl_C_file_open_existing_a/w(), winstl_C_file_create_file(), winstl_C_file_create_always(), winstl_C_file_open_existing(), file_create_file(), file_create_always(), and file_open_existing(); deprecated winstl__open_file_read_shared_a/w(), winstl__open_file_exclusive_a/w(), open_file_read_shared(), and open_file_exclusive()
+ * added winstl/filesystem/handles/memory_mapped_file_view_handle.hpp
+ * added winstl/filesystem/handles/os_file_handle.hpp
+ * added winstl/filesystem/memory_map_functions.h
+
+Details:
+--------
+
+STLSoft:
+
+ ~ stlsoft/algorithm/literal_copy.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/algorithm/reverse/reverse_find_if.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/algorithm/reverse_algorithms.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ + stlsoft/container/initialised_array.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/container/layered_map.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ + stlsoft/container/partially_initialised_array.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/container/pod_vector.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    - trimming out old file-management comments information
+
+ ~ stlsoft/conversion/integer_to_array.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/conversion/integer_to_hex_string.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/conversion/string_to_integer.hpp:
+    ~ now handles unsigned correctly (by refusing '-')
+    + added try_string_to_<>() function suite
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/conversion/truncation_cast.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/filesystem/FILE_stream.hpp:
+    ~ currently only wide-string for VC++
+    ~ reference count integer type is now parameterisable
+    ~ refactored platformstl::file to stlsoft::FILE_stream, and moved from platformstl/filesystem/file.hpp to stlsoft/filesystem/FILE_stream.hpp
+    ~ renamed platformstl::file to platformstl::FILE_stream, and moved from platformstl/filesystem/file.hpp to platformstl/filesystem/FILE_stream.hpp
+    ~ renamed file_handle to FILE_handle
+    ~ VC++ 9 compatibility
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    + added flush()
+    + added seek_from_start()
+    + added seek_relative()
+    + added seek_from()
+    + added tell()
+    ~ reports non-normative behaviour via exceptions
+    ~ init_() is better name than create_(), because the latter might imply that an file will be created (which it might, but that's to do with "w", not the function name)
+
+ ~ stlsoft/filesystem/handles/FILE_stream_handle.hpp:
+    ~ reference count integer type is now parameterisable
+    ~ renamed platformstl::file_handle to stlsoft::FILE_stream_handle, and moved fromplatformstl/filesystem/file_handle.hpp  to stlsoft/filesystem/handles/FILE_stream_handle.hpp
+    ~ renamed file_handle to FILE_handle
+    + added overloads of get_FILE_ptr() shim
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ stlsoft/functional/bit_operations.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/iterator/FILE_iterator.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ + stlsoft/iterator/associative_eraser_iterator.hpp:
+    ~ VC++ compatibility
+    ~ corrected dates/copyright to actual research files originally created
+
+ + stlsoft/iterator/sorted_eraser_iterator.hpp:
+    ~ VC++ compatibility
+    ~ corrected dates/copyright to actual research files originally created
+
+ + stlsoft/iterator/unsorted_eraser_iterator.hpp:
+    ~ VC++ compatibility
+    ~ corrected dates/copyright to actual research files originally created
+
+ ~ stlsoft/meta/is_printf_type.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/quality/contract.h:
+    ~ renamed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL() to STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE()
+    - removed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_API()
+    + added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_RETURN_EXTERNAL()
+    + added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_EXTERNAL()
+
+ ~ stlsoft/smartptr/scoped_method.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ stlsoft/stlsoft_1_10.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+
+ + stlsoft/string/replace_functions.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/string/shim_string.hpp:
+    ~ workaround for Borland bad-code generation
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    + added swap() method
+
+ ~ stlsoft/string/simple_string.hpp:
+    ~ string_traits<> specialisation for basic_simple_string now works with any basic_simple_string<C, T, A> specialisation permutation, rather than just basic_simple_string<C>
+    ~ fix to defect in assign(cc*, size_t)
+    + added equal() method
+    ~ improved performance of operator ==/!=, by implementing in terms of equal()
+    ~ no longer allocates anything when asked to create a string of zero-length
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    - trimming out old file-management comments information
+
+ ~ stlsoft/string/slice/container_functions.hpp:
+    ~ refactored string slice functions, moving container functions to stlsoft/string/slice/container_functions.hpp (from stlsoft/string/container_slice_functions.hpp) and view functions to stlsoft/string/slice/view_functions.hpp (from stlsoft/string/view_slice_functions.hpp)
+    ~ moving helper functions into helper namespace (namespace ximpl_stlsoft_string_slice_view_)
+    - removal of STLSOFT_UNITTEST conditional code
+
+ ~ stlsoft/string/slice/view_functions.hpp:
+    ~ refactored string slice functions, moving container functions to stlsoft/string/slice/container_functions.hpp (from stlsoft/string/container_slice_functions.hpp) and view functions to stlsoft/string/slice/view_functions.hpp (from stlsoft/string/view_slice_functions.hpp)
+    ~ moving helper functions into helper namespace (namespace ximpl_stlsoft_string_slice_view_)
+    - removal of STLSOFT_UNITTEST conditional code
+    ~ compatibility with character arrays
+
+ ~ stlsoft/string/slice_functions.hpp:
+    ~ refactored string slice functions, moving container functions to stlsoft/string/slice/container_functions.hpp (from stlsoft/string/container_slice_functions.hpp) and view functions to stlsoft/string/slice/view_functions.hpp (from stlsoft/string/view_slice_functions.hpp)
+    ~ moving helper functions into helper namespace (namespace ximpl_stlsoft_string_slice_view_)
+    - removal of STLSOFT_UNITTEST conditional code
+
+ ~ stlsoft/string/static_string.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    - trimming out old file-management comments information
+
+ ~ stlsoft/string/string_registry.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/string/string_slice.hpp:
+    + added swap() method (and non-member function)
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ fixed c_str_data(_a|_w)() when slice is empty
+
+ ~ stlsoft/string/string_view.hpp:
+    + added coverage markers
+    + added substr()
+    ~ improved comparison algorithm
+    ~ performance improvement in equal(class_type const&) method
+
+ ~ stlsoft/synch/refcount_policies.hpp:
+    + added stlsoft/synch/refcount_policies.hpp
+    ~ renamed file_handle to FILE_handle
+    + added overloads of get_FILE_ptr() shim
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp:
+    ~ reference count integer type is now parameterisable
+    + added stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ + stlsoft/tr1/nullptr.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/tr1/smartptr/scoped_ptr.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ + stlsoft/util/bit_functions.h:
+    ~ refactored into sub-directory
+    + added XOR functions
+
+ + stlsoft/util/bits/count_functions.h:
+    ~ refactored into sub-directory
+
+ + stlsoft/util/bits/xor_functions.h:
+    + added XOR functions
+
+ ~ stlsoft/util/dimensionof.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/util/exception_string.hpp:
+    ~ CodeWarrior compatibility
+    ~ abstract the accessing of the payload, in preparation for refactoring
+    + added swap()
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+    ~ shims
+    ~ operator +()
+    ~ initial shared implementation check-in
+    + added sized-string constructor
+    + string access shims (useful for unit-testing, if nothing else)
+    + added data()
+    ~ now all member and non-member functions are defined in terms of char_type
+    + added size() method
+
+ + stlsoft/util/exception_string_creator.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/util/has_bom.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/util/rand.hpp:
+    ~ 64-bit compatibility
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ + stlsoft/util/string_switch.hpp:
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ stlsoft/view/transforming/random_access_transforming_view_base.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    - trimming out old file-management comments information
+    ~ documentation markup
+
+ATLSTL:
+
+ ~ atlstl/automation/property_method_helpers.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    - trimming out old file-management comments information
+
+COMSTL:
+
+ ~ comstl/auto/functions.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ comstl/shims/access/string/GUID.hpp:
+    ~ much simplified, by implementing in terms of comstl/util/GUID_functions.h
+    ~ changed file name from guid.hpp to GUID.hpp
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ moved COMSTL_CCH_GUID to comstl/comstl.h from comstl/shims/access/string/guid.hpp
+    ~ documentation markup
+
+ ~ comstl/shims/access/string/VARIANT.hpp:
+    ~ workaround for Borland code-generation error
+    ~ changed file name from variant.hpp to VARIANT.hpp
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ comstl/string/BSTR_functions.h:
+    + added comstl_C_BSTR_len()
+    + added BSTR_len()
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ comstl/typelib/TypeInfo_resource_scope.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ comstl/typelib/functions.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+
+ + comstl/util/GUID_functions.h:
+    ~ implemented comstl_C_GUID_compare() in terms of comstl_C_GUID_to_string_w()
+    ~ contracts
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    + added comstl_C_GUID_binary_compare()
+    + added comstl_C_GUID_to_string(_A|_W)()
+    + added GUID_binary_compare()
+    + added GUID_to_string()
+    + added comstl_C_GUID_from_string(_A|_W) & GUID_from_string
+
+ ~ comstl/util/VARIANT_functions.h:
+    ~ updated to use new, standards-conformant, BSTR functions
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+MFCSTL:
+
+ ~ mfcstl/shims/attribute/get_synch_handle.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+PlatformSTL:
+
+ ~ platformstl/filesystem/FILE_stream.hpp:
+    + added platformstl::thread_shareable_FILE_stream
+    ~ renamed platformstl::file to platformstl::FILE_stream, and moved from platformstl/filesystem/file.hpp to platformstl/filesystem/FILE_stream.hpp
+    ~ renamed file_handle to FILE_handle
+    ~ VC++ 9 compatibility
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    + added flush()
+    + added seek_from_start()
+    + added seek_relative()
+    + added seek_from()
+    + added tell()
+    ~ reports non-normative behaviour via exceptions
+    ~ init_() is better name than create_(), because the latter might imply that an file will be created (which it might, but that's to do with "w", not the function name)
+
+ ~ platformstl/filesystem/path.hpp:
+    ~ ensures push_ext() is wide-string compatible
+    ~ updated to use new, standards-conformant, names
+    ~ updated to use new, standards-conformant, names
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ platformstl/filesystem/properties_file.hpp:
+    - removed unncessary include
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ platformstl/synch/refcount_policies.hpp:
+    + added platformstl/synch/refcount_policies.hpp
+    ~ renamed file_handle to FILE_handle
+    + added overloads of get_FILE_ptr() shim
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp:
+    + added platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp
+    ~ renamed file_handle to FILE_handle
+    + added overloads of get_FILE_ptr() shim
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+UNIXSTL:
+
+ ~ unixstl/filesystem/path.hpp:
+    ~ updated to use new, standards-conformant, names
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+WinSTL:
+
+ ~ winstl/filesystem/file_creation_functions.h:
+    ~ exception-specifications
+    ~ 64-bit discrimination
+    + added winstl_C_file_create_file_a/w()
+    + added winstl_C_file_create_always_a/w()
+    + added winstl_C_file_open_existing_a/w()
+    + added winstl_C_file_create_file()
+    + added winstl_C_file_create_always()
+    + added winstl_C_file_open_existing()
+    + added file_create_file()
+    + added file_create_always()
+    + added file_open_existing()
+    ~ deprecated winstl__open_file_read_shared_a/w()
+    ~ deprecated winstl__open_file_exclusive_a/w()
+    ~ deprecated open_file_read_shared()
+    ~ deprecated open_file_exclusive()
+
+ + winstl/filesystem/file_seek_functions.h:
+    ~ exception-specifications
+    ~ 64-bit discrimination
+
+ + winstl/filesystem/file_size_functions.h:
+    ~ Borland compatibility
+    ~ exception-specifications
+    ~ 64-bit discrimination
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ + winstl/filesystem/handles/memory_mapped_file_view_handle.hpp:
+    + added winstl/filesystem/handles/memory_mapped_file_view_handle.hpp
+
+ + winstl/filesystem/handles/os_file_handle.hpp:
+    + added winstl/filesystem/handles/os_file_handle.hpp
+
+ ~ winstl/filesystem/memory_map_functions.h:
+    ~ preserving last-error information
+    ~ refactoring by coalescing readonly and readwrite implementations
+    + added winstl_C_map_readwrite_view_of_file_by_handle()
+    + added map_readwrite_view_of_file_by_handle()
+    + added non-size (=== give me everything) overloads of map_readonly_view_of_file_by_name()
+    + ported from memory_mapped_file
+    - no longer supports compilers that do not have native 64-bit integers
+    ~ final refactoring, ready for splitting in STLSoft 1.10
+    ~ more refactoring
+    ~ more refactoring
+    ~ now allows for offset+requestSize for both 32-bit and 64-bit operation
+    ~ benign chance of casting syntax, in order to support forthcoming separation into (C) source files in STLSoft 1.10
+    ~ now handles case where an offset is specified but there are 0 remaining bytes in the file to be mapped at that location: constructs an instance with 0 size
+
+ ~ winstl/filesystem/path.hpp:
+    ~ updated to use new, standards-conformant, names
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ winstl/process/functions.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ winstl/synch/exceptions.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+    ~ documentation markup
+
+ ~ winstl/synch/wait_functions.hpp:
+    ~ 64-bit compatibility
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ + winstl/system/temporary_directory.hpp:
+    + added temporary_directory
+
+ ~ winstl/window/relationship_functions.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ winstl/window/search_functions.hpp:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+ ~ winstl/window/text_functions.h:
+    ~ now makes deprecated the use of contra-standard namespace suppression pre-processor symbols
+    ~ correct include (for STLSoft 1.10 alpha)
+
+Makefiles / Project-files:
+
+ ~ updated to include all new tests
+ + added VC++ 10
+
+Test.Unit:
+
+ + added many new tests
+
+Test.Component:
+
+ + added many new tests
+
+
+
+
+
+27th April 2010 - 1.10.1 alpha 14 (delta)
+=========================================
+
+Summary:
+--------
+
+ * added stlsoft::string_registry class
+ * added dimensionof() macro
+ * added subscript operator on random_access_transforming_view_base class template
+ * various minor fixes
+
+Details:
+--------
+
+STLSoft:
+
+ ~ include/stlsoft/container/pod_vector.hpp:
+    - removal of vestiges of 1.0-1.9 unit-testing mechanism
+
+ ~ include/stlsoft/iterator/FILE_iterator.hpp:
+    ~ added missing include (for stdio.h)
+
+ ~ include/stlsoft/string/shim_string.hpp:
+    ~ corrected to use char_type, not char
+
+ ~ include/stlsoft/string/simple_string.hpp:
+    - removal of vestiges of 1.0-1.9 unit-testing mechanism
+
+ + include/stlsoft/string/string_registry.hpp:
+    + remove_below_count()
+    + class invariants
+    ~ rewritten with custom implementation
+    ~ changed implementation in terms of slice_type
+    + added add() overload to retrieve view
+    ~ refactored is_registered()
+    + added remove()
+    + added is_registered() overload that retrieves view
+    ~ proper implementations of add(), is_registered(), size()
+    + add()
+    + is_registered()
+    + size()
+
+ + include/stlsoft/util/dimensionof.h:
+    + added dimensionof() macro (in include/stlsoft/util/dimensionof)
+
+ ~ include/stlsoft/view/transforming/random_access_transforming_view_base.hpp:
+    ~ documentation markup
+    + added subscript operator on view class template
+
+ATLSTL:
+
+ ~ include/atlstl/automation/property_method_helpers.hpp:
+    + compatibility with VARIANT_BOOL types
+    - removal of vestiges of 1.0-1.9 unit-testing mechanism
+
+PlatformSTL:
+
+ ~ include/platformstl/filesystem/path.hpp:
+    ~ address exception-specification inconsistency
+    ~ correct use of typename to indicate dependent types in default template arguments
+    ~ elimination of calls to memcpy()
+    - removal of vestiges of 1.0-1.9 unit-testing mechanism
+
+UNIXSTL:
+
+ ~ include/unixstl/filesystem/path.hpp:
+    ~ correct use of typename to indicate dependent types in default template arguments
+
+WinSTL:
+
+ ~ include/winstl/window/search_functions.hpp:
+    + added find_window_in_process()
+
+Makefiles / Project-files:
+
+Test.Unit:
+
+ + test.unit.stlsoft.container.frequency_map
+ + test.unit.stlsoft.string.string_registry
+
+Test.Component:
+
+
+
+
+
+19th January 2010 - 1.10.1 alpha 13 (delta)
+===========================================
+
+Summary:
+--------
+
+ * added new WinSTL window search functions
+ * added stlsoft::random_access_transforming_view_base CRTP class template
+ * minor defect fixes
+ * added several new test projects
+
+Details:
+--------
+
+STLSoft:
+
+ + include/stlsoft/view/transforming/random_access_transforming_view_base.hpp
+
+ ~ include/stlsoft/string/shim_string.hpp:
+    ~ typos in the c_str_ptr_null(_a|_w) string access shims
+
+ ~ include/stlsoft/string/static_string.hpp:
+    ~ now uses runtime exceptions to police length, rather than contract enforcements
+
+COMSTL:
+
+ ~ include/comstl/shims/access/string/variant.hpp:
+    ~ minor defect w VC++ 6
+
+PlatformSTL:
+
+ ~ include/platformstl/filesystem/path.hpp:
+    ~ fixed typename-related defect
+    ~ max_size() is now static
+
+UNIXSTL:
+
+ ~ include/unixstl/filesystem/path.hpp:
+    ~ includes the base template basic_path into the os-specific namespace
+
+WinSTL:
+
+ + include/winstl/window/relationship_functions.h
+ + include/winstl/window/search_functions.hpp
+ + include/winstl/window/text_functions.h
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ includes the base template basic_path into the os-specific namespace
+
+ ~ include/winstl/synch/error/exceptions.hpp:
+    ~ obsolete, but required to hide STLSoft 1.9 original
+
+Makefiles / Project-files:
+
+ ~ build/bc56/makefile:
+ ~ build/cw8.win32/makefile:
+ ~ build/gcc34.win32/makefile:
+ ~ build/vc6/makefile:
+ ~ build/vc71/makefile:
+ ~ build/vc8/makefile:
+ ~ build/vc9/makefile:
+    + added in all new projects
+
+ + build/vc9.unixem/makefile
+
+ + build/gcc44.unix/makefile - NOTE: this file is not tested
+
+Test.Unit:
+
+ + test.scratch.comstl.util.variant
+ + test.scratch.comstl.util.VARIANT_functions
+
+ + test.scratch.winstl.performance.threadtimes_counter
+
+ ~ test.unit.unixstl.filesystem.path.cpp:
+    ~ tests for pop_ext(), pop_file()
+
+
+
+
+
+11th August 2009 - 1.10.1 alpha 12 (delta)
+==========================================
+
+Summary:
+========
+
+ * added M-notation conversion, in form of stlsoft::convert_to_M_notation()
+ * added stlsoft::is_printf_type
+ * enhancement to stlsoft::pod_vector
+ * enhacement to stlsoft::FILE_iterator
+ * migrated winstl::basic_path to platformstl::basic_path, and added pop_file() method
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ include/stlsoft/container/pod_vector.hpp:
+    ~ changed the semantics of the size constructor, which now default initialises all elements
+
+ ~ include/stlsoft/conversion/m_notation.h:
+    + added convert_to_M_notation()
+
+ ~ include/stlsoft/iterator/FILE_iterator.hpp:
+    ~ constraint is changed from POD type to is_printf_type<>
+
+ ~ include/stlsoft/meta/is_printf_type.hpp:
+    + added is_printf_type<>
+
+ PlatformSTL:
+ ------------
+
+ ~ include/platformstl/filesystem/path.hpp:
+    ~ migrated winstl::basic_path to platformstl::basic_path
+    + added pop_file() method
+
+ UNIXSTL:
+ --------
+
+ ~ include/unixstl/filesystem/path.hpp:
+    ~ this component now moved into platformstl namespace
+
+ WinSTL:
+ -------
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ this component now moved into platformstl namespace
+    ~ minor changes to exception-specifications
+
+ Test.Unit:
+ ----------
+
+ ~ test/unit/stlsoft.test.unit.vc6.dsw:
+    + added test.unit.stlsoft.container.layered_map
+    + added test.unit.unixstl.filesystem.readlines
+
+ ~ test/unit/stlsoft/container/test.unit.stlsoft.container.layered_map/test.unit.stlsoft.container.layered_map.cpp:
+    + more clear() tests
+    + more insert() tests
+
+
+
+
+18th May 2009 - 1.10.1 alpha 11 (delta)
+=======================================
+
+Summary:
+========
+
+ * added stlsoft::integer_to_array() function template
+ * added stlsoft::FILE_iterator iterator class template
+ * significant fixes and functionality enhancements to platformstl::properties_file class
+ * defect fix and compatibility enhancements to stlsoft::basic_simple_string
+ * added automated test makefiles for Borland C/C++ 5.6, Metrowerks CodeWarrior 8, GCC 3.4, and Visual C++ 7.1, 8 & 9
+ * added numerous examples and unit, component and scratch tests
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ + include/stlsoft/conversion/integer_to_array.hpp:
+    + added integer_to_array() function
+
+ + include/stlsoft/iterator/FILE_iterator.hpp
+    + added stlsoft::FILE_iterator
+
+ ~ include/stlsoft/conversion/string_to_integer.hpp:
+    + added missing inline qualifiers to API functions
+    ~ tidying up of documentation markup
+
+ ~ include/stlsoft/internal/warnings/pop/nothrow_throws_.h:
+ ~ include/stlsoft/internal/warnings/push/nothrow_throws_.h:
+    ~ suppresses the no-throw conflict warning for VC++ 7.1+
+
+ ~ include/stlsoft/string/simple_string.hpp:
+    ~ fixed defective 5-parameter compare() method
+    ~ suppress a warning about unused variable
+    ~ more "safe string" compatibility
+
+ COMSTL:
+ -------
+
+ ~ include/comstl/shims/access/string/guid.hpp:
+    ~ Borland compatibility
+
+ ~ include/comstl/shims/access/string/variant.hpp:
+    ~ tightening type-conversions
+
+ PlatformSTL:
+ ------------
+
+ ~ include/platformstl/filesystem/properties_file.hpp:
+    ~ more parsing fixes
+    ~ now ignores leading space in a continuation
+    ~ now uses nul-terminator for splitting lines & fields
+    ~ corrected defect whereby c_str_data() was used alone; should have been c_str_ptr()
+    ~ preparatory work for wide string support
+
+ Examples:
+ ---------
+
+ + example.winstl.filesystem.findfile_sequence
+
+ makefiles:
+ ----------
+
+ + added bc56 makefile
+ + added cw8.win32 makefile
+ + added gcc34.win32 makefile
+ + added vc71 makefile
+ + added vc8 makefile
+ + added vc9 makefile
+
+ Test.Unit:
+ ----------
+
+ + test.unit.comstl.util.VARIANT_functions
+
+ + test.unit.stlsoft.conversion.integer_to_array
+ + test.unit.stlsoft.error.error_desc
+ + test.unit.stlsoft.smartptr.shared_ptr
+
+ + test.unit.unixstl.system.system_traits.2
+
+ + test.unit.winstl.registry.reg_delete_tree
+
+
+ Test.Component:
+ ---------------
+
+ + test.component.comstl.collections.collection_sequence
+
+ + test.component.platformstl.filesystem.filesystem_traits.1
+ + test.component.platformstl.filesystem.properties_file
+
+ + test.component.stlsoft.iterator.FILE_iterator
+
+ Test.Scratch:
+ -------------
+
+ + test.scratch.comstl.conversion.method_cast
+
+
+
+
+9th March 2009 - 1.10.1 alpha 10 (delta)
+========================================
+
+Summary:
+========
+
+ * corrected long-dormant defect in comstl/shims/access/string/variant.hpp,
+   precipitated by recent fix in STLSoft 1.9, evinced with compilers that
+   do not support the throwing of bad_alloc
+
+Changes:
+========
+
+ COMSTL:
+ -------
+
+ ~ include/comstl/shims/access/string/variant.hpp:
+    ~ fixed defects in version when bad_alloc not supported
+
+
+6th March 2009 - 1.10.1 alpha 9 (delta)
+=======================================
+
+Summary:
+========
+
+ * enhancements to stlsoft::basic_simple_string, to facilitate using shim
+   strings as sinks in FastFormat
+ * more unit tests
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ include/stlsoft/string/shim_string.hpp:
+    + multibyte string shim overloads
+    + wide string shim overloads
+    + added bool_type member type
+    ~ various documentation markup improvements
+    ~ reserve() now returns bool result
+    + added resize() method
+    + added capacity() method
+    + added empty() method
+    + added c_str_ptr_null() shim overload
+    ~ stream inserter now uses write, with length
+
+ Test programs:
+ --------------
+
+  + test/unit/unixstl/filesystem/test.unit.unixstl.filesystem.memory_mapped_file/test.unit.unixstl.filesystem.memory_mapped_file.cpp
+
+  + test/unit/unixstl/filesystem/test.unit.unixstl.filesystem.path/test.unit.unixstl.filesystem.path.cpp
+
+  + test/unit/winstl/filesystem/test.unit.winstl.filesystem.memory_mapped_file/test.unit.winstl.filesystem.memory_mapped_file.cpp
+
+
+
+26th February 2009 - 1.10.1 alpha 8 (delta)
+===========================================
+
+Summary:
+========
+
+ * added in Extras (last available in 1.8)
+ * added two component tests, and eleven unit tests
+ * modified include/winstl/process/functions.h (from 1.9)
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ WinSTL:
+ -------
+
+  + include/winstl/process/functions.h
+
+ Extras:
+ -------
+
+  + extras/compcatutil/compcatutil.h
+  + extras/compcatutil/compcatutil.cpp
+
+  + extras/findwndwild/findwndwild.h
+  + extras/findwndwild/findwndwild.cpp
+  + extras/findwndwild/test/test.cpp
+
+  + extras/modulelist/modulelist.h
+  + extras/modulelist/modulelist.cpp
+
+  + extras/msvcrt_util/debug_flags_scope.hpp
+  + extras/msvcrt_util/memory_checkpoint_scope.hpp
+  + extras/msvcrt_util/memory_difference_dump_scope.hpp
+
+  + extras/strtok_r/strtok_r.h
+  + extras/strtok_r/strtok_r_impl.cpp
+
+ Test programs:
+ --------------
+
+  + test/component/platformstl/filesystem/test.component.platformstl.filesystem.readdir_sequence/test.component.platformstl.filesystem.readdir_sequence.cpp
+
+  + test/component/winstl/filesystem/test.component.winstl.filesystem.findfile_sequence/test.component.winstl.filesystem.findfile_sequence.cpp
+
+  + test/unit/stlsoft/memory/test.unit.stlsoft.memory.auto_buffer/test.unit.stlsoft.memory.auto_buffer.cpp
+
+  + test/unit/stlsoft/smartptr/scoped_handle/test.unit.stlsoft.smartptr.scoped_handle/test.unit.stlsoft.smartptr.scoped_handle.cpp
+
+  + test/unit/stlsoft/string/test.unit.stlsoft.string.tokeniser_functions/test.unit.stlsoft.string.tokeniser_functions.cpp
+
+  + test/unit/stlsoft/util/test.unit.stlsoft.util.must_init/test.unit.stlsoft.util.must_init.cpp
+
+  + test/unit/winstl/filesystem/test.unit.winstl.filesystem.filesystem_traits.2/test.unit.winstl.filesystem.filesystem_traits.2.cpp
+
+  + test/unit/winstl/filesystem/test.unit.winstl.filesystem.findvolume_sequence/test.unit.winstl.filesystem.findvolume_sequence.cpp
+
+  + test/unit/winstl/filesystem/test.unit.winstl.filesystem.path/test.unit.winstl.filesystem.path.cpp
+
+  + test/unit/winstl/filesystem/test.unit.winstl.filesystem.path_functions/test.unit.winstl.filesystem.path_functions.cpp
+
+  + test/unit/winstl/registry/test.unit.winstl.registry.reg_value/test.unit.winstl.registry.reg_value.cpp
+
+  + test/unit/winstl/system/test.unit.winstl.system.commandline_parser/test.unit.winstl.system.commandline_parser.cpp
+
+  + test/unit/winstl/system/test.unit.winstl.system.searchpath_sequence/test.unit.winstl.system.searchpath_sequence.cpp
+
+
+
+1st January 2009 - 1.10.1 alpha 7 (delta)
+=========================================
+
+Summary:
+========
+
+ * added new quality header stlsoft/quality/cover.h, which defines code
+   coverage constructs for STLSoft
+ * added code coverage constructs to string_to_integer functions, scoped_ptr
+   class template, basic_simple_string class template, and wait functions.
+ * fixed namespace visibility defect for scoped_ptr's get_ptr shim overload
+ * fixed defects in basic_simple_string's at(), append() and erase() methods
+ * added find(), rfind(), find_first_of(), find_last_of(),
+   find_first_not_of() and find_last_not_of() methods to basic_simple_string
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ + include/stlsoft/quality/cover.h
+
+ ~ include/stlsoft/conversion/string_to_integer.hpp:
+    + added code coverage constructs
+
+ ~ include/stlsoft/string/shim_string.hpp:
+    + added code coverage constructs
+    - removed an unnecessary runtime test in the internal reserve_() method
+
+ ~ include/stlsoft/string/simple_string.hpp:
+    + added code coverage constructs
+    ~ fixed defect in non-mutating version of at(), whereby specifying the index == length did not throw, but returned a reference to the terminating nul character (which is what the subscript operator should do (and does do))
+    ~ fixed defect in 3-param form of append, whereby an out-of-range pos parameter should throw std::out_of_range: it now does so in compilations with exception-support
+    ~ fixed defect in 0-param erase()
+    + added rfind() overloads
+    + added find_first_of() overloads
+    + added find_last_of() overloads
+    + added find_first_not_of() overloads
+    + added find_last_not_of() overloads
+    + added find() methods
+
+ ~ include/stlsoft/tr1/smartptr/scoped_ptr.hpp:
+    + added code coverage constructs
+    ~ corrected defect whereby get_ptr shim was not in ::stlsoft namespace
+
+ WinSTL:
+ -------
+
+ ~ include/winstl/synch/wait_functions.hpp:
+    + added code coverage constructs
+
+ Test programs:
+ --------------
+
+ + test/unit/stlsoft/smartptr/scoped_ptr/test.unit.stlsoft.smartptr.scoped_ptr
+
+ + test/unit/winstl/filesystem/test.unit.winstl.filesystem.filesystem_traits.1
+
+ + test/unit/winstl/system/test.unit.winstl.system.system_traits.1
+
+ + test/unit/winstl/system/test.unit.winstl.system.system_traits.2
+
+ ~ test/unit/stlsoft/string/test.unit.stlsoft.string.shim_string/test.unit.stlsoft.string.shim_string.cpp:
+    ~ completed test coverage
+
+ ~ test/unit/stlsoft/string/test.unit.stlsoft.string.simple_string/test.unit.stlsoft.string.simple_string.cpp:
+    + added find() methods
+
+
+
+19th December 2008 - 1.10.1 alpha 6 (delta)
+===========================================
+
+Summary:
+========
+
+ * added 0-parameter erase() overload to stlsoft simple_string
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ stlsoft/string/simple_string.hpp:
+    + 0-parameter overload of erase()
+
+
+
+9th December 2008 - 1.10.1 alpha 5 (delta)
+==========================================
+
+Summary:
+========
+
+ * added erase() methods to stlsoft simple_string
+ * added several new tests
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ stlsoft/string/simple_string.hpp:
+    + added erase() methods
+
+ + stlsoft/internal/warnings/push/nothrow_throws_.h:
+ + stlsoft/internal/warnings/pop/nothrow_throws_.h:
+    + push/pop for suspending warning that a throw() function throws an
+      exception
+
+ + added test.performance.stlsoft.conversion.truncation_test
+ + added test.unit.stlsoft.container.fixed_arrays
+ + added test.unit.stlsoft.container.pod_vector
+ + added test.unit.stlsoft.conversion.string_to_integer
+ + added test.unit.stlsoft.conversion.truncation_test
+ + added test.unit.stlsoft.iterator.associative_select_iterator
+ + added test.unit.stlsoft.string.shim_string
+ + added test.unit.stlsoft.string.simple_string
+ + added test.unit.stlsoft.string.static_string
+
+ COMSTL:
+ -------
+
+ + added test.scratch.comstl.conversion.interface_cast
+
+ WinSTL:
+ -------
+
+ + added test.unit.winstl.synch.w4mo
+
+
+
+19th November 2008 - 1.10.1 alpha 4 (delta)
+===========================================
+
+Summary:
+========
+
+ * stlsoft::truncation_cast now throws std::overflow_error
+ * stlsoft::shim_string significantly improved, including default ctor,
+   append() method, and optimistic memory allocation
+ * stlsoft::tr1::scoped_ptr class template now
+ * added CWinThread overload of get_synch_handle()
+ * added null_wait_handle_exception, invalid_wait_handle_exception and
+   duplicate_wait_handle_exception
+ * enhanced wait functions: now has 9 & 10 parameter overloads; checks for
+   duplicate handles; checks for null handles
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+ ~ stlsoft/conversion/string_to_integer.hpp:
+    ~ do not precipitate warnings about unused return values
+ ~ stlsoft/conversion/truncation_cast.hpp:
+    ~ updated documentation markup
+    ~ truncation_cast now throws std::overflow_error
+ ~ stlsoft/string/shim_string.hpp:
+    + added default constructor
+    ~ added m_len member variable, separating the length from the storage, to enable better handling of memory in truncation scenarios
+    + added append() methods
+    ~ enhanced documentation markup comments
+    ~ added better contract enforcements for several methods
+ ~ stlsoft/tr1/smartptr/scoped_ptr.hpp:
+    ~ workaround for warning about throwing an exception from a throw() method
+
+ COMSTL:
+ -------
+
+ ~ comstl/shims/access/string/guid.hpp:
+    ~ eliminated compiler warnings
+ ~ comstl/typelib/TypeInfo_resource_scope.hpp:
+    ~ put stlsoft/quality/contract.h as last include, to help self-sufficiency in dependency headers
+
+ MFCSTL:
+ -------
+
+ ~ mfcstl/shims/attribute/get_synch_handle.hpp:
+    + added winstl::get_synch_handle overload for CWinThread
+    ~ documentation markup improvements
+
+ WinSTL:
+ -------
+
+ ~ winstl/synch/exceptions.hpp:
+    + added null_wait_handle_exception
+    + added invalid_wait_handle_exception
+    + added duplicate_wait_handle_exception
+ ~ winstl/synch/wait_functions.hpp:
+    ~ finished the parameter validation, including exceptions
+    ~ renamed w4mo_helper_10() to w4mo_helper_N(), which is now variadic
+    + added w4mo_helper_find_first_duplicate_(), and checks for duplicate handles
+    + added 9- and 10-parameter overloads
+    ~ renamed w4mo_helper_8() to w4mo_helper_10(), and changed parameter order
+
+
+
+29th October 2008 - 1.10.1 alpha 3 (delta)
+==========================================
+
+Summary:
+========
+
+ * enhanced ATLSTL's property method helpers (to support bool (not BOOL)
+    member variables)
+
+Changes:
+========
+
+ ATLSTL:
+ -------
+
+  + atlstl/automation/property_method_helpers.hpp:
+     ~ fixed benign (but inefficient) defect in function:
+         put_MemberValue(C *const cls, CComVariant const& newVal, CComVariant C::*mem)
+        becomes
+         put_MemberValue(C *const cls, VARIANT const& newVal, CComVariant C::*mem)
+     + added overloads:
+        get_MemberValue(C *const cls, BOOL *ret, bool C::*mem)
+        put_MemberValue(C *const cls, BOOL const& newVal, bool C::*mem)
+
+
+
+27th October 2008 - 1.10.1 alpha 2 (delta)
+===========================================
+
+Summary:
+========
+
+ * added functions and scoping classes for dealing with COM type libraries
+
+Changes:
+========
+
+ COMSTL:
+ -------
+
+  + comstl/typelib/functions.hpp:
+     + added functions:
+        comstl::typelib_load()
+        comstl::typelib_find_name()
+        comstl::typelib_get_typeinfo()
+        comstl::typelib_get_name()
+        comstl::typeinfo_get_name()
+
+  + comstl/typelib/TypeInfo_resource_scope.hpp:
+     + added scoping classes:
+        TYPEATTR_scope
+        VARDESC_scope
+
+
+
+26th October 2008 - 1.10.1 alpha 1 (delta)
+==========================================
+
+ This is the first publicly released version.
+
+ All history before this day is moot!
+
+=============================== End of file ================================

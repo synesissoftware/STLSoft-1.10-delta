@@ -1,0 +1,89 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.bit_functions"=.\util\test.unit.stlsoft.util.bit_functions\vc6\test.unit.stlsoft.util.bit_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.exception_string_creator"=.\util\test.unit.stlsoft.util.exception_string_creator\vc6\test.unit.stlsoft.util.exception_string_creator.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.has_bom"=.\util\test.unit.stlsoft.util.has_bom\vc6\test.unit.stlsoft.util.has_bom.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.must_init"=.\util\test.unit.stlsoft.util.must_init\vc6\test.unit.stlsoft.util.must_init.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.rand"=.\util\test.unit.stlsoft.util.rand\vc6\test.unit.stlsoft.util.rand.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.string_switch"=.\util\test.unit.stlsoft.util.string_switch\vc6\test.unit.stlsoft.util.string_switch.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

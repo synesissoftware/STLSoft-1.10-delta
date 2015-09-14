@@ -1,0 +1,41 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.stlsoft.exception.exception_string"=.\exception\test.unit.stlsoft.exception.exception_string\vc6\test.unit.stlsoft.exception.exception_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.string_slice"=.\string\test.unit.stlsoft.string.string_slice\vc6\test.unit.stlsoft.string.string_slice.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

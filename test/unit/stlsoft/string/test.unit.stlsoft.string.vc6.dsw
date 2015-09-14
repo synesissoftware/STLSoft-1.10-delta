@@ -1,0 +1,137 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.exception_string_creator"=.\test.unit.exception_string_creator\vc6\test.unit.exception_string_creator.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.shim_string"=.\test.unit.stlsoft.string.shim_string\vc6\test.unit.stlsoft.string.shim_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.simple_string"=.\test.unit.stlsoft.string.simple_string\vc6\test.unit.stlsoft.string.simple_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.slice_functions"=.\test.unit.stlsoft.string.slice_functions\vc6\test.unit.stlsoft.string.slice_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.split_functions"=.\test.unit.stlsoft.string.split_functions\vc6\test.unit.stlsoft.string.split_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.static_string"=.\test.unit.stlsoft.string.static_string\vc6\test.unit.stlsoft.string.static_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.string_registry"=.\test.unit.stlsoft.string.string_registry\vc6\test.unit.stlsoft.string.string_registry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.string_slice"=.\test.unit.stlsoft.string.string_slice\vc6\test.unit.stlsoft.string.string_slice.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.string_tokeniser"=.\test.unit.stlsoft.string.string_tokeniser\vc6\test.unit.stlsoft.string.string_tokeniser.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.string.tokeniser_functions"=.\test.unit.stlsoft.string.tokeniser_functions\vc6\test.unit.stlsoft.string.tokeniser_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

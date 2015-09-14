@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.container.insert_ordered_set", "container\test.unit.stlsoft.container.insert_ordered_set\vc9\test.unit.stlsoft.container.insert_ordered_set.vcproj", "{D307DB80-D940-48D9-A53A-8CEA320976F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.container.insert_ordered_map", "container\test.unit.stlsoft.container.insert_ordered_map\vc9\test.unit.stlsoft.container.insert_ordered_map.vcproj", "{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug xCover|Win32 = Debug xCover|Win32
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Debug|Win32.Build.0 = Debug|Win32
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Release|Win32.ActiveCfg = Release|Win32
+		{D307DB80-D940-48D9-A53A-8CEA320976F6}.Release|Win32.Build.0 = Release|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Debug|Win32.Build.0 = Debug|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Release|Win32.ActiveCfg = Release|Win32
+		{9066D161-5F71-4AB7-9C51-1D8A2FF87C2C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.conversion.string_to_integer", "test.unit.stlsoft.conversion.string_to_integer.vcproj", "{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug xCover|Win32 = Debug xCover|Win32
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug|Win32.Build.0 = Debug|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Release|Win32.ActiveCfg = Release|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

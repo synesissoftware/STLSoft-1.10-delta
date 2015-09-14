@@ -1,0 +1,174 @@
+============================================================================
+STLSoft -  History
+
+; Created:  29th March 2002
+; Updated:  14th October 2010
+
+============================================================================
+
+
+14th October 2010 - 1.10.1 alpha 15 (delta)
+-------------------------------------------
+
+ * added stlsoft/container/initialised_array.hpp
+ * added stlsoft/container/partially_initialised_array.hpp
+ * added stlsoft/iterator/associative_eraser_iterator.hpp:
+ * added stlsoft/iterator/sorted_eraser_iterator.hpp:
+ * added stlsoft/iterator/unsorted_eraser_iterator.hpp:
+ * added stlsoft/string/replace_functions.hpp
+ * added stlsoft/synch/refcount_policies.hpp
+ * added stlsoft/synch/refcount_policies/refcount_policy_single_threaded.hpp
+ * added stlsoft/tr1/nullptr.hpp
+ * added stlsoft/util/bit_functions.h:
+ * added stlsoft/util/bits/count_functions.h:
+ * added stlsoft/util/bits/xor_functions.h:
+ * added stlsoft/util/exception_string_creator.hpp
+ * added stlsoft/util/string_switch.hpp
+ * renamed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_INTERNAL() to STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE(); removed STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_STATE_API(); added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_RETURN_EXTERNAL(); added STLSOFT_CONTRACT_ENFORCE_POSTCONDITION_PARAMS_EXTERNAL()
+ * added winstl/filesystem/file_seek_functions.h:
+ * added winstl/filesystem/file_size_functions.h:
+ * added winstl/filesystem/handles/memory_mapped_file_view_handle.hpp:
+ * added winstl/filesystem/handles/os_file_handle.hpp:
+ * added winstl/system/temporary_directory.hpp
+ * added try_string_to_<>() function suite (stlsoft/conversion/string_to_integer.hpp)
+ * added flush(), seek_from_start(), seek_relative(), seek_from(), and tell() to FILE_stream
+ * added swap() to shim_string
+ * added equal() to simple_string
+ * added swap() to string_slice
+ * added substr() to string_view
+ * performance improvements to string_view
+ * added data(), size(), swap(), and sized-string constructor to exception_string
+ * added comstl_C_BSTR_len() / comstl::added BSTR_len()
+ * added platformstl::thread_shareable_FILE_stream
+ * added platformstl/synch/refcount_policies.hpp
+ * added platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp
+ * added winstl_C_file_create_file_a/w(), winstl_C_file_create_always_a/w(), winstl_C_file_open_existing_a/w(), winstl_C_file_create_file(), winstl_C_file_create_always(), winstl_C_file_open_existing(), file_create_file(), file_create_always(), and file_open_existing(); deprecated winstl__open_file_read_shared_a/w(), winstl__open_file_exclusive_a/w(), open_file_read_shared(), and open_file_exclusive()
+ * added winstl/filesystem/handles/memory_mapped_file_view_handle.hpp
+ * added winstl/filesystem/handles/os_file_handle.hpp
+ * added winstl/filesystem/memory_map_functions.h
+
+
+27th April 2010 - 1.10.1 alpha 14
+---------------------------------
+
+ * added stlsoft::string_registry class
+ * added dimensionof() macro
+ * added subscript operator on random_access_transforming_view_base class template
+ * various minor fixes
+
+
+19th January 2010 - 1.10.1 alpha 13
+-----------------------------------
+
+ * added new WinSTL window search functions
+ * added stlsoft::random_access_transforming_view_base CRTP class template
+ * minor defect fixes
+ * added several new test projects
+
+
+11th August 2009 - 1.10.1 alpha 12
+----------------------------------
+
+ * added M-notation conversion, in form of stlsoft::convert_to_M_notation()
+ * added stlsoft::is_printf_type
+ * enhancement to stlsoft::pod_vector
+ * enhacement to stlsoft::FILE_iterator
+ * migrated winstl::basic_path to platformstl::basic_path, and added pop_file() method
+
+
+23rd May 2009 - 1.10.1 alpha 11
+-------------------------------
+
+ * added stlsoft::integer_to_array() function template
+ * added stlsoft::FILE_iterator iterator class template
+ * significant fixes and functionality enhancements to platformstl::properties_file class
+ * defect fix and compatibility enhancements to stlsoft::basic_simple_string
+ * added automated test makefiles for Borland C/C++ 5.6, Metrowerks CodeWarrior 8, GCC 3.4, and Visual C++ 7.1, 8 & 9
+ * added numerous examples and unit, component and scratch tests
+
+
+9th March 2009 - 1.10.1 alpha 10
+--------------------------------
+
+ * corrected long-dormant defect in comstl/shims/access/string/variant.hpp,
+   precipitated by recent fix in STLSoft 1.9, evinced with compilers that
+   do not support the throwing of bad_alloc
+
+
+6th March 2009 - 1.10.1 alpha 9
+-------------------------------
+
+ * enhancements to stlsoft::basic_simple_string, to facilitate using shim
+   strings as sinks in FastFormat
+ * more unit tests
+
+
+26th February 2009 - 1.10.1 alpha 8
+-----------------------------------
+
+ * added in Extras (last available in 1.8)
+ * added two component tests, and eleven unit tests
+ * modified include/winstl/process/functions.h (from 1.9)
+
+
+1st January 2009 - 1.10.1 alpha 7
+---------------------------------
+
+ * added new quality header stlsoft/quality/cover.h, which defines code
+   coverage constructs for STLSoft
+ * added code coverage constructs to string_to_integer functions, scoped_ptr
+   class template, basic_simple_string class template, and wait functions.
+ * fixed namespace visibility defect for scoped_ptr's get_ptr shim overload
+ * fixed defects in basic_simple_string's at(), append() and erase() methods
+ * added find(), rfind(), find_first_of(), find_last_of(),
+   find_first_not_of() and find_last_not_of() methods to basic_simple_string
+
+
+19th December 2008 - 1.10.1 alpha 6
+-----------------------------------
+
+ * added 0-parameter erase() overload to stlsoft simple_string
+
+
+9th December 2008 - 1.10.1 alpha 5
+----------------------------------
+
+ * added erase() methods to stlsoft simple_string
+ * added several new tests
+
+
+19th November 2008 - 1.10.1 alpha 4
+-----------------------------------
+
+ * stlsoft::truncation_cast now throws std::overflow_error
+ * stlsoft::shim_string significantly improved, including default ctor,
+   append() method, and optimistic memory allocation
+ * stlsoft::tr1::scoped_ptr class template now 
+ * added CWinThread overload of get_synch_handle()
+ * added null_wait_handle_exception, invalid_wait_handle_exception and
+   duplicate_wait_handle_exception
+ * enhanced wait functions: now has 9 & 10 parameter overloads; checks for
+   duplicate handles; checks for null handles
+
+
+29th October 2008 - 1.10.1 alpha 3
+-----------------------------------
+
+ * enhanced ATLSTL's property method helpers (to support bool (not BOOL)
+    member variables)
+
+
+27th October 2008 - 1.10.1 alpha 2
+-----------------------------------
+
+ * added functions and scoping classes for dealing with COM type libraries
+
+
+26th October 2008 - 1.10.1 alpha 1
+-----------------------------------
+
+ This is the first publicly released version.
+
+ All history before this day is moot!
+
+=============================== End of file ================================

@@ -1,0 +1,101 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.comstl.shims.access.string.GUID"=.\shims\access\string\test.unit.comstl.shims.access.string.GUID\vc6\test.unit.comstl.shims.access.string.GUID.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.shims.access.string.VARIANT"=.\shims\access\string\test.unit.comstl.shims.access.string.VARIANT\vc6\test.unit.comstl.shims.access.string.VARIANT.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.string.BSTR_functions"=.\string\test.unit.comstl.string.BSTR_functions\vc6\test.unit.comstl.string.BSTR_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.string.BSTR_functions.C"=.\string\test.unit.comstl.string.BSTR_functions.C\vc6\test.unit.comstl.string.BSTR_functions.C.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.util.GUID_functions"=.\util\test.unit.comstl.util.GUID_functions\vc6\test.unit.comstl.util.GUID_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.util.VARIANT_functions"=.\util\test.unit.comstl.util.VARIANT_functions\vc6\test.unit.comstl.util.VARIANT_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.comstl.util.variant"=.\util\test.unit.comstl.util.variant\vc6\test.unit.comstl.util.variant.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,65 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.stlsoft.container.initialised_array"=.\container\test.unit.stlsoft.container.initialised_array\vc6\test.unit.stlsoft.container.initialised_array.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.container.insert_ordered_map"=.\container\test.unit.stlsoft.container.insert_ordered_map\vc6\test.unit.stlsoft.container.insert_ordered_map.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.container.insert_ordered_set"=.\container\test.unit.stlsoft.container.insert_ordered_set\vc6\test.unit.stlsoft.container.insert_ordered_set.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.container.partially_initialised_array"=.\container\test.unit.stlsoft.container.partially_initialised_array\vc6\test.unit.stlsoft.container.partially_initialised_array.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

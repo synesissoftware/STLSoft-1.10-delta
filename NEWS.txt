@@ -1,0 +1,43 @@
+============================================================================
+STLSoft - README
+
+; Created:  29th March 2002
+; Updated:  14th October 2010
+
+============================================================================
+
+
+News:
+-----
+
+  14th October 2010     -   STLSoft 1.10.1 alpha 15 (delta) released
+
+  27th April 2010       -   STLSoft 1.10.1 alpha 14 (delta) released
+
+  19th January 2010     -   STLSoft 1.10.1 alpha 13 (delta) released
+
+  11th August 2009      -   STLSoft 1.10.1 alpha 12 (delta) released
+
+  23rd May 2009         -   STLSoft 1.10.1 alpha 11 (delta) released
+
+  9th March 2009        -   STLSoft 1.10.1 alpha 10 (delta) released
+
+  6th March 2009        -   STLSoft 1.10.1 alpha 9 (delta) released
+
+  26th February 2009    -   STLSoft 1.10.1 alpha 8 (delta) released
+
+  1st January 2009      -   STLSoft 1.10.1 alpha 7 (delta) released
+
+  19th December 2008    -   STLSoft 1.10.1 alpha 6 (delta) released
+
+  9th December 2008     -   STLSoft 1.10.1 alpha 5 (delta) released
+
+  19th November 2008    -   STLSoft 1.10.1 alpha 4 (delta) released
+
+  29th October 2008     -   STLSoft 1.10.1 alpha 3 (delta) released
+
+  27th October 2008     -   STLSoft 1.10.1 alpha 2 (delta) released
+
+  26th October 2008     -   STLSoft 1.10.1 alpha 1 (delta) released
+
+=============================== End of file ================================

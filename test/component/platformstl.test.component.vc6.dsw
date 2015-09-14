@@ -1,0 +1,80 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.file_lines"=.\platformstl\filesystem\test.component.platformstl.filesystem.file_lines\vc6\test.component.platformstl.filesystem.file_lines.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.filesystem_traits.1"=.\platformstl\filesystem\test.component.platformstl.filesystem.filesystem_traits.1\vc6\test.component.platformstl.filesystem.filesystem_traits.1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.properties_file"=.\platformstl\filesystem\test.component.platformstl.filesystem.properties_file\vc6\test.component.platformstl.filesystem.properties_file.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.readdir_sequence"=.\platformstl\filesystem\test.component.platformstl.filesystem.readdir_sequence\vc6\test.component.platformstl.filesystem.readdir_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name unixem
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "unixem"=..\..\..\..\..\..\freelibs\unixem\1.9\build\vc6\unixem.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

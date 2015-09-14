@@ -1,0 +1,89 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.filesystem_traits.1"=.\platformstl\filesystem\test.component.platformstl.filesystem.filesystem_traits.1\vc6\test.component.platformstl.filesystem.filesystem_traits.1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.properties_file"=.\platformstl\filesystem\test.component.platformstl.filesystem.properties_file\vc6\test.component.platformstl.filesystem.properties_file.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.platformstl.filesystem.readdir_sequence"=.\platformstl\filesystem\test.component.platformstl.filesystem.readdir_sequence\vc6\test.component.platformstl.filesystem.readdir_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.stlsoft.iterator.FILE_iterator"=.\stlsoft\iterator\test.component.stlsoft.iterator.FILE_iterator\vc6\test.component.stlsoft.iterator.FILE_iterator.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.unixstl.dl.module"=.\unixstl\dl\test.component.unixstl.dl.module\vc6\test.component.unixstl.dl.module.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.winstl.filesystem.findfile_sequence"=.\winstl\filesystem\test.component.winstl.filesystem.findfile_sequence\vc6\test.component.winstl.filesystem.findfile_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

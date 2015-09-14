@@ -1,0 +1,55 @@
+============================================================================
+STLSoft - Install
+
+; Created:  29th March 2002
+; Updated:  14th October 2010
+
+============================================================================
+
+ STLSoft is a 100% header-only library, and so requires no building.
+
+ Because this version of STLSoft is an alpha, with deltas, you need to
+ install STLSoft 1.9, and the install STLSoft 1.10 delta. There are two
+ ways you can do this:
+
+ 1. Separate directories
+
+  Download and unzip the latest version of STLSoft 1.9, and define an
+  STLSOFT environment variable pointing to the directory. For example, if
+  you you install to /usr/local/stlsoft/stlsoft-1.9.101, then you
+  should set STLSOFT to /usr/local/stlsoft/stlsoft-1.9.101. In that case,
+  the file stlsoft/stlsoft.h will be located in
+  $STLSOFT/include/stlsoft/stlsoft.h
+
+  Then, download and unzip the STLSoft 1.10 delta, and define an
+  STLSOFT_1_10 environment variable pointing to the directory. For example,
+  if you you install to /usr/local/stlsoft/stlsoft-1.10.1-alpha-15-delta,
+  then you should set STLSOFT_1_10 to
+  /usr/local/stlsoft/stlsoft-1.10.1-alpha-15-delta. In that case,
+  the file stlsoft/stlsoft_1_10.h will be located in
+  $STLSOFT_1_10/include/stlsoft/stlsoft_1_10.h
+
+  To use the libraries, you must ensure that the $STLSOFT_1_10/include
+  directory is **before** the $STLSOFT/include directory in your include
+  paths.
+
+  If you're using STLSoft on UNIX, you might want to apply dos2unix over all
+  the files before using it. You *must* do this if you're using the SunPro
+  C compiler.
+
+ 2. Overwriting 
+
+  Alternatively, you can download and install STLSoft 1.9 as described
+  above, and then download and unzip STLSoft 1.10 over the existing STLSoft
+  1.9 files.
+  
+  The advantage of this method is that you can continue to use only one
+  STLSoft include directory, $STLSOFT/include.
+
+  The disadvantage is that unzipping future delta releases of STLSoft 1.10
+  is not guaranteed to work without emptying the composite directory and
+  reinstalling STLSoft 1.9 beforehand. Consequently, to use this method you
+  should reinstal STLSoft 1.9 every time, followed by the latest STLSoft
+  1.10 distribution.
+
+=============================== End of file ================================
