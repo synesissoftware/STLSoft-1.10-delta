@@ -1,28 +1,30 @@
-# Compiled Object files
-*.slo
-*.lo
+
+# directories (by name)
+
+# directories (by pattern)
+
+# files (by name)
+
+# files (by pattern)
+
+*~
+*.a
+*.app
+*.dll
+*.dylib
+*.exe
+*.gch
+*.lib
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
+*.opensdf
 *.out
-*.app
+*.pch
+*.sdf
+*.sbr
+*.scc
+*.so
+*.swp
+*.vcproj.user
+*.vcxproj.user
+
