@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.scratch.stlsoft.smartptr", "test.scratch.stlsoft.smartptr.scoped_handle\vc9\test.scratch.stlsoft.smartptr.scoped_handle.vcproj", "{DCDE7E5E-65CC-4BF7-8725-5F85BCB89EE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCDE7E5E-65CC-4BF7-8725-5F85BCB89EE5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DCDE7E5E-65CC-4BF7-8725-5F85BCB89EE5}.Debug|Win32.Build.0 = Debug|Win32
+		{DCDE7E5E-65CC-4BF7-8725-5F85BCB89EE5}.Release|Win32.ActiveCfg = Release|Win32
+		{DCDE7E5E-65CC-4BF7-8725-5F85BCB89EE5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,12 +1,69 @@
+/* /////////////////////////////////////////////////////////////////////////
+ * File:        stlsoft/smartptr/scoped_method.hpp
+ *
+ * Purpose:     scoped_method - parameterisable RAII class for arbitrary
+ *              type methods.
+ *
+ * Created:     1st January 2004
+ * Updated:     3rd September 2014
+ *
+ * Home:        http://stlsoft.org/
+ *
+ * Copyright (c) 2004-2014, Matthew Wilson and Synesis Software
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ * - Neither the name(s) of Matthew Wilson and Synesis Software nor the names of
+ *   any contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * ////////////////////////////////////////////////////////////////////// */
 
-// Created: 1st January 2004
-// Updated: 31st May 2010
+
+/** \file stlsoft/smartptr/scoped_method.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::scoped_method smart
+ *   pointer class template
+ *   (\ref group__library__smart_pointers "Smart Pointers" Library).
+ */
+
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD
+#define STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MAJOR       1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_MINOR       0
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_REVISION    1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD_EDIT        1
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -195,11 +252,30 @@ public: // Construction
 
         delete m_invoker;
     }
-private:
-    scoped_method(class_type const&);
-    class_type& operator= (class_type const&);
 
-private: // Member Variables
+private:
+    scoped_method(class_type const&); // proscribed
+    class_type& operator= (class_type const&); // proscribed
+
+public: // Operations
+    void detach()
+    {
+        m_instance = NULL;
+    }
+
+    void reset() stlsoft_throw_0()
+    {
+        if(NULL != m_instance)
+        {
+            C* instance = m_instance;
+
+            m_instance = NULL;
+
+            m_invoker->invoke(instance);
+        }
+    }
+
+private: // Fields
     C*              m_instance;
     invoker_type*   m_invoker;
 };
@@ -208,6 +284,10 @@ private: // Member Variables
  * Namespace
  */
 
-} // namespace stlsoft
+} /* namespace stlsoft */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_METHOD */
 
 /* ///////////////////////////// end of file //////////////////////////// */

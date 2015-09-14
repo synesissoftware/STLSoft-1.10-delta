@@ -1,7 +1,12 @@
 
 #include <stlsoft/stlsoft_1_10.h>
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
-#include <winstl/winstl.h>
+#ifndef WINSTL_INCL_WINSTL_H_WINSTL
+# include <winstl/winstl.h>
+#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
 #ifdef _WINSTL_NO_NAMESPACE
 # ifdef __cplusplus

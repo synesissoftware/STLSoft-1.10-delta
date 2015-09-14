@@ -66,12 +66,12 @@
 namespace
 {
 
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
-	static void test_1_20(void);
-	static void test_1_21(void);
-	static void test_1_22(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
+    static void test_1_20(void);
+    static void test_1_21(void);
+    static void test_1_22(void);
 
 } // anonymous namespace
 
@@ -86,17 +86,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.winstl.system.system_directory", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
-		XTESTS_RUN_CASE(test_1_20);
-		XTESTS_RUN_CASE(test_1_21);
-		XTESTS_RUN_CASE(test_1_22);
+    if(XTESTS_START_RUNNER("test.component.winstl.system.system_directory", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
+        XTESTS_RUN_CASE(test_1_20);
+        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(test_1_22);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/system_directory.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/system_directory.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -114,25 +114,25 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef std::basic_string<TCHAR>		string_t;
+    typedef std::basic_string<TCHAR>        string_t;
 
-	static string_t get_temp_dir()
-	{
-		TCHAR	path[1 + _MAX_PATH];
-		DWORD	dw = ::GetSystemDirectory(path, STLSOFT_NUM_ELEMENTS(path)); 
+    static string_t get_temp_dir()
+    {
+        TCHAR   path[1 + _MAX_PATH];
+        DWORD   dw = ::GetSystemDirectory(path, STLSOFT_NUM_ELEMENTS(path)); 
 
-		return string_t(path, dw);
-	}
+        return string_t(path, dw);
+    }
 
 
 static void test_1_17()
 {
-	winstl::system_directory t;
+    winstl::system_directory t;
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
-	XTESTS_TEST_STRING_EQUAL(get_temp_dir(), t.c_str());
+    XTESTS_TEST_STRING_EQUAL(get_temp_dir(), t.c_str());
 #else /* ? compiler */
-	XTESTS_TEST_STRING_EQUAL(get_temp_dir(), t);
+    XTESTS_TEST_STRING_EQUAL(get_temp_dir(), t);
 #endif /* compiler */
 }
 

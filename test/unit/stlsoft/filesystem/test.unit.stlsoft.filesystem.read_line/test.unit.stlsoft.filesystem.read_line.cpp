@@ -671,7 +671,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_14_19);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/filesystem/read_line.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/filesystem/read_line.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();

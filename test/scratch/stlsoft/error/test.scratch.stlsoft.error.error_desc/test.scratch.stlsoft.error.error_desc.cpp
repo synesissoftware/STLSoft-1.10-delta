@@ -63,7 +63,7 @@ inline void fn_(char const* , size_t )
 template <typename S>
 inline void fn(S const& s)
 {
-	fn_(stlsoft::c_str_data(s), stlsoft::c_str_len(s));
+    fn_(stlsoft::c_str_data(s), stlsoft::c_str_len(s));
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -75,7 +75,7 @@ static int main_(int /* argc */, char** /*argv*/)
     std::cout << "error: " << stlsoft::error_desc(code) << std::endl;
 
     //ff::fmtln(std::cout, "error: {0}", stlsoft::error_desc(code));
-	fn(stlsoft::error_desc(code));
+    fn(stlsoft::error_desc(code));
 
     /* . */
     return EXIT_SUCCESS;

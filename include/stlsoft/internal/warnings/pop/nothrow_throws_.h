@@ -5,11 +5,11 @@
  *              function marked nothrow()".
  *
  * Created:     18th November 2008
- * Updated:     19th May 2009
+ * Updated:     13th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Refer to stlsoft/stlsoft.h for license conditions
@@ -29,3 +29,5 @@
     _MSC_VER >= 1310
 # pragma warning(pop)
 #endif /* VC++ 8+ */
+
+/* ///////////////////////////// end of file //////////////////////////// */

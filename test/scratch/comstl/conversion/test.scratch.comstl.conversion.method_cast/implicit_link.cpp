@@ -4,13 +4,13 @@
  * Purpose:     Implicit link file for the test.scratch.comstl.conversion.method_cast project.
  *
  * Created:     29th November 2008
- * Updated:     29th November 2008
+ * Updated:     9th December 2013
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -51,4 +51,4 @@ pan_be_N_t  PAN_BE_N_BACKEND_LIST[] =
 
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     File-system size functions
  *
  * Created:     13th May 2010
- * Updated:     13th October 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_EDIT        9
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_REVISION    7
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SIZE_FUNCTIONS_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,6 +58,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -349,25 +352,25 @@ STLSOFT_INLINE BOOL winstl_C_file_get_size_by_name_32_a(
 ,   ws_uint32_t*    sizeHi
 )
 {
-  WIN32_FIND_DATAA  data;
-  HANDLE        hFind = STLSOFT_NS_GLOBAL(FindFirstFileA)(path, &data);
+    WIN32_FIND_DATAA  data;
+    HANDLE        hFind = STLSOFT_NS_GLOBAL(FindFirstFileA)(path, &data);
 
     WINSTL_ASSERT(NULL != sizeLo);
     WINSTL_ASSERT(NULL != sizeHi);
 
-  if(INVALID_HANDLE_VALUE == hFind)
-  {
-    return FALSE;
-  }
-  else
-  {
-    STLSOFT_NS_GLOBAL(FindClose)(hFind);
+    if(INVALID_HANDLE_VALUE == hFind)
+    {
+        return FALSE;
+    }
+    else
+    {
+        STLSOFT_NS_GLOBAL(FindClose)(hFind);
 
-    *sizeLo = data.nFileSizeLow;
-    *sizeHi = data.nFileSizeHigh;
+        *sizeLo = data.nFileSizeLow;
+        *sizeHi = data.nFileSizeHigh;
 
-    return TRUE;
-  }
+        return TRUE;
+    }
 }
 
 STLSOFT_INLINE BOOL winstl_C_file_get_size_by_name_32_w(
@@ -376,25 +379,25 @@ STLSOFT_INLINE BOOL winstl_C_file_get_size_by_name_32_w(
 ,   ws_uint32_t*    sizeHi
 )
 {
-  WIN32_FIND_DATAW  data;
-  HANDLE        hFind = STLSOFT_NS_GLOBAL(FindFirstFileW)(path, &data);
+    WIN32_FIND_DATAW  data;
+    HANDLE        hFind = STLSOFT_NS_GLOBAL(FindFirstFileW)(path, &data);
 
     WINSTL_ASSERT(NULL != sizeLo);
     WINSTL_ASSERT(NULL != sizeHi);
 
-  if(INVALID_HANDLE_VALUE == hFind)
-  {
-    return FALSE;
-  }
-  else
-  {
-    STLSOFT_NS_GLOBAL(FindClose)(hFind);
+    if(INVALID_HANDLE_VALUE == hFind)
+    {
+        return FALSE;
+    }
+    else
+    {
+        STLSOFT_NS_GLOBAL(FindClose)(hFind);
 
-    *sizeLo = data.nFileSizeLow;
-    *sizeHi = data.nFileSizeHigh;
+        *sizeLo = data.nFileSizeLow;
+        *sizeHi = data.nFileSizeHigh;
 
-    return TRUE;
-  }
+        return TRUE;
+    }
 }
 
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
@@ -403,42 +406,42 @@ STLSOFT_INLINE BOOL winstl_C_file_get_size_by_name_64_a(
 ,   ws_uint64_t*    size
 )
 {
-  ws_uint32_t sizeLo;
-  ws_uint32_t sizeHi;
+    ws_uint32_t sizeLo;
+    ws_uint32_t sizeHi;
 
-  if(!winstl_C_file_get_size_by_name_32_a(path, &sizeLo, &sizeHi))
-  {
-    return FALSE;
-  }
-  else
-  {
+    if(!winstl_C_file_get_size_by_name_32_a(path, &sizeLo, &sizeHi))
+    {
+        return FALSE;
+    }
+    else
+    {
         *size = sizeHi;
         *size <<= 32;
         *size += sizeLo;
 
-    return TRUE;
-  }
+        return TRUE;
+    }
 }
 STLSOFT_INLINE BOOL winstl_C_file_get_size_by_name_64_w(
     ws_char_w_t const*  path
 ,   ws_uint64_t*    size
 )
 {
-  ws_uint32_t sizeLo;
-  ws_uint32_t sizeHi;
+    ws_uint32_t sizeLo;
+    ws_uint32_t sizeHi;
 
-  if(!winstl_C_file_get_size_by_name_32_w(path, &sizeLo, &sizeHi))
-  {
-    return FALSE;
-  }
-  else
-  {
+    if(!winstl_C_file_get_size_by_name_32_w(path, &sizeLo, &sizeHi))
+    {
+        return FALSE;
+    }
+    else
+    {
         *size = sizeHi;
         *size <<= 32;
         *size += sizeLo;
 
-    return TRUE;
-  }
+        return TRUE;
+    }
 }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 
@@ -470,7 +473,7 @@ inline BOOL winstl_C_file_get_size_by_name_32(
 ,   ws_uint32_t*    sizeHi
 ) stlsoft_throw_0()
 {
-  return winstl_C_file_get_size_by_name_32_a(path, sizeLo, sizeHi);
+    return winstl_C_file_get_size_by_name_32_a(path, sizeLo, sizeHi);
 }
 inline BOOL winstl_C_file_get_size_by_name_32(
     ws_char_w_t const*  path
@@ -478,7 +481,7 @@ inline BOOL winstl_C_file_get_size_by_name_32(
 ,   ws_uint32_t*    sizeHi
 ) stlsoft_throw_0()
 {
-  return winstl_C_file_get_size_by_name_32_w(path, sizeLo, sizeHi);
+    return winstl_C_file_get_size_by_name_32_w(path, sizeLo, sizeHi);
 }
 
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
@@ -487,14 +490,14 @@ inline BOOL winstl_C_file_get_size_by_name_64(
 ,   ws_uint64_t*    size
 )
 {
-  return winstl_C_file_get_size_by_name_64_a(path, size);
+    return winstl_C_file_get_size_by_name_64_a(path, size);
 }
 inline BOOL winstl_C_file_get_size_by_name_64(
     ws_char_w_t const*  path
 ,   ws_uint64_t*    size
 )
 {
-  return winstl_C_file_get_size_by_name_64_w(path, size);
+    return winstl_C_file_get_size_by_name_64_w(path, size);
 }
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 

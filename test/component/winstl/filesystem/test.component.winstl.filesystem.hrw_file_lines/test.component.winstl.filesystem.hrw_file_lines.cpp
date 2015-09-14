@@ -49,26 +49,26 @@
 namespace
 {
 
-	static void test_1_0(void);
-	static void test_1_1(void);
-	static void test_1_2(void);
-	static void test_1_3(void);
-	static void test_1_4(void);
-	static void test_1_5(void);
-	static void test_1_6(void);
-	static void test_1_7(void);
-	static void test_1_8(void);
-	static void test_1_9(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_0(void);
+    static void test_1_1(void);
+    static void test_1_2(void);
+    static void test_1_3(void);
+    static void test_1_4(void);
+    static void test_1_5(void);
+    static void test_1_6(void);
+    static void test_1_7(void);
+    static void test_1_8(void);
+    static void test_1_9(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
 } // anonymous namespace
 
@@ -79,7 +79,7 @@ namespace
 namespace
 {
 
-	static char s_arg0[1024 + 1];
+    static char s_arg0[1024 + 1];
 
 } // anonymous namespace
 
@@ -89,42 +89,42 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	::strcpy(s_arg0, argv[0]);
+    ::strcpy(s_arg0, argv[0]);
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.winstl.filesystem.hrw_file_lines", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_0);
-		XTESTS_RUN_CASE(test_1_1);
-		XTESTS_RUN_CASE(test_1_2);
-		XTESTS_RUN_CASE(test_1_3);
-		XTESTS_RUN_CASE(test_1_4);
-		XTESTS_RUN_CASE(test_1_5);
-		XTESTS_RUN_CASE(test_1_6);
-		XTESTS_RUN_CASE(test_1_7);
-		XTESTS_RUN_CASE(test_1_8);
-		XTESTS_RUN_CASE(test_1_9);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.component.winstl.filesystem.hrw_file_lines", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_0);
+        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(test_1_2);
+        XTESTS_RUN_CASE(test_1_3);
+        XTESTS_RUN_CASE(test_1_4);
+        XTESTS_RUN_CASE(test_1_5);
+        XTESTS_RUN_CASE(test_1_6);
+        XTESTS_RUN_CASE(test_1_7);
+        XTESTS_RUN_CASE(test_1_8);
+        XTESTS_RUN_CASE(test_1_9);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,112 +133,112 @@ int main(int argc, char **argv)
 
 namespace
 {
-	using winstl::ws_uintptr_t;
+    using winstl::ws_uintptr_t;
 
-	typedef winstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded>		ro_mmf_st_t;
-	typedef winstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded>	ro_mmf_mt_t;
+    typedef winstl::readonly_memory_mapped_file_base<stlsoft::refcount_policy_single_threaded>      ro_mmf_st_t;
+    typedef winstl::readonly_memory_mapped_file_base<platformstl::refcount_policy_multi_threaded>   ro_mmf_mt_t;
 
 static void test_1_0()
 {
-	if(0)
-	{
-		ro_mmf_st_t	instance("abc");
+    if(0)
+    {
+        ro_mmf_st_t instance("abc");
 
-		STLSOFT_SUPPRESS_UNUSED(instance);
-	}
-	if(0)
-	{
-		ro_mmf_st_t	instance(L"abc");
+        STLSOFT_SUPPRESS_UNUSED(instance);
+    }
+    if(0)
+    {
+        ro_mmf_st_t instance(L"abc");
 
-		STLSOFT_SUPPRESS_UNUSED(instance);
-	}
+        STLSOFT_SUPPRESS_UNUSED(instance);
+    }
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_1()
 {
-	if(0)
-	{
-		ro_mmf_mt_t	instance("abc");
+    if(0)
+    {
+        ro_mmf_mt_t instance("abc");
 
-		STLSOFT_SUPPRESS_UNUSED(instance);
-	}
-	if(0)
-	{
-		ro_mmf_mt_t	instance(L"abc");
+        STLSOFT_SUPPRESS_UNUSED(instance);
+    }
+    if(0)
+    {
+        ro_mmf_mt_t instance(L"abc");
 
-		STLSOFT_SUPPRESS_UNUSED(instance);
-	}
+        STLSOFT_SUPPRESS_UNUSED(instance);
+    }
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_2()
 {
-	// Map a non-zero sized file
+    // Map a non-zero sized file
 
-	ro_mmf_st_t	mmf(s_arg0);
+    ro_mmf_st_t mmf(s_arg0);
 
-	XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf.memory());
-	XTESTS_TEST_INTEGER_NOT_EQUAL(0u, mmf.size());
+    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf.memory());
+    XTESTS_TEST_INTEGER_NOT_EQUAL(0u, mmf.size());
 }
 
 static void test_1_3()
 {
-	// Map a section of a non-zero sized file
+    // Map a section of a non-zero sized file
 
-	ro_mmf_st_t	mmf(s_arg0, 0, 1024);
+    ro_mmf_st_t mmf(s_arg0, 0, 1024);
 
-	XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf.memory());
-	XTESTS_TEST_INTEGER_EQUAL(1024u, mmf.size());
+    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf.memory());
+    XTESTS_TEST_INTEGER_EQUAL(1024u, mmf.size());
 }
 
 static void test_1_4()
 {
-	// Map an over-large section of a non-zero sized file
+    // Map an over-large section of a non-zero sized file
 
-	ro_mmf_st_t	mmf1(s_arg0);
+    ro_mmf_st_t mmf1(s_arg0);
 
-	ro_mmf_st_t	mmf2(s_arg0, 0, stlsoft::limit_traits<ro_mmf_st_t::size_type>::maximum());
+    ro_mmf_st_t mmf2(s_arg0, 0, stlsoft::limit_traits<ro_mmf_st_t::size_type>::maximum());
 
-	XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf1.memory());
-	XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf2.memory());
-	XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(mmf1.size(), mmf2.size()));
+    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf1.memory());
+    XTESTS_TEST_POINTER_NOT_EQUAL(NULL, mmf2.memory());
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(mmf1.size(), mmf2.size()));
 
-	XTESTS_TEST_INTEGER_EQUAL(0, ::memcmp(mmf1.memory(), mmf2.memory(), mmf1.size()));
+    XTESTS_TEST_INTEGER_EQUAL(0, ::memcmp(mmf1.memory(), mmf2.memory(), mmf1.size()));
 }
 
 static void test_1_5()
 {
-	// Map a zero-length file
+    // Map a zero-length file
 
-	char const TEST_FILE_NAME[] = "test_1_5.DATAFILE";
+    char const TEST_FILE_NAME[] = "test_1_5.DATAFILE";
 
-	HANDLE h = winstl::file_create_always(TEST_FILE_NAME, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, 0);
+    HANDLE h = winstl::file_create_always(TEST_FILE_NAME, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, 0);
 
-	if(INVALID_HANDLE_VALUE == h)
-	{
-	}
-	else
-	{
-		stlsoft::scoped_handle<char const*> scoper1(TEST_FILE_NAME, ::DeleteFile);
+    if(INVALID_HANDLE_VALUE == h)
+    {
+    }
+    else
+    {
+        stlsoft::scoped_handle<char const*> scoper1(TEST_FILE_NAME, ::DeleteFile);
 #if 0
-		stlsoft::scoped_handle<HANDLE> scoper2(h, ::CloseHandle, INVALID_HANDLE_VALUE);
+        stlsoft::scoped_handle<HANDLE> scoper2(h, ::CloseHandle, INVALID_HANDLE_VALUE);
 #else /* ? 0 */
-		::CloseHandle(h);
+        ::CloseHandle(h);
 #endif /* 0 */
 
-		ro_mmf_st_t	mmf1(TEST_FILE_NAME);
+        ro_mmf_st_t mmf1(TEST_FILE_NAME);
 
-		XTESTS_TEST_POINTER_EQUAL(NULL, mmf1.memory());
-		XTESTS_TEST_INTEGER_EQUAL(0u, mmf1.size());
+        XTESTS_TEST_POINTER_EQUAL(NULL, mmf1.memory());
+        XTESTS_TEST_INTEGER_EQUAL(0u, mmf1.size());
 
-		ro_mmf_st_t	mmf2(mmf1);
+        ro_mmf_st_t mmf2(mmf1);
 
-		XTESTS_TEST_POINTER_EQUAL(NULL, mmf2.memory());
-		XTESTS_TEST_INTEGER_EQUAL(0u, mmf2.size());
-	}
+        XTESTS_TEST_POINTER_EQUAL(NULL, mmf2.memory());
+        XTESTS_TEST_INTEGER_EQUAL(0u, mmf2.size());
+    }
 }
 
 static void test_1_6()

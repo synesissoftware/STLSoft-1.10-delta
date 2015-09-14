@@ -4,11 +4,11 @@
  * Purpose:     Bit count functions.
  *
  * Created:     2nd June 2010
- * Updated:     6th July 2010
+ * Updated:     10th August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,16 +50,19 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT     2
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_COUNT_FUNCTIONS_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * includes
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -68,7 +71,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Namespace
+ * namespace
  */
 
 #ifndef STLSOFT_NO_NAMESPACE
@@ -77,15 +80,19 @@ namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Implementation
+ * implementation
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-struct ximpl_bit_functions
+# ifdef __cplusplus
+namespace ximpl_bit_functions
 {
-    typedef ss_uint8_t const(*table_ptr_type)[256];
+# endif /* __cplusplus */
+    typedef ss_uint8_t const(*stlsoft_C_count_functions_table_ptr_type)[256];
 
-    static table_ptr_type get_8bit_table()
+    static
+    stlsoft_C_count_functions_table_ptr_type
+    stlsoft_C_count_functions_get_8bit_table()
     {
         static const ss_uint8_t s_table[256] =
         {
@@ -350,11 +357,13 @@ struct ximpl_bit_functions
         return &s_table;
     }
 
-};
+# ifdef __cplusplus
+} /* namespace ximpl_bit_functions */
+# endif /* __cplusplus */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functions
+ * functions
  */
 
 /** Counts the number of bits in a 32-bit unsigned integer, using Brian
@@ -364,7 +373,9 @@ struct ximpl_bit_functions
  *
  * \return The number of bits in \c v
  */
-STLSOFT_INLINE unsigned count_bits_Kernighan(
+STLSOFT_INLINE
+unsigned
+count_bits_Kernighan(
     ss_uint32_t v
 ) stlsoft_throw_0()
 {
@@ -391,24 +402,59 @@ STLSOFT_INLINE unsigned count_bits_Kernighan(
  *
  * \return The number of bits in \c v
  */
-STLSOFT_INLINE unsigned count_bits_8bit_table(
+STLSOFT_INLINE
+unsigned
+count_bits_8bit_table(
     ss_uint32_t v
 ) stlsoft_throw_0()
 {
-    ss_uint8_t const* py = static_cast<ss_uint8_t const*>(static_cast<void*>(&v));
+    ss_uint8_t const* const py = STLSOFT_STATIC_CAST(ss_uint8_t const*, STLSOFT_STATIC_CAST(void*, &v));
 
-    ximpl_bit_functions::table_ptr_type ptr = ximpl_bit_functions::get_8bit_table();
+#ifdef __cplusplus
+    using namespace ximpl_bit_functions;
+#endif /* __cplusplus */
+
+    stlsoft_C_count_functions_table_ptr_type ptr = stlsoft_C_count_functions_get_8bit_table();
 
     STLSOFT_COVER_MARK_LINE();
 
     return (*ptr)[0[py]] + (*ptr)[1[py]] + (*ptr)[2[py]] + (*ptr)[3[py]];
 }
 
+/* /////////////////////////////////////////////////////////////////////////
+ * C++
+ */
+
+#ifdef __cplusplus
+
+inline
+unsigned
+count_bits(
+    ss_uint32_t v
+) stlsoft_throw_0()
+{
+# if defined(STLSOFT_BIT_COUNT_BY_Kernighan)
+    return count_bits_Kernighan(v);
+# else
+    return count_bits_8bit_table(v);
+# endif
+}
+
+#endif /* __cplusplus */
+
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with BSTR strings.
  *
  * Created:     24th June 2002
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MAJOR    4
 # define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_MINOR    4
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     89
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_REVISION 2
+# define COMSTL_VER_COMSTL_STRING_H_BSTR_FUNCTIONS_EDIT     90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <comstl/comstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

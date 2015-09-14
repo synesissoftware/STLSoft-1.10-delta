@@ -156,83 +156,83 @@ namespace
         return r;
     }
 
-	int int_to_int(int i)
-	{
-		return i;
-	}
-	long int_to_long(int i)
-	{
-		return i;
-	}
-	uint64_t int_to_ulonglong(int i)
-	{
-		return static_cast<uint64_t>(i);
-	}
-	string_t int_to_string(int i)
-	{
-		char sz[21];
-		return stlsoft::integer_to_string(sz, STLSOFT_NUM_ELEMENTS(sz), i);
-	}
+    int int_to_int(int i)
+    {
+        return i;
+    }
+    long int_to_long(int i)
+    {
+        return i;
+    }
+    uint64_t int_to_ulonglong(int i)
+    {
+        return static_cast<uint64_t>(i);
+    }
+    string_t int_to_string(int i)
+    {
+        char sz[21];
+        return stlsoft::integer_to_string(sz, STLSOFT_NUM_ELEMENTS(sz), i);
+    }
 
-	int int_string_pair_first_to_int(std::pair<int, string_t> const& i)
-	{
-		return i.first;
-	}
-	string_t int_string_pair_first_to_string(std::pair<int, string_t> const& i)
-	{
-		return int_to_string(i.first);
-	}
+    int int_string_pair_first_to_int(std::pair<int, string_t> const& i)
+    {
+        return i.first;
+    }
+    string_t int_string_pair_first_to_string(std::pair<int, string_t> const& i)
+    {
+        return int_to_string(i.first);
+    }
 
 static void test_deque_1()
 {
     std::deque<int> c;
 
-	{ for(int i = 0; i != 10; ++i)
-	{
-		c.push_back(i);
-	}}
+    { for(int i = 0; i != 10; ++i)
+    {
+        c.push_back(i);
+    }}
 
-	{
-		int result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
-		,	int(0)
-		);
+    {
+        int result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
+        ,   int(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		long result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
-		,	long(0)
-		);
+    {
+        long result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
+        ,   long(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		uint64_t result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
-		,	uint64_t(0)
-		);
+    {
+        uint64_t result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
+        ,   uint64_t(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		string_t result;
+    {
+        string_t result;
 
-		std::copy(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
-		,	stlsoft::string_concatenator(result, "")
-		);
+        std::copy(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
+        ,   stlsoft::string_concatenator(result, "")
+        );
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
+    }
 }
 
 static void test_deque_2()
@@ -251,52 +251,52 @@ static void test_list_1()
 {
     std::list<int> c;
 
-	{ for(int i = 0; i != 10; ++i)
-	{
-		c.push_back(i);
-	}}
+    { for(int i = 0; i != 10; ++i)
+    {
+        c.push_back(i);
+    }}
 
-	{
-		int result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
-		,	int(0)
-		);
+    {
+        int result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
+        ,   int(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		long result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
-		,	long(0)
-		);
+    {
+        long result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
+        ,   long(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		uint64_t result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
-		,	uint64_t(0)
-		);
+    {
+        uint64_t result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
+        ,   uint64_t(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		string_t result;
+    {
+        string_t result;
 
-		std::copy(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
-		,	stlsoft::string_concatenator(result, "")
-		);
+        std::copy(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
+        ,   stlsoft::string_concatenator(result, "")
+        );
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
+    }
 }
 
 static void test_list_2()
@@ -315,52 +315,52 @@ static void test_vector_1()
 {
     std::vector<int> c;
 
-	{ for(int i = 0; i != 10; ++i)
-	{
-		c.push_back(i);
-	}}
+    { for(int i = 0; i != 10; ++i)
+    {
+        c.push_back(i);
+    }}
 
-	{
-		int result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
-		,	int(0)
-		);
+    {
+        int result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_int))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_int))
+        ,   int(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		long result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
-		,	long(0)
-		);
+    {
+        long result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_long))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_long))
+        ,   long(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		uint64_t result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
-		,	uint64_t(0)
-		);
+    {
+        uint64_t result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_ulonglong))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_ulonglong))
+        ,   uint64_t(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		string_t result;
+    {
+        string_t result;
 
-		std::copy(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
-		,	stlsoft::string_concatenator(result, "")
-		);
+        std::copy(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_to_string))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_to_string))
+        ,   stlsoft::string_concatenator(result, "")
+        );
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
+    }
 }
 
 static void test_vector_2()
@@ -379,65 +379,65 @@ static void test_map_1()
 {
     std::map<int, string_t> c;
 
-	{ for(int i = 0; i != 10; ++i)
-	{
-		c.insert(std::make_pair(i, int_to_string(i)));
-	}}
+    { for(int i = 0; i != 10; ++i)
+    {
+        c.insert(std::make_pair(i, int_to_string(i)));
+    }}
 
-	{
-		int result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_string_pair_first_to_int))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_string_pair_first_to_int))
-		,	int(0)
-		);
+    {
+        int result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_string_pair_first_to_int))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_string_pair_first_to_int))
+        ,   int(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		string_t result;
+    {
+        string_t result;
 
-		std::copy(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_string_pair_first_to_string))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_string_pair_first_to_string))
-		,	stlsoft::string_concatenator(result, "")
-		);
+        std::copy(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_string_pair_first_to_string))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_string_pair_first_to_string))
+        ,   stlsoft::string_concatenator(result, "")
+        );
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
+    }
 
 #if 0
-	{
-		long result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_long))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_long))
-		,	long(0)
-		);
+    {
+        long result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_long))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_long))
+        ,   long(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		uint64_t result = std::accumulate(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_ulonglong))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_ulonglong))
-		,	uint64_t(0)
-		);
+    {
+        uint64_t result = std::accumulate(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_ulonglong))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_ulonglong))
+        ,   uint64_t(0)
+        );
 
-		XTESTS_TEST_INTEGER_EQUAL(45, result);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(45, result);
+    }
 
-	{
-		string_t result;
+    {
+        string_t result;
 
-		std::copy(
-			stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_string))
-		,	stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_string))
-		,	stlsoft::string_concatenator(result, "")
-		);
+        std::copy(
+            stlsoft::transformer(c.begin(), std::ptr_fun(int_pair_to_string))
+        ,   stlsoft::transformer(c.end(), std::ptr_fun(int_pair_to_string))
+        ,   stlsoft::string_concatenator(result, "")
+        );
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0123456789", result);
+    }
 #endif
 }
 

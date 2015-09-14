@@ -52,26 +52,26 @@
 namespace
 {
 
-	static void test_1_0(void);
-	static void test_1_1(void);
-	static void test_1_2(void);
-	static void test_1_3(void);
-	static void test_1_4(void);
-	static void test_1_5(void);
-	static void test_1_6(void);
-	static void test_1_7(void);
-	static void test_1_8(void);
-	static void test_1_9(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_0(void);
+    static void test_1_1(void);
+    static void test_1_2(void);
+    static void test_1_3(void);
+    static void test_1_4(void);
+    static void test_1_5(void);
+    static void test_1_6(void);
+    static void test_1_7(void);
+    static void test_1_8(void);
+    static void test_1_9(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
 } // anonymous namespace
 
@@ -81,40 +81,40 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.stlsoft.iterator.filter_iterator", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_0);
-		XTESTS_RUN_CASE(test_1_1);
-		XTESTS_RUN_CASE(test_1_2);
-		XTESTS_RUN_CASE(test_1_3);
-		XTESTS_RUN_CASE(test_1_4);
-		XTESTS_RUN_CASE(test_1_5);
-		XTESTS_RUN_CASE(test_1_6);
-		XTESTS_RUN_CASE(test_1_7);
-		XTESTS_RUN_CASE(test_1_8);
-		XTESTS_RUN_CASE(test_1_9);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.unit.stlsoft.iterator.filter_iterator", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_0);
+        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(test_1_2);
+        XTESTS_RUN_CASE(test_1_3);
+        XTESTS_RUN_CASE(test_1_4);
+        XTESTS_RUN_CASE(test_1_5);
+        XTESTS_RUN_CASE(test_1_6);
+        XTESTS_RUN_CASE(test_1_7);
+        XTESTS_RUN_CASE(test_1_8);
+        XTESTS_RUN_CASE(test_1_9);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,60 +124,60 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef std::string						string_t;
-	typedef std::deque<string_t>			string_deque_t;
-	typedef std::vector<string_t>			strings_t;
-	typedef std::set<string_t>				stringset_t;
-	typedef std::map<string_t, string_t>	string_to_string_map_t;
+    typedef std::string                     string_t;
+    typedef std::deque<string_t>            string_deque_t;
+    typedef std::vector<string_t>           strings_t;
+    typedef std::set<string_t>              stringset_t;
+    typedef std::map<string_t, string_t>    string_to_string_map_t;
 
-	static char const* LINES[] =
-	{
-		"# title line",
-		"abc",
-		"def",
-		"# comment line",
-		"ghi",
-		"jkl",
-	};
+    static char const* LINES[] =
+    {
+        "# title line",
+        "abc",
+        "def",
+        "# comment line",
+        "ghi",
+        "jkl",
+    };
 
-	struct is_comment
-		: public std::unary_function<string_t, bool>
-	{
-		bool operator ()(string_t const& line) const
-		{
-			return !line.empty() && '#' == line[0];
-		}
-	};
+    struct is_comment
+        : public std::unary_function<string_t, bool>
+    {
+        bool operator ()(string_t const& line) const
+        {
+            return !line.empty() && '#' == line[0];
+        }
+    };
 
 static void test_1_0()
 {
-	strings_t	lines(LINES, LINES + dimensionof(LINES));
+    strings_t   lines(LINES, LINES + dimensionof(LINES));
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_1()
 {
-	strings_t	lines(LINES, LINES + dimensionof(LINES));
+    strings_t   lines(LINES, LINES + dimensionof(LINES));
 
-	strings_t	filteredLines(
-					stlsoft::filter(lines.begin(), lines.end(), std::not1(is_comment()))
-				,	stlsoft::filter(lines.end(),   lines.end(), std::not1(is_comment()))
-				);
+    strings_t   filteredLines(
+                    stlsoft::filter(lines.begin(), lines.end(), std::not1(is_comment()))
+                ,   stlsoft::filter(lines.end(),   lines.end(), std::not1(is_comment()))
+                );
 
-	XTESTS_TEST_INTEGER_EQUAL(4u, filteredLines.size());
+    XTESTS_TEST_INTEGER_EQUAL(4u, filteredLines.size());
 }
 
 static void test_1_2()
 {
-	strings_t	lines(LINES, LINES + dimensionof(LINES));
+    strings_t   lines(LINES, LINES + dimensionof(LINES));
 
-	strings_t	filteredLines(
-					stlsoft::filter(lines.begin(), lines.end(), std::not1(is_comment()))
-				,	stlsoft::filter_end(lines.end(), std::not1(is_comment()))
-				);
+    strings_t   filteredLines(
+                    stlsoft::filter(lines.begin(), lines.end(), std::not1(is_comment()))
+                ,   stlsoft::filter_end(lines.end(), std::not1(is_comment()))
+                );
 
-	XTESTS_TEST_INTEGER_EQUAL(4u, filteredLines.size());
+    XTESTS_TEST_INTEGER_EQUAL(4u, filteredLines.size());
 }
 
 static void test_1_3()

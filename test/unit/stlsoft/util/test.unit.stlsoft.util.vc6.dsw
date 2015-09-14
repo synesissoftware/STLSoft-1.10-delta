@@ -3,7 +3,115 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "test.unit.stlsoft.util.bit_functions"=.\test.unit.stlsoft.util.bit_functions\vc6\test.unit.stlsoft.util.bit_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.exception_string"=.\test.unit.stlsoft.util.exception_string\vc6\test.unit.stlsoft.util.exception_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.exception_string_creator"=.\test.unit.stlsoft.util.exception_string_creator\vc6\test.unit.stlsoft.util.exception_string_creator.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.has_bom"=.\test.unit.stlsoft.util.has_bom\vc6\test.unit.stlsoft.util.has_bom.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.integral_printf_traits"=.\test.unit.stlsoft.util.integral_printf_traits\vc6\test.unit.stlsoft.util.integral_printf_traits.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.limit_traits"=.\test.unit.stlsoft.util.limit_traits\vc6\test.unit.stlsoft.util.limit_traits.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.minmax"=.\test.unit.stlsoft.util.minmax\vc6\test.unit.stlsoft.util.minmax.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.must_init"=.\test.unit.stlsoft.util.must_init\vc6\test.unit.stlsoft.util.must_init.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "test.unit.stlsoft.util.rand"=.\test.unit.stlsoft.util.rand\vc6\test.unit.stlsoft.util.rand.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.util.string_switch"=.\test.unit.stlsoft.util.string_switch\vc6\test.unit.stlsoft.util.string_switch.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

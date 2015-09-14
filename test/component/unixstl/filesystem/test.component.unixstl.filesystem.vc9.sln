@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.component.unixstl.filesystem", "test.component.unixstl.filesystem.directory_functions\vc9\test.component.unixstl.filesystem.directory_functions.vcproj", "{A488BE2F-7B4E-403D-9923-C34CFBE37D38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug pseudoUNIX|Win32 = Debug pseudoUNIX|Win32
+		Release pseudoUNIX|Win32 = Release pseudoUNIX|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A488BE2F-7B4E-403D-9923-C34CFBE37D38}.Debug pseudoUNIX|Win32.ActiveCfg = Debug pseudoUNIX|Win32
+		{A488BE2F-7B4E-403D-9923-C34CFBE37D38}.Debug pseudoUNIX|Win32.Build.0 = Debug pseudoUNIX|Win32
+		{A488BE2F-7B4E-403D-9923-C34CFBE37D38}.Release pseudoUNIX|Win32.ActiveCfg = Release pseudoUNIX|Win32
+		{A488BE2F-7B4E-403D-9923-C34CFBE37D38}.Release pseudoUNIX|Win32.Build.0 = Release pseudoUNIX|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

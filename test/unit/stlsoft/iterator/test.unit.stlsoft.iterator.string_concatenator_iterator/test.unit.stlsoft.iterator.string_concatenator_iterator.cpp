@@ -136,9 +136,9 @@ static void test_1_0(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", r);
 }
 
 static void test_1_1(void)
@@ -151,9 +151,9 @@ static void test_1_1(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", r);
 }
 
 static void test_1_2(void)
@@ -167,9 +167,9 @@ static void test_1_2(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b", r);
 }
 
 static void test_1_3(void)
@@ -186,9 +186,9 @@ static void test_1_3(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c|d|e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c|d|e", r);
 }
 
 static void test_1_4(void)
@@ -205,9 +205,9 @@ static void test_1_4(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|e", r);
 }
 
 static void test_1_5(void)
@@ -224,9 +224,9 @@ static void test_1_5(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("c|d|e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("c|d|e", r);
 }
 
 static void test_1_6(void)
@@ -243,9 +243,9 @@ static void test_1_6(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c", r);
 }
 
 static void test_1_7(void)
@@ -262,9 +262,9 @@ static void test_1_7(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|"));
+                        ,   stlsoft::string_concatenator(r, "|"));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("b|c|d", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("b|c|d", r);
 }
 
 static void test_1_8(void)
@@ -286,9 +286,9 @@ static void test_1_10(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", r);
 }
 
 static void test_1_11(void)
@@ -301,9 +301,9 @@ static void test_1_11(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a", r);
 }
 
 static void test_1_12(void)
@@ -317,9 +317,9 @@ static void test_1_12(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b", r);
 }
 
 static void test_1_13(void)
@@ -336,9 +336,9 @@ static void test_1_13(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c|d|e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c|d|e", r);
 }
 
 static void test_1_14(void)
@@ -355,9 +355,9 @@ static void test_1_14(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|||e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|||e", r);
 }
 
 static void test_1_15(void)
@@ -374,9 +374,9 @@ static void test_1_15(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("||c|d|e", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("||c|d|e", r);
 }
 
 static void test_1_16(void)
@@ -393,9 +393,9 @@ static void test_1_16(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c||", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("a|b|c||", r);
 }
 
 static void test_1_17(void)
@@ -412,9 +412,9 @@ static void test_1_17(void)
     string_t r;
 
     std::copy(  &strings[0], &strings[0] + STLSOFT_NUM_ELEMENTS(strings)
-						,   stlsoft::string_concatenator(r, "|", 1));
+                        ,   stlsoft::string_concatenator(r, "|", 1));
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("|b|c|d|", r);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("|b|c|d|", r);
 }
 
 static void test_1_18(void)

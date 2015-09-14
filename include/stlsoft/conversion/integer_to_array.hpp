@@ -4,11 +4,11 @@
  * Purpose:     Bitwise splitting of integer values into arrays.
  *
  * Created:     13th May 2009
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_EDIT       5
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_REVISION   4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_ARRAY_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -105,7 +108,7 @@ namespace
     public:
         register_with_xcover()
         {
-            XCOVER_CREATE_FILE_ALIAS("string_to_integer");
+            XCOVER_CREATE_FILE_ALIAS("integer_to_array");
             XCOVER_MARK_FILE_START();
         }
 

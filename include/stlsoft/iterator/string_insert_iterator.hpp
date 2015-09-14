@@ -1,14 +1,15 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/iterator/string_insert_iterator.hpp
  *
- * Purpose:     Eraser iterator for sorted sequence containers.
+ * Purpose:     Insert iterator for elements that can be expressed in string
+ *              form via string access shims.
  *
  * Created:     6th April 2005
- * Updated:     23rd June 2010
+ * Updated:     25th July 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       21
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   5
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +62,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -70,15 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
-#ifdef STLSOFT_MINIMUM_SAS_INCLUDES
-# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
-#  include <stlsoft/shims/access/string/std/c_string.h>
-# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
-#else /* ? STLSOFT_MINIMUM_SAS_INCLUDES */
-# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
-#  include <stlsoft/shims/access/string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#endif /* STLSOFT_MINIMUM_SAS_INCLUDES */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -114,7 +112,6 @@ public:
     typedef string_insert_iterator<container_type>          class_type;
 private:
     typedef ss_typename_type_k container_type::value_type   string_type_;
-//    typedef ss_typename_type_k container_type::iterator     iterator_;
     typedef class_type                                      insert_iterator_type_;
 private:
     class deref_proxy;
@@ -127,10 +124,8 @@ public:
     explicit string_insert_iterator(
         container_type& container
     )
-        : m_container(container)
+        : m_container(&container)
     {}
-private:
-    class_type& operator =(class_type const&);
 /// @}
 
 /// \name Implementation
@@ -161,7 +156,9 @@ private:
     template <ss_typename_param_k A>
     void invoke_(A const& value)
     {
-        m_container.insert(string_type_(stlsoft::c_str_data(value), stlsoft::c_str_len(value)));
+        STLSOFT_ASSERT(NULL != m_container);
+
+        m_container->insert(string_type_(stlsoft::c_str_data(value), stlsoft::c_str_len(value)));
     }
 /// @}
 
@@ -188,7 +185,7 @@ public:
 /// \name Members
 /// @{
 private:
-    container_type& m_container;
+    container_type* m_container;
 /// @}
 };
 

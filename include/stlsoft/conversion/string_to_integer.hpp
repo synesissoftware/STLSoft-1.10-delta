@@ -4,7 +4,7 @@
  * Purpose:     String to integer conversions.
  *
  * Created:     18th November 2008
- * Updated:     18th June 2010
+ * Updated:     3rd September 2014
  *
  * Thanks to:   Chris Oldwood for righteous criticism of one of my hastily-
  *              written articles, which led to the creation of the
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2008-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,9 +55,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MAJOR     1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      50
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_MINOR     5
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_REVISION  1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_STRING_TO_INTEGER_EDIT      56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,6 +72,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -87,16 +90,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
-
-#ifdef STLSOFT_MINIMUM_SAS_INCLUDES
-# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
-#  include <stlsoft/shims/access/string/std/c_string.h>
-# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
-#else /* ? STLSOFT_MINIMUM_SAS_INCLUDES */
-# ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
-#  include <stlsoft/shims/access/string.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-#endif /* STLSOFT_MINIMUM_SAS_INCLUDES */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -183,6 +179,83 @@ struct ximpl_string_to_integer_util_
     template<   ss_typename_param_k I
             ,   ss_typename_param_k C
             >
+    static I hex_string_to_integer_len_raw_(
+        C const*    s
+    ,   ss_size_t   len
+    ,   C const**   endptr
+    ,   I
+    )
+    {
+        STLSOFT_COVER_MARK_LINE();
+
+        STLSOFT_ASSERT(0 != len);
+        STLSOFT_ASSERT(NULL != endptr);
+
+        I result = 0;
+
+        for(; 0 != len; ++s, --len)
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            C c = *s;
+
+            switch(c)
+            {
+                case    'a':
+                case    'A':
+                    c = 10;
+                    goto calc;
+                case    'b':
+                case    'B':
+                    c = 11;
+                    goto calc;
+                case    'c':
+                case    'C':
+                    c = 12;
+                    goto calc;
+                case    'd':
+                case    'D':
+                    c = 13;
+                    goto calc;
+                case    'e':
+                case    'E':
+                    c = 14;
+                    goto calc;
+                case    'f':
+                case    'F':
+                    c = 15;
+                    goto calc;
+
+                case    '0':
+                case    '1':
+                case    '2':
+                case    '3':
+                case    '4':
+                case    '5':
+                case    '6':
+                case    '7':
+                case    '8':
+                case    '9':
+                    c = c - '0';
+calc:
+                    STLSOFT_COVER_MARK_LINE();
+                    result = 16 * result + c;
+                    continue;
+                default:
+                    STLSOFT_COVER_MARK_LINE();
+                    break;
+            }
+            break;
+        }
+
+        *endptr = s;
+
+        return result;
+    }
+
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k C
+            >
     static I string_to_integer_len_raw_(
         C const*    s
     ,   ss_size_t   len
@@ -192,9 +265,49 @@ struct ximpl_string_to_integer_util_
     {
         STLSOFT_COVER_MARK_LINE();
 
+        STLSOFT_ASSERT(0 != len);
         STLSOFT_ASSERT(NULL != endptr);
 
         I result = 0;
+
+        if('0' == s[0])
+        {
+            STLSOFT_COVER_MARK_LINE();
+
+            if(1 == len)
+            {
+                STLSOFT_COVER_MARK_LINE();
+
+                *endptr = s + 1;
+
+                return 0;
+            }
+            else
+            if( 'x' == s[1] ||
+                'X' == s[1])
+            {
+                STLSOFT_COVER_MARK_LINE();
+
+                if(2 == len)
+                {
+                    STLSOFT_COVER_MARK_LINE();
+
+                    *endptr = s + 1;
+
+                    return 0;
+                }
+                else
+                {
+                    STLSOFT_COVER_MARK_LINE();
+
+                    return hex_string_to_integer_len_raw_(s + 2, len - 2, endptr, I());
+                }
+            }
+
+            // fall through
+
+            STLSOFT_COVER_MARK_LINE();
+        }
 
         for(; 0 != len; ++s, --len)
         {
@@ -217,11 +330,12 @@ struct ximpl_string_to_integer_util_
                     continue;
                 default:
                     STLSOFT_COVER_MARK_LINE();
-                    *endptr = s;
                     break;
             }
             break;
         }
+
+        *endptr = s;
 
         return result;
     }
@@ -422,6 +536,8 @@ struct ximpl_string_to_integer_util_
         {
             STLSOFT_COVER_MARK_LINE();
 
+            *endptr = s;
+
             return 0;
         }
 
@@ -474,12 +590,54 @@ struct ximpl_string_to_integer_util_
     ,   I*          pi
     )
     {
+        if(0 == len)
+        {
+            return false;
+        }
+
         C const* ep;
 
         *pi = string_to_integer_len_(s, len, &ep, I());
 
-        if( NULL != ep &&
-            '\0' != *ep)
+        STLSOFT_ASSERT(NULL != ep);
+
+        if((ep - s) < ss_ptrdiff_t(len))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    template<   ss_typename_param_k I
+            ,   ss_typename_param_k C
+            >
+    static bool try_string_to_integer_len_4_(
+        C const*    s
+    ,   ss_size_t   len
+    ,   I*          pi
+	,	C const**	endptr
+    )
+    {
+        if(0 == len)
+        {
+            return false;
+        }
+
+        C const* ep;
+
+        *pi = string_to_integer_len_(s, len, &ep, I());
+
+        STLSOFT_ASSERT(NULL != ep);
+
+		if(NULL != endptr)
+		{
+			*endptr = ep;
+		}
+
+        if((ep - s) < ss_ptrdiff_t(len))
         {
             return false;
         }
@@ -501,12 +659,18 @@ struct ximpl_string_to_integer_util_
     ,   ss_size_t   endCharsLen
     )
     {
+        if(0 == len)
+        {
+            return false;
+        }
+
         C1 const* ep;
 
         *pi = string_to_integer_len_(s, len, &ep, I());
 
-        if( NULL != ep &&
-            '\0' != *ep)
+        STLSOFT_ASSERT(NULL != ep);
+
+        if((ep - s) < ss_ptrdiff_t(len))
         {
             C2 const* const endCharsEnd = endChars + endCharsLen;
 
@@ -623,6 +787,21 @@ inline bool try_parse_to(
     return ximpl_string_to_integer_util_::try_string_to_integer_len_3_(stlsoft_ns_qual(c_str_data)(s), stlsoft::minimum(stlsoft_ns_qual(c_str_len)(s), n), pi);
 }
 
+template <
+    ss_typename_param_k I
+,   ss_typename_param_k C
+>
+inline bool try_parse_to(
+    C const*    s
+,   I*          pi
+,	C const**	endptr
+)
+{
+    return ximpl_string_to_integer_util_::try_string_to_integer_len_4_(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s), pi, endptr);
+}
+
+
+// TODO: get rid of this override, as it violates overload rules
 template <
     ss_typename_param_k I
 ,   ss_typename_param_k S1

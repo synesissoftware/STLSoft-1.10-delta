@@ -1,14 +1,14 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        findwndwild/findwndwild.h
  *
  * Purpose:     Window searching using (shwild) wildcards.
  *
  * Created:     4th August 2006
- * Updated:     11th March 2007
+ * Updated:     29th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,13 +35,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef FWW_INCL_FINDWNDWILD_H_FINDWNDWILD
 #define FWW_INCL_FINDWNDWILD_H_FINDWNDWILD
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
 
@@ -50,23 +50,23 @@
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * API version
  */
 
 #define FWW_VER_FINDWNDWILD_H_FINDWNDWILD_MAJOR     1
-#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD_MINOR     0
-#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD_REVISON   2
+#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD_MINOR     1
+#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD_REVISON   3
 
-#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD           0x00010002
+#define FWW_VER_FINDWNDWILD_H_FINDWNDWILD           0x010103ff
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
 #include <windows.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -79,12 +79,38 @@ extern "C" {
  */
 HWND FindWindowWildA(LPCSTR classNamePattern, LPCSTR windowNamePattern);
 
+/** \brief Searches for a top-level window using the shwild wild-card matching
+ *    rules.
+ */
+HWND FindWindowWildW(LPCWSTR classNamePattern, LPCWSTR windowNamePattern);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+#ifdef __cplusplus
+
+inline HWND FindWindowWild(LPCTSTR classNamePattern, LPCTSTR windowNamePattern)
+{
+# ifdef UNICODE
+    return FindWindowWildW(classNamePattern, windowNamePattern);
+# else /* ? UNICODE */
+    return FindWindowWildA(classNamePattern, windowNamePattern);
+# endif /* UNICODE */
+}
+
+#else /* ? __cplusplus */
+
+# ifdef UNICODE
+#  define FindWindowWild            FindWindowWildW
+# else /* ? UNICODE */
+#  define FindWindowWild            FindWindowWildA
+# endif /* UNICODE */
+
+#endif /* __cplusplus */
+
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* FWW_INCL_FINDWNDWILD_H_FINDWNDWILD */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

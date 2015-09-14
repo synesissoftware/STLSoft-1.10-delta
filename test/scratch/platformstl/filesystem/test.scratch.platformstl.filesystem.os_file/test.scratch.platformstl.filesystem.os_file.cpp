@@ -101,9 +101,9 @@ typedef std::string     string_t;
 
 static int main_(int /* argc */, char** /*argv*/)
 {
-    platformstl::os_file  file	=	winstl::os_file::create(::CreateFile("abc", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL));
+    platformstl::os_file  file  =   winstl::os_file::create(::CreateFile("abc", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL));
 
-	platformstl::os_file  file2	=	file;
+    platformstl::os_file  file2 =   file;
 
     return EXIT_SUCCESS;
 }

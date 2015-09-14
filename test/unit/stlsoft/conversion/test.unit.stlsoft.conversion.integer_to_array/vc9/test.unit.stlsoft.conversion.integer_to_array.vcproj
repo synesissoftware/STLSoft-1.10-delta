@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="test.unit.stlsoft.conversion.integer_to_array"
-	ProjectGUID="{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}"
+	ProjectGUID="{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}"
 	RootNamespace="test.unit.stlsoft.conversion.integer_to_array"
 	Keyword="MFCProj"
 	TargetFrameworkVersion="0"

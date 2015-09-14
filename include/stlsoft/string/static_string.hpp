@@ -4,13 +4,13 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     31st May 2010
+ * Updated:     16th November 2013
  *
  * Thanks:      To Cláudio Albuquerque for supplying the pop_back() member.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     205
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     208
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -88,9 +91,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -979,30 +982,18 @@ inline ss_bool_t basic_static_string<C, CCH, T>::is_valid() const
 
     if(b == e)
     {
-#ifdef STLSOFT_UNITTEST
-        printf("%08x: string contents have been overwritten! Contents=[%*s]\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<int>(max_size()), &m_buffer[0]);
-#endif /* STLSOFT_UNITTEST */
-
         return false;
     }
     
     if( m_length != static_cast<ss_size_t>(-1) &&
         m_length > max_size())
     {
-#ifdef STLSOFT_UNITTEST
-        printf("%08x: length (%ld) greater than maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
-#endif /* STLSOFT_UNITTEST */
-
         return false;
     }
 
     if( m_length != static_cast<ss_size_t>(-1) &&
         '\0' != m_buffer[m_length])
     {
-#ifdef STLSOFT_UNITTEST
-        printf("%08x: string not nul-terminated at index (%ld); maximum allowed (%ld)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<long>(m_length), static_cast<long>(max_size()));
-#endif /* STLSOFT_UNITTEST */
-
         return false;
     }
 

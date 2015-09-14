@@ -4,22 +4,23 @@
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=test.unit.unixstl.filesystem.path - Win32 Release pseudoUNIX
+CFG=test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX No1_10
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "test.unit.unixstl.filesystem.path.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
-!MESSAGE NMAKE /f "test.unit.unixstl.filesystem.path.mak" CFG="test.unit.unixstl.filesystem.path - Win32 Release pseudoUNIX"
-!MESSAGE
+!MESSAGE 
+!MESSAGE NMAKE /f "test.unit.unixstl.filesystem.path.mak" CFG="test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX No1_10"
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "test.unit.unixstl.filesystem.path - Win32 Release pseudoUNIX" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX" (based on "Win32 (x86) Application")
-!MESSAGE
+!MESSAGE "test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX No1_10" (based on "Win32 (x86) Application")
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -38,8 +39,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "ReleaseUnix"
+# PROP Intermediate_Dir "ReleaseUnix"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /c
@@ -64,8 +65,8 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
+# PROP Output_Dir "DebugUnix"
+# PROP Intermediate_Dir "DebugUnix"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /GZ /c
@@ -81,12 +82,40 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(STLSOFT_1_10)" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
 
-!ENDIF
+!ELSEIF  "$(CFG)" == "test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX No1_10"
+
+# PROP BASE Use_MFC 0
+# PROP BASE Use_Debug_Libraries 1
+# PROP BASE Output_Dir "ReleaseUnixNo1_10"
+# PROP BASE Intermediate_Dir "ReleaseUnixNo1_10"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 0
+# PROP Use_Debug_Libraries 1
+# PROP Output_Dir "ReleaseUnixNo1_10"
+# PROP Intermediate_Dir "ReleaseUnixNo1_10"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /W3 /WX /Gm /GR /GX /Zi /Od /I "$(STLSOFT_1_10)/include" /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /I "$(UNIXEM)/include" /D "_DEBUG" /D "UNIX" /D "_MBCS" /D "_CONSOLE" /D "_STLSOFT_FORCE_ANY_COMPILER" /FR /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /WX /Gm /GR /GX /Zi /Od /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /I "$(UNIXEM)/include" /D "_DEBUG" /D "UNIX" /D "_MBCS" /D "_CONSOLE" /D "_STLSOFT_FORCE_ANY_COMPILER" /FR /YX /FD /GZ /c
+# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
+# ADD BASE RSC /l 0xc09 /d "_DEBUG"
+# ADD RSC /l 0xc09 /d "_DEBUG"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(STLSOFT_1_10)" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(STLSOFT_1_10)" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
+
+!ENDIF 
 
 # Begin Target
 
 # Name "test.unit.unixstl.filesystem.path - Win32 Release pseudoUNIX"
 # Name "test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX"
+# Name "test.unit.unixstl.filesystem.path - Win32 Debug pseudoUNIX No1_10"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"

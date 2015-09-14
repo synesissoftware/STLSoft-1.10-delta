@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 #endif /* STLSOFT_ERROR_DESC_WIDE_STRING_SUPPORT_ */
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/error_desc.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/error_desc.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -115,121 +115,121 @@ int main(int argc, char **argv)
 namespace
 {
 
-	static std::string lookup_error_a(int code)
-	{
+    static std::string lookup_error_a(int code)
+    {
 #ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
 
-		char	buff[2001]; // A likely guess, but still no guarantee
+        char    buff[2001]; // A likely guess, but still no guarantee
 
-		if(0 != ::strerror_s(&buff[0], STLSOFT_NUM_ELEMENTS(buff), code))
-		{
-			buff[0] = '\0';
-		}
+        if(0 != ::strerror_s(&buff[0], STLSOFT_NUM_ELEMENTS(buff), code))
+        {
+            buff[0] = '\0';
+        }
 
-		return buff;
+        return buff;
 #else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-		return ::strerror(code);
+        return ::strerror(code);
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-	}
+    }
 
-	static std::wstring lookup_error_w(int code)
-	{
-		return stlsoft::m2w(lookup_error_a(code).c_str()).c_str();
-	}
+    static std::wstring lookup_error_w(int code)
+    {
+        return stlsoft::m2w(lookup_error_a(code).c_str()).c_str();
+    }
 
-	static int errors[] = 
-	{
-		ENOMEM,
-		EPERM,
-		ENOENT,
-		EINTR,
-		EIO,
-		EBADF,
-		EAGAIN,
-		EACCES,
-		E2BIG,
-		ENOEXEC,
-		ENAMETOOLONG,
-	};
+    static int errors[] = 
+    {
+        ENOMEM,
+        EPERM,
+        ENOENT,
+        EINTR,
+        EIO,
+        EBADF,
+        EAGAIN,
+        EACCES,
+        E2BIG,
+        ENOEXEC,
+        ENAMETOOLONG,
+    };
 
 
 static void test_1_01()
 {
-	stlsoft::error_desc ed(0);
+    stlsoft::error_desc ed(0);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_02()
 {
-	{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
-	{
-		const int error = errors[i];
+    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
+    {
+        const int error = errors[i];
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc(error));
-	}}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc(error));
+    }}
 }
 
 static void test_1_03()
 {
-	int error = 987654;
+    int error = 987654;
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc(error));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc(error));
 
-	STLSOFT_SUPPRESS_UNUSED(error);
+    STLSOFT_SUPPRESS_UNUSED(error);
 }
 
 
 static void test_2_01()
 {
-	stlsoft::error_desc_a ed(0);
+    stlsoft::error_desc_a ed(0);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_2_02()
 {
-	{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
-	{
-		const int error = errors[i];
+    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
+    {
+        const int error = errors[i];
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc_a(error));
-	}}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc_a(error));
+    }}
 }
 
 static void test_2_03()
 {
-	int error = 987654;
+    int error = 987654;
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc_a(error));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(lookup_error_a(error), stlsoft::error_desc_a(error));
 
-	STLSOFT_SUPPRESS_UNUSED(error);
+    STLSOFT_SUPPRESS_UNUSED(error);
 }
 
 
 #ifdef STLSOFT_ERROR_DESC_WIDE_STRING_SUPPORT_
 static void test_3_01()
 {
-	stlsoft::error_desc_w ed(0);
+    stlsoft::error_desc_w ed(0);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_3_02()
 {
-	{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
-	{
-		const int error = errors[i];
+    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(errors); ++i)
+    {
+        const int error = errors[i];
 
-		XTESTS_TEST_WIDE_STRING_EQUAL(lookup_error_w(error), stlsoft::error_desc_w(error));
-	}}
+        XTESTS_TEST_WIDE_STRING_EQUAL(lookup_error_w(error), stlsoft::error_desc_w(error));
+    }}
 }
 
 static void test_3_03()
 {
-	const int error = 987654;
+    const int error = 987654;
 
-	XTESTS_TEST_WIDE_STRING_EQUAL(lookup_error_w(error), stlsoft::error_desc_w(error));
+    XTESTS_TEST_WIDE_STRING_EQUAL(lookup_error_w(error), stlsoft::error_desc_w(error));
 }
 #endif /* STLSOFT_ERROR_DESC_WIDE_STRING_SUPPORT_ */
 

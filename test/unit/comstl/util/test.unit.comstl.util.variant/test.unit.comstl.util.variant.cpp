@@ -126,147 +126,147 @@ const CLSID clsidSynesisValue = { 0xE79E9900, 0x59DB, 0x4B94, { 0xAF, 0xE6, 0xD8
 
 static void test_ctor_default()
 {
-	comstl::variant		v;
+    comstl::variant     v;
 
-	XTESTS_TEST_ENUM_EQUAL(VT_EMPTY, v.vt);
+    XTESTS_TEST_ENUM_EQUAL(VT_EMPTY, v.vt);
 }
 
 static void test_ctor_bool()
 {
-	comstl::variant		v(false);
+    comstl::variant     v(false);
 
-	XTESTS_TEST_ENUM_EQUAL(VT_BOOL, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(VARIANT_FALSE, v.boolVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_BOOL, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(VARIANT_FALSE, v.boolVal);
 }
 
 static void test_ctor_sint8()
 {
-	comstl::variant		v(stlsoft::sint8_t(8));
+    comstl::variant     v(stlsoft::sint8_t(8));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I1, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(8, int(v.cVal));
+    XTESTS_TEST_ENUM_EQUAL(VT_I1, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(8, int(v.cVal));
 }
 
 static void test_ctor_uint8()
 {
-	comstl::variant		v(stlsoft::uint8_t(9));
+    comstl::variant     v(stlsoft::uint8_t(9));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI1, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(UCHAR(9), v.bVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI1, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(UCHAR(9), v.bVal);
 }
 
 static void test_ctor_sint16()
 {
-	comstl::variant		v(stlsoft::sint16_t(16));
+    comstl::variant     v(stlsoft::sint16_t(16));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I2, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(SHORT(16), v.iVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_I2, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(SHORT(16), v.iVal);
 }
 
 static void test_ctor_uint16()
 {
-	comstl::variant		v(stlsoft::uint16_t(17));
+    comstl::variant     v(stlsoft::uint16_t(17));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI2, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(USHORT(17), v.uiVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI2, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(USHORT(17), v.uiVal);
 }
 
 static void test_ctor_sint32()
 {
-	comstl::variant		v(stlsoft::sint32_t(32));
+    comstl::variant     v(stlsoft::sint32_t(32));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(LONG(32), v.lVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(LONG(32), v.lVal);
 }
 
 static void test_ctor_uint32()
 {
-	comstl::variant		v(stlsoft::uint32_t(33));
+    comstl::variant     v(stlsoft::uint32_t(33));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(ULONG(33), v.ulVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(ULONG(33), v.ulVal);
 }
 
 static void test_ctor_short()
 {
-	comstl::variant		v(short(1));
+    comstl::variant     v(short(1));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I2, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(SHORT(1), v.iVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_I2, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(SHORT(1), v.iVal);
 }
 
 static void test_ctor_ushort()
 {
-	comstl::variant		v(static_cast<unsigned short>(2));
+    comstl::variant     v(static_cast<unsigned short>(2));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI2, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(USHORT(2), v.iVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI2, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(USHORT(2), v.iVal);
 }
 
 static void test_ctor_int()
 {
-	comstl::variant		v(int(3));
+    comstl::variant     v(int(3));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(LONG(3), v.lVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(LONG(3), v.lVal);
 }
 
 static void test_ctor_uint()
 {
-	comstl::variant		v(static_cast<unsigned int>(4));
+    comstl::variant     v(static_cast<unsigned int>(4));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(ULONG(4), v.ulVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(ULONG(4), v.ulVal);
 }
 
 static void test_ctor_long()
 {
-	comstl::variant		v(long(5));
+    comstl::variant     v(long(5));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(LONG(5), v.lVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_I4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(LONG(5), v.lVal);
 }
 
 static void test_ctor_ulong()
 {
-	comstl::variant		v(static_cast<unsigned long>(6));
+    comstl::variant     v(static_cast<unsigned long>(6));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(ULONG(6), v.ulVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_UI4, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(ULONG(6), v.ulVal);
 }
 
 static void test_ctor_float()
 {
-	comstl::variant		v(float(1.2));
+    comstl::variant     v(float(1.2));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_R4, v.vt);
-	XTESTS_TEST_FLOATINGPOINT_EQUAL(float(1.2), v.fltVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_R4, v.vt);
+    XTESTS_TEST_FLOATINGPOINT_EQUAL(float(1.2), v.fltVal);
 }
 
 static void test_ctor_double()
 {
-	comstl::variant		v(double(1.234));
+    comstl::variant     v(double(1.234));
 
-	XTESTS_TEST_ENUM_EQUAL(VT_R8, v.vt);
-	XTESTS_TEST_FLOATINGPOINT_EQUAL(double(1.234), v.dblVal);
+    XTESTS_TEST_ENUM_EQUAL(VT_R8, v.vt);
+    XTESTS_TEST_FLOATINGPOINT_EQUAL(double(1.234), v.dblVal);
 }
 
 static void test_ctor_cy()
 {
-	CY					cy; cy.Hi = 9; cy.Lo = 99;
-	comstl::variant		v(cy);
+    CY                  cy; cy.Hi = 9; cy.Lo = 99;
+    comstl::variant     v(cy);
 
-	XTESTS_TEST_ENUM_EQUAL(VT_CY, v.vt);
-	XTESTS_TEST_INTEGER_EQUAL(9, v.cyVal.Hi);
-	XTESTS_TEST_INTEGER_EQUAL(99u, v.cyVal.Lo);
+    XTESTS_TEST_ENUM_EQUAL(VT_CY, v.vt);
+    XTESTS_TEST_INTEGER_EQUAL(9, v.cyVal.Hi);
+    XTESTS_TEST_INTEGER_EQUAL(99u, v.cyVal.Lo);
 }
 
 static void test_ctor_decimal()
 {
-	DECIMAL const		dec = DECIMAL();
-	comstl::variant		v(dec);
+    DECIMAL const       dec = DECIMAL();
+    comstl::variant     v(dec);
 
-	XTESTS_TEST_ENUM_EQUAL(VT_DECIMAL, v.vt);
+    XTESTS_TEST_ENUM_EQUAL(VT_DECIMAL, v.vt);
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */

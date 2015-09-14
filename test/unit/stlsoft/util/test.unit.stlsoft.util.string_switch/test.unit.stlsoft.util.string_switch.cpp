@@ -4,13 +4,13 @@
  * Purpose:   Implementation file for the test.unit.stlsoft.util.string_switch project.
  *
  * Created:   9th June 2010
- * Updated:   10th September 2010
+ * Updated:   5th March 2011
  *
  * Status:    Wizard-generated
  *
  * License:   (Licensed under the Synesis Software Open License)
  *
- *        Copyright (c) 2010, Synesis Software Pty Ltd.
+ *        Copyright (c) 2010-2011, Synesis Software Pty Ltd.
  *        All rights reserved.
  *
  *        www:    http://www.synesis.com.au/software
@@ -71,6 +71,21 @@ namespace
 
   static void test_1_11(void);
 
+  static void test_2_1(void);
+  static void test_2_2(void);
+
+  static void test_3_1(void);
+  static void test_3_2(void);
+  static void test_3_3(void);
+  static void test_3_4(void);
+  static void test_3_5(void);
+  static void test_3_6(void);
+  static void test_3_7(void);
+  static void test_3_8(void);
+  static void test_3_9(void);
+  static void test_3_10(void);
+  static void test_3_11(void);
+
 } // anonymous namespace
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,6 +113,21 @@ int main(int argc, char **argv)
     XTESTS_RUN_CASE(test_1_10);
 
     XTESTS_RUN_CASE(test_1_11);
+
+    XTESTS_RUN_CASE(test_2_1);
+    XTESTS_RUN_CASE(test_2_2);
+
+    XTESTS_RUN_CASE(test_3_1);
+    XTESTS_RUN_CASE(test_3_2);
+    XTESTS_RUN_CASE(test_3_3);
+    XTESTS_RUN_CASE(test_3_4);
+    XTESTS_RUN_CASE(test_3_5);
+    XTESTS_RUN_CASE(test_3_6);
+    XTESTS_RUN_CASE(test_3_7);
+    XTESTS_RUN_CASE(test_3_8);
+    XTESTS_RUN_CASE(test_3_9);
+    XTESTS_RUN_CASE(test_3_10);
+    XTESTS_RUN_CASE(test_3_11);
 
 #ifdef STLSOFT_USE_XCOVER
     XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/string_switch.hpp", NULL);
@@ -155,6 +185,10 @@ namespace stlsoft
   )
 #endif /* 0 */
   {
+            typedef stlsoft_char_traits<C> char_traits_t;
+
+            size_t const len = char_traits_t::length(s);
+
       { for(ss_size_t i = 0; i != numCases; ++i)
       {
 #if 0
@@ -162,8 +196,10 @@ namespace stlsoft
 #else /* ? 0 */
           A const& case_ = cases[i];
 #endif /* 0 */
+                    size_t const                 caselen =   char_traits_t::length(case_.name);
 
-          if(0 == ::strcmp(case_.name, s))
+                    if( caselen == len &&
+                            0 == char_traits_t::compare(case_.name, s, len))
           {
               *result = case_.value;
               return true;
@@ -178,6 +214,10 @@ namespace stlsoft
 
 namespace
 {
+
+/* /////////////////////////////////////////////////////////////////////////
+ * 1_x
+ */
 
 static void test_1_1()
 {
@@ -457,6 +497,351 @@ static void test_1_11()
   );
   XTESTS_TEST_INTEGER_EQUAL(11, var);
 }
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * 2_x
+ */
+
+static void test_2_1(void)
+{
+  char const  VAR[] = "B";
+  int         var       =   0x00;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_FALSE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          "A",  0x01
+        )
+            , var
+      )
+    )
+  );
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          "B",  0x02
+        )
+            , var
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(0x02, var);
+}
+
+static void test_2_2(void)
+{
+  char const  VAR[] = "B";
+  int         var       =   0x10;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          "A",  0x01
+        , "B",  0x02
+        )
+            , var
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(0x12, var);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////
+ * 3_x
+ */
+
+static void test_3_1()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_FALSE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        )
+      )
+    )
+  );
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"B",  11
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_2()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_3()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_4()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_5()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_6()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        , L"F",  15
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_7()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        , L"F",  15
+        , L"G",  16
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_8()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        , L"F",  15
+        , L"G",  16
+        , L"H",  17
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_9()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        , L"F",  15
+        , L"G",  16
+        , L"H",  17
+        , L"I",  18
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_10()
+{
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch(
+        VAR
+      , &var
+      , stlsoft::string_cases(
+          L"A",  10
+        , L"B",  11
+        , L"C",  12
+        , L"D",  13
+        , L"E",  14
+        , L"F",  15
+        , L"G",  16
+        , L"H",  17
+        , L"I",  18
+        , L"J",  19
+        )
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+static void test_3_11()
+{
+  static const stlsoft::enum_map<const wchar_t*, int> cases[] =
+  {
+      L"A",  10
+    , L"B",  11
+    , L"C",  12
+    , L"D",  13
+    , L"E",  14
+    , L"F",  15
+    , L"G",  16
+    , L"H",  17
+    , L"I",  18
+    , L"J",  19
+  };
+
+  wchar_t const VAR[] = L"B";
+  int                       var;
+
+  XTESTS_REQUIRE(
+    XTESTS_TEST_BOOLEAN_TRUE(
+      stlsoft::string_switch2(
+        VAR
+      , &var
+      , cases
+      , dimensionof(cases)
+      )
+    )
+  );
+  XTESTS_TEST_INTEGER_EQUAL(11, var);
+}
+
+
 
 } // anonymous namespace
 

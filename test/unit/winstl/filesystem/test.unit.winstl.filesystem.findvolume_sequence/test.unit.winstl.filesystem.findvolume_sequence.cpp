@@ -55,7 +55,7 @@
 namespace
 {
 
-	static void test_1_14(void);
+    static void test_1_14(void);
 
 } // anonymous namespace
 
@@ -72,14 +72,14 @@ HANDLE WINAPI FindFirstVolumeA(
   DWORD cchBufferLength    // size of output buffer
 )
 {
-	try
-	{
-		return winstl::dl_call<HANDLE>("kernel32", "S:FindFirstVolumeA", lpszVolumeName, cchBufferLength);
-	}
-	catch(winstl::missing_entry_point_exception&)
-	{
-		return INVALID_HANDLE_VALUE;
-	}
+    try
+    {
+        return winstl::dl_call<HANDLE>("kernel32", "S:FindFirstVolumeA", lpszVolumeName, cchBufferLength);
+    }
+    catch(winstl::missing_entry_point_exception&)
+    {
+        return INVALID_HANDLE_VALUE;
+    }
 }
 
 HANDLE WINAPI FindFirstVolumeW(
@@ -93,14 +93,14 @@ BOOL WINAPI FindNextVolumeA(
   DWORD cchBufferLength    // size of output buffer
 )
 {
-	try
-	{
-		return winstl::dl_call<BOOL>("kernel32", "S:FindNextVolumeA", hFindVolume, lpszVolumeName, cchBufferLength);
-	}
-	catch(winstl::missing_entry_point_exception&)
-	{
-		return FALSE;
-	}
+    try
+    {
+        return winstl::dl_call<BOOL>("kernel32", "S:FindNextVolumeA", hFindVolume, lpszVolumeName, cchBufferLength);
+    }
+    catch(winstl::missing_entry_point_exception&)
+    {
+        return FALSE;
+    }
 }
 
 BOOL WINAPI FindNextVolumeW(
@@ -113,14 +113,14 @@ BOOL WINAPI FindVolumeClose(
     HANDLE hFindVolume
     )
 {
-	try
-	{
-		return winstl::dl_call<BOOL>("kernel32", "S:FindVolumeClose", hFindVolume);
-	}
-	catch(winstl::missing_entry_point_exception&)
-	{
-		return FALSE;
-	}
+    try
+    {
+        return winstl::dl_call<BOOL>("kernel32", "S:FindVolumeClose", hFindVolume);
+    }
+    catch(winstl::missing_entry_point_exception&)
+    {
+        return FALSE;
+    }
 }
 
 
@@ -138,13 +138,13 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.winstl.filesystem.findvolume_sequence", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_14);
+    if(XTESTS_START_RUNNER("test.unit.winstl.filesystem.findvolume_sequence", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_14);
 
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/findvolume_sequence.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/findvolume_sequence.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -161,15 +161,15 @@ int main(int argc, char **argv)
 
 namespace
 {
-	typedef winstl::basic_findvolume_sequence<char>		fvs_m_t;
-	typedef winstl::basic_findvolume_sequence<wchar_t>	fvs_w_t;
+    typedef winstl::basic_findvolume_sequence<char>     fvs_m_t;
+    typedef winstl::basic_findvolume_sequence<wchar_t>  fvs_w_t;
 
 static void test_1_14()
 {
-	fvs_m_t	volumes;
+    fvs_m_t volumes;
 
-	stlsoft::std_copy(	volumes.begin(), volumes.end()
-					,	stlsoft::null_output_iterator<fvs_m_t::value_type>());
+    stlsoft::std_copy(  volumes.begin(), volumes.end()
+                    ,   stlsoft::null_output_iterator<fvs_m_t::value_type>());
 }
 
 

@@ -1,0 +1,53 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "integer_to_lc_string"=..\integer_to_lc_string\vc6\integer_to_lc_string.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.scratch.stlsoft.conversion.flags"=.\test.scratch.stlsoft.conversion.flags\vc6\test.scratch.stlsoft.conversion.flags.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.conversion.char_conversions"=..\..\..\..\unit\stlsoft\conversion\test.unit.stlsoft.conversion.char_conversions\vc6\test.unit.stlsoft.conversion.char_conversions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

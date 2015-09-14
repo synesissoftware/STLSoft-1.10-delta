@@ -4,11 +4,11 @@
  * Purpose:     Automation (IDispatch) helper functions.
  *
  * Created:     24th May 2002
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_MAJOR       1
 # define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_REVISION    4
-# define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_EDIT        7
+# define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_REVISION    6
+# define COMSTL_VER_COMSTL_AUTO_H_FUNCTIONS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <comstl/comstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -155,12 +158,20 @@ inline HRESULT IDispatch_get_property(LPDISPATCH pobj, DISPID dispid, VARIANT* p
 #ifndef COMSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace comstl
+} /* namespace comstl */
 # else
-} // namespace stlsoft::comstl_project
-} // namespace stlsoft
+} /* namespace stlsoft::comstl_project */
+} /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !COMSTL_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

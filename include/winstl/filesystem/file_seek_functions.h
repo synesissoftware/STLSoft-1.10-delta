@@ -4,11 +4,11 @@
  * Purpose:     File-system seek functions
  *
  * Created:     27th August 2010
- * Updated:     30th August 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_EDIT        2
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_FILE_SEEK_FUNCTIONS_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,6 +58,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -171,7 +174,7 @@ STLSOFT_INLINE BOOL winstl_C_set_file_pointer_64(
 ,   ws_uint64_t offset
 ) stlsoft_throw_0()
 {
-    ws_uint32_t offsetLo    =   stlsoft_static_cast(ws_uint32_t, offset);
+    ws_uint32_t offsetLo    =   stlsoft_static_cast(ws_uint32_t, offset >> 0);
     ws_uint32_t offsetHi    =   stlsoft_static_cast(ws_uint32_t, offset >> 32);
 
     return winstl_C_set_file_pointer_32(hFile, offsetLo, offsetHi);

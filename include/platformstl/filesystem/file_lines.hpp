@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     7th September 2010
+ * Updated:     21st August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     25
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 6
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -68,6 +68,9 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL
 # include <platformstl/platformstl.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
+#ifdef PLATFORMSTL_OS_IS_UNIX
+# error Not yet compatible with UNIX(STL)
+#endif
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE
 # include <winstl/filesystem/readonly_memory_mapped_file.hpp>
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE */
@@ -77,10 +80,16 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED
 # include <platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_REFCOUNT_POLICIES_HPP_REFCOUNT_POLICY_MULTI_THREADED */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS
+# include <stlsoft/conversion/w2m.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
 #  include <stlsoft/conversion/truncation_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_EXCEPTIONS
+#  include <stlsoft/exception/exceptions.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_EXCEPTION_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
@@ -101,10 +110,6 @@
 # include <vector>
 #endif /* !STLSOFT_INCL_VECTOR */
 
-#ifdef STLSOFT_UNITTEST
-# include <platformstl/filesystem/file_path_buffer.hpp>
-#endif /* STLSOFT_UNITTEST */
-
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
@@ -119,7 +124,6 @@ namespace platformstl
 
 namespace stlsoft
 {
-
 namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
@@ -281,11 +285,16 @@ private: // Implementation
         create_2_(path, &path);
     }
 
-        // Overloads for 3 specific types:
-        //
-        // - multibyte strings
-        // - wide strings
-        // - Ref
+    // Overloads for 3 specific types:
+    //
+    // - multibyte strings
+    // - wide strings
+    // - Ref
+    //
+    // also:
+    //
+    // - mutating multibyte strings
+    // - mutating wide strings
 
     void create_2_(ss_char_a_t const* path, ss_char_a_t const* const volatile * )
     {
@@ -295,9 +304,19 @@ private: // Implementation
     {
         create_from_path_(path);
     }
+
+    void create_2_(ss_char_a_t* path, ss_char_a_t* const volatile * )
+    {
+        create_from_path_(path);
+    }
+    void create_2_(ss_char_w_t* path, ss_char_w_t* const volatile * )
+    {
+        create_from_path_(path);
+    }
+
     void create_2_(HRW_Ref_type const& ref, HRW_Ref_type const volatile*)
     {
-        create_from_ref_(ref);
+        create_from_ref_(ref, "");
     }
 
     template <ss_typename_param_k S>
@@ -313,43 +332,63 @@ private: // Implementation
 
         HRW_Ref_type ref = mmf_type_(path).get();
 
-        create_from_ref_(ref);
+        create_from_ref_(ref, path);
     }
 
-    void create_from_ref_(HRW_Ref_type mmf)
+    void create_from_ref_(HRW_Ref_type mmf, ss_char_w_t const* path)
     {
-        char_type const* const  base    =   static_cast<C const*>(mmf->handle.memory);
+        create_from_ref_(ref, stlsoft::w2m(path));
+    }
+
+    void create_from_ref_(HRW_Ref_type mmf, ss_char_a_t const* path)
+    {
+        STLSOFT_ASSERT(NULL != path);
+
+        void const* const       memory  =   mmf->handle.memory;
+        size_t const            cb      =   mmf->handle.size;
+        char_type const* const  base    =   static_cast<C const*>(memory);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        size_t const            cch     =   stlsoft_ns_qual(truncation_cast)<size_type>(mmf->handle.size / sizeof(char_type));
+        size_t                  cch     =   stlsoft_ns_qual(truncation_cast)<size_type>(cb / sizeof(char_type));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-        size_t const            cch     =   static_cast<size_type>(mmf->handle.size / sizeof(char_type));
+        size_t                  cch     =   static_cast<size_type>(cb / sizeof(char_type));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
+        // check if it looks like a binary file
+        if(base + cch != std::find(base, base + cch, '\0'))
+        {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            STLSOFT_THROW_X(invalid_file_type_exception("file is binary (or unsupported text encoding)", 0, path));
+#else /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            return;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
 
         // 2. Create the contents string
 
         m_contents = base_string_type_(base, cch);
 
+        STLSOFT_ASSERT(cch == m_contents.size());
 
         // 3. Parse the file, and populate the strings collection
 
-        m_strings.reserve(1u + (cch / 40u));
+        m_strings.reserve(1u + (cch / 10u));
 
-                // This can work with EOL of CRLF or of LF, or a combination of the
-                // two. It can also work 
+        // This can work with EOL of CRLF or of LF, or a combination of the
+        // two.
 
 # ifdef _DEBUG
         plstl_file_lines_debug_hook_();
 # endif /* _DEBUG */
 
-        char_type const*        begin   =   m_contents.data();
+        char_type const* const  base1   =   m_contents.data();
+        char_type const*        begin   =   base1;
         char_type const* const  end     =   begin + cch;
         char_type const*        s0      =   begin;
         char_type               prev    =   '\0';
 
         { for(; begin != end; ++begin)
         {
-            char_type c = *begin;
+            char_type const c = *begin;
 
             if('\n' == c)
             {
@@ -403,13 +442,13 @@ private: // Implementation
                 if(0u != (*i).size())
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    void const* end     =   ptr_byte_offset(base, stlsoft_ns_qual(truncation_cast)<ss_ptrdiff_t>(mmf->handle.size));
+                    void const* end2    =   ptr_byte_offset(base, stlsoft_ns_qual(truncation_cast)<ss_ptrdiff_t>(cb));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-                    void const* end     =   ptr_byte_offset(base, static_cast<ss_ptrdiff_t>(mmf->handle.size));
+                    void const* end2    =   ptr_byte_offset(base, static_cast<ss_ptrdiff_t>(cb));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                     void const* p       =   (*i).data();
 
-                    canDiscardMapping = p < base || p >= end;
+                    canDiscardMapping = p < base || p >= end2;
 
                     break;
                 }
@@ -418,7 +457,7 @@ private: // Implementation
 
         if(!canDiscardMapping)
         {
-                    m_mmf = mmf;
+            m_mmf = mmf;
         }
     }
 

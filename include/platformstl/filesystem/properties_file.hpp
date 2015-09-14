@@ -4,11 +4,11 @@
  * Purpose:     Definition of the platformstl::properties_file class
  *
  * Created:     27th November 2007
- * Updated:     6th July 2010
+ * Updated:     3rd November 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_MAJOR       1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_MINOR       0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_REVISION    7
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_EDIT        11
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_MINOR       2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_REVISION    2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PROPERTIES_FILE_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,9 @@
  */
 
 #include <platformstl/platformstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -94,6 +97,7 @@
 #endif /* !PLATFORMSTL_PROPERTIES_FILE_NO_FILE_SUPPORT */
 
 #include <map>
+#include <stdexcept>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -141,11 +145,11 @@ public:
 
     enum source_type
     {
-        evaluate    =   0,
+            evaluate = 0
 #ifndef PLATFORMSTL_PROPERTIES_FILE_NO_FILE_SUPPORT
-        file,
+        ,   file
 #endif /* !PLATFORMSTL_PROPERTIES_FILE_NO_FILE_SUPPORT */
-        contents,
+        ,   contents
     };
 
 public: // Construction
@@ -156,25 +160,47 @@ public: // Construction
     }
 
 public: // Accessors
-    view_type operator [](char_type const* propertyName) const
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+    /// Returns the value associated with the given property, or throws an
+    /// exception (of type <code>std::out_of_range</code>) if it does not
+    /// exist in the properties file
+    template <ss_typename_param_k S>
+    view_type operator [](S const& propertyName) const
     {
-        values_map_type_::const_iterator it = m_properties.find(view_type(propertyName));
+        return operator_subscript_(view_type(stlsoft_ns_qual(c_str_data)(propertyName), stlsoft_ns_qual(c_str_len)(propertyName)));
+    }
+
+private:
+    view_type operator_subscript_(view_type const& propertyName) const
+    {
+        values_map_type_::const_iterator it = m_properties.find(propertyName);
 
         if(m_properties.end() == it)
         {
-            string_type_    msg("Failed to find property named '");
+            string_type_ msg("Failed to find property named '");
 
-            msg += propertyName;
-            msg += "'";
+            msg.append(propertyName.data(), propertyName.size());
+            msg.append(1, '\'');
 
-            throw std::out_of_range(msg);
+            STLSOFT_THROW_X(std::out_of_range(msg));
         }
 
         return (*it).second;
     }
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
+public:
     size_type   size() const        {   return m_properties.size();     }
 
+public: // Search
+    template <ss_typename_param_k S>
+    const_iterator  find(S const& name) const
+    {
+        return m_properties.find(view_type(stlsoft_ns_qual(c_str_data)(name), stlsoft_ns_qual(c_str_len)(name)));
+    }
+
+public: // Iteration
     const_iterator  begin() const   {   return m_properties.begin();    }
     const_iterator  end() const     {   return m_properties.end();      }
 
@@ -211,6 +237,11 @@ private: // Implementation
         STLSOFT_ASSERT(NULL != source);
 
 #ifndef PLATFORMSTL_PROPERTIES_FILE_NO_FILE_SUPPORT
+        if('\0' == *source)
+        {
+            return contents;
+        }
+        else
         if(traits_type_::is_file(source))
         {
             return file;
@@ -276,14 +307,14 @@ private: // Implementation
 
         enum state_t
         {
-            inWhitespace,
-            inCommentLine,
-            inName,
-            inNameWithBackslash,
-            inSeparator,
-            inValue,
-            inValueWithBackslash,
-            inValueLineContinuation,
+                inWhitespace
+            ,   inCommentLine
+            ,   inName
+            ,   inNameWithBackslash
+            ,   inSeparator
+            ,   inValue
+            ,   inValueWithBackslash
+            ,   inValueLineContinuation
 
         }                   state   =   inWhitespace;
         char const* const   begin   =   base;
@@ -493,6 +524,10 @@ private: // Implementation
                             // End of line, so just ignore, and the value will carry on.
                             state = inValueLineContinuation;
                             break;
+                        case    'n':
+                            state = inValue;
+                            m_contents.append(1, '\n');
+                            break;
                         default:
                             state = inValue;
                             m_contents.append(1, ch);
@@ -517,7 +552,8 @@ private: // Implementation
                             }
                             // Fall through
                         case    '\n':
-                            state = inValueLineContinuation;
+                            state = inWhitespace;
+                            m_contents.append(EOL_STRING, STLSOFT_NUM_ELEMENTS(EOL_STRING) - 1u);
                             break;
                         case    '\\':
                             state = inValueWithBackslash;

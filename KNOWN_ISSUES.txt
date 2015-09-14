@@ -2,7 +2,7 @@
 STLSoft - TODO lists
 
 ; Created:  29th March 2002
-; Updated:  19th January 2010
+; Updated:  14th September 2015
 
 ============================================================================
 
@@ -10,6 +10,6 @@ STLSoft - TODO lists
 STLSoft 1.10 Known Issues:
 --------------------------
 
- * not thoroughly tested for any compilers other than VC++ 6 and VC++ 9
+ * not thoroughly tested for any compilers other than VC++ 6 and VC++ 10
 
 =============================== End of file ================================

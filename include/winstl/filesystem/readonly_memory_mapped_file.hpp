@@ -4,11 +4,11 @@
  * Purpose:     Windows readonly (shareable) memory mapped file.
  *
  * Created:     30th August 2010
- * Updated:     7th September 2010
+ * Updated:     23rd July 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MAJOR     1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_MINOR     0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_REVISION  3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_READONLY_MEMORY_MAPPED_FILE_EDIT      3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,9 +67,13 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
+# include <winstl/conversion/w2a.hpp>
+
 # include <winstl/error/exceptions.hpp>
 
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS
 # include <winstl/filesystem/memory_map_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS */
 
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE
 # include <winstl/filesystem/handles/memory_mapped_file_view_handle.hpp>
@@ -78,6 +82,10 @@
 # include <platformstl/synch/refcount_policies/refcount_policy_multi_threaded.hpp>
 
 # include <stlsoft/shims/access/string.hpp>
+
+# include <stlsoft/util/exception_string_creator.hpp>
+
+# include <winerror.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -94,7 +102,6 @@ namespace winstl
 
 namespace stlsoft
 {
-
 namespace winstl_project
 {
 
@@ -224,7 +231,7 @@ public: // Construction
     ,   size_type   requestSize
     )
         : m_ref(create_(stlsoft_ns_qual(c_str_ptr)(fileName), offset, requestSize))
-        {}
+    {}
 
     /// Closes the view on the mapped file
     ~readonly_memory_mapped_file_base() stlsoft_throw_0()
@@ -269,20 +276,40 @@ private: // Implementation
     ,   status_code_type    e
     )
     {
-        // TODO: incorporate fileName into message
-        STLSOFT_SUPPRESS_UNUSED(fileName);
+        if(windows_exception::is_memory_error(e))
+        {
+            // TODO: throw a bad_alloc-derived type
 
-        throw windows_exception("could not map file", e);
+            throw std::bad_alloc();
+        }
+
+        size_type const fnl = stlsoft::c_str_len(fileName);
+
+        if(0 == fnl)
+        {
+			throw windows_exception("could not map file", e);
+        }
+
+        stlsoft::exception_string_creator xsc(50 + fnl);
+
+		xsc.append("could not map file '");
+		xsc.append(fileName, fnl);
+		xsc.append('\'');
+
+        throw windows_exception(xsc.c_str(), e);
     }
     static void throw_(
         ws_char_w_t const*  fileName
     ,   status_code_type    e
     )
     {
-        // TODO: incorporate fileName into message
-        STLSOFT_SUPPRESS_UNUSED(fileName);
+        if( NULL == fileName ||
+            '\0' == fileName[0])
+        {
+            throw_(static_cast<ws_char_a_t const*>(NULL), e);
+        }
 
-        throw windows_exception("could not map file", e);
+        throw_(w2a(fileName), e);
     }
 
     static Ref create_(
@@ -349,7 +376,6 @@ private: // Implementation
                 throw_(fileName, e);
             }
         }
-
 
         try
         {

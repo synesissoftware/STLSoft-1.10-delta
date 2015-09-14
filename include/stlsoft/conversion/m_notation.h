@@ -4,7 +4,7 @@
  * Purpose:     M-notation conversion.
  *
  * Created:     1st June 2009
- * Updated:     27th April 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_REVISION   2
-# define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_EDIT       4
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_REVISION   3
+# define STLSOFT_VER_STLSOFT_CONVERSION_H_M_NOTATION_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

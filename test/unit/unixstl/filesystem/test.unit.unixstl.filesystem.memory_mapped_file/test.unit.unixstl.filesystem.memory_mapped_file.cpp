@@ -23,7 +23,7 @@
  */
 
 #if defined(_MSC_VER) && \
-	_MSC_VER >= 1400
+    _MSC_VER >= 1400
 # pragma warning(disable : 4996)
 #endif /* compiler */
 
@@ -62,27 +62,27 @@
 namespace
 {
 
-	static void test_2_09(void);
-	static void test_2_10(void);
-	static void test_2_11(void);
-	static void test_2_12(void);
-	static void test_2_13(void);
-	static void test_2_14(void);
-	static void test_2_15(void);
-	static void test_2_16(void);
-	static void test_2_17(void);
-	static void test_2_18(void);
-	static void test_2_19(void);
-	static void test_2_20(void);
-	static void test_2_21(void);
-	static void test_2_22(void);
-	static void test_2_23(void);
-	static void test_2_24(void);
-	static void test_2_25(void);
-	static void test_2_26(void);
-	static void test_2_27(void);
-	static void test_2_28(void);
-	static void test_2_29(void);
+    static void test_2_09(void);
+    static void test_2_10(void);
+    static void test_2_11(void);
+    static void test_2_12(void);
+    static void test_2_13(void);
+    static void test_2_14(void);
+    static void test_2_15(void);
+    static void test_2_16(void);
+    static void test_2_17(void);
+    static void test_2_18(void);
+    static void test_2_19(void);
+    static void test_2_20(void);
+    static void test_2_21(void);
+    static void test_2_22(void);
+    static void test_2_23(void);
+    static void test_2_24(void);
+    static void test_2_25(void);
+    static void test_2_26(void);
+    static void test_2_27(void);
+    static void test_2_28(void);
+    static void test_2_29(void);
 
 } // anonymous namespace
 
@@ -93,7 +93,7 @@ namespace
 namespace
 {
 
-	static char s_arg0[1024 + 1];
+    static char s_arg0[1024 + 1];
 
 } // anonymous namespace
 
@@ -106,36 +106,36 @@ int main(int argc, char **argv)
     int retCode = EXIT_SUCCESS;
     int verbosity = 2;
 
-	::strcpy(s_arg0, argv[0]);
+    ::strcpy(s_arg0, argv[0]);
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.unixstl.filesystem.memory_mapped_file", verbosity))
-	{
-		XTESTS_RUN_CASE(test_2_09);
-		XTESTS_RUN_CASE(test_2_10);
-		XTESTS_RUN_CASE(test_2_11);
-		XTESTS_RUN_CASE(test_2_12);
-		XTESTS_RUN_CASE(test_2_13);
-		XTESTS_RUN_CASE(test_2_14);
-		XTESTS_RUN_CASE(test_2_15);
-		XTESTS_RUN_CASE(test_2_16);
-		XTESTS_RUN_CASE(test_2_17);
-		XTESTS_RUN_CASE(test_2_18);
-		XTESTS_RUN_CASE(test_2_19);
-		XTESTS_RUN_CASE(test_2_20);
-		XTESTS_RUN_CASE(test_2_21);
-		XTESTS_RUN_CASE(test_2_22);
-		XTESTS_RUN_CASE(test_2_23);
-		XTESTS_RUN_CASE(test_2_24);
-		XTESTS_RUN_CASE(test_2_25);
-		XTESTS_RUN_CASE(test_2_26);
-		XTESTS_RUN_CASE(test_2_27);
-		XTESTS_RUN_CASE(test_2_28);
-		XTESTS_RUN_CASE(test_2_29);
+    if(XTESTS_START_RUNNER("test.unit.unixstl.filesystem.memory_mapped_file", verbosity))
+    {
+        XTESTS_RUN_CASE(test_2_09);
+        XTESTS_RUN_CASE(test_2_10);
+        XTESTS_RUN_CASE(test_2_11);
+        XTESTS_RUN_CASE(test_2_12);
+        XTESTS_RUN_CASE(test_2_13);
+        XTESTS_RUN_CASE(test_2_14);
+        XTESTS_RUN_CASE(test_2_15);
+        XTESTS_RUN_CASE(test_2_16);
+        XTESTS_RUN_CASE(test_2_17);
+        XTESTS_RUN_CASE(test_2_18);
+        XTESTS_RUN_CASE(test_2_19);
+        XTESTS_RUN_CASE(test_2_20);
+        XTESTS_RUN_CASE(test_2_21);
+        XTESTS_RUN_CASE(test_2_22);
+        XTESTS_RUN_CASE(test_2_23);
+        XTESTS_RUN_CASE(test_2_24);
+        XTESTS_RUN_CASE(test_2_25);
+        XTESTS_RUN_CASE(test_2_26);
+        XTESTS_RUN_CASE(test_2_27);
+        XTESTS_RUN_CASE(test_2_28);
+        XTESTS_RUN_CASE(test_2_29);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*unixstl/*/memory_mapped_file.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*unixstl/*/memory_mapped_file.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -155,24 +155,24 @@ namespace
 
 static void test_2_09()
 {
-	unixstl::memory_mapped_file	mmf(s_arg0);
+    unixstl::memory_mapped_file mmf(s_arg0);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_2_10()
 {
-	unixstl::memory_mapped_file	mmf1(s_arg0);
+    unixstl::memory_mapped_file mmf1(s_arg0);
 
-	size_t		size1	=	size_t(mmf1.size());
-	void const*	memory1	=	mmf1.memory();
+    size_t      size1   =   size_t(mmf1.size());
+    void const* memory1 =   mmf1.memory();
 
-	unixstl::memory_mapped_file	mmf2(s_arg0, 0, 4096);
+    unixstl::memory_mapped_file mmf2(s_arg0, 0, 4096);
 
-	std::swap(mmf1, mmf2);
+    std::swap(mmf1, mmf2);
 
-	XTESTS_TEST_INTEGER_EQUAL(size1, mmf2.size());
-	XTESTS_TEST_POINTER_EQUAL(memory1, mmf2.memory());
+    XTESTS_TEST_INTEGER_EQUAL(size1, mmf2.size());
+    XTESTS_TEST_POINTER_EQUAL(memory1, mmf2.memory());
 }
 
 static void test_2_11()

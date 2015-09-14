@@ -5,11 +5,11 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     12th August 2010
+ * Updated:     20th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_MAJOR     5
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_EDIT      42
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_REVISION  3
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_FILTER_ITERATOR_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
@@ -62,6 +62,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -78,10 +81,10 @@
  * Namespace
  */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Creator functions
@@ -108,9 +111,9 @@ inline filter_iterator<I, P> filter_end(I end, P pr)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

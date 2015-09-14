@@ -3,6 +3,18 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "test.unit.stlsoft.shims.access.string.std.exception"=.\test.unit.stlsoft.shims.access.string.std.exception\vc6\test.unit.stlsoft.shims.access.string.std.exception.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "test.unit.stlsoft.shims.access.string.std.time"=.\test.unit.stlsoft.shims.access.string.std.time\vc6\test.unit.stlsoft.shims.access.string.std.time.dsp - Package Owner=<4>
 
 Package=<5>

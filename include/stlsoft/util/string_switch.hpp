@@ -4,11 +4,11 @@
  * Purpose:     String-switch functions.
  *
  * Created:     10th May 2010
- * Updated:     13th October 2010
+ * Updated:     12th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    0
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION 4
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     13
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,12 +60,19 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
+# include <stlsoft/string/char_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
 #ifndef STLSOFT_INCL_H_STRING
 # define STLSOFT_INCL_H_STRING
@@ -642,31 +649,44 @@ inline ximpl::string_case_item_array_t<C, E, 10>
  *   the cases are matched
  * \param cases The sequence of cases, created via string_cases(), to be
  *   tested against
+ * \param resultBase The value to which the result is set before being
+ *   combined with the result, if any, of the matched cases. This allows
+ *   the function to act as 
  */
 template<
     ss_typename_param_k C
-,   ss_typename_param_k E
+,   ss_typename_param_k R
 ,   ss_size_t           N
+,   ss_typename_param_k V
 >
 inline bool string_switch(
     C const*                                        s
-,   E*                                              result
-,   ximpl::string_case_item_array_t<C, E, N> const& cases
+,   R*                                              result
+,   ximpl::string_case_item_array_t<C, V, N> const& cases
+,   R                                               resultBase = R()
 )
 {
+    STLSOFT_ASSERT(NULL != s);
+
     STLSOFT_COVER_MARK_LINE();
+
+    typedef stlsoft_char_traits<C> char_traits_t;
+
+    size_t const len = char_traits_t::length(s);
 
     { for(ss_size_t i = 0; i != cases.size(); ++i)
     {
         STLSOFT_COVER_MARK_LINE();
 
-        ximpl::string_case_item_t<C, E> const& case_ = cases[i];
+        ximpl::string_case_item_t<C, V> const&  case_   =   cases[i];
+        size_t const                            caselen =   char_traits_t::length(case_.name);
 
-        if(0 == ::strcmp(case_.name, s))
+        if( caselen == len &&
+            0 == char_traits_t::compare(case_.name, s, len))
         {
             STLSOFT_COVER_MARK_LINE();
 
-            *result = case_.value;
+            *result = static_cast<R>(resultBase | case_.value);
             return true;
         }
     }}
@@ -679,7 +699,7 @@ inline bool string_switch(
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

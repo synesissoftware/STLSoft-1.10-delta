@@ -1,19 +1,19 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mmap.cpp
+ * File:		mmap.cpp
  *
- * Purpose:     Implementation file for the mmap project.
+ * Purpose: 	Implementation file for the mmap project.
  *
- * Created:     27th August 2010
- * Updated:     31st August 2010
+ * Created: 	27th August 2010
+ * Updated: 	27th May 2011
  *
- * Status:      Wizard-generated
+ * Status:		Wizard-generated
  *
- * License:     (Licensed under the Synesis Software Open License)
+ * License: 	(Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2010, Synesis Software Pty Ltd.
- *              All rights reserved.
+ *				Copyright (c) 2010-2011, Synesis Software Pty Ltd.
+ *				All rights reserved.
  *
- *              www:        http://www.synesis.com.au/software
+ *				www:		http://www.synesis.com.au/software
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -29,13 +29,17 @@
 #include <pantheios/inserters/args.hpp>
 
 /* STLSoft Header Files */
-#include <stlsoft/stlsoft.h>
-#include <winstl/filesystem/file_creation_functions.h>
-#include <winstl/filesystem/file_seek_functions.h>
-#include <winstl/filesystem/file_size_functions.h>
-#include <winstl/filesystem/memory_map_functions.h>
-#include <winstl/system/system_info.hpp>
+#include <platformstl/platformstl.h>
+#if defined(PLATFORMSTL_OS_IS_UNIX)
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# include <winstl/filesystem/file_creation_functions.h>
+# include <winstl/filesystem/file_seek_functions.h>
+# include <winstl/filesystem/file_size_functions.h>
+# include <winstl/filesystem/memory_map_functions.h>
+# include <winstl/system/system_info.hpp>
+#endif /* OS */
 #include <platformstl/platformstl.hpp>
+#include <stlsoft/smartptr/scoped_handle.hpp>
 
 /* Standard C++ Header Files */
 #include <exception>
@@ -53,7 +57,7 @@
 #include <stdlib.h>
 
 #if defined(_MSC_VER) && \
-    defined(_DEBUG)
+	defined(_DEBUG)
 # include <crtdbg.h>
 #endif /* _MSC_VER) && _DEBUG */
 
@@ -66,14 +70,14 @@
  * Globals
  */
 
-extern "C" const char PANTHEIOS_FE_PROCESS_IDENTITY[]    =   "mmap";
+extern "C" const char PANTHEIOS_FE_PROCESS_IDENTITY[]	 =	 "mmap";
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  */
 
 #if 0
-typedef std::string     string_t;
+typedef std::string 	string_t;
 #endif /* 0 */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,35 +86,55 @@ typedef std::string     string_t;
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-using winstl::ws_uint32_t;
-using winstl::ws_uint64_t;
-using winstl::ws_uintptr_t;
+#if defined(PLATFORMSTL_OS_IS_UNIX)
+
+typedef int filehandle_t;
+
+using unixstl::file_create_always;
+
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+
+typedef winstl::ws_uint32_t		uint32_t;
+typedef winstl::ws_uint64_t		uint64_t;
+typedef winstl::ws_uintptr_t	uintptr_t;
+
+typedef HANDLE					filehandle_t;
+
+using winstl::file_create_always;
+using winstl::file_set_size_by_handle_64;
+using winstl::file_get_size_by_name_64;
+using winstl::file_open_existing;
+
+#endif /* OS */
+
 
 static int main_(int /* argc */, char** /*argv*/)
 {
+#if 0
 	winstl::system_info::allocation_granularity();
+#endif /* 0 */
 
 	// Create a 3kB file, read-map it, then check size
 	{
 		char const TEST_FILE_NAME[] = "test-file-1";
 
-		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::DeleteFile);
+		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::remove);
 
 		{
-			HANDLE	h1	=	winstl::file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
+			filehandle_t h1 = file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
 
-			winstl::file_set_size_by_handle_64(h1, 3072);
+			file_set_size_by_handle_64(h1, 3072);
 
 			::CloseHandle(h1);
 		}
 
 		{
-			HANDLE	h1	=	winstl::file_open_existing(TEST_FILE_NAME, GENERIC_READ, 0, 0);
-			DWORD	e1	=	::GetLastError();
-			HANDLE	h2	=	::CreateFileMapping(h1, NULL, PAGE_READONLY, 0, 3072, NULL);
-			DWORD	e2	=	::GetLastError();
-			void*	v1	=	::MapViewOfFile(h2, FILE_MAP_READ, 0, 0, 0);
-			DWORD	e3	=	::GetLastError();
+			filehandle_t	h1	=	file_open_existing(TEST_FILE_NAME, GENERIC_READ, 0, 0);
+			DWORD			e1	=	::GetLastError();
+			filehandle_t	h2	=	::CreateFileMapping(h1, NULL, PAGE_READONLY, 0, 3072, NULL);
+			DWORD			e2	=	::GetLastError();
+			void*			v1	=	::MapViewOfFile(h2, FILE_MAP_READ, 0, 0, 0);
+			DWORD			e3	=	::GetLastError();
 
 			::CloseHandle(h1);
 			::CloseHandle(h2);
@@ -118,9 +142,9 @@ static int main_(int /* argc */, char** /*argv*/)
 		}
 
 		{
-			ws_uint64_t size;
+			uint64_t size;
 
-			winstl::file_get_size_by_name_64(TEST_FILE_NAME, &size);
+			file_get_size_by_name_64(TEST_FILE_NAME, &size);
 
 			size = size;
 		}
@@ -130,20 +154,20 @@ static int main_(int /* argc */, char** /*argv*/)
 	{
 		char const TEST_FILE_NAME[] = "test-file-2";
 
-		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::DeleteFile);
+		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::remove);
 
 		{
-			HANDLE	h1	=	winstl::file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
+			filehandle_t h1 = file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
 
-			winstl::file_set_size_by_handle_64(h1, 3072);
+			file_set_size_by_handle_64(h1, 3072);
 
 			::CloseHandle(h1);
 		}
 
 #if 1
 		{
-			HANDLE			h1		=	winstl::file_open_existing(TEST_FILE_NAME, GENERIC_READ | GENERIC_WRITE, 0, 0);
-			ws_uintptr_t	viewSize;
+			filehandle_t	h1		=	file_open_existing(TEST_FILE_NAME, GENERIC_READ | GENERIC_WRITE, 0, 0);
+			uintptr_t		viewSize;
 			void*			memory	=	winstl::map_readwrite_view_of_file_by_handle(
 											h1
 										,	0
@@ -155,12 +179,12 @@ static int main_(int /* argc */, char** /*argv*/)
 		}
 #else /* ? 0 */
 		{
-			HANDLE	h1	=	winstl::file_open_existing(TEST_FILE_NAME, GENERIC_READ | GENERIC_WRITE, 0, 0);
-			DWORD	e1	=	::GetLastError();
-			HANDLE	h2	=	::CreateFileMapping(h1, NULL, PAGE_READWRITE, 0, 4096, NULL);
-			DWORD	e2	=	::GetLastError();
-			void*	v1	=	::MapViewOfFile(h2, FILE_MAP_WRITE, 0, 0, 0);
-			DWORD	e3	=	::GetLastError();
+			filehandle_t	h1	=	file_open_existing(TEST_FILE_NAME, GENERIC_READ | GENERIC_WRITE, 0, 0);
+			DWORD			e1	=	::GetLastError();
+			filehandle_t	h2	=	::CreateFileMapping(h1, NULL, PAGE_READWRITE, 0, 4096, NULL);
+			DWORD			e2	=	::GetLastError();
+			void*			v1	=	::MapViewOfFile(h2, FILE_MAP_WRITE, 0, 0, 0);
+			DWORD			e3	=	::GetLastError();
 
 			::CloseHandle(h1);
 			::CloseHandle(h2);
@@ -169,9 +193,9 @@ static int main_(int /* argc */, char** /*argv*/)
 #endif /* 0 */
 
 		{
-			ws_uint64_t size;
+			uint64_t size;
 
-			winstl::file_get_size_by_name_64(TEST_FILE_NAME, &size);
+			file_get_size_by_name_64(TEST_FILE_NAME, &size);
 
 			size = size;
 		}
@@ -181,23 +205,23 @@ static int main_(int /* argc */, char** /*argv*/)
 	{
 		char const TEST_FILE_NAME[] = "test-file-3";
 
-		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::DeleteFile);
+		stlsoft::scoped_handle<char const*> scoper(TEST_FILE_NAME, ::remove);
 
 		{
-			HANDLE	h1	=	winstl::file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
+			filehandle_t h1 = file_create_always(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
 
-			winstl::file_set_size_by_handle_64(h1, 3072);
+			file_set_size_by_handle_64(h1, 3072);
 
 			::CloseHandle(h1);
 		}
 
 		{
-			HANDLE	h1	=	winstl::file_open_existing(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
-			DWORD	e1	=	::GetLastError();
-			HANDLE	h2	=	::CreateFileMapping(h1, NULL, PAGE_WRITECOPY, 0, 4096, NULL);
-			DWORD	e2	=	::GetLastError();
-			void*	v1	=	::MapViewOfFile(h2, FILE_MAP_WRITE, 0, 0, 0);
-			DWORD	e3	=	::GetLastError();
+			filehandle_t	h1	=	file_open_existing(TEST_FILE_NAME, GENERIC_WRITE, 0, 0);
+			DWORD			e1	=	::GetLastError();
+			filehandle_t	h2	=	::CreateFileMapping(h1, NULL, PAGE_WRITECOPY, 0, 4096, NULL);
+			DWORD			e2	=	::GetLastError();
+			void*			v1	=	::MapViewOfFile(h2, FILE_MAP_WRITE, 0, 0, 0);
+			DWORD			e3	=	::GetLastError();
 
 			::CloseHandle(h1);
 			::CloseHandle(h2);
@@ -205,9 +229,9 @@ static int main_(int /* argc */, char** /*argv*/)
 		}
 
 		{
-			ws_uint64_t size;
+			uint64_t size;
 
-			winstl::file_get_size_by_name_64(TEST_FILE_NAME, &size);
+			file_get_size_by_name_64(TEST_FILE_NAME, &size);
 
 			size = size;
 		}
@@ -215,17 +239,15 @@ static int main_(int /* argc */, char** /*argv*/)
 
 #if 0
 	{
-		HANDLE	h1	=	winstl::file_create_always("f1", GENERIC_WRITE, 0, 0);
-
-		HANDLE	h2	=	winstl::file_create_always("f2", GENERIC_READ, 0, 0);
-
-		HANDLE	h3	=	winstl::file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
+		filehandle_t  h1  =   file_create_always("f1", GENERIC_WRITE, 0, 0);
+		filehandle_t  h2  =   file_create_always("f2", GENERIC_READ, 0, 0);
+		filehandle_t  h3  =   file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
 
 		winstl::set_file_size_by_handle_64(h1, 3072);
 		winstl::set_file_size_by_handle_64(h2, 3072);
 		winstl::set_file_size_by_handle_64(h3, 3072);
 
-		ws_uintptr_t	n1;
+		uintptr_t		n1;
 		void*			p1	=	winstl::map_readonly_view_of_file_by_handle(h1, &n1);
 
 		if(NULL != p1)
@@ -233,7 +255,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			winstl::unmap_view_of_file(p1);
 		}
 
-		ws_uintptr_t	n2;
+		uintptr_t		n2;
 		void*			p2	=	winstl::map_readonly_view_of_file_by_handle(h2, &n2);
 
 		if(NULL != p2)
@@ -241,7 +263,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			winstl::unmap_view_of_file(p2);
 		}
 
-		ws_uintptr_t	n3;
+		uintptr_t		n3;
 		void*			p3	=	winstl::map_readonly_view_of_file_by_handle(h3, &n3);
 
 		if(NULL != p3)
@@ -253,23 +275,21 @@ static int main_(int /* argc */, char** /*argv*/)
 		::CloseHandle(h2);
 		::CloseHandle(h3);
 
-		::DeleteFile("f1");
-		::DeleteFile("f2");
-		::DeleteFile("f3");
+		::remove("f1");
+		::remove("f2");
+		::remove("f3");
 	}
 
 	{
-		HANDLE	h1	=	winstl::file_create_always("f1", GENERIC_WRITE, 0, 0);
-
-		HANDLE	h2	=	winstl::file_create_always("f2", GENERIC_READ, 0, 0);
-
-		HANDLE	h3	=	winstl::file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
+		filehandle_t  h1  =   file_create_always("f1", GENERIC_WRITE, 0, 0);
+		filehandle_t  h2  =   file_create_always("f2", GENERIC_READ, 0, 0);
+		filehandle_t  h3  =   file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
 
 		winstl::set_file_size_by_handle_64(h1, 3072);
 		winstl::set_file_size_by_handle_64(h2, 3072);
 		winstl::set_file_size_by_handle_64(h3, 3072);
 
-		ws_uintptr_t	n1;
+		uintptr_t		n1;
 		void*			p1	=	winstl::map_readonly_view_of_file_by_handle(h1, 0, 3072, &n1);
 
 		if(NULL != p1)
@@ -286,7 +306,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			}
 		}
 
-		ws_uintptr_t	n2;
+		uintptr_t		n2;
 		void*			p2	=	winstl::map_readonly_view_of_file_by_handle(h2, 0, 3072, &n2);
 
 		if(NULL != p2)
@@ -294,7 +314,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			winstl::unmap_view_of_file(p2);
 		}
 
-		ws_uintptr_t	n3;
+		uintptr_t		n3;
 		void*			p3	=	winstl::map_readonly_view_of_file_by_handle(h3, 0, 3072, &n3);
 
 		if(NULL != p3)
@@ -306,23 +326,21 @@ static int main_(int /* argc */, char** /*argv*/)
 		::CloseHandle(h2);
 		::CloseHandle(h3);
 
-		::DeleteFile("f1");
-		::DeleteFile("f2");
-		::DeleteFile("f3");
+		::remove("f1");
+		::remove("f2");
+		::remove("f3");
 	}
 
 	{
-		HANDLE	h1	=	winstl::file_create_always("f1", GENERIC_WRITE, 0, 0);
-
-		HANDLE	h2	=	winstl::file_create_always("f2", GENERIC_READ, 0, 0);
-
-		HANDLE	h3	=	winstl::file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
+		filehandle_t  h1  =   file_create_always("f1", GENERIC_WRITE, 0, 0);
+		filehandle_t  h2  =   file_create_always("f2", GENERIC_READ, 0, 0);
+		filehandle_t  h3  =   file_create_always("f3", GENERIC_WRITE | GENERIC_READ, 0, 0);
 
 		winstl::set_file_size_by_handle_64(h1, 65536);
 		winstl::set_file_size_by_handle_64(h2, 65536);
 		winstl::set_file_size_by_handle_64(h3, 65536);
 
-		ws_uintptr_t	n1;
+		uintptr_t		n1;
 		void*			p1	=	winstl::map_readonly_view_of_file_by_handle(h1, 16384, 4096, &n1);
 
 		if(NULL != p1)
@@ -330,7 +348,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			winstl::unmap_view_of_file(p1);
 		}
 
-		ws_uintptr_t	n2;
+		uintptr_t		n2;
 		void*			p2	=	winstl::map_readonly_view_of_file_by_handle(h2, 16384, 4096, &n2);
 
 		if(NULL != p2)
@@ -338,7 +356,7 @@ static int main_(int /* argc */, char** /*argv*/)
 			winstl::unmap_view_of_file(p2);
 		}
 
-		ws_uintptr_t	n3;
+		uintptr_t		n3;
 		void*			p3	=	winstl::map_readonly_view_of_file_by_handle(h3, 16384, 4096, &n3);
 
 		if(NULL != p3)
@@ -350,61 +368,61 @@ static int main_(int /* argc */, char** /*argv*/)
 		::CloseHandle(h2);
 		::CloseHandle(h3);
 
-		::DeleteFile("f1");
-		::DeleteFile("f2");
-		::DeleteFile("f3");
+		::remove("f1");
+		::remove("f2");
+		::remove("f3");
 	}
 #endif /* 0 */
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
 
 int main(int argc, char** argv)
 {
-    int             res;
+	int 			res;
 
 #if defined(_MSC_VER) && \
-    defined(_DEBUG)
-    _CrtMemState    memState;
+	defined(_DEBUG)
+	_CrtMemState	memState;
 #endif /* _MSC_VER && _DEBUG */
 
 #if defined(_MSC_VER) && \
-    defined(_DEBUG)
-    _CrtMemCheckpoint(&memState);
+	defined(_DEBUG)
+	_CrtMemCheckpoint(&memState);
 #endif /* _MSC_VER && _DEBUG */
 
 #if 0
-    { for(size_t i = 0; i < 0xffffffff; ++i){} }
+	{ for(size_t i = 0; i < 0xffffffff; ++i){} }
 #endif /* 0 */
 
-    try
-    {
+	try
+	{
 #if defined(_DEBUG) || \
-    defined(__SYNSOFT_DBS_DEBUG)
-        puts("mmap: " __STLSOFT_COMPILER_LABEL_STRING);
+	defined(__SYNSOFT_DBS_DEBUG)
+		puts("mmap: " __STLSOFT_COMPILER_LABEL_STRING);
 #endif /* debug */
 
-        res = main_(argc, argv);
-    }
-    catch(std::exception& x)
-    {
-        pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
+		res = main_(argc, argv);
+	}
+	catch(std::exception& x)
+	{
+		pantheios::log_ALERT("Unexpected general error: ", x, ". Application terminating");
 
-        res = EXIT_FAILURE;
-    }
-    catch(...)
-    {
-        pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
+		res = EXIT_FAILURE;
+	}
+	catch(...)
+	{
+		pantheios::logputs(pantheios::emergency, "Unhandled unknown error");
 
-        res = EXIT_FAILURE;
-    }
+		res = EXIT_FAILURE;
+	}
 
 #if defined(_MSC_VER) && \
-    defined(_DEBUG)
-    _CrtMemDumpAllObjectsSince(&memState);
+	defined(_DEBUG)
+	_CrtMemDumpAllObjectsSince(&memState);
 #endif /* _MSC_VER) && _DEBUG */
 
-    return res;
+	return res;
 }
 
 /* ///////////////////////////// end of file //////////////////////////// */

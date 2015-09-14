@@ -197,10 +197,10 @@ static void test_get_module_directory()
         size_t      cch1    =   ::GetModuleFileNameA(h, &dir1[0], STLSOFT_NUM_ELEMENTS(dir1));
         size_t      cch2    =   system_traits_m_t::get_module_directory(h, &dir2[0], STLSOFT_NUM_ELEMENTS(dir2));
 
-		char*		last	=	::strrchr(dir1, '\\');
+        char*       last    =   ::strrchr(dir1, '\\');
 
-		cch1 -= ::strlen(last);
-		*last = '\0';
+        cch1 -= ::strlen(last);
+        *last = '\0';
 
         ::FreeLibrary(h);
 
@@ -215,10 +215,10 @@ static void test_get_module_directory()
         size_t      cch1    =   ::GetModuleFileNameW(h, &dir1[0], STLSOFT_NUM_ELEMENTS(dir1));
         size_t      cch2    =   system_traits_w_t::get_module_directory(h, &dir2[0], STLSOFT_NUM_ELEMENTS(dir2));
 
-		wchar_t*	last	=	::wcsrchr(dir1, L'\\');
+        wchar_t*    last    =   ::wcsrchr(dir1, L'\\');
 
-		cch1 -= ::wcslen(last);
-		*last = '\0';
+        cch1 -= ::wcslen(last);
+        *last = '\0';
 
         ::FreeLibrary(h);
 
@@ -413,21 +413,21 @@ static void test_get_environment_variable()
 
             { for(size_t i = 1u; i != STLSOFT_NUM_ELEMENTS(results); ++i)
             {
-				stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
+                stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
 
                 size_t n = system_traits_m_t::get_environment_variable(variable, results, i);
 
                 if(i < STLSOFT_NUM_ELEMENTS(variable))
                 {
                     XTESTS_TEST_INTEGER_EQUAL(i, n);
-					XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(variable, results, int(i));
-					XTESTS_TEST_CHARACTER_EQUAL('~', results[i]);
+                    XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(variable, results, int(i));
+                    XTESTS_TEST_CHARACTER_EQUAL('~', results[i]);
                 }
                 else
                 {
                     XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(variable) - 1, n);
-					XTESTS_TEST_MULTIBYTE_STRING_EQUAL(variable, results);
-					XTESTS_TEST_CHARACTER_EQUAL('~', results[n + 1]);
+                    XTESTS_TEST_MULTIBYTE_STRING_EQUAL(variable, results);
+                    XTESTS_TEST_CHARACTER_EQUAL('~', results[n + 1]);
                 }
             }}
         }
@@ -446,12 +446,12 @@ static void test_get_environment_variable()
 
             { for(size_t i = 1u; i != STLSOFT_NUM_ELEMENTS(results); ++i)
             {
-				stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
+                stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
 
                 size_t  n = system_traits_m_t::get_environment_variable(variable, results, i);
 
                 XTESTS_TEST_INTEGER_EQUAL(0u, n);
-				XTESTS_TEST_CHARACTER_EQUAL('~', results[0u]);
+                XTESTS_TEST_CHARACTER_EQUAL('~', results[0u]);
             }}
         }
     }
@@ -478,20 +478,20 @@ static void test_get_environment_variable()
 
             { for(size_t i = 1u; i != STLSOFT_NUM_ELEMENTS(results); ++i)
             {
-				stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
+                stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
 
                 size_t n = system_traits_w_t::get_environment_variable(variable, results, i);
 
                 if(i < STLSOFT_NUM_ELEMENTS(variable))
                 {
                     XTESTS_TEST_INTEGER_EQUAL(i, n);
-					XTESTS_TEST_WIDE_STRING_EQUAL_N(variable, results, int(i));
-					XTESTS_TEST_CHARACTER_EQUAL(L'~', results[i]);
+                    XTESTS_TEST_WIDE_STRING_EQUAL_N(variable, results, int(i));
+                    XTESTS_TEST_CHARACTER_EQUAL(L'~', results[i]);
                 }
                 else
                 {
                     XTESTS_TEST_INTEGER_EQUAL(STLSOFT_NUM_ELEMENTS(variable) - 1, n);
-					XTESTS_TEST_WIDE_STRING_EQUAL(variable, results);
+                    XTESTS_TEST_WIDE_STRING_EQUAL(variable, results);
                 }
             }}
         }
@@ -510,12 +510,12 @@ static void test_get_environment_variable()
 
             { for(size_t i = 1u; i != STLSOFT_NUM_ELEMENTS(results); ++i)
             {
-				stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
+                stlsoft::std_fill_n(results, STLSOFT_NUM_ELEMENTS(results), '~');
 
                 size_t  n = system_traits_w_t::get_environment_variable(variable, results, i);
 
                 XTESTS_TEST_INTEGER_EQUAL(0u, n);
-				XTESTS_TEST_CHARACTER_EQUAL(L'~', results[0u]);
+                XTESTS_TEST_CHARACTER_EQUAL(L'~', results[0u]);
             }}
         }
     }

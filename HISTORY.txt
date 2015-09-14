@@ -2,9 +2,15 @@
 STLSoft -  History
 
 ; Created:  29th March 2002
-; Updated:  14th October 2010
+; Updated:  14th September 2015
 
 ============================================================================
+
+
+14th September 2015 - 1.10.1 alpha 19 (delta)
+---------------------------------------------
+
+ (see CHANGES.txt)
 
 
 14th October 2010 - 1.10.1 alpha 15 (delta)

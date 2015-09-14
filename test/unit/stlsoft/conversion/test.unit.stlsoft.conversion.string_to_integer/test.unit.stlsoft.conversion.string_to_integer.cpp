@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.stlsoft.conversion.string_to_integer project.
  *
  * Created:     18th November 2008
- * Updated:     14th June 2010
+ * Updated:     30th August 2014
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2014, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -52,7 +52,7 @@
 
 #ifdef STLSOFT_COMPILER_IS_BORLAND
 # undef NULL
-# define NULL	0
+# define NULL   0
 #endif
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,11 +76,11 @@ namespace
     static void test_len_truncated(void);
     static void test_increasing_length(void);
     static void test_1_10(void);
-    static void test_1_11(void);
+    static void test_decimal_leading_plus(void);
     static void test_1_12(void);
-    static void test_1_13(void);
+    static void test_endptr(void);
     static void test_1_14(void);
-    static void test_1_15(void);
+    static void test_hexadecimal_1(void);
     static void test_1_16(void);
     static void test_1_17(void);
     static void test_1_18(void);
@@ -95,7 +95,7 @@ namespace
     static void test_try_7_int(void);
     static void test_try_8_int(void);
     static void test_try_9_int(void);
-	static void test_try_10_int(void);
+    static void test_try_10_int(void);
 
     static void test_try_1_uint64(void);
     static void test_try_2_uint64(void);
@@ -106,7 +106,18 @@ namespace
     static void test_try_7_uint64(void);
     static void test_try_8_uint64(void);
     static void test_try_9_uint64(void);
-	static void test_try_10_uint64(void);
+    static void test_try_10_uint64(void);
+
+    static void test_try_hex_1_int(void);
+    static void test_try_hex_2_int(void);
+    static void test_try_hex_3_int(void);
+    static void test_try_hex_4_int(void);
+    static void test_try_hex_5_int(void);
+    static void test_try_hex_6_int(void);
+    static void test_try_hex_7_int(void);
+    static void test_try_hex_8_int(void);
+    static void test_try_hex_9_int(void);
+    static void test_try_hex_10_int(void);
 
 } // anonymous namespace
 
@@ -131,46 +142,57 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_negatives);
         XTESTS_RUN_CASE(test_bad);
         XTESTS_RUN_CASE(test_spaces);
-		XTESTS_RUN_CASE(test_len_spaces);
+        XTESTS_RUN_CASE(test_len_spaces);
         XTESTS_RUN_CASE(test_trailing);
         XTESTS_RUN_CASE(test_len_trailing);
         XTESTS_RUN_CASE(test_len_truncated);
         XTESTS_RUN_CASE(test_increasing_length);
         XTESTS_RUN_CASE(test_1_10);
-        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_decimal_leading_plus);
         XTESTS_RUN_CASE(test_1_12);
-        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_endptr);
         XTESTS_RUN_CASE(test_1_14);
-        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_hexadecimal_1);
         XTESTS_RUN_CASE(test_1_16);
         XTESTS_RUN_CASE(test_1_17);
         XTESTS_RUN_CASE(test_1_18);
         XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_RUN_CASE(test_try_1_int);
-		XTESTS_RUN_CASE(test_try_2_int);
-		XTESTS_RUN_CASE(test_try_3_int);
-		XTESTS_RUN_CASE(test_try_4_int);
-		XTESTS_RUN_CASE(test_try_5_int);
-		XTESTS_RUN_CASE(test_try_6_int);
-		XTESTS_RUN_CASE(test_try_7_int);
-		XTESTS_RUN_CASE(test_try_8_int);
-		XTESTS_RUN_CASE(test_try_9_int);
-		XTESTS_RUN_CASE(test_try_10_int);
+        XTESTS_RUN_CASE(test_try_1_int);
+        XTESTS_RUN_CASE(test_try_2_int);
+        XTESTS_RUN_CASE(test_try_3_int);
+        XTESTS_RUN_CASE(test_try_4_int);
+        XTESTS_RUN_CASE(test_try_5_int);
+        XTESTS_RUN_CASE(test_try_6_int);
+        XTESTS_RUN_CASE(test_try_7_int);
+        XTESTS_RUN_CASE(test_try_8_int);
+        XTESTS_RUN_CASE(test_try_9_int);
+        XTESTS_RUN_CASE(test_try_10_int);
 
-		XTESTS_RUN_CASE(test_try_1_uint64);
-		XTESTS_RUN_CASE(test_try_2_uint64);
-		XTESTS_RUN_CASE(test_try_3_uint64);
-		XTESTS_RUN_CASE(test_try_4_uint64);
-		XTESTS_RUN_CASE(test_try_5_uint64);
-		XTESTS_RUN_CASE(test_try_6_uint64);
-		XTESTS_RUN_CASE(test_try_7_uint64);
-		XTESTS_RUN_CASE(test_try_8_uint64);
-		XTESTS_RUN_CASE(test_try_9_uint64);
-		XTESTS_RUN_CASE(test_try_10_uint64);
+        XTESTS_RUN_CASE(test_try_1_uint64);
+        XTESTS_RUN_CASE(test_try_2_uint64);
+        XTESTS_RUN_CASE(test_try_3_uint64);
+        XTESTS_RUN_CASE(test_try_4_uint64);
+        XTESTS_RUN_CASE(test_try_5_uint64);
+        XTESTS_RUN_CASE(test_try_6_uint64);
+        XTESTS_RUN_CASE(test_try_7_uint64);
+        XTESTS_RUN_CASE(test_try_8_uint64);
+        XTESTS_RUN_CASE(test_try_9_uint64);
+        XTESTS_RUN_CASE(test_try_10_uint64);
+
+        XTESTS_RUN_CASE(test_try_hex_1_int);
+        XTESTS_RUN_CASE(test_try_hex_2_int);
+        XTESTS_RUN_CASE(test_try_hex_3_int);
+        XTESTS_RUN_CASE(test_try_hex_4_int);
+        XTESTS_RUN_CASE(test_try_hex_5_int);
+        XTESTS_RUN_CASE(test_try_hex_6_int);
+        XTESTS_RUN_CASE(test_try_hex_7_int);
+        XTESTS_RUN_CASE(test_try_hex_8_int);
+        XTESTS_RUN_CASE(test_try_hex_9_int);
+        XTESTS_RUN_CASE(test_try_hex_10_int);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/string_to_integer.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/string_to_integer.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -187,83 +209,100 @@ int main(int argc, char **argv)
 
 namespace
 {
-	using stlsoft::uint64_t;
+    using stlsoft::sint64_t;
+    using stlsoft::uint64_t;
 
 
 static void test_specialisations_1()
 {
-	{
-		stlsoft::string_to_integer( "0", static_cast<char const**>(0));
-	}
-	{
-	    stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0));
-	}
+    {
+        stlsoft::string_to_integer( "0", static_cast<char const**>(0));
+    }
+    {
+        stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0));
+    }
 
 
-	{
-		char const* e;
-		stlsoft::string_to_integer( "0", &e);
-	}
-	{
-		wchar_t const* e;
-		stlsoft::string_to_integer(L"0", &e);
-	}
+    {
+        char const* endptr;
+        stlsoft::string_to_integer( "0", &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", endptr - 1);
+    }
+    {
+        wchar_t const* endptr;
+        stlsoft::string_to_integer(L"0", &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_WIDE_STRING_EQUAL(L"0", endptr - 1);
+    }
 
 
-	{
-		char const* e;
-		stlsoft::string_to_integer( "0", 1u, &e);
-	}
-	{
-		wchar_t const* e;
-		stlsoft::string_to_integer(L"0", 1u, &e);
-	}
+    {
+        char const* endptr;
+        stlsoft::string_to_integer( "0", 1u, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", endptr - 1);
+    }
+    {
+        wchar_t const* endptr;
+        stlsoft::string_to_integer(L"0", 1u, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_WIDE_STRING_EQUAL(L"0", endptr - 1);
+    }
 
 
-	{
-		char const* e;
-		stlsoft::string_to_integer( "0", 1, &e);
-	}
-	{
-		wchar_t const* e;
-		stlsoft::string_to_integer(L"0", 1, &e);
-	}
+    {
+        char const* endptr;
+        stlsoft::string_to_integer( "0", 1, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", endptr - 1);
+    }
+    {
+        wchar_t const* endptr;
+        stlsoft::string_to_integer(L"0", 1, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_WIDE_STRING_EQUAL(L"0", endptr - 1);
+    }
 
 
-	{
-		char const* e;
-		stlsoft::string_to_integer( "0", 0, &e);
-	}
-	{
-		wchar_t const* e;
-		stlsoft::string_to_integer(L"0", 0, &e);
-	}
+    {
+        char const* endptr;
+        stlsoft::string_to_integer( "0", 0, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", endptr);
+    }
+    {
+        wchar_t const* endptr;
+        stlsoft::string_to_integer(L"0", 0, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_WIDE_STRING_EQUAL(L"0", endptr);
+    }
 
 
 #if 0
-	{
-		stlsoft::string_to_integer<char>( "0", NULL);
-	}
-	{
-		stlsoft::string_to_integer<wchar_t>(L"0", NULL);
-	}
+    {
+        stlsoft::string_to_integer<char>( "0", NULL);
+    }
+    {
+        stlsoft::string_to_integer<wchar_t>(L"0", NULL);
+    }
 
 
-	{
-		stlsoft::string_to_integer<char>( "0", 0, NULL);
-	}
-	{
-		stlsoft::string_to_integer<wchar_t>(L"0", 0, NULL);
-	}
+    {
+        stlsoft::string_to_integer<char>( "0", 0, NULL);
+    }
+    {
+        stlsoft::string_to_integer<wchar_t>(L"0", 0, NULL);
+    }
 #endif /* 0 */
 
 
-	{
-		stlsoft::string_to_integer( "0", NULL);
-	}
-	{
-		stlsoft::string_to_integer(L"0", NULL);
-	}
+    {
+        stlsoft::string_to_integer( "0", NULL);
+    }
+    {
+        stlsoft::string_to_integer(L"0", NULL);
+    }
 
     XTESTS_TEST_PASSED();
 }
@@ -272,38 +311,38 @@ static void test_specialisations_2()
 {
 
 #if 0
-	{
-		stlsoft::string_to_integer( std::string("0"), static_cast<char const**>(0));
-	}
-	{
-	    stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0));
-	}
+    {
+        stlsoft::string_to_integer( std::string("0"), static_cast<char const**>(0));
+    }
+    {
+        stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0));
+    }
 
 
-	{
-		char const* e;
-		stlsoft::string_to_integer( std::string("0"), &e);
-	}
-	{
-		wchar_t const* e;
-		stlsoft::string_to_integer(L"0", &e);
-	}
+    {
+        char const* endptr;
+        stlsoft::string_to_integer( std::string("0"), &endptr);
+    }
+    {
+        wchar_t const* endptr;
+        stlsoft::string_to_integer(L"0", &endptr);
+    }
 
 
-	{
-		stlsoft::string_to_integer<char>( std::string("0"), NULL);
-	}
-	{
-		stlsoft::string_to_integer<wchar_t>(L"0", NULL);
-	}
+    {
+        stlsoft::string_to_integer<char>( std::string("0"), NULL);
+    }
+    {
+        stlsoft::string_to_integer<wchar_t>(L"0", NULL);
+    }
 
 
-	{
-		stlsoft::string_to_integer( std::string("0"), NULL);
-	}
-	{
-		stlsoft::string_to_integer(L"0", NULL);
-	}
+    {
+        stlsoft::string_to_integer( std::string("0"), NULL);
+    }
+    {
+        stlsoft::string_to_integer(L"0", NULL);
+    }
 #endif /* 0 */
 
     XTESTS_TEST_PASSED();
@@ -313,7 +352,7 @@ static void test_0()
 {
     XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer("0", static_cast<char const**>(0)));
 
-	XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0)));
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(L"0", static_cast<wchar_t const**>(0)));
 }
 
 static void test_positives_implicit()
@@ -519,104 +558,138 @@ static void test_len_truncated()
     XTESTS_TEST_INTEGER_EQUAL(7, stlsoft::string_to_integer("7abc", 2, &endptr));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
     XTESTS_TEST_INTEGER_EQUAL(10, stlsoft::string_to_integer("10abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(11, stlsoft::string_to_integer("11abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(12, stlsoft::string_to_integer("123456abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(65, stlsoft::string_to_integer("654321abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
 
     XTESTS_TEST_INTEGER_EQUAL(+1, stlsoft::string_to_integer("+1abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(+7, stlsoft::string_to_integer("+7abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(+1, stlsoft::string_to_integer("+10abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(+1, stlsoft::string_to_integer("+11abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(+1, stlsoft::string_to_integer("+123456abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(+6, stlsoft::string_to_integer("+654321abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
 
     XTESTS_TEST_INTEGER_EQUAL(-1, stlsoft::string_to_integer("-1abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(-7, stlsoft::string_to_integer("-7abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(-1, stlsoft::string_to_integer("-10abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(-1, stlsoft::string_to_integer("-11abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(-1, stlsoft::string_to_integer("-123456abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
     XTESTS_TEST_INTEGER_EQUAL(-6, stlsoft::string_to_integer("-654321abc", 2, &endptr));
-    XTESTS_TEST_POINTER_EQUAL(NULL, endptr);
+    XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
 }
 
 static void test_increasing_length()
 {
-	{
-		const char  number[]    =   "1000000000";
-		int         result      =   0;
+    {
+        const char  number[]    =   "1000000000";
+        int         result      =   0;
 
-		{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(number); ++i)
-		{
-			int n = stlsoft::string_to_integer(number, i, NULL);
+        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(number); ++i)
+        {
+            int n = stlsoft::string_to_integer(number, i, NULL);
 
-			XTESTS_TEST_INTEGER_EQUAL(result, n);
+            XTESTS_TEST_INTEGER_EQUAL(result, n);
 
-			result = (0 == result) ? 1 : (result * 10);
-		}}
-	}
+            result = (0 == result) ? 1 : (result * 10);
+        }}
+    }
 
-	{
-		const wchar_t	number[]	=   L"1000000000";
-		int				result      =   0;
+    {
+        const wchar_t   number[]    =   L"1000000000";
+        int             result      =   0;
 
-		{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(number); ++i)
-		{
-			int n = stlsoft::string_to_integer(number, i, NULL);
+        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(number); ++i)
+        {
+            int n = stlsoft::string_to_integer(number, i, NULL);
 
-			XTESTS_TEST_INTEGER_EQUAL(result, n);
+            XTESTS_TEST_INTEGER_EQUAL(result, n);
 
-			result = (0 == result) ? 1 : (result * 10);
-		}}
-	}
+            result = (0 == result) ? 1 : (result * 10);
+        }}
+    }
 }
 
 static void test_1_10()
 {
 }
 
-static void test_1_11()
+static void test_decimal_leading_plus()
 {
-	char const* endptr = NULL;
+    char const* endptr = NULL;
 
-	XTESTS_TEST_INTEGER_EQUAL(123, stlsoft::string_to_integer(" +123abc", 8, &endptr));
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
+    XTESTS_TEST_INTEGER_EQUAL(123, stlsoft::string_to_integer(" +123abc", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
 
-	XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" +abc123", 8, &endptr));
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" +abc123", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
 
-	XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" abc123", 7, &endptr));
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" abc123", 7, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
 }
 
 static void test_1_12()
 {
 }
 
-static void test_1_13()
+static void test_endptr()
 {
+    {
+        char const  src[]   =   "0";
+        char const* endptr  =   NULL;
+
+        XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(src, &endptr));
+        XTESTS_TEST_POINTER_EQUAL(src + 1, endptr);
+    }
+
+    {
+        char const  src[]   =   "0";
+        char const* endptr  =   NULL;
+
+        XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(src, STLSOFT_NUM_ELEMENTS(src) - 1u, &endptr));
+        XTESTS_TEST_POINTER_EQUAL(src + 1, endptr);
+    }
+
+    {
+        char const* endptr;
+        stlsoft::string_to_integer("0", 0, &endptr);
+        XTESTS_REQUIRE(XTESTS_TEST_POINTER_NOT_EQUAL(NULL, endptr));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("0", endptr);
+    }
 }
 
 static void test_1_14()
 {
 }
 
-static void test_1_15()
+static void test_hexadecimal_1()
 {
+#if 0
+    char const* endptr = NULL;
+
+    XTESTS_TEST_INTEGER_EQUAL(123, stlsoft::string_to_integer(" +123abc", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", endptr);
+
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" +abc123", 8, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
+
+    XTESTS_TEST_INTEGER_EQUAL(0, stlsoft::string_to_integer(" abc123", 7, &endptr));
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc123", endptr);
+#endif /* 0 */
 }
 
 static void test_1_16()
@@ -638,164 +711,231 @@ static void test_1_19()
 
 static void test_try_1_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_2_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_3_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2, &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2, &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_4_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2, &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2, &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_5_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_6_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_7_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2, &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10", 2, &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_8_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2, &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", 2, &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_9_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", &i, "a")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<int>("10a", &i, "a")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_10_int()
 {
-	int i;
+    int i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i, "e")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<int>("10a", &i, "endptr")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 
 static void test_try_1_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_2_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_3_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_4_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 2, &i)));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 2, &i)));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_5_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_6_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_7_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10", 2, &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_8_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 2, &i, "")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", 2, &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_9_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", &i, "a")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("10a", &i, "a")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
 
 static void test_try_10_uint64()
 {
-	uint64_t i;
+    uint64_t i;
 
-	XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i, "e")));
-	XTESTS_TEST_INTEGER_EQUAL(10, i);
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_FALSE(stlsoft::try_parse_to<uint64_t>("10a", &i, "endptr")));
+    XTESTS_TEST_INTEGER_EQUAL(10, i);
 }
+
+
+
+static void test_try_hex_1_int()
+{
+    uint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(0u, i);
+}
+
+static void test_try_hex_2_int()
+{
+    uint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0x0", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(0u, i);
+}
+
+static void test_try_hex_3_int()
+{
+    uint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("+0x0", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(0u, i);
+}
+
+static void test_try_hex_4_int()
+{
+    sint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(0, i);
+}
+
+static void test_try_hex_5_int()
+{
+    uint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<uint64_t>("0x10", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(16u, i);
+}
+
+static void test_try_hex_6_int()
+{
+    sint64_t i;
+
+    XTESTS_REQUIRE(XTESTS_TEST_BOOLEAN_TRUE(stlsoft::try_parse_to<sint64_t>("-0x0a", &i, "")));
+    XTESTS_TEST_INTEGER_EQUAL(-10, i);
+}
+
+static void test_try_hex_7_int()
+{
+}
+
+static void test_try_hex_8_int()
+{
+}
+
+static void test_try_hex_9_int()
+{
+}
+
+static void test_try_hex_10_int()
+{
+}
+
 
 
 } // anonymous namespace

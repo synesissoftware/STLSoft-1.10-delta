@@ -1,15 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        extras/path_groups/path_groups.hpp
  *
- * Purpose:     Microsoft Visual C++ Runtime Library debug flags scoping
- *              class.
+ * Purpose:     stlsoft::extras::path_groups class.
  *
  * Created:     5th September 2010
- * Updated:     6th September 2010
+ * Updated:     25th July 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +45,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_MAJOR      1
 # define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_MINOR      0
-# define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_REVISION   4
-# define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_EDIT       13
+# define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_REVISION   5
+# define STLSOFT_VER_PATH_GROUPS_HPP_PATH_GROUPS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -266,9 +265,9 @@ private: // Implementation
             {
                 bool lineHasPipe = false;
 
-                // Has it got 
+                // Has it got a pipe?
                 if( line.empty() ||
-                    (lineHasPipe = (line.find('|') < line.size())))
+                    false != (lineHasPipe = (line.find('|') < line.size())))
                 {
                     if(ml_items.size() > 1)
                     {

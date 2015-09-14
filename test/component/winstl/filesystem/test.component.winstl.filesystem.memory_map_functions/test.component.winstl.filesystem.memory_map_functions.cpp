@@ -55,29 +55,29 @@
 namespace
 {
 
-	static void test_1_0(void);
-	static void test_1_1(void);
-	static void test_1_2(void);
-	static void test_1_3(void);
-	static void test_1_4(void);
-	static void test_1_5(void);
-	static void test_1_6(void);
-	static void test_1_7(void);
-	static void test_1_8(void);
-	static void test_1_9(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_0(void);
+    static void test_1_1(void);
+    static void test_1_2(void);
+    static void test_1_3(void);
+    static void test_1_4(void);
+    static void test_1_5(void);
+    static void test_1_6(void);
+    static void test_1_7(void);
+    static void test_1_8(void);
+    static void test_1_9(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
-	static int setup(void* param);
-	static int teardown(void* param);
+    static int setup(void* param);
+    static int teardown(void* param);
 
 } // anonymous namespace
 
@@ -87,40 +87,40 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
     if(XTESTS_START_RUNNER_WITH_SETUP_FNS("test.component.winstl.filesystem.memory_map_functions", verbosity, setup, teardown, NULL))
-	{
-		XTESTS_RUN_CASE(test_1_0);
-		XTESTS_RUN_CASE(test_1_1);
-		XTESTS_RUN_CASE(test_1_2);
-		XTESTS_RUN_CASE(test_1_3);
-		XTESTS_RUN_CASE(test_1_4);
-		XTESTS_RUN_CASE(test_1_5);
-		XTESTS_RUN_CASE(test_1_6);
-		XTESTS_RUN_CASE(test_1_7);
-		XTESTS_RUN_CASE(test_1_8);
-		XTESTS_RUN_CASE(test_1_9);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    {
+        XTESTS_RUN_CASE(test_1_0);
+        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE(test_1_2);
+        XTESTS_RUN_CASE(test_1_3);
+        XTESTS_RUN_CASE(test_1_4);
+        XTESTS_RUN_CASE(test_1_5);
+        XTESTS_RUN_CASE(test_1_6);
+        XTESTS_RUN_CASE(test_1_7);
+        XTESTS_RUN_CASE(test_1_8);
+        XTESTS_RUN_CASE(test_1_9);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,19 +130,19 @@ int main(int argc, char **argv)
 namespace
 {
 
-	using stlsoft::ss_uint8_t;
-	using winstl::ws_uintptr_t;
-	using xtests::c::xtests_abend;
+    using stlsoft::ss_uint8_t;
+    using winstl::ws_uintptr_t;
+    using xtests::c::xtests_abend;
 
 static char const   TEST_FILE_NAME[]    =   "test.component.winstl.filesystem.memory_map_functions.C.DATAFILE";
 #ifdef __cplusplus
-static size_t const	TEST_BUFFER_SIZE	=	0x1000;
-static size_t const	TEST_NUM_BUFFERS	=	0x100;
-static size_t const	TEST_FILE_SIZE		=	TEST_BUFFER_SIZE * TEST_NUM_BUFFERS;
+static size_t const TEST_BUFFER_SIZE    =   0x1000;
+static size_t const TEST_NUM_BUFFERS    =   0x100;
+static size_t const TEST_FILE_SIZE      =   TEST_BUFFER_SIZE * TEST_NUM_BUFFERS;
 #else /* ? __cplusplus */
-# define TEST_BUFFER_SIZE					(0x1000)
-# define TEST_NUM_BUFFERS					(0x100)
-# define TEST_FILE_SIZE						stlsoft_c_cast(size_t, TEST_BUFFER_SIZE * TEST_NUM_BUFFERS)
+# define TEST_BUFFER_SIZE                   (0x1000)
+# define TEST_NUM_BUFFERS                   (0x100)
+# define TEST_FILE_SIZE                     stlsoft_c_cast(size_t, TEST_BUFFER_SIZE * TEST_NUM_BUFFERS)
 #endif /* __cplusplus */
 
 static int setup(void* param)
@@ -159,7 +159,7 @@ static int setup(void* param)
 
     if(INVALID_HANDLE_VALUE == h)
     {
-		xtests_abend("could not create test file\n");
+        xtests_abend("could not create test file\n");
 
         return 1;
     }
@@ -263,49 +263,49 @@ static void test_1_1()
 
 static void test_1_2()
 {
-	ws_uintptr_t requestSize;
-	for(requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
-	{
-		ws_uintptr_t    viewSize;
-		ws_uintptr_t    offset      =   65536;
-		void*           view        =   winstl::map_readonly_view_of_file_by_name(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
-		DWORD           err         =   GetLastError();
+    ws_uintptr_t requestSize;
+    for(requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
+    {
+        ws_uintptr_t    viewSize;
+        ws_uintptr_t    offset      =   65536;
+        void*           view        =   winstl::map_readonly_view_of_file_by_name(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
+        DWORD           err         =   GetLastError();
 
-		XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
-		if(0 == requestSize)
-		{
-			XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
-		}
-		else if(requestSize <= TEST_FILE_SIZE - offset)
-		{
-			XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
-		}
-		else
-		{
-			XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
-		}
+        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
+        if(0 == requestSize)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+        }
+        else if(requestSize <= TEST_FILE_SIZE - offset)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
+        }
+        else
+        {
+            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+        }
 
-		if(NULL != view)
-		{
-			ss_uint8_t      buffer[TEST_BUFFER_SIZE];
-			int             i;
-			ws_uintptr_t    base;
+        if(NULL != view)
+        {
+            ss_uint8_t      buffer[TEST_BUFFER_SIZE];
+            int             i;
+            ws_uintptr_t    base;
 
-			for(i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
-			{
-				memset(buffer, i, sizeof(buffer));
+            for(i = (int)(offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
+            {
+                memset(buffer, i, sizeof(buffer));
 
-				{ size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
-				{
-					ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
+                { size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
+                {
+                    ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
-					XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
-				}}
-			}
+                    XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
+                }}
+            }
 
-			winstl::unmap_view_of_file(view);
-		}
-	}
+            winstl::unmap_view_of_file(view);
+        }
+    }
 }
 
 static void test_1_3()

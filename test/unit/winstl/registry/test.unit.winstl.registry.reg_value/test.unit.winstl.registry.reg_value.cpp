@@ -69,7 +69,7 @@ namespace
     static void test_many_strings(void);
     static void test_empty_multistring(void);
     static void test_multistring_multibyte(void);
-	static void test_multistring_wide(void);
+    static void test_multistring_wide(void);
     static void test_1_12(void);
     static void test_1_13(void);
     static void test_1_14(void);
@@ -145,7 +145,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_many_strings);
         XTESTS_RUN_CASE(test_empty_multistring);
         XTESTS_RUN_CASE(test_multistring_multibyte);
-		XTESTS_RUN_CASE(test_multistring_wide);
+        XTESTS_RUN_CASE(test_multistring_wide);
         XTESTS_RUN_CASE(test_1_12);
         XTESTS_RUN_CASE(test_1_13);
         XTESTS_RUN_CASE(test_1_14);
@@ -318,7 +318,7 @@ static void test_multistring_wide()
 
     const comstl::guid  guid;
 
-	winstl::reg_key_w	key(rootKey->get(), L"");
+    winstl::reg_key_w   key(rootKey->get(), L"");
 
     key.set_value(stlsoft::c_str_ptr_w(guid), values, STLSOFT_NUM_ELEMENTS(values));
 

@@ -5,11 +5,11 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MAJOR    4
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    2
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_MINOR    3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_REVISION 3
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     77
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,12 +63,19 @@
  */
 
 #include <atlstl/atlstl_1_10.hpp> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
+
+#ifndef STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS
+# include <stlsoft/limits/integral_limits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
 # error No recognised Borland compiler generates correct code when used with these functions
@@ -251,6 +258,45 @@ inline HRESULT get_MemberValue(C* const cls, VARIANT_BOOL* ret, bool C::*mem)
 
 
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+/* Overloads for specific mismatches between interface and member types*/
+
+/* 
+ * interface    :   long
+ * member       :   size_t
+ */
+template <class C>
+inline
+HRESULT
+get_MemberValue(
+    C* const    pThis
+,   long*       ret
+,   size_t  C::*mem
+)
+{
+    if(NULL == ret)
+    {
+        return E_POINTER;
+    }
+    else
+    {
+        size_t const v = pThis->*mem;
+
+        if(size_t(integral_limits<long>::maximum()) < v)
+        {
+            return DISP_E_OVERFLOW;
+        }
+        else
+        {
+            *ret = (long)v;
+
+            return S_OK;
+        }
+    }
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 
 /** \brief Inline retrieval of method value
  *
@@ -275,6 +321,54 @@ inline HRESULT get_MemberValue(C* const cls, T* ret, T2 (C::*pfn)() const)
 {
     return (ret == 0) ? E_POINTER : (*ret = (cls->*pfn)(), S_OK);
 }
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+	_MSC_VER >= 1400
+# pragma message("try this in VC++ 8+")
+#endif
+#if 0
+/* Overloads for specific mismatches between interface and method types*/
+
+/* 
+ * interface    :   long
+ * method       :   size_t
+ */
+template <class C>
+inline
+HRESULT
+get_MemberValue(
+    C* const    pThis
+,   long*       ret
+,   size_t (C::*pfn)() const
+)
+{
+    if(NULL == ret)
+    {
+        return E_POINTER;
+    }
+    else
+    {
+        size_t const v = (pThis->*pfn)();
+
+        if(size_t(integral_limits<long>::maximum()) < v)
+        {
+            return DISP_E_OVERFLOW;
+        }
+        else
+        {
+            *ret = (long)v;
+
+            return S_OK;
+        }
+    }
+}
+#endif
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * put_MemberValue

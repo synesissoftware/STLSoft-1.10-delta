@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     6th September 2010
+ * Updated:     16th November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     259
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     263
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -79,9 +82,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
 # include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
@@ -113,11 +116,6 @@
 # include <stdio.h>
 #endif /* compiler */
 
-
-#ifdef STLSOFT_UNITTEST
-# include <stdio.h>
-# include <string>
-#endif /* STLSOFT_UNITTEST */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1824,20 +1822,10 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
 
         if(buffer->capacity < 1)
         {
-#if defined(STLSOFT_UNITTEST) || \
-    defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            fprintf(stderr, "%08x: capacity (%u) < 1\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity));
-#endif /* STLSOFT_UNITTEST */
-
             return false;
         }
         else if(buffer->capacity < buffer->length)
         {
-#if defined(STLSOFT_UNITTEST) || \
-    defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-            fprintf(stderr, "%08x: capacity (%u) < length (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->capacity), static_cast<unsigned>(buffer->length), static_cast<unsigned>(buffer->length));
-#endif /* STLSOFT_UNITTEST */
-
             return false;
         }
         else
@@ -1848,11 +1836,6 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
 
             if(buffer->length < len)
             {
-#if defined(STLSOFT_UNITTEST) || \
-    defined(STLSOFT_PRINT_CONTRACT_VIOLATION_DETAILS)
-                fprintf(stderr, "%08x: length (%u) < length() (%u, %08x)\n", static_cast<unsigned>(reinterpret_cast<ss_size_t>(this)), static_cast<unsigned>(buffer->length), static_cast<unsigned>(len), static_cast<unsigned>(len));
-#endif /* STLSOFT_UNITTEST */
-
                 return false;
             }
         }

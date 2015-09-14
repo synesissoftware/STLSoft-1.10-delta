@@ -119,7 +119,7 @@ static void test_compare(void)
 static void test_binary_compare(void)
 {
 #if defined(PLATFORMSTL_ARCH_IS_X86) || \
-	defined(PLATFORMSTL_ARCH_IS_X64)
+    defined(PLATFORMSTL_ARCH_IS_X64)
 
     XTESTS_TEST_INTEGER_EQUAL(0, comstl_C_GUID_binary_compare(&IID_IUnknown, &IID_IUnknown));
     XTESTS_TEST_INTEGER_LESS(0, comstl_C_GUID_binary_compare(&GUID_NULL, &IID_IUnknown));

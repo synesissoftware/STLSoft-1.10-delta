@@ -205,7 +205,7 @@ namespace
         }
 
     private:
-		CComVariant	m_value;
+        CComVariant m_value;
     };
 
 static void test_BSTR_empty()
@@ -380,10 +380,10 @@ static void test_VARIANT_empty()
 {
     Class_With_VARIANT instance;
 
-    VARIANT	value;
+    VARIANT value;
     HRESULT hr;
 
-	::VariantInit(&value);
+    ::VariantInit(&value);
 
     hr = instance.get_VARIANT(&value);
 
@@ -405,7 +405,7 @@ static void test_VARIANT()
 {
     Class_With_VARIANT instance;
 
-    comstl::variant	newValue(L"abcdef");
+    comstl::variant newValue(L"abcdef");
     HRESULT         hr;
 
     hr = instance.put_VARIANT(newValue);
@@ -418,9 +418,9 @@ static void test_VARIANT()
     }
     else
     {
-        VARIANT	value;
+        VARIANT value;
 
-		::VariantInit(&value);
+        ::VariantInit(&value);
 
         hr = instance.get_VARIANT(&value);
 

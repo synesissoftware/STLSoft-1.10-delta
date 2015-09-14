@@ -53,12 +53,12 @@
 namespace
 {
 
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
-	static void test_1_20(void);
-	static void test_1_21(void);
-	static void test_1_22(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
+    static void test_1_20(void);
+    static void test_1_21(void);
+    static void test_1_22(void);
 
 } // anonymous namespace
 
@@ -73,17 +73,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.comstl.collections.collection_sequence", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
-		XTESTS_RUN_CASE(test_1_20);
-		XTESTS_RUN_CASE(test_1_21);
-		XTESTS_RUN_CASE(test_1_22);
+    if(XTESTS_START_RUNNER("test.component.comstl.collections.collection_sequence", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
+        XTESTS_RUN_CASE(test_1_20);
+        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(test_1_22);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*comstl/*/collection_sequence.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*comstl/*/collection_sequence.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -101,88 +101,88 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef platformstl::readdir_sequence				readdir_sequence_t;
+    typedef platformstl::readdir_sequence               readdir_sequence_t;
 
-	typedef platformstl::filesystem_traits<char>		traits_m_t;
+    typedef platformstl::filesystem_traits<char>        traits_m_t;
 
 
-//	create_recls_sequence(
+//  create_recls_sequence(
 
 
 static void test_1_17()
 {
-	readdir_sequence_t	files(".");
+    readdir_sequence_t  files(".");
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_18()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::absolutePath);
+    readdir_sequence_t  files(".", readdir_sequence_t::absolutePath);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_19()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+    readdir_sequence_t  files(".", readdir_sequence_t::files);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_20()
 {
-	readdir_sequence_t	directories(".", readdir_sequence_t::directories);
+    readdir_sequence_t  directories(".", readdir_sequence_t::directories);
 
-	{ for(readdir_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_21()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+    readdir_sequence_t  files(".", readdir_sequence_t::files);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_22()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+    readdir_sequence_t  files(".", readdir_sequence_t::files);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 

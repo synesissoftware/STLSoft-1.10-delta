@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.winstl.filesystem.path project.
  *
  * Created:     23rd January 2009
- * Updated:     11th August 2010
+ * Updated:     25th November 2011
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2011, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -52,52 +52,59 @@
 namespace
 {
 
-	static void test_instantiation_multibyte(void);
-	static void test_instantiation_wide(void);
-	static void test_ctor_default(void);
-	static void test_ctor_c_string(void);
-	static void test_ctor_c_string_n(void);
-	static void test_ctor_sas(void);
-	static void test_ctor_copy(void);
-	static void test_assignment_c_string(void);
-	static void test_assignment_sas(void);
-	static void test_assignment_copy(void);
-	static void test_1_11(void);
-	static void test_push(void);
-	static void test_push_absolute(void);
-	static void test_1_14(void);
-	static void test_copy(void);
+    static void test_instantiation_multibyte(void);
+    static void test_instantiation_wide(void);
+    static void test_ctor_default(void);
+    static void test_ctor_empty_string_1(void);
+    static void test_ctor_empty_string_2(void);
+    static void test_ctor_null_string_1(void);
+    static void test_ctor_null_string_2(void);
+    static void test_ctor_c_string(void);
+    static void test_ctor_c_string_n(void);
+    static void test_ctor_sas(void);
+    static void test_ctor_copy(void);
+    static void test_ctor_too_long(void);
+    static void test_assignment_c_string(void);
+    static void test_assignment_sas(void);
+    static void test_assignment_copy(void);
+    static void test_1_11(void);
+    static void test_push(void);
+    static void test_push_absolute(void);
+    static void test_push_too_long_1(void);
+    static void test_push_too_long_2(void);
+    static void test_1_14(void);
+    static void test_copy(void);
 
-	static void test_pop(void);
-	static void test_2_02(void);
-	static void test_2_03(void);
-	static void test_canonicalise(void);
-	static void test_2_05(void);
-	static void test_copy_empty(void);
-	static void test_copy_1(void);
-	static void test_copy_2(void);
-	static void test_pop_ext(void);
-	static void test_pop_file(void);
-	static void test_pop_dir(void);
-	static void test_2_11(void);
-	static void test_2_12(void);
-	static void test_2_13(void);
-	static void test_2_14(void);
-	static void test_bad_path_with_pipe(void);
-	static void test_bad_path_with_less_than(void);
-	static void test_2_17(void);
-	static void test_2_18(void);
-	static void test_2_19(void);
-	static void test_2_20(void);
-	static void test_2_21(void);
-	static void test_2_22(void);
-	static void test_2_23(void);
-	static void test_2_24(void);
-	static void test_2_25(void);
-	static void test_2_26(void);
-	static void test_2_27(void);
-	static void test_2_28(void);
-	static void test_2_29(void);
+    static void test_pop(void);
+    static void test_2_02(void);
+    static void test_2_03(void);
+    static void test_canonicalise(void);
+    static void test_2_05(void);
+    static void test_copy_empty(void);
+    static void test_copy_1(void);
+    static void test_copy_2(void);
+    static void test_pop_ext(void);
+    static void test_pop_file(void);
+    static void test_pop_dir(void);
+    static void test_2_11(void);
+    static void test_2_12(void);
+    static void test_2_13(void);
+    static void test_2_14(void);
+    static void test_bad_path_with_pipe(void);
+    static void test_bad_path_with_less_than(void);
+    static void test_2_17(void);
+    static void test_push_sep(void);
+    static void test_push_sep_too_long(void);
+    static void test_2_20(void);
+    static void test_2_21(void);
+    static void test_2_22(void);
+    static void test_2_23(void);
+    static void test_2_24(void);
+    static void test_2_25(void);
+    static void test_2_26(void);
+    static void test_2_27(void);
+    static void test_2_28(void);
+    static void test_2_29(void);
 
 } // anonymous namespace
 
@@ -112,58 +119,71 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.winstl.filesystem.path", verbosity))
-	{
-		XTESTS_RUN_CASE(test_instantiation_multibyte);
-		XTESTS_RUN_CASE(test_instantiation_wide);
-		XTESTS_RUN_CASE(test_ctor_default);
-		XTESTS_RUN_CASE(test_ctor_c_string);
-		XTESTS_RUN_CASE(test_ctor_c_string_n);
-		XTESTS_RUN_CASE(test_ctor_sas);
-		XTESTS_RUN_CASE(test_ctor_copy);
-		XTESTS_RUN_CASE(test_assignment_c_string);
-		XTESTS_RUN_CASE(test_assignment_sas);
-		XTESTS_RUN_CASE(test_assignment_copy);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_push);
-		XTESTS_RUN_CASE(test_push_absolute);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_copy);
-
-		XTESTS_RUN_CASE(test_pop);
-		XTESTS_RUN_CASE(test_2_02);
-		XTESTS_RUN_CASE(test_2_03);
-		XTESTS_RUN_CASE(test_canonicalise);
-		XTESTS_RUN_CASE(test_2_05);
-		XTESTS_RUN_CASE(test_copy_empty);
-		XTESTS_RUN_CASE(test_copy_1);
-		XTESTS_RUN_CASE(test_copy_2);
-		XTESTS_RUN_CASE(test_pop_ext);
-		XTESTS_RUN_CASE(test_pop_file);
-		XTESTS_RUN_CASE(test_2_11);
-		XTESTS_RUN_CASE(test_2_12);
-		XTESTS_RUN_CASE(test_2_13);
-		XTESTS_RUN_CASE(test_2_14);
+    if(XTESTS_START_RUNNER("test.unit.winstl.filesystem.path", verbosity))
+    {
+        XTESTS_RUN_CASE(test_instantiation_multibyte);
+        XTESTS_RUN_CASE(test_instantiation_wide);
+        XTESTS_RUN_CASE(test_ctor_default);
+        XTESTS_RUN_CASE(test_ctor_empty_string_1);
+        XTESTS_RUN_CASE(test_ctor_empty_string_2);
+        XTESTS_RUN_CASE(test_ctor_null_string_1);
+        XTESTS_RUN_CASE(test_ctor_null_string_2);
+        XTESTS_RUN_CASE(test_ctor_c_string);
+        XTESTS_RUN_CASE(test_ctor_c_string_n);
+        XTESTS_RUN_CASE(test_ctor_sas);
+        XTESTS_RUN_CASE(test_ctor_copy);
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-		XTESTS_RUN_CASE_THAT_THROWS(test_bad_path_with_pipe, platformstl::platform_exception);
-		XTESTS_RUN_CASE_THAT_THROWS(test_bad_path_with_less_than, platformstl::platform_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(test_ctor_too_long, std::out_of_range);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-		XTESTS_RUN_CASE(test_2_17);
-		XTESTS_RUN_CASE(test_2_18);
-		XTESTS_RUN_CASE(test_2_19);
-		XTESTS_RUN_CASE(test_2_20);
-		XTESTS_RUN_CASE(test_2_21);
-		XTESTS_RUN_CASE(test_2_22);
-		XTESTS_RUN_CASE(test_2_23);
-		XTESTS_RUN_CASE(test_2_24);
-		XTESTS_RUN_CASE(test_2_25);
-		XTESTS_RUN_CASE(test_2_26);
-		XTESTS_RUN_CASE(test_2_27);
-		XTESTS_RUN_CASE(test_2_28);
-		XTESTS_RUN_CASE(test_2_29);
+        XTESTS_RUN_CASE(test_assignment_c_string);
+        XTESTS_RUN_CASE(test_assignment_sas);
+        XTESTS_RUN_CASE(test_assignment_copy);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_push);
+        XTESTS_RUN_CASE(test_push_absolute);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        XTESTS_RUN_CASE_THAT_THROWS(test_push_too_long_1, std::out_of_range);
+        XTESTS_RUN_CASE_THAT_THROWS(test_push_too_long_2, std::out_of_range);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_copy);
+
+        XTESTS_RUN_CASE(test_pop);
+        XTESTS_RUN_CASE(test_2_02);
+        XTESTS_RUN_CASE(test_2_03);
+        XTESTS_RUN_CASE(test_canonicalise);
+        XTESTS_RUN_CASE(test_2_05);
+        XTESTS_RUN_CASE(test_copy_empty);
+        XTESTS_RUN_CASE(test_copy_1);
+        XTESTS_RUN_CASE(test_copy_2);
+        XTESTS_RUN_CASE(test_pop_ext);
+        XTESTS_RUN_CASE(test_pop_file);
+        XTESTS_RUN_CASE(test_2_11);
+        XTESTS_RUN_CASE(test_2_12);
+        XTESTS_RUN_CASE(test_2_13);
+        XTESTS_RUN_CASE(test_2_14);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        XTESTS_RUN_CASE_THAT_THROWS(test_bad_path_with_pipe, platformstl::platform_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(test_bad_path_with_less_than, platformstl::platform_exception);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        XTESTS_RUN_CASE(test_2_17);
+        XTESTS_RUN_CASE(test_push_sep);
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        XTESTS_RUN_CASE_THAT_THROWS(test_push_sep_too_long, std::out_of_range);
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        XTESTS_RUN_CASE(test_2_20);
+        XTESTS_RUN_CASE(test_2_21);
+        XTESTS_RUN_CASE(test_2_22);
+        XTESTS_RUN_CASE(test_2_23);
+        XTESTS_RUN_CASE(test_2_24);
+        XTESTS_RUN_CASE(test_2_25);
+        XTESTS_RUN_CASE(test_2_26);
+        XTESTS_RUN_CASE(test_2_27);
+        XTESTS_RUN_CASE(test_2_28);
+        XTESTS_RUN_CASE(test_2_29);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/path.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/path.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -180,665 +200,764 @@ int main(int argc, char **argv)
 
 namespace
 {
+  typedef std::basic_string<char>     string_m_t;
+
     typedef winstl::basic_path<char>        path_m_t;
     typedef winstl::basic_path<wchar_t>     path_w_t;
 
+  typedef winstl::filesystem_traits<char> traits_m_t;
+
 static void test_instantiation_multibyte()
 {
-	typedef path_m_t	path_t;
-	typedef std::string	string_t;
+    typedef path_m_t    path_t;
+    typedef std::string string_t;
 
-	if(0 == ::GetTickCount()) // if(0) without the unreachable warning
-	{
-		// Construction and assignment
+    if(0 == ::GetTickCount()) // if(0) without the unreachable warning
+    {
+        // Construction and assignment
 
-		path_t			path1;
-		const path_t	path2("abc.def");
-		const path_t	path3("abc.def", 7);
-		const path_t	path4(string_t("abc.def"));
-		const path_t	path5(path4);
-		path_t			path6;
-		path_t			path7;
+        path_t          path1;
+        const path_t    path2("abc.def");
+        const path_t    path3("abc.def", 7);
+        const path_t    path4(string_t("abc.def"));
+        const path_t    path5(path4);
+        path_t          path6;
+        path_t          path7;
 
-		path1	=	"ABC.DEF";
-		path6	=	string_t("ABC.DEF");
-		path7	=	path3;
+        path1   =   "ABC.DEF";
+        path6   =   string_t("ABC.DEF");
+        path7   =   path3;
 
-		path_t::root("abc.def");
-		path_t::root(string_t("abc.def"));
+        path_t::root("abc.def");
+        path_t::root(string_t("abc.def"));
 
-		// Push / pop operations
-		path1.pop();
-		path1.pop(false);
+        // Push / pop operations
+        path1.pop();
+        path1.pop(false);
 
-		path1 = "";
+        path1 = "";
 
-		path1.push("H:\\");
-		path1.push("H:\\", false);
-		path1.push("xyz");
-		path1.push("xyz", false);
-		path1.push("mno");
-		path1.push("mno", false);
-		path1.push("abc.def");
-		path1.push("abc.def", false);
+        path1.push("H:\\");
+        path1.push("H:\\", false);
+        path1.push("xyz");
+        path1.push("xyz", false);
+        path1.push("mno");
+        path1.push("mno", false);
+        path1.push("abc.def");
+        path1.push("abc.def", false);
 
-		path1 = "";
+        path1 = "";
 
-		path1.push("H:\\");
-		path1.push("xyz");
-		path1.push("mno");
-		path1.push("abc.def");
+        path1.push("H:\\");
+        path1.push("xyz");
+        path1.push("mno");
+        path1.push("abc.def");
 
-		path1.clear();
+        path1.clear();
 
-		path1.push("H:\\", false);
-		path1.push("xyz", false);
-		path1.push("mno", false);
-		path1.push("abc.def", false);
+        path1.push("H:\\", false);
+        path1.push("xyz", false);
+        path1.push("mno", false);
+        path1.push("abc.def", false);
 
-		path1.push_ext("txt");
-		path1.pop_ext();
-		path1.pop_sep();
+        path1.push_ext("txt");
+        path1.pop_ext();
+        path1.pop_sep();
 
-		path1.clear();
+        path1.clear();
 
-		path1 /= "abc.def";
-		path1 /= string_t("ABC.DEF");
-		path1 /= path3;
+        path1 /= "abc.def";
+        path1 /= string_t("ABC.DEF");
+        path1 /= path3;
 
-		path1.clear();
+        path1.clear();
 
-		path1 = "../../abc.def";
-		path1.make_absolute();
+        path1 = "../../abc.def";
+        path1.make_absolute();
 
-		path1.clear();
+        path1.clear();
 
-		path1 = "../xyz/../mno/./abc.def";
-		path1.canonicalise();
+        path1 = "../xyz/../mno/./abc.def";
+        path1.canonicalise();
 
-		path1.get_file();
-		path1.get_ext();
-		path1.length();
-		path1.size();
-		path1.empty();
-		path1.c_str();
-		path1.exists();
-		path1.is_rooted();
-		path1.is_absolute();
-		path1.has_sep();
+        path1.get_file();
+        path1.get_ext();
+        path1.length();
+        path1.size();
+        path1.empty();
+        path1.c_str();
+        path1.exists();
+        path1.is_rooted();
+        path1.is_absolute();
+        path1.has_sep();
 
-		path1.copy(NULL, 0);
+        path1.copy(NULL, 0);
 
-		path1 == path2;
-		path1 != path2;
-	}
+        path1 == path2;
+        path1 != path2;
+    }
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_instantiation_wide()
 {
-	typedef path_w_t		path_t;
-	typedef std::wstring	string_t;
+    typedef path_w_t        path_t;
+    typedef std::wstring    string_t;
 
-	if(0 == ::GetTickCount()) // if(0) without the unreachable warning
-	{
-		// Construction and assignment
+    if(0 == ::GetTickCount()) // if(0) without the unreachable warning
+    {
+        // Construction and assignment
 
-		path_t			path1;
-		const path_t	path2(L"abc.def");
-		const path_t	path3(L"abc.def", 7);
-		const path_t	path4(string_t(L"abc.def"));
-		const path_t	path5(path4);
-		path_t			path6;
-		path_t			path7;
+        path_t          path1;
+        const path_t    path2(L"abc.def");
+        const path_t    path3(L"abc.def", 7);
+        const path_t    path4(string_t(L"abc.def"));
+        const path_t    path5(path4);
+        path_t          path6;
+        path_t          path7;
 
-		path1	=	L"ABC.DEF";
-		path6	=	string_t(L"ABC.DEF");
-		path7	=	path3;
+        path1   =   L"ABC.DEF";
+        path6   =   string_t(L"ABC.DEF");
+        path7   =   path3;
 
-		path_t::root(L"abc.def");
-		path_t::root(string_t(L"abc.def"));
+        path_t::root(L"abc.def");
+        path_t::root(string_t(L"abc.def"));
 
-		// Push / pop operations
-		path1.pop();
-		path1.pop(false);
+        // Push / pop operations
+        path1.pop();
+        path1.pop(false);
 
-		path1 = L"";
+        path1 = L"";
 
-		path1.push(L"H:\\");
-		path1.push(L"H:\\", false);
-		path1.push(L"xyz");
-		path1.push(L"xyz", false);
-		path1.push(L"mno");
-		path1.push(L"mno", false);
-		path1.push(L"abc.def");
-		path1.push(L"abc.def", false);
+        path1.push(L"H:\\");
+        path1.push(L"H:\\", false);
+        path1.push(L"xyz");
+        path1.push(L"xyz", false);
+        path1.push(L"mno");
+        path1.push(L"mno", false);
+        path1.push(L"abc.def");
+        path1.push(L"abc.def", false);
 
-		path1 = L"";
+        path1 = L"";
 
-		path1.push(L"H:\\");
-		path1.push(L"xyz");
-		path1.push(L"mno");
-		path1.push(L"abc.def");
+        path1.push(L"H:\\");
+        path1.push(L"xyz");
+        path1.push(L"mno");
+        path1.push(L"abc.def");
 
-		path1.clear();
+        path1.clear();
 
-		path1.push(L"H:\\", false);
-		path1.push(L"xyz", false);
-		path1.push(L"mno", false);
-		path1.push(L"abc.def", false);
+        path1.push(L"H:\\", false);
+        path1.push(L"xyz", false);
+        path1.push(L"mno", false);
+        path1.push(L"abc.def", false);
 
-		path1.push_ext(L"txt");
-		path1.pop_ext();
-		path1.pop_sep();
+        path1.push_ext(L"txt");
+        path1.pop_ext();
+        path1.pop_sep();
 
-		path1.clear();
+        path1.clear();
 
-		path1 /= L"abc.def";
-		path1 /= string_t(L"ABC.DEF");
-		path1 /= path3;
+        path1 /= L"abc.def";
+        path1 /= string_t(L"ABC.DEF");
+        path1 /= path3;
 
-		path1.clear();
+        path1.clear();
 
-		path1 = L"../../abc.def";
-		path1.make_absolute();
+        path1 = L"../../abc.def";
+        path1.make_absolute();
 
-		path1.clear();
+        path1.clear();
 
-		path1 = L"../xyz/../mno/./abc.def";
-		path1.canonicalise();
+        path1 = L"../xyz/../mno/./abc.def";
+        path1.canonicalise();
 
-		path1.get_file();
-		path1.get_ext();
-		path1.length();
-		path1.size();
-		path1.empty();
-		path1.c_str();
-		path1.exists();
-		path1.is_rooted();
-		path1.is_absolute();
-		path1.has_sep();
+        path1.get_file();
+        path1.get_ext();
+        path1.length();
+        path1.size();
+        path1.empty();
+        path1.c_str();
+        path1.exists();
+        path1.is_rooted();
+        path1.is_absolute();
+        path1.has_sep();
 
-		path1.copy(NULL, 0);
+        path1.copy(NULL, 0);
 
-		path1 == path2;
-		path1 != path2;
-	}
+        path1 == path2;
+        path1 != path2;
+    }
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_ctor_default()
 {
-	path_m_t	path;
+    path_m_t    path;
 
-	XTESTS_TEST_BOOLEAN_TRUE(path.empty());
-	XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
-	XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+    XTESTS_TEST_BOOLEAN_TRUE(path.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-	XTESTS_TEST_BOOLEAN_TRUE(path == "");
-	XTESTS_TEST_BOOLEAN_TRUE("" == path);
-	XTESTS_TEST_BOOLEAN_TRUE(path == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == "");
+    XTESTS_TEST_BOOLEAN_TRUE("" == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-	XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
-	XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
+    XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
+    XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
+}
+
+static void test_ctor_empty_string_1()
+{
+    path_m_t path("");
+
+    XTESTS_TEST_BOOLEAN_TRUE(path.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path == "");
+    XTESTS_TEST_BOOLEAN_TRUE("" == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
+    XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
+}
+
+static void test_ctor_empty_string_2()
+{
+    path_m_t path0("");
+    path_m_t path(path0);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path == "");
+    XTESTS_TEST_BOOLEAN_TRUE("" == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
+    XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
+}
+
+static void test_ctor_null_string_1()
+{
+    path_m_t path(static_cast<char const*>(0));
+
+    XTESTS_TEST_BOOLEAN_TRUE(path.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path == "");
+    XTESTS_TEST_BOOLEAN_TRUE("" == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
+    XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
+}
+
+static void test_ctor_null_string_2()
+{
+    path_m_t path(static_cast<char const*>(0), 0u);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path.empty());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(0u, path.length());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.c_str());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_file());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path.get_ext());
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path == "");
+    XTESTS_TEST_BOOLEAN_TRUE("" == path);
+    XTESTS_TEST_BOOLEAN_TRUE(path == path);
+
+    XTESTS_TEST_BOOLEAN_TRUE(path != "XX");
+    XTESTS_TEST_BOOLEAN_TRUE("XX" != path);
 }
 
 static void test_ctor_c_string()
 {
-	{
-		path_m_t	path("abc.def");
+    {
+        path_m_t    path("abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path("H:\\abc.def");
+    {
+        path_m_t    path("H:\\abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path("H:\\mno\\abc.def");
+    {
+        path_m_t    path("H:\\mno\\abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_ctor_c_string_n()
 {
-	{
-		path_m_t	path("abc.def", 7);
+    {
+        path_m_t    path("abc.def", 7);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path("H:\\abc.def", 10);
+    {
+        path_m_t    path("H:\\abc.def", 10);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path("H:\\mno\\abc.def", 14);
+    {
+        path_m_t    path("H:\\mno\\abc.def", 14);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_ctor_sas()
 {
-	typedef std::string	string_t;
+    typedef std::string string_t;
 
-	{
-		path_m_t	path(string_t("abc.def"));
+    {
+        path_m_t    path(string_t("abc.def"));
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path(string_t("H:\\abc.def"));
+    {
+        path_m_t    path(string_t("H:\\abc.def"));
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path(string_t("H:\\mno\\abc.def"));
+    {
+        path_m_t    path(string_t("H:\\mno\\abc.def"));
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_ctor_copy()
 {
-	typedef std::string	string_t;
+    typedef std::string string_t;
 
-	{
-		path_m_t	path_("abc.def");
-		path_m_t	path(path_);
+    {
+        path_m_t    path_("abc.def");
+        path_m_t    path(path_);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path_("H:\\abc.def");
-		path_m_t	path(path_);
+    {
+        path_m_t    path_("H:\\abc.def");
+        path_m_t    path(path_);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path_("H:\\mno\\abc.def");
-		path_m_t	path(path_);
+    {
+        path_m_t    path_("H:\\mno\\abc.def");
+        path_m_t    path(path_);
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
+}
+
+static void test_ctor_too_long()
+{
+  size_t const  maxLen  = traits_m_t::maxPathLength;
+  size_t const  len1  = maxLen;
+
+  string_m_t    s(len1, 'a');
+
+  s = '/' + s;
+
+    path_m_t    path(s);
+
+  XTESTS_TEST_FAIL("should not get here");
 }
 
 static void test_assignment_c_string()
 {
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = "abc.def";
+        path = "abc.def";
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = "H:\\abc.def";
+        path = "H:\\abc.def";
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = "H:\\mno\\abc.def";
+        path = "H:\\mno\\abc.def";
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_assignment_sas()
 {
-	typedef std::string	string_t;
+    typedef std::string string_t;
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = string_t("abc.def");
+        path = string_t("abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = string_t("H:\\abc.def");
+        path = string_t("H:\\abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		path = string_t("H:\\mno\\abc.def");
+        path = string_t("H:\\mno\\abc.def");
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_assignment_copy()
 {
-	typedef std::string	string_t;
+    typedef std::string string_t;
 
-	{
-		path_m_t	path_("abc.def");
-		path_m_t	path;
+    {
+        path_m_t    path_("abc.def");
+        path_m_t    path;
 
-		path = path_;
+        path = path_;
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(7u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path_("H:\\abc.def");
-		path_m_t	path;
+    {
+        path_m_t    path_("H:\\abc.def");
+        path_m_t    path;
 
-		path = path_;
+        path = path_;
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 
-	{
-		path_m_t	path_("H:\\mno\\abc.def");
-		path_m_t	path;
+    {
+        path_m_t    path_("H:\\mno\\abc.def");
+        path_m_t    path;
 
-		path = path_;
+        path = path_;
 
-		XTESTS_TEST_BOOLEAN_FALSE(path.empty());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
-		XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
+        XTESTS_TEST_BOOLEAN_FALSE(path.empty());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.size());
+        XTESTS_TEST_INTEGER_EQUAL(14u, path.length());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path.c_str());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc.def", path.get_file());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("def", path.get_ext());
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\mno\\abc.def", path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
-		XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
-		XTESTS_TEST_BOOLEAN_TRUE(path == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == "H:\\mno\\abc.def");
+        XTESTS_TEST_BOOLEAN_TRUE("H:\\mno\\abc.def" == path);
+        XTESTS_TEST_BOOLEAN_TRUE(path == path);
 
-		XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
-		XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
-	}
+        XTESTS_TEST_BOOLEAN_TRUE(path != "abc");
+        XTESTS_TEST_BOOLEAN_TRUE("abc" != path);
+    }
 }
 
 static void test_1_11()
@@ -847,194 +966,230 @@ static void test_1_11()
 
 static void test_push()
 {
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:");
+        path.push("H:");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:", true);
+        path.push("H:", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:\\", false);
+        path.push("H:\\", false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:\\", true);
+        path.push("H:\\", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:\\dir", false);
+        path.push("H:\\dir", false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\dir", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\dir", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("H:\\dir", true);
+        path.push("H:\\dir", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\dir\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("H:\\dir\\", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("abc");
+        path.push("abc");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("abc", true);
+        path.push("abc", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abc\\", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("/");
+        path.push("/");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("/", true);
+        path.push("/", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("\\\\server\\share");
+        path.push("\\\\server\\share");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share", path);
+    }
 
-	{
-		path_m_t	path;
+    {
+        path_m_t    path;
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
 
-		path.push("\\\\server\\share", true);
+        path.push("\\\\server\\share", true);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\", path);
+    }
 }
 
 static void test_push_absolute()
 {
-	path_m_t	path;
+    path_m_t    path;
 
-	path /= "\\\\server\\share\\directory\\abc.def";
+    path /= "\\\\server\\share\\directory\\abc.def";
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\abc.def", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\abc.def", path);
 
-	path /= "\\\\server\\share\\directory\\abc.def";
+    path /= "\\\\server\\share\\directory\\abc.def";
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\abc.def", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\abc.def", path);
 
-	path.pop();
+    path.pop();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory", path);
 
-	path.push("dir2");
+    path.push("dir2");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2", path);
 
-	path.push("dir3");
+    path.push("dir3");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3", path);
 
-	path.push("abc.def");
+    path.push("abc.def");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.def", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.def", path);
 
-	path.pop_ext();
+    path.pop_ext();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
 
-	path.push_ext("DEF");
+    path.push_ext("DEF");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF", path);
 
-	path.push_ext("GHI");
+    path.push_ext("GHI");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF.GHI", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF.GHI", path);
 
-	path.pop_ext();
+    path.pop_ext();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.DEF", path);
 
-	path.pop_ext();
+    path.pop_ext();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
 
-	path.pop_ext();
+    path.pop_ext();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
 
-	path.push_ext(".def");
+    path.push_ext(".def");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.def", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.def", path);
 
-	path.pop_ext();
+    path.pop_ext();
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc", path);
 
-	path.push_ext(".");
+    path.push_ext(".");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc.", path);
 
-	path.push_ext("def");
+    path.push_ext("def");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc..def", path);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\directory\\dir2\\dir3\\abc..def", path);
+}
+
+static void test_push_too_long_1()
+{
+    path_m_t path;
+
+    size_t const  maxLen  = traits_m_t::maxPathLength;
+    size_t const  len1  = (maxLen / 2) + 5;
+    size_t const  len2  = (maxLen / 2) - 5;
+
+    path  = "/";
+    path  /=  string_m_t(len1, 'a');
+
+    XTESTS_TEST_PASSED();
+
+    path  /=  string_m_t(len2, 'b');
+
+    XTESTS_TEST_FAIL("should not get here");
+}
+
+static void test_push_too_long_2()
+{
+    path_m_t path;
+
+    size_t const  maxLen  = traits_m_t::maxPathLength;
+    size_t const  len1  = (maxLen / 2) + 5;
+    //size_t const  len2  = (maxLen / 2) - 5;
+
+    path  = "/";
+    path  /=  string_m_t(len1, 'a');
+
+    XTESTS_TEST_PASSED();
+
+    path  /=  '/' + string_m_t(maxLen, 'b');
+
+    XTESTS_TEST_FAIL("should not get here");
 }
 
 static void test_1_14()
@@ -1043,200 +1198,200 @@ static void test_1_14()
 
 static void test_copy()
 {
-	path_m_t	path("H:\\freelibs\\recls\\recls.ruby\\src");
+    path_m_t    path("H:\\freelibs\\recls\\recls.ruby\\src");
 
-	path /= "def";
+    path /= "def";
 
-	XTESTS_TEST_INTEGER_EQUAL(36u, path.size());
+    XTESTS_TEST_INTEGER_EQUAL(36u, path.size());
 
 
 }
 
 static void test_pop()
 {
-	{
-		path_m_t	path1;
-		path_m_t	path2;
+    {
+        path_m_t    path1;
+        path_m_t    path2;
 
-		path1.pop();
+        path1.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
+    }
 
-	{
-		path_m_t	path1;
-		path_m_t	path2;
+    {
+        path_m_t    path1;
+        path_m_t    path2;
 
-		path1.pop(false);
+        path1.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
+    }
 
-	{
-		path_m_t	path1("abc.def");
-		path_m_t	path2;
+    {
+        path_m_t    path1("abc.def");
+        path_m_t    path2;
 
-		path1.pop();
+        path1.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
+    }
 
-	{
-		path_m_t	path1("abc.def");
-		path_m_t	path2;
+    {
+        path_m_t    path1("abc.def");
+        path_m_t    path2;
 
-		path1.pop(false);
+        path1.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path2, path1);
+    }
 
-	{
-		path_m_t	path("H:\\abc.def");
+    {
+        path_m_t    path("H:\\abc.def");
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
+    }
 
-	{
-		path_m_t	path("H:\\abc.def");
+    {
+        path_m_t    path("H:\\abc.def");
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
+    }
 
-	{
-		path_m_t	path("H:\\xyz\\mno\\abc.def");
+    {
+        path_m_t    path("H:\\xyz\\mno\\abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\abc.def", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", path);
+    }
 
-	{
-		path_m_t	path("H:\\xyz\\mno\\abc.def");
+    {
+        path_m_t    path("H:\\xyz\\mno\\abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\abc.def", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\mno\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\xyz\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("H:\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX("", path);
+    }
 
-	{
-		path_m_t	path("\\\\server\\share\\xyz\\mno\\abc.def");
+    {
+        path_m_t    path("\\\\server\\share\\xyz\\mno\\abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\abc.def", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+    }
 
-	{
-		path_m_t	path("\\\\server\\share\\xyz\\mno\\abc.def");
+    {
+        path_m_t    path("\\\\server\\share\\xyz\\mno\\abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\abc.def", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\mno\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\xyz\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\\\\server\\share\\", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+    }
 
-	{
-		path_m_t	path("/xyz/mno/abc.def");
+    {
+        path_m_t    path("/xyz/mno/abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/abc.def", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
 
-		path.pop();
+        path.pop();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+    }
 
-	{
-		path_m_t	path("/xyz/mno/abc.def");
+    {
+        path_m_t    path("/xyz/mno/abc.def");
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/abc.def", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/abc.def", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/mno/", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/xyz/", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("/", path);
 
-		path.pop(false);
+        path.pop(false);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("", path);
+    }
 }
 
 static void test_2_02()
@@ -1247,36 +1402,36 @@ static void test_2_03()
 {
 }
 
-	struct canonicalisation_pair
-	{
-		char const*	pre;
-		char const*	post;
-	};
+    struct canonicalisation_pair
+    {
+        char const* pre;
+        char const* post;
+    };
 
 static void test_canonicalise()
 {
-	static const canonicalisation_pair	pairs[] =
-	{
-		{	"abc",					NULL		},
-		{	"../abc",				NULL		},
-		{	".././abc",				"../abc"	},
-		{	"./abc",				"abc"		},
-		{	"../../abc",			NULL		},
-		{	"../../abc/..",			"../.."		},
-		{	"././././././././././abc/././././././././././././././././././",			"abc"		},
-	};
+    static const canonicalisation_pair  pairs[] =
+    {
+        {   "abc",                  NULL        },
+        {   "../abc",               NULL        },
+        {   ".././abc",             "../abc"    },
+        {   "./abc",                "abc"       },
+        {   "../../abc",            NULL        },
+        {   "../../abc/..",         "../.."     },
+        {   "././././././././././abc/././././././././././././././././././",         "abc"       },
+    };
 
-	{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(pairs); ++i)
-	{
-		char const*	pre		=	pairs[i].pre;
-		char const*	post	=	(NULL != pairs[i].post) ? pairs[i].post : pairs[i].pre;
-		path_m_t	path(pre);
+    { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(pairs); ++i)
+    {
+        char const* pre     =   pairs[i].pre;
+        char const* post    =   (NULL != pairs[i].post) ? pairs[i].post : pairs[i].pre;
+        path_m_t    path(pre);
 
-		path.canonicalise();
+        path.canonicalise();
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL(post, path);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL(post, path);
 
-	}}
+    }}
 }
 
 static void test_2_05()
@@ -1285,99 +1440,99 @@ static void test_2_05()
 
 static void test_copy_empty()
 {
-	path_m_t path;
+    path_m_t path;
 
-	{
-		size_t cch = path.copy(NULL, 0);
+    {
+        size_t cch = path.copy(NULL, 0);
 
-		XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+    }
 
-	{
-		char buff[101];
+    {
+        char buff[101];
 
-		{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
-		{
-			size_t cch = path.copy(&buff[0], i);
+        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
+        {
+            size_t cch = path.copy(&buff[0], i);
 
-			if(i < path.size())
-			{
-				XTESTS_TEST_INTEGER_EQUAL(i, cch);
-			}
-			else
-			{
-				XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-			}
-		}}
-	}
+            if(i < path.size())
+            {
+                XTESTS_TEST_INTEGER_EQUAL(i, cch);
+            }
+            else
+            {
+                XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+            }
+        }}
+    }
 }
 
 static void test_copy_1()
 {
-	path_m_t path("/");
+    path_m_t path("/");
 
-	{
-		size_t cch = path.copy(NULL, 0);
+    {
+        size_t cch = path.copy(NULL, 0);
 
-		XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+    }
 
-	{
-		char buff[101];
+    {
+        char buff[101];
 
-		{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
-		{
-			size_t cch = path.copy(&buff[0], i);
+        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
+        {
+            size_t cch = path.copy(&buff[0], i);
 
-			if(i <= path.size())
-			{
-				XTESTS_TEST_INTEGER_EQUAL(i, cch);
-				XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(path, buff, int(i));
-			}
-			else
-			{
-				XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-				XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path, buff);
-			}
-		}}
-	}
+            if(i <= path.size())
+            {
+                XTESTS_TEST_INTEGER_EQUAL(i, cch);
+                XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(path, buff, int(i));
+            }
+            else
+            {
+                XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+                XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path, buff);
+            }
+        }}
+    }
 }
 
 static void test_copy_2()
 {
-	path_m_t path("H:\\xyz\\mno\\abc.def");
+    path_m_t path("H:\\xyz\\mno\\abc.def");
 
-	{
-		size_t cch = path.copy(NULL, 0);
+    {
+        size_t cch = path.copy(NULL, 0);
 
-		XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+    }
 
-	{
-		char buff[101];
+    {
+        char buff[101];
 
-		{ for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
-		{
-			size_t cch = path.copy(&buff[0], i);
+        { for(size_t i = 0; i != STLSOFT_NUM_ELEMENTS(buff); ++i)
+        {
+            size_t cch = path.copy(&buff[0], i);
 
-			if(i <= path.size())
-			{
-				XTESTS_TEST_INTEGER_EQUAL(i, cch);
-				XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(path, buff, int(i));
-			}
-			else
-			{
-				XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
-				XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path, buff);
-			}
-		}}
-	}
+            if(i <= path.size())
+            {
+                XTESTS_TEST_INTEGER_EQUAL(i, cch);
+                XTESTS_TEST_MULTIBYTE_STRING_EQUAL_N(path, buff, int(i));
+            }
+            else
+            {
+                XTESTS_TEST_INTEGER_EQUAL(path.size(), cch);
+                XTESTS_TEST_MULTIBYTE_STRING_EQUAL(path, buff);
+            }
+        }}
+    }
 }
 
 static void test_pop_ext()
 {
     {
-    	path_m_t path("H:\\xyz\\mno\\abc.def");
+        path_m_t path("H:\\xyz\\mno\\abc.def");
 
         path.pop_ext();
 
@@ -1393,7 +1548,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("H:\\abc.def");
+        path_m_t path("H:\\abc.def");
 
         path.pop_ext();
 
@@ -1405,7 +1560,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("H:\\abc");
+        path_m_t path("H:\\abc");
 
         path.pop_ext();
 
@@ -1417,7 +1572,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("H:\\");
+        path_m_t path("H:\\");
 
         path.pop_ext();
 
@@ -1429,7 +1584,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("\\");
+        path_m_t path("\\");
 
         path.pop_ext();
 
@@ -1441,7 +1596,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("/");
+        path_m_t path("/");
 
         path.pop_ext();
 
@@ -1453,7 +1608,7 @@ static void test_pop_ext()
     }
 
     {
-    	path_m_t path("abc.def");
+        path_m_t path("abc.def");
 
         path.pop_ext();
 
@@ -1468,7 +1623,7 @@ static void test_pop_ext()
 static void test_pop_file()
 {
     {
-		path_m_t path("H:\\xyz\\mno\\abc.def");
+        path_m_t path("H:\\xyz\\mno\\abc.def");
 
         path.pop_file();
 
@@ -1484,7 +1639,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("H:\\abc.def");
+        path_m_t path("H:\\abc.def");
 
         path.pop_file();
 
@@ -1500,7 +1655,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("H:\\abc\\");
+        path_m_t path("H:\\abc\\");
 
         path.pop_file();
 
@@ -1516,7 +1671,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("H:\\");
+        path_m_t path("H:\\");
 
         path.pop_file();
 
@@ -1532,7 +1687,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("/");
+        path_m_t path("/");
 
         path.pop_file();
 
@@ -1548,7 +1703,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("abc.def");
+        path_m_t path("abc.def");
 
         path.pop_file();
 
@@ -1560,7 +1715,7 @@ static void test_pop_file()
     }
 
     {
-    	path_m_t path("abc");
+        path_m_t path("abc");
 
         path.pop_file();
 
@@ -1590,28 +1745,52 @@ static void test_2_14()
 
 static void test_bad_path_with_pipe()
 {
-	path_m_t	path("|");
+    path_m_t    path("|");
 
-	path.make_absolute();
+    path.make_absolute();
 }
 
 static void test_bad_path_with_less_than()
 {
-	path_m_t	path("<");
+    path_m_t    path("<");
 
-	path.make_absolute();
+    path.make_absolute();
 }
 
 static void test_2_17()
 {
 }
 
-static void test_2_18()
+static void test_push_sep()
 {
+    path_m_t path;
+
+  size_t const  maxLen  = traits_m_t::maxPathLength;
+
+  string_m_t    fname(maxLen - 2, 'a');
+
+  path  = '/' + fname;
+
+  XTESTS_TEST_PASSED();
+
+  path.push_sep();
+
+  XTESTS_TEST_MULTIBYTE_STRING_EQUAL('/' + fname + '/', path);
 }
 
-static void test_2_19()
+static void test_push_sep_too_long()
 {
+    path_m_t path;
+
+  size_t const  maxLen  = traits_m_t::maxPathLength;
+
+  path  = '/' + string_m_t(maxLen - 1, 'a');
+
+  XTESTS_TEST_PASSED();
+
+  path.push_sep();
+
+  XTESTS_TEST_FAIL("should not get here");
 }
 
 static void test_2_20()

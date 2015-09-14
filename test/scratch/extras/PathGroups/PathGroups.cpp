@@ -20,7 +20,6 @@
 
 #include <stlsoft/smartptr/shared_ptr.hpp>
 #include <stlsoft/string/string_tokeniser.hpp>
-#include <platformstl/filesystem/file_lines.hpp>
 
 #include <iostream>
 #include <map>
@@ -32,7 +31,6 @@ PANTHEIOS_EXTERN_C PAN_CHAR_T const PANTHEIOS_FE_PROCESS_IDENTITY[] = PANTHEIOS_
  * Classes
  */
 
-#include <platformstl/filesystem/file_lines.hpp>
 #include <stlsoft/iterator/transformer.hpp>
 #include <stlsoft/memory/allocator_selector.hpp>
 #include <stlsoft/string/char_traits.hpp>
@@ -56,14 +54,14 @@ int main(int argc, char** argv)
     {
         ff::writeln(
             std::cerr
-        ,	"USAGE: PathGroups <file>"
+        ,   "USAGE: PathGroups <file>"
         );
 
         return EXIT_FAILURE;
     }
     else
     {
-		stlsoft::extras::file_groups groups(argv[1]);
+        stlsoft::extras::file_groups groups(argv[1]);
 
         ff::writeln(std::cout, "by items:");
         { for(stlsoft::extras::file_groups::item_const_iterator i = groups.begin_item(); i != groups.end_item(); ++i)
@@ -76,13 +74,13 @@ int main(int argc, char** argv)
             {
                 ff::fmtln(
                     std::cout
-                ,	"\t{0} items"
-                ,	group.size()
+                ,   "\t{0} items"
+                ,   group.size()
                 );
                 std::copy(
                     group.begin()
-                ,	group.end()
-                ,	ff::format_iterator(std::cout, "\t\t{0}\n")
+                ,   group.end()
+                ,   ff::format_iterator(std::cout, "\t\t{0}\n")
                 );
             }
         }}
@@ -94,13 +92,13 @@ int main(int argc, char** argv)
 
             ff::fmtln(
                 std::cout
-            ,	"\t{0} items"
-            ,	group.size()
+            ,   "\t{0} items"
+            ,   group.size()
             );
             std::copy(
                 group.begin()
-            ,	group.end()
-            ,	ff::format_iterator(std::cout, "\t\t{0}\n")
+            ,   group.end()
+            ,   ff::format_iterator(std::cout, "\t\t{0}\n")
             );
         }}
 

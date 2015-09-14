@@ -4,7 +4,7 @@
  *
  *
  * Created:     27th May 2010
- * Updated:     12th August 2010
+ * Updated:     24th July 2012
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_TR1_HPP_STD_HASH
@@ -15,11 +15,16 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #include <stlsoft/stlsoft.h>
-#include <stlsoft/util/limit_traits.h>
+#ifndef STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS
+# include <stlsoft/limits/integral_limits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS */
 
 #include <functional>
 #include <string>

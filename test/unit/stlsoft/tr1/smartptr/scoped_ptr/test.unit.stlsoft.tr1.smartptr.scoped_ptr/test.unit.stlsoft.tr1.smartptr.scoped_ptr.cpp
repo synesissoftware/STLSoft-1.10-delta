@@ -128,8 +128,8 @@ namespace
         {
             --*p;
         }
-	private:
-		Class& operator =(Class const&);
+    private:
+        Class& operator =(Class const&);
 
     private:
         int* const p;

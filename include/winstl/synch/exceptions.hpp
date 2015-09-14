@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation API Library exception(s).
  *
  * Created:     30th May 2006
- * Updated:     31st May 2010
+ * Updated:     13th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR     2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR     1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT      17
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR     2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION  1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT      20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,15 +68,23 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef WINSTL_INCL_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE
+# include <winstl/synch/Synchronisation_status_code.h>
+#endif /* !WINSTL_INCL_WINSTL_SYNCH_H_SYNCHRONISATION_STATUS_CODE */
 #ifndef WINSTL_INCL_WINSTL_HPP_ERROR_WINDOWS_EXCEPTIONS
 # include <winstl/error/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_ERROR_WINDOWS_EXCEPTIONS */
+
+#include <stdexcept>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -90,18 +98,65 @@ namespace winstl
 {
 # else
 /* Define stlsoft::winstl_project */
-
 namespace stlsoft
 {
-
 namespace winstl_project
 {
-
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
+ */
+
+#if 0
+
+    // TODO: Questions:
+    //
+    // 1. should synchronisation_logic_exception derive from std::logic_error?
+    // 2. Should synchronisation_logic_exception derive only from std::logic_error?
+    // 3. Should wait_failed_logic_exception derive from std::invalid_argument?
+
+    [winstl::windows_exception]
+
+        <-  synchronisation_exception [A]
+
+                /* should not happen (in a well-designed program) */
+            <-  synchronisation_logic_exception [A]
+
+                <-  wait_failed_logic_exception [A]
+
+                    <-  invalid_wait_handle_exception
+
+                        <-  null_wait_handle_exception
+
+                    <-  duplicate_wait_handle_exception
+
+                    <-  too_many_wait_handles_exception
+
+                /* may happen (in a well-designed program) */
+            <-  synchronisation_runtime_exception [A]
+
+                    /* (likely to be) unrecoverable */
+                <-  synchronisation_runtime_failure_exception [A]
+
+                    <-  synchronisation_creation_exception
+
+                    <-  synchronisation_object_state_change_failed_exception
+
+                    <-  wait_failed_runtime_exception [A]
+
+                        <-  wait_abandoned_exception
+
+                    /* (may be) recoverable */
+                <-  wait_operation_interrupted_exception [A]
+
+                    <-  wait_operation_priority_preemption_exception
+
+#endif /* 0 */
+
+/* ///////////////////////////
+ * abstract classes
  */
 
 /** Root exception thrown by
@@ -115,45 +170,231 @@ public: // Member Types
     typedef windows_exception                   parent_class_type;
     /// This type
     typedef synchronisation_exception           class_type;
-    /// [DEPRECATED] The condition code type
-    ///
-    /// \deprecated This will be removed in a future release
-    typedef parent_class_type::error_code_type  error_code_type;
-    /// The condition code type
-    typedef parent_class_type::error_code_type  condition_code_type;
+    /// The system condition code type
+    typedef parent_class_type::error_code_type  system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef Synchronisation_status_code_t       subsystem_status_code_type;
 
-public: // Construction
-    synchronisation_exception(ws_char_a_t const* message, condition_code_type error)
-        : parent_class_type(message, error)
-    {};
+protected: // Construction
+    synchronisation_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(message, sc)
+        , SubsystemStatusCode(subsystemStatusCode)
+    {}
+private:
     /// Copy assignment is not allowed
     class_type& operator =(class_type const&);
+
+public: // Fields
+    /// The subsystem-specific status code associated with the condition
+    /// that resulted in the exception being thrown.
+    subsystem_status_code_type const    SubsystemStatusCode;
 };
 
-/** Exception thrown to indicate invalid wait handle(s)
+
+/** Root exception for classes of synchronisation logic errors
  */
-class invalid_wait_handle_exception
+class synchronisation_logic_exception
     : public synchronisation_exception
 {
 public: // Member Types
     /// The parent exception type
-    typedef synchronisation_exception               parent_class_type;
+    typedef synchronisation_exception                       parent_class_type;
     /// This type
-    typedef invalid_wait_handle_exception           class_type;
+    typedef synchronisation_logic_exception                 class_type;
     /// The condition code type
-    typedef parent_class_type::condition_code_type  condition_code_type;
+    typedef parent_class_type::error_code_type              system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
+
+protected: // Construction
+    synchronisation_logic_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(sc, message, subsystemStatusCode)
+    {}
+private:
+    // copy assignment is proscribed
+    class_type& operator =(class_type const&);
+};
+
+/** Root exception for classes of synchronisation runtime conditions
+ */
+class synchronisation_runtime_exception
+    : public synchronisation_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_exception                       parent_class_type;
+    /// This type
+    typedef synchronisation_runtime_exception               class_type;
+    /// The condition code type
+    typedef parent_class_type::error_code_type              system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
+
+protected: // Construction
+    synchronisation_runtime_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(sc, message, subsystemStatusCode)
+    {}
+private:
+    // copy assignment is proscribed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that a wait operation has failed
+ */
+class wait_failed_logic_exception
+    : public synchronisation_logic_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_logic_exception             parent_class_type;
+    /// This type
+    typedef wait_failed_logic_exception                 class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
+
+public: // Construction
+    wait_failed_logic_exception(
+        system_status_code_type sc
+    ,   ws_char_a_t const*      message
+    )
+        : parent_class_type(sc, message, Synchronisation_WaitFailed)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+};
+
+/** Root exception for classes of synchronisation runtime failures
+ */
+class synchronisation_runtime_failure_exception
+    : public synchronisation_runtime_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_runtime_exception               parent_class_type;
+    /// This type
+    typedef synchronisation_runtime_failure_exception       class_type;
+    /// The condition code type
+    typedef parent_class_type::error_code_type              system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
+
+protected: // Construction
+    synchronisation_runtime_failure_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(sc, message, subsystemStatusCode)
+    {}
+private:
+    // copy assignment is proscribed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that a wait operation has failed.
+ */
+class wait_failed_runtime_exception
+    : public synchronisation_runtime_failure_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_runtime_failure_exception   parent_class_type;
+    /// This type
+    typedef wait_failed_runtime_exception               class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
+
+protected: // Construction
+    wait_failed_runtime_exception(
+        system_status_code_type sc
+    ,   ws_char_a_t const*      message
+    )
+        : parent_class_type(sc, message, Synchronisation_WaitFailed)
+    {}
+    wait_failed_runtime_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(sc, message, subsystemStatusCode)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that a wait operation has been interrupted.
+ */
+
+class wait_operation_interrupted_exception
+    : public synchronisation_runtime_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_runtime_exception               parent_class_type;
+    /// This type
+    typedef wait_operation_interrupted_exception            class_type;
+    /// The condition code type
+    typedef parent_class_type::error_code_type              system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type   subsystem_status_code_type;
+
+protected: // Construction
+    wait_operation_interrupted_exception(
+        system_status_code_type sc
+    ,   ws_char_a_t const*      message
+    )
+        : parent_class_type(sc, message, Synchronisation_WaitOperationInterrupted)
+    {}
+private:
+    // copy assignment is proscribed
+    class_type& operator =(class_type const&);
+};
+
+/* ///////////////////////////
+ * concrete classes - logic
+ */
+
+/** Exception thrown to indicate invalid wait handle(s)
+ */
+class invalid_wait_handle_exception
+    : public wait_failed_logic_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef wait_failed_logic_exception                 parent_class_type;
+    /// This type
+    typedef invalid_wait_handle_exception               class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 public: // Construction
     /// Constructs an instance
     ///
-    /// \param message The message associated with the exception
-    /// \param code The condition code associated with the exception
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
     /// \param waitIndex The index of the handle in a vector wait
     ///   operation. Specify -1 if scalar wait
-    invalid_wait_handle_exception(ws_char_a_t const* message, condition_code_type error, int waitIndex)
-        : parent_class_type(message, error)
-        , waitIndex(waitIndex)
-    {};
+    invalid_wait_handle_exception(
+        system_status_code_type sc
+    ,   int                     waitIndex
+    )
+        : parent_class_type(sc, "invalid wait handle")
+        , WaitIndex(waitIndex)
+    {}
 private:
     /// Copy assignment is not allowed
     class_type& operator =(class_type const&);
@@ -161,64 +402,71 @@ private:
 public: // Fields
     /// The index of the handle in a vector wait operation. -1 if scalar
     /// wait operation
-    const int waitIndex;
+    const int WaitIndex;
 };
 
-/** Exception thrown to indicate NULL wait handle
+/** Exception thrown to indicate one or more NULL wait handles
  */
 class null_wait_handle_exception
     : public invalid_wait_handle_exception
 {
 public: // Member Types
     /// The parent exception type
-    typedef invalid_wait_handle_exception           parent_class_type;
+    typedef invalid_wait_handle_exception               parent_class_type;
     /// This type
-    typedef null_wait_handle_exception              class_type;
+    typedef null_wait_handle_exception                  class_type;
     /// The condition code type
-    typedef parent_class_type::condition_code_type  condition_code_type;
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 public: // Construction
     /// Constructs an instance
     ///
-    /// \param message The message associated with the exception
-    /// \param code The condition code associated with the exception
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
     /// \param waitIndex The index of the handle in a vector wait
     ///   operation. Specify -1 if scalar wait
-    null_wait_handle_exception(ws_char_a_t const* message, condition_code_type error, int waitIndex)
-        : parent_class_type(message, error, waitIndex)
-    {};
+    null_wait_handle_exception(
+        system_status_code_type sc
+    ,   int                     waitIndex
+    )
+        : parent_class_type(sc, waitIndex)
+    {}
 private:
     /// Copy assignment is not allowed
     class_type& operator =(class_type const&);
 };
 
-/** Exception thrown to indicate invalid wait handle(s)
+/** Exception thrown to indicate duplicate wait handles
  */
 class duplicate_wait_handle_exception
-    : public synchronisation_exception
+    : public wait_failed_logic_exception
 {
 public: // Member Types
     /// The parent exception type
-    typedef synchronisation_exception               parent_class_type;
+    typedef wait_failed_logic_exception                 parent_class_type;
     /// This type
-    typedef duplicate_wait_handle_exception         class_type;
+    typedef duplicate_wait_handle_exception             class_type;
     /// The condition code type
-    typedef parent_class_type::condition_code_type  condition_code_type;
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
 
 public: // Construction
     /// Constructs an instance
     ///
-    /// \param message The message associated with the exception
-    /// \param code The condition code associated with the exception
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
     /// \param firstIndex The first index of the first duplicated handle in
     ///   a vector wait operation
     /// \param secondIndex The second index of the first duplicated handle
     ///   in a vector wait operation
-    duplicate_wait_handle_exception(ws_char_a_t const* message, condition_code_type error, ws_size_t firstIndex, ws_size_t secondIndex)
-        : parent_class_type(message, error)
-        , firstIndex(firstIndex)
-        , secondIndex(secondIndex)
-    {};
+    duplicate_wait_handle_exception(
+        system_status_code_type sc
+    ,   ws_size_t               firstIndex
+    ,   ws_size_t               secondIndex
+    )
+        : parent_class_type(sc, "duplicate wait handles")
+        , FirstIndex(firstIndex)
+        , SecondIndex(secondIndex)
+    {}
 private:
     /// Copy assignment is not allowed
     class_type& operator =(class_type const&);
@@ -226,10 +474,201 @@ private:
 public: // Fields
     /// The first index of the first duplicated handle in a vector wait
     /// operation
-    const ws_size_t firstIndex;
+    const ws_size_t FirstIndex;
     /// The second index of the first duplicated handle in a vector wait
     /// operation
-    const ws_size_t secondIndex;
+    const ws_size_t SecondIndex;
+};
+
+/** Exception thrown to indicate duplicate too many wait handles
+ */
+class too_many_wait_handles_exception
+    : public wait_failed_logic_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef wait_failed_logic_exception                 parent_class_type;
+    /// This type
+    typedef too_many_wait_handles_exception             class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
+
+public: // Construction
+    /// Constructs an instance
+    ///
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
+    /// \param numWaitHandles The number of wait handles specified to the
+    ///   operation raising the exception.
+    too_many_wait_handles_exception(
+        system_status_code_type sc
+    ,   ws_size_t               numWaitHandles
+    )
+        : parent_class_type(sc, "too many wait handles")
+        , NumWaitHandles(numWaitHandles)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+
+public: // Fields
+    /// The number of wait handles specified to the operation raising the
+    /// exception.
+    ws_size_t const NumWaitHandles;
+};
+
+/* ///////////////////////////
+ * concrete classes - runtime
+ */
+
+/** Exception thrown to indicate that the creation of a synchronisation
+ * object has failed.
+ */
+class synchronisation_creation_exception
+    : public synchronisation_runtime_failure_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_runtime_failure_exception   parent_class_type;
+    /// This type
+    typedef synchronisation_creation_exception          class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type  system_status_code_type;
+
+public: // Construction
+    /// Constructs an instance
+    ///
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
+    /// \param message The message associated with the exception
+    synchronisation_creation_exception(
+        system_status_code_type sc
+    ,   ws_char_a_t const*      message
+    )
+        : parent_class_type(sc, message, Synchronisation_SynchronisationObjectCreationFailed)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that an operation to change the state of a
+ * synchronisation object has failed.
+ */
+class synchronisation_object_state_change_failed_exception
+    : public synchronisation_runtime_failure_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef synchronisation_runtime_failure_exception               parent_class_type;
+    /// This type
+    typedef synchronisation_object_state_change_failed_exception    class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type              system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type           subsystem_status_code_type;
+
+public: // Construction
+    /// Constructs an instance
+    ///
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
+    /// \param message The message associated with the exception
+    /// \param subsystemStatusCode The subsystem-specific status code to be
+    ///   associated with the exception
+    synchronisation_object_state_change_failed_exception(
+        system_status_code_type     sc
+    ,   ws_char_a_t const*          message
+    ,   subsystem_status_code_type  subsystemStatusCode
+    )
+        : parent_class_type(sc, message, subsystemStatusCode)
+    {
+        WINSTL_ASSERT(Synchronisation_SynchronisationObjectCreationFailed != subsystemStatusCode);
+        WINSTL_ASSERT(Synchronisation_WaitFailed != subsystemStatusCode);
+        WINSTL_ASSERT(Synchronisation_WaitOperationInterrupted != subsystemStatusCode);
+    }
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that a wait operation has been interrupted
+ * by the signalling of a synchronisation object of higher-priority (lower
+ * order) in the wait array.
+ */
+class wait_abandoned_exception
+    : public wait_failed_runtime_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef wait_failed_runtime_exception                       parent_class_type;
+    /// This type
+    typedef wait_abandoned_exception                            class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type          system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type       subsystem_status_code_type;
+
+public: // Construction
+    /// Constructs an instance
+    ///
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
+    /// \param message The message associated with the exception
+    explicit
+    wait_abandoned_exception(
+        system_status_code_type     sc      =   ERROR_SUCCESS
+    ,   ws_char_a_t const*          message =   "wait abandoned"
+    )
+        : parent_class_type(sc, message, Synchronisation_WaitAbandoned)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+};
+
+/** Exception thrown to indicate that a wait operation has been interrupted
+ * by the signalling of a synchronisation object of higher-priority (lower
+ * order) in the wait array.
+ */
+class wait_operation_priority_preemption_exception
+    : public wait_operation_interrupted_exception
+{
+public: // Member Types
+    /// The parent exception type
+    typedef wait_operation_interrupted_exception                parent_class_type;
+    /// This type
+    typedef wait_operation_priority_preemption_exception        class_type;
+    /// The condition code type
+    typedef parent_class_type::system_status_code_type          system_status_code_type;
+    /// The subsystem-specific status code type
+    typedef parent_class_type::subsystem_status_code_type       subsystem_status_code_type;
+
+public: // Construction
+    /// Constructs an instance
+    ///
+    /// \param sc The system condition code associated with the condition
+    ///   that resulted in the exception being thrown
+    /// \param indexOfSignalledSynchronisationObject The index of the
+    ///   signalled synchronisation object that preempted the wait
+    ///   operation
+    /// \param message The message associated with the exception
+    wait_operation_priority_preemption_exception(
+        system_status_code_type sc
+    ,   int                     indexOfSignalledSynchronisationObject
+    ,   ws_char_a_t const*      message =   "wait operation priority-preempted"
+    )
+        : parent_class_type(sc, message)
+        , IndexOfSignalledSynchronisationObject(indexOfSignalledSynchronisationObject)
+    {}
+private:
+    /// Copy assignment is not allowed
+    class_type& operator =(class_type const&);
+
+public: // Fields
+    /// The index of the signalled synchronisation object (that preempted
+    /// the overall wait operation)
+    int const   IndexOfSignalledSynchronisationObject;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -237,10 +676,10 @@ public: // Fields
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

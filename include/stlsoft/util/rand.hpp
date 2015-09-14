@@ -4,11 +4,11 @@
  * Purpose:     Random number generator for large integral types.
  *
  * Created:     12th July 2009
- * Updated:     13th October 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_MINOR       0
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_REVISION    5
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_EDIT        7
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_REVISION    7
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_RAND_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -70,9 +73,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
 # include <stlsoft/meta/is_integral_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS
-# include <stlsoft/util/limit_traits.h>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS
+# include <stlsoft/limits/integral_limits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_LIMITS_HPP_INTEGRAL_LIMITS */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS
 # include <stlsoft/util/size_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_SIZE_TRAITS */
@@ -141,49 +144,49 @@ struct x_stlsoft_util_rand_impl
     }
 
 #if 0
-	static ss_uint32_t get_low_mask_32_(size_t i)
-	{
-		static ss_uint32_t s_masks[] =
-		{
-			0x00000001,
-			0x00000003,
-			0x00000007,
-			0x0000000f,
-			0x0000001f,
-			0x0000003f,
-			0x0000007f,
-			0x000000ff,	
-			0x000001ff,
-			0x000003ff,
-			0x000007ff,
-			0x00000fff,	
-			0x00001fff,
-			0x00003fff,
-			0x00007fff,
-			0x0000ffff,	
-			0x0001ffff,
-			0x0003ffff,
-			0x0007ffff,
-			0x000fffff,	
-			0x001fffff,
-			0x003fffff,
-			0x007fffff,
-			0x00ffffff,	
-			0x01ffffff,
-			0x03ffffff,
-			0x07ffffff,
-			0x0fffffff,	
-			0x1fffffff,
-			0x3fffffff,
-			0x7fffffff,
-			0xffffffff,	
-			0x00000000
-		};
+    static ss_uint32_t get_low_mask_32_(size_t i)
+    {
+        static ss_uint32_t s_masks[] =
+        {
+            0x00000001,
+            0x00000003,
+            0x00000007,
+            0x0000000f,
+            0x0000001f,
+            0x0000003f,
+            0x0000007f,
+            0x000000ff, 
+            0x000001ff,
+            0x000003ff,
+            0x000007ff,
+            0x00000fff, 
+            0x00001fff,
+            0x00003fff,
+            0x00007fff,
+            0x0000ffff, 
+            0x0001ffff,
+            0x0003ffff,
+            0x0007ffff,
+            0x000fffff, 
+            0x001fffff,
+            0x003fffff,
+            0x007fffff,
+            0x00ffffff, 
+            0x01ffffff,
+            0x03ffffff,
+            0x07ffffff,
+            0x0fffffff, 
+            0x1fffffff,
+            0x3fffffff,
+            0x7fffffff,
+            0xffffffff, 
+            0x00000000
+        };
 
-		STLSOFT_ASSERT(i < 32);
+        STLSOFT_ASSERT(i < 32);
 
-		return s_masks[i];
-	}
+        return s_masks[i];
+    }
 #endif
 };
 

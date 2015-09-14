@@ -4,11 +4,11 @@
  * Purpose:     Facade for the standard C Streams API.
  *
  * Created:     31st May 2009
- * Updated:     12th August 2010
+ * Updated:     20th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2009-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2009-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_MAJOR       1
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_MINOR       0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_REVISION    10
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_EDIT        13
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_REVISION    13
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_FILE_STREAM_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -102,10 +105,10 @@
  * Namespace
  */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -386,13 +389,13 @@ private: // Implementation
         switch(e)
         {
             case    ENOMEM:
-                throw stlsoft_ns_qual(out_of_memory_exception)(e);
+                STLSOFT_THROW_X(stlsoft_ns_qual(out_of_memory_exception)(e));
             case    ENOENT:
-                throw stlsoft_ns_qual(file_not_found_exception)(message, e);
+                STLSOFT_THROW_X(stlsoft_ns_qual(file_not_found_exception)(message, e));
             case    EACCES:
-                throw stlsoft_ns_qual(access_denied_exception)(message, e);
+                STLSOFT_THROW_X(stlsoft_ns_qual(access_denied_exception)(message, e));
             default:
-                throw stlsoft_ns_qual(filesystem_exception)(message, e);
+                STLSOFT_THROW_X(stlsoft_ns_qual(filesystem_exception)(message, e));
         }
     }
 
@@ -401,13 +404,13 @@ private: // Implementation
         switch(e)
         {
             case    ENOMEM:
-                throw stlsoft_ns_qual(out_of_memory_exception)(e);
+                STLSOFT_THROW_X(stlsoft_ns_qual(out_of_memory_exception)(e));
             case    ENOENT:
-                throw stlsoft_ns_qual(file_not_found_exception)(message, e, path);
+                STLSOFT_THROW_X(stlsoft_ns_qual(file_not_found_exception)(message, e, path));
             case    EACCES:
-                throw stlsoft_ns_qual(access_denied_exception)(message, e, path);
+                STLSOFT_THROW_X(stlsoft_ns_qual(access_denied_exception)(message, e, path));
             default:
-                throw stlsoft_ns_qual(filesystem_exception)(message, e, path);
+                STLSOFT_THROW_X(stlsoft_ns_qual(filesystem_exception)(message, e, path));
         }
     }
 
@@ -477,9 +480,9 @@ inline ss_typename_type_k FILE_stream_base<R, I>::Ref get_FILE_stream_Ref(FILE_s
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

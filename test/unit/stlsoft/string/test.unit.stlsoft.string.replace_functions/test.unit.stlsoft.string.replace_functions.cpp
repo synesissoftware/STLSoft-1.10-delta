@@ -60,37 +60,37 @@
 namespace
 {
 
-	static void test_1_00(void);
-	static void test_1_01(void);
-	static void test_1_02(void);
-	static void test_1_03(void);
-	static void test_1_04(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_00(void);
+    static void test_1_01(void);
+    static void test_1_02(void);
+    static void test_1_03(void);
+    static void test_1_04(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
-	static void test_2_00(void);
-	static void test_2_01(void);
-	static void test_2_02(void);
-	static void test_2_03(void);
-	static void test_2_04(void);
-	static void test_2_10(void);
-	static void test_2_11(void);
-	static void test_2_12(void);
-	static void test_2_13(void);
-	static void test_2_14(void);
-	static void test_2_15(void);
-	static void test_2_16(void);
-	static void test_2_17(void);
-	static void test_2_18(void);
-	static void test_2_19(void);
+    static void test_2_00(void);
+    static void test_2_01(void);
+    static void test_2_02(void);
+    static void test_2_03(void);
+    static void test_2_04(void);
+    static void test_2_10(void);
+    static void test_2_11(void);
+    static void test_2_12(void);
+    static void test_2_13(void);
+    static void test_2_14(void);
+    static void test_2_15(void);
+    static void test_2_16(void);
+    static void test_2_17(void);
+    static void test_2_18(void);
+    static void test_2_19(void);
 
 } // anonymous namespace
 
@@ -100,55 +100,55 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.stlsoft.string.replace_functions", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_00);
-		XTESTS_RUN_CASE(test_1_01);
-		XTESTS_RUN_CASE(test_1_02);
-		XTESTS_RUN_CASE(test_1_03);
-		XTESTS_RUN_CASE(test_1_04);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.unit.stlsoft.string.replace_functions", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_00);
+        XTESTS_RUN_CASE(test_1_01);
+        XTESTS_RUN_CASE(test_1_02);
+        XTESTS_RUN_CASE(test_1_03);
+        XTESTS_RUN_CASE(test_1_04);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_RUN_CASE(test_2_00);
-		XTESTS_RUN_CASE(test_2_01);
-		XTESTS_RUN_CASE(test_2_02);
-		XTESTS_RUN_CASE(test_2_03);
-		XTESTS_RUN_CASE(test_2_04);
-		XTESTS_RUN_CASE(test_2_10);
-		XTESTS_RUN_CASE(test_2_11);
-		XTESTS_RUN_CASE(test_2_12);
-		XTESTS_RUN_CASE(test_2_13);
-		XTESTS_RUN_CASE(test_2_14);
-		XTESTS_RUN_CASE(test_2_15);
-		XTESTS_RUN_CASE(test_2_16);
-		XTESTS_RUN_CASE(test_2_17);
-		XTESTS_RUN_CASE(test_2_18);
-		XTESTS_RUN_CASE(test_2_19);
+        XTESTS_RUN_CASE(test_2_00);
+        XTESTS_RUN_CASE(test_2_01);
+        XTESTS_RUN_CASE(test_2_02);
+        XTESTS_RUN_CASE(test_2_03);
+        XTESTS_RUN_CASE(test_2_04);
+        XTESTS_RUN_CASE(test_2_10);
+        XTESTS_RUN_CASE(test_2_11);
+        XTESTS_RUN_CASE(test_2_12);
+        XTESTS_RUN_CASE(test_2_13);
+        XTESTS_RUN_CASE(test_2_14);
+        XTESTS_RUN_CASE(test_2_15);
+        XTESTS_RUN_CASE(test_2_16);
+        XTESTS_RUN_CASE(test_2_17);
+        XTESTS_RUN_CASE(test_2_18);
+        XTESTS_RUN_CASE(test_2_19);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_ALIAS_COVERAGE("replace_functions", NULL);
+        XCOVER_REPORT_ALIAS_COVERAGE("replace_functions", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -160,38 +160,38 @@ namespace
 
 static void test_1_00()
 {
-	std::string		s	=	"abcabc";
+    std::string     s   =   "abcabc";
 
-	stlsoft::replace(s, "x", "XXXX");
+    stlsoft::replace(s, "x", "XXXX");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcabc", s);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abcabc", s);
 }
 
 static void test_1_01()
 {
-	std::string		s	=	"abcabc";
+    std::string     s   =   "abcabc";
 
-	stlsoft::replace(s, "b", "BB");
+    stlsoft::replace(s, "b", "BB");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("aBBcaBBc", s);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("aBBcaBBc", s);
 }
 
 static void test_1_02()
 {
-	std::string		s	=	"abcabc";
+    std::string     s   =   "abcabc";
 
-	stlsoft::replace(s, "b", "");
+    stlsoft::replace(s, "b", "");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("acac", s);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("acac", s);
 }
 
 static void test_1_03()
 {
-	std::string		s	=	"abcabc";
+    std::string     s   =   "abcabc";
 
-	stlsoft::replace(s, "b", "bb");
+    stlsoft::replace(s, "b", "bb");
 
-	XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abbcabbc", s);
+    XTESTS_TEST_MULTIBYTE_STRING_EQUAL("abbcabbc", s);
 }
 
 static void test_1_04()

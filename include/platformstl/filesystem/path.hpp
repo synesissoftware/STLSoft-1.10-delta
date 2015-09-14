@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     10th August 2010
+ * Updated:     17th November 2013
  *
  * Thanks:      To Adi Shavit for requesting pop_file(), which provided the
  *              final impetus to tackle the migration of the operating two
@@ -15,7 +15,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,9 +57,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      7
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   10
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       267
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       276
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,6 +67,9 @@
  */
 
 #include <platformstl/platformstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -102,16 +105,16 @@
 # endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 #endif /* PLATFORMSTL_OS_IS_WINDOWS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# ifndef PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_EXCEPTIONS
 #  include <platformstl/error/exceptions.hpp>
-# endif /* !PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
+# endif /* !PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
 # include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
@@ -267,10 +270,7 @@ public:
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const& s)
     {
-        m_len = stlsoft_ns_qual(c_str_len)(s);
-
-        traits_type::char_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
-        m_buffer[m_len] = '\0';
+        init_(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// Constructs a path from a slice of a character string.
@@ -301,7 +301,7 @@ public:
     template<ss_typename_param_k S>
     class_type& operator =(S const& s)
     {
-        return operator_equal_(stlsoft_ns_qual(c_str_ptr)(s));
+        return operator_equal_(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
@@ -315,6 +315,12 @@ public:
         return root(stlsoft_ns_qual(c_str_ptr)(s));
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
+
+private:
+    void init_(
+        char_type const*  path
+    ,   size_type         cch
+    );
 /// @}
 
 /// \name Operations
@@ -375,7 +381,7 @@ public:
     template <ss_typename_param_k S>
     class_type& operator /=(S const& rhs)
     {
-        return push(stlsoft_ns_qual(c_str_ptr)(rhs));
+        return push_(stlsoft_ns_qual(c_str_data)(rhs), stlsoft_ns_qual(c_str_len)(rhs), false);
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
@@ -488,7 +494,7 @@ public:
 
 // Implementation
 private:
-    class_type&             operator_equal_(char_type const* path);
+    class_type&             operator_equal_(char_type const* path, size_type cch);
 
     class_type&             push_(char_type const* rhs, size_type cch, bool_type bAddPathNameSeparator);
     class_type&             push_sep_(char_type sep);
@@ -508,6 +514,10 @@ private:
 #ifdef PLATFORMSTL_PATH_USE_ALT_SEPARATOR
     static char_type        path_name_separator_alt();
 #endif /* PLATFORMSTL_PATH_USE_ALT_SEPARATOR */
+
+    void                    validate_new_length_(size_type newLen);
+
+    bool_type               equal_(char_type const* rhs, size_type cch) const;
 
 // Member Types
 private:
@@ -899,6 +909,24 @@ inline S& operator <<(S& s, platformstl_ns_qual(basic_path)<C, T, A> const& b)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline
+void
+basic_path<C, T, A>::validate_new_length_(
+    ss_typename_param_k basic_path<C, T, A>::size_type newLen
+)
+{
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    if(newLen >= m_buffer.size())
+    {
+        // TODO : consider whether this should be length_error
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("path too long"));
+    }
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
+    PLATFORMSTL_MESSAGE_ASSERT("path too long", newLen < m_buffer.size());
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline /* static */ ss_typename_param_k basic_path<C, T, A>::bool_type
 basic_path<C, T, A>::has_dir_end_() const
 {
@@ -1012,6 +1040,8 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_param_k basic_path<C, T, A>::class_type&
 basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs, ss_typename_param_k basic_path<C, T, A>::size_type cch)
 {
+    validate_new_length_(size() + cch);
+
     traits_type::char_copy(&m_buffer[0] + m_len, rhs, cch);
     m_len += cch;
     m_buffer[m_len] = '\0';
@@ -1023,7 +1053,7 @@ basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
 {
-    return concat_(rhs.data(), rhs.size());
+    return concat_(rhs.m_buffer.data(), rhs.size());
 
     return *this;
 }
@@ -1052,13 +1082,31 @@ inline /* static */ ss_typename_param_k basic_path<C, T, A>::size_type basic_pat
         }
     }}
 
-    size_type   n = static_cast<size_type>(dest - parts.begin());
+    size_type const n = static_cast<size_type>(dest - parts.begin());
 
     parts.resize(n);
 
     return n;
 }
 
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline void basic_path<C, T, A>::init_(
+    ss_typename_type_k basic_path<C, T, A>::char_type const*    path
+,   ss_typename_type_k basic_path<C, T, A>::size_type           cch
+)
+{
+    PLATFORMSTL_ASSERT((NULL != path) || (0 == cch));
+
+    if(0 != cch)
+    {
+        validate_new_length_(cch);
+
+        traits_type::char_copy(&m_buffer[0], path, cch);
+    }
+    m_len = cch;
+    m_buffer[cch] = '\0';
+}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>::basic_path()
@@ -1069,35 +1117,16 @@ inline basic_path<C, T, A>::basic_path()
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline /* ss_explicit_k */ basic_path<C, T, A>::basic_path(ss_typename_type_k basic_path<C, T, A>::char_type const* path)
-    : m_len(0)
 {
-    if(NULL != path)
-    {
-        size_type cch = traits_type::str_len(path);
-
-        PLATFORMSTL_MESSAGE_ASSERT("path too long", cch < m_buffer.size());
-
-        traits_type::char_copy(&m_buffer[0], path, cch);
-
-        m_len = cch;
-    }
-
-    m_buffer[m_len] = '\0';
+    init_(path, (NULL == path) ? 0u : traits_type::str_len(path));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>::basic_path(ss_typename_type_k basic_path<C, T, A>::char_type const* path, ss_typename_type_k basic_path<C, T, A>::size_type cch)
-    : m_len(cch)
 {
     PLATFORMSTL_ASSERT((NULL != path) || (0 == cch));
 
-    if(0 != cch)
-    {
-        PLATFORMSTL_MESSAGE_ASSERT("path too long", cch < m_buffer.size());
-
-        traits_type::char_copy(&m_buffer[0], path, cch);
-    }
-    m_buffer[cch] = '\0';
+    init_(path, cch);
 }
 
 #ifndef STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD
@@ -1105,7 +1134,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>::basic_path(basic_path<C, T, A> const& rhs)
     : m_len(rhs.m_len)
 {
-    traits_type::char_copy(&m_buffer[0], rhs.m_buffer.c_str(), rhs.m_len + 1); // +1 to get the NUL terminator
+    traits_type::char_copy(&m_buffer[0], rhs.m_buffer.data(), rhs.size() + 1); // +1 to get the NUL terminator
 }
 #endif /* !STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD */
 
@@ -1113,7 +1142,7 @@ inline basic_path<C, T, A>::basic_path(basic_path<C, T, A> const& rhs)
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>& basic_path<C, T, A>::operator =(basic_path<C, T, A> const& path)
 {
-    class_type  newPath(path);
+    class_type newPath(path);
 
     swap(newPath);
 
@@ -1124,13 +1153,18 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::operator =(basic_path<C, T, A> 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>& basic_path<C, T, A>::operator =(ss_typename_type_k basic_path<C, T, A>::char_type const* path)
 {
-    return operator_equal_(path);
+    return operator_equal_(path, traits_type::str_len(path));
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_path<C, T, A>& basic_path<C, T, A>::operator_equal_(ss_typename_type_k basic_path<C, T, A>::char_type const* path)
+inline
+basic_path<C, T, A>&
+basic_path<C, T, A>::operator_equal_(
+    ss_typename_type_k basic_path<C, T, A>::char_type const*    path
+,   ss_typename_type_k basic_path<C, T, A>::size_type           cchPath
+)
 {
-    class_type  newPath(path);
+    class_type  newPath(path, cchPath);
 
     swap(newPath);
 
@@ -1146,8 +1180,7 @@ inline /* static */ ss_typename_type_ret_k basic_path<C, T, A>::class_type basic
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>& basic_path<C, T, A>::push(class_type const& rhs, ss_bool_t bAddPathNameSeparator /* = false */)
 {
-    // TODO: Change to use data(), when push_() properly implemented
-    return push_(rhs.c_str(), rhs.size(), bAddPathNameSeparator);
+    return push_(rhs.m_buffer.data(), rhs.size(), bAddPathNameSeparator);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -1168,7 +1201,7 @@ basic_path<C, T, A>::push_(
 {
     if(0 != cch)
     {
-        if(traits_type::is_path_rooted(rhs))
+        if(traits_type::is_path_rooted(rhs, cch))
         {
             class_type newPath(rhs, cch);
 
@@ -1182,7 +1215,7 @@ basic_path<C, T, A>::push_(
         }
         else
         {
-            PLATFORMSTL_MESSAGE_ASSERT("path too long", size() + 1 + cch < m_buffer.size());
+            validate_new_length_(size() + 1 + cch);
 
             // In an attempt to maintain slash/backslash consistency, we
             // locate the next slash to help guide the push_sep_() method.
@@ -1268,7 +1301,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_sep_(ss_typename_type_k ba
 
     if(0 != m_len)
     {
-        char_type&  last = m_buffer[m_len - 1];
+        char_type& last = m_buffer[m_len - 1];
 
         if(traits_type::is_path_name_separator(last))
         {
@@ -1279,7 +1312,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_sep_(ss_typename_type_k ba
         }
         else
         {
-            PLATFORMSTL_ASSERT(m_len + 1 < m_buffer.size());
+            validate_new_length_(m_len + 1);
 
             m_buffer[m_len]     =   sep;
             m_buffer[m_len + 1] =   '\0';
@@ -1304,9 +1337,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::pop(ss_bool_t bRemoveTrailingPa
             // The last slash is just a trailing separator
             //
             // Is it just a volume, or just a UNC, or just a root slash
-            if(traits_type::is_path_rooted(m_buffer.c_str()))
+            if(traits_type::is_path_rooted(m_buffer.data(), size()))
             {
-                if(traits_type::is_path_UNC(m_buffer.c_str()))
+                if(traits_type::is_path_UNC(m_buffer.data(), size()))
                 {
                     char_type const* share = next_part_or_end(m_buffer.c_str() + 2);
 
@@ -1315,7 +1348,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::pop(ss_bool_t bRemoveTrailingPa
                         shouldRemoveTrailingSlash = false;
                     }
                 }
-                else if(traits_type::is_path_absolute(m_buffer.c_str()))
+                else if(traits_type::is_path_absolute(m_buffer.data(), size()))
                 {
                     if(3 == m_len)
                     {
@@ -1342,7 +1375,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::pop(ss_bool_t bRemoveTrailingPa
 
     if(NULL != slash)
     {
-        if(traits_type::is_path_UNC(m_buffer.c_str()))
+        if(traits_type::is_path_UNC(m_buffer.data(), size()))
         {
             char_type const* shareSlash = next_slash_or_end(m_buffer.c_str() + 2);
 
@@ -1351,12 +1384,12 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::pop(ss_bool_t bRemoveTrailingPa
                 slash = NULL;
             }
         }
-        else if(traits_type::is_path_absolute(m_buffer.c_str()) &&
+        else if(traits_type::is_path_absolute(m_buffer.data(), size()) &&
                 3 == m_len)
         {
             slash = NULL;
         }
-        else if(traits_type::is_path_rooted(m_buffer.c_str()) &&
+        else if(traits_type::is_path_rooted(m_buffer.data(), size()) &&
                 1 == m_len)
         {
             slash = NULL;
@@ -1469,7 +1502,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::pop_file() stlsoft_throw_0()
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>& basic_path<C, T, A>::operator /=(basic_path<C, T, A> const& path)
 {
-    return push(path);
+    return push(path, false);
 }
 
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED */
@@ -1477,7 +1510,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::operator /=(basic_path<C, T, A>
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_path<C, T, A>& basic_path<C, T, A>::operator /=(ss_typename_type_k basic_path<C, T, A>::char_type const* path)
 {
-    return push(path);
+    return push(path, false);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -1544,7 +1577,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ss_bool_t bRemoveT
     char_type const*    p1     =   this->c_str();
     char_type const*    p2;
 
-    if(traits_type::is_path_UNC(this->c_str()))
+    if(traits_type::is_path_UNC(m_buffer.data(), size()))
     {
         PLATFORMSTL_ASSERT('\\' == m_buffer[0]);
         PLATFORMSTL_ASSERT('\\' == m_buffer[1]);
@@ -1822,13 +1855,13 @@ inline ss_bool_t basic_path<C, T, A>::exists() const
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_bool_t basic_path<C, T, A>::is_rooted() const
 {
-    return traits_type::is_path_rooted(this->c_str());
+    return traits_type::is_path_rooted(m_buffer.data(), size());
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_bool_t basic_path<C, T, A>::is_absolute() const
 {
-    return traits_type::is_path_absolute(this->c_str());
+    return traits_type::is_path_absolute(m_buffer.data(), size());
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
@@ -1859,21 +1892,24 @@ inline ss_bool_t basic_path<C, T, A>::equivalent(ss_typename_type_k basic_path<C
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_bool_t basic_path<C, T, A>::equal_(
+    ss_typename_type_k basic_path<C, T, A>::char_type const*    rhs
+,   ss_typename_type_k basic_path<C, T, A>::size_type           cch
+) const
+{
+    return size() == cch && 0 == traits_type::str_fs_n_compare(m_buffer.data(), rhs, cch);
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_bool_t basic_path<C, T, A>::equal(basic_path<C, T, A> const& rhs) const
 {
-    return equal(rhs.c_str());
+    return equal_(rhs.m_buffer.data(), rhs.size());
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_bool_t basic_path<C, T, A>::equal(ss_typename_type_k basic_path<C, T, A>::char_type const* rhs) const
 {
-    // TODO: reimplement in terms of filesystem_traits ...
-
-#ifdef PLATFORMSTL_OS_IS_WINDOWS
-    return 0 == traits_type::str_compare_no_case(m_buffer.c_str(), stlsoft_ns_qual(c_str_ptr)(rhs));
-#else /* ? PLATFORMSTL_OS_IS_WINDOWS */
-    return 0 == traits_type::str_compare(m_buffer.c_str(), stlsoft_ns_qual(c_str_ptr)(rhs));
-#endif /* PLATFORMSTL_OS_IS_WINDOWS */
+    return equal_(rhs, traits_type::str_len(rhs));
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

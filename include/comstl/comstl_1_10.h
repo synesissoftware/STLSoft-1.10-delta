@@ -1,5 +1,11 @@
+/*
+ * Updated: 6th May 2013
+ */
 
 #include <stlsoft/stlsoft_1_10.h>
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #include <comstl/comstl.h>
 

@@ -46,26 +46,27 @@
 namespace
 {
 
-	static void test_1_0(void);
-	static void test_1_1(void);
-	static void test_1_2(void);
-	static void test_1_3(void);
-	static void test_1_4(void);
-	static void test_1_5(void);
-	static void test_1_6(void);
-	static void test_1_7(void);
-	static void test_1_8(void);
-	static void test_1_9(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_0(void);
+    static void test_1_1(void);
+    static void test_1_2a(void);
+    static void test_1_2b(void);
+    static void test_1_3(void);
+    static void test_1_4(void);
+    static void test_1_5(void);
+    static void test_1_6(void);
+    static void test_1_7(void);
+    static void test_1_8(void);
+    static void test_1_9(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
 } // anonymous namespace
 
@@ -75,40 +76,41 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.winstl.synch.semaphore", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_0);
-		XTESTS_RUN_CASE(test_1_1);
-		XTESTS_RUN_CASE_THAT_THROWS(test_1_2, winstl::windows_exception);
-		XTESTS_RUN_CASE(test_1_3);
-		XTESTS_RUN_CASE(test_1_4);
-		XTESTS_RUN_CASE(test_1_5);
-		XTESTS_RUN_CASE(test_1_6);
-		XTESTS_RUN_CASE(test_1_7);
-		XTESTS_RUN_CASE(test_1_8);
-		XTESTS_RUN_CASE(test_1_9);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.component.winstl.synch.semaphore", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_0);
+        XTESTS_RUN_CASE(test_1_1);
+        XTESTS_RUN_CASE_THAT_THROWS(test_1_2a, winstl::windows_exception);
+        XTESTS_RUN_CASE_THAT_THROWS(test_1_2b, winstl::windows_exception);
+        XTESTS_RUN_CASE(test_1_3);
+        XTESTS_RUN_CASE(test_1_4);
+        XTESTS_RUN_CASE(test_1_5);
+        XTESTS_RUN_CASE(test_1_6);
+        XTESTS_RUN_CASE(test_1_7);
+        XTESTS_RUN_CASE(test_1_8);
+        XTESTS_RUN_CASE(test_1_9);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,71 +120,78 @@ int main(int argc, char **argv)
 namespace
 {
 
-  typedef stlsoft::limit_traits<winstl::semaphore::count_type>	limits_t;
+  typedef stlsoft::limit_traits<winstl::semaphore::count_type>  limits_t;
 
 
 static void test_1_0()
 {
-	winstl::semaphore instance(1, 1);
+    winstl::semaphore instance(1, 1);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_1()
 {
-	winstl::semaphore instance(0, 1);
+    winstl::semaphore instance(0, 1);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
-static void test_1_2()
+static void test_1_2a()
 {
-	winstl::semaphore instance(0, 0);
+    winstl::semaphore instance(0, 0);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
+}
+
+static void test_1_2b()
+{
+    winstl::semaphore instance(1, 0);
+
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_3()
 {
-	winstl::semaphore instance(winstl::semaphore::maxCountValue, winstl::semaphore::maxCountValue);
+    winstl::semaphore instance(winstl::semaphore::maxCountValue, winstl::semaphore::maxCountValue);
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_4()
 {
-	{ for(winstl::semaphore::count_type i = winstl::semaphore::maxCountValue; ; i >>= 1)
-	{
-		if(0 == i)
-		{
-			break;
-		}
+    { for(winstl::semaphore::count_type i = winstl::semaphore::maxCountValue; ; i >>= 1)
+    {
+        if(0 == i)
+        {
+            break;
+        }
 
-		{ for(winstl::semaphore::count_type j = i; ; j >>= 1)
-		{
-			winstl::semaphore	instance(j, i);
+        { for(winstl::semaphore::count_type j = i; ; j >>= 1)
+        {
+            winstl::semaphore   instance(j, i);
 
-			XTESTS_TEST_PASSED();
+            XTESTS_TEST_PASSED();
 
-			if(0 == j)
-			{
-				break;
-			}
-		}}
-	}}
+            if(0 == j)
+            {
+                break;
+            }
+        }}
+    }}
 
 }
 
 static void test_1_5()
 {
-	winstl::semaphore	sem(2, 4);
+    winstl::semaphore   sem(2, 4);
 
-	sem.unlock();
-	sem.lock();
-	sem.unlock();
-	sem.unlock();
-	sem.lock();
-	sem.lock();
+    sem.unlock();
+    sem.lock();
+    sem.unlock();
+    sem.unlock();
+    sem.lock();
+    sem.lock();
 
 }
 

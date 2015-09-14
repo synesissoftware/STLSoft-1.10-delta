@@ -44,67 +44,67 @@
  */
 
 class Thing
-	: public IUnknown
+    : public IUnknown
 {
 public:
-	Thing()
-		: m_rc(1)
-	{
+    Thing()
+        : m_rc(1)
+    {
 #ifdef _DEBUG
-		std::cout << "Thing(); rc=" << m_rc << std::endl;
+        std::cout << "Thing(); rc=" << m_rc << std::endl;
 #endif /* _DEBUG */
-	}
-	~Thing()
-	{
+    }
+    ~Thing()
+    {
 #ifdef _DEBUG
-		std::cout << "~Thing()" << std::endl;
+        std::cout << "~Thing()" << std::endl;
 #endif /* _DEBUG */
-	}
+    }
 
 public:
-	STDMETHOD_(ULONG, AddRef)()
-	{
+    STDMETHOD_(ULONG, AddRef)()
+    {
 #ifdef _DEBUG
-		std::cout << "AddRef(); rc=" << (m_rc + 1) << std::endl;
+        std::cout << "AddRef(); rc=" << (m_rc + 1) << std::endl;
 #endif /* _DEBUG */
 
-		return ++m_rc;
-	}
-	STDMETHOD_(ULONG, Release)()
-	{
+        return ++m_rc;
+    }
+    STDMETHOD_(ULONG, Release)()
+    {
 #ifdef _DEBUG
-		std::cout << "Release(); rc=" << (m_rc - 1) << std::endl;
+        std::cout << "Release(); rc=" << (m_rc - 1) << std::endl;
 #endif /* _DEBUG */
 
-		if(0 == --m_rc)
-		{
-			delete this;
+        if(0 == --m_rc)
+        {
+            delete this;
 
-			return 0;
-		}
+            return 0;
+        }
 
-		return m_rc;
-	}
-	STDMETHOD(QueryInterface)(REFIID riid, void** ppv)
-	{
+        return m_rc;
+    }
+    STDMETHOD(QueryInterface)(REFIID riid, void** ppv)
+    {
 #ifdef _DEBUG
-		std::cout << "QueryInterface()" << std::endl;
+        std::cout << "QueryInterface()" << std::endl;
 #endif /* _DEBUG */
 
-		if(IID_IUnknown == riid)
-		{
-			(*ppv) = this;
+        if(IID_IUnknown == riid)
+        {
+            (*ppv) = this;
 
-			AddRef();
+            AddRef();
 
-			return S_OK;
-		}
+            return S_OK;
+        }
 
-		return E_NOINTERFACE;
-	}
+        return E_NOINTERFACE;
+    }
 
 private:
-	ULONG	m_rc;
+    ULONG   m_rc;
 };
 
 /* ////////////////////////////////////////////////////////////////////// */
@@ -112,47 +112,47 @@ private:
 static int main_(int /* argc */, char** /*argv*/)
 {
 #ifdef _DEBUG
-	std::cout << std::endl << "1" << std::endl;
+    std::cout << std::endl << "1" << std::endl;
 #endif /* _DEBUG */
-	{
-		stlsoft::ref_ptr<IUnknown>	p1(new Thing(), false);
-	}
+    {
+        stlsoft::ref_ptr<IUnknown>  p1(new Thing(), false);
+    }
 
 #ifdef _DEBUG
-	std::cout << std::endl << "2" << std::endl;
+    std::cout << std::endl << "2" << std::endl;
 #endif /* _DEBUG */
-	{
-		stlsoft::ref_ptr<IUnknown>	p1(new Thing(), false);
+    {
+        stlsoft::ref_ptr<IUnknown>  p1(new Thing(), false);
 
-		comstl::interface_cast_test<IUnknown>(p1);
-	}
+        comstl::interface_cast_test<IUnknown>(p1);
+    }
 
 #ifdef _DEBUG
-	std::cout << std::endl << "3" << std::endl;
+    std::cout << std::endl << "3" << std::endl;
 #endif /* _DEBUG */
-	{
-		stlsoft::ref_ptr<IUnknown>	p1(new Thing(), false);
+    {
+        stlsoft::ref_ptr<IUnknown>  p1(new Thing(), false);
 
-//		comstl::interface_cast_addref<IUnknown*> p2(p1);
-	}
+//      comstl::interface_cast_addref<IUnknown*> p2(p1);
+    }
 
 #ifdef _DEBUG
-	std::cout << std::endl << "4" << std::endl;
+    std::cout << std::endl << "4" << std::endl;
 #endif /* _DEBUG */
-	{
-		stlsoft::ref_ptr<IUnknown>	p1(new Thing(), false);
+    {
+        stlsoft::ref_ptr<IUnknown>  p1(new Thing(), false);
 
-		stlsoft::ref_ptr<IUnknown>	p2 = comstl::try_interface_cast<IUnknown>(p1);
-	}
+        stlsoft::ref_ptr<IUnknown>  p2 = comstl::try_interface_cast<IUnknown>(p1);
+    }
 
 #ifdef _DEBUG
-	std::cout << std::endl << "5" << std::endl;
+    std::cout << std::endl << "5" << std::endl;
 #endif /* _DEBUG */
-	{
-		stlsoft::ref_ptr<IUnknown>	p1(new Thing(), false);
+    {
+        stlsoft::ref_ptr<IUnknown>  p1(new Thing(), false);
 
-		stlsoft::ref_ptr<IUnknown>	p2 = comstl::interface_cast<IUnknown>(p1);
-	}
+        stlsoft::ref_ptr<IUnknown>  p2 = comstl::interface_cast<IUnknown>(p1);
+    }
 
     return EXIT_SUCCESS;
 }

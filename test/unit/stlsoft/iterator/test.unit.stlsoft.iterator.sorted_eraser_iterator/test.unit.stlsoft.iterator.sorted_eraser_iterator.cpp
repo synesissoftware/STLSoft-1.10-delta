@@ -177,7 +177,7 @@ static void test_deque_1()
     //puts(__FILE__ "(" STLSOFT_STRINGIZE(__LINE__) ")");
 
     XTESTS_TEST_BOOLEAN_FALSE(c.empty());
-	XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, c.size()));
+    XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, c.size()));
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL("defdefjkl", cat(c.begin(), c.end()));
 }
 

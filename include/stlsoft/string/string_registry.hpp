@@ -4,11 +4,11 @@
  * Purpose:     Defines the string_registry class template.
  *
  * Created:     21st February 2010
- * Updated:     27th August 2010
+ * Updated:     16th November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,25 +50,65 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_MAJOR       1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_REVISION    6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_EDIT        9
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_MINOR       4
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_REGISTRY_EDIT        15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Includes
+ * Includes - 1
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Feature discrimination
+ *
+ * The decision is what kind of associative container to use. It is decided
+ * according to the following rules:
+ *
+ * - if STLSOFT_STRING_REGISTRY_USE_IOM is defined, then
+ *   stlsoft::insert_ordered_map is used, else
+ * - if STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP is defined, then
+ *   VC++ (15)'s stdext::hash_map is used, else
+ * - if STLSOFT_STRING_REGISTRY_USE_STD_MAP is defined, then std::map is
+ *   used, else
+ * - if none are specified, and the compiler is VC++, then
+ *   STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP is defined, and it is as if
+ *   the rules are reevaluated.
+ */
+
+#if defined(STLSOFT_STRING_REGISTRY_USE_IOM)
+
+#elif defined(STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP)
+
+#elif defined(STLSOFT_STRING_REGISTRY_USE_STD_MAP)
+
+#else /* ? map */
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER >= 1500
+#  define STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP
+# endif /* compiler */
+
+#endif /* map */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Includes - 2
+ */
+
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
@@ -77,11 +117,13 @@
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_SLICE */
 
 #include <list>
-#ifdef STLSOFT_STRING_REGISTRY_USE_IOM
+#if defined(STLSOFT_STRING_REGISTRY_USE_IOM)
 # include <stlsoft/container/insert_ordered_map.hpp>
-#else /* ? STLSOFT_STRING_REGISTRY_USE_IOM */
+#elif defined(STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP)
+# include <hash_map>
+#else /* ? map */
 # include <map>
-#endif /* STLSOFT_STRING_REGISTRY_USE_IOM */
+#endif /* map */
 #include <string>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,7 +156,60 @@ public:
     /// The slice type
     typedef string_slice<char_type>                                                 slice_type;
 private:
-    typedef std::string                                                             string_type_;
+    typedef stlsoft_ns_qual_std(basic_string)<char_type>                            string_type_;
+public:
+    class                                                                           const_iterator;
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    class const_iterator
+    {
+    private:
+        typedef std::list<string_type_> strings_type_;
+    private:
+        friend class string_registry;
+
+        const_iterator(strings_type_::const_iterator it)
+            : m_it(it)
+        {}
+    public:
+        const_iterator(const_iterator const& rhs)
+            : m_it(rhs.m_it)
+        {}
+        ~const_iterator()
+        {}
+
+    public:
+        const_iterator& operator ++()
+        {
+            ++m_it;
+
+            return *this;
+        }
+        const_iterator operator ++(int)
+        {
+            const_iterator r(*this);
+
+            ++r;
+
+            return r;
+        }
+        slice_type operator *() const
+        {
+            string_type_ const& s = *m_it;
+
+            return slice_type(s.data(), s.size());
+        }
+
+    public:
+        bool equal(const_iterator const& rhs) const
+        {
+            return m_it == rhs.m_it;
+        }
+
+    private:
+        strings_type_::const_iterator m_it;
+    };
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 public: // Construction
     string_registry()
@@ -265,8 +360,14 @@ public: // Operations
 
         if(0u == n)
         {
-            m_strings.erase((*it).second.second);
+            // Because the map container may require its iterator to
+            // be valid for the erase(), it cannot be erase()'d from
+            // the strings container until after.
+
+            strings_type_::iterator its = (*it).second.second;
+
             m_map.erase(it);
+            m_strings.erase(its);
         }
 
         STLSOFT_ASSERT(is_valid_());
@@ -286,13 +387,18 @@ public: // Operations
         {
             if((*it).second.first < threshold)
             {
-                m_strings.erase((*it).second.second);
+                // Because the map container may require its iterator to
+                // be valid for the erase(), it cannot be erase()'d from
+                // the strings container until after.
+
+                strings_type_::iterator its = (*it).second.second;
 
                 map_type_::iterator it2 = it;
 
                 ++it2;
 
                 m_map.erase(it);
+                m_strings.erase(its);
 
                 it = it2;
 
@@ -387,6 +493,23 @@ public: // Operations
 
 public: // Access
 
+public: // Iteration
+    /// Begins the iteration
+    ///
+    /// \return An iterator representing the start of the sequence
+    const_iterator begin() const
+    {
+        return const_iterator(m_strings.begin());
+    }
+
+    /// Ends the iteration
+    ///
+    /// \return An iterator representing the end of the sequence
+    const_iterator end() const
+    {
+        return const_iterator(m_strings.end());
+    }
+
 private: // Implementation
     bool_type is_valid_() const
     {
@@ -401,80 +524,150 @@ private: // Member Variables
         size_type
     ,   strings_type_::iterator
     >                             mapped_type_;
-#ifdef STLSOFT_STRING_REGISTRY_USE_IOM
-        struct compare_slice_type_
+#if defined(STLSOFT_STRING_REGISTRY_USE_IOM)
+    struct compare_slice_type_
+    {
+        size_t operator ()(
+            slice_type const& v
+        ) const
         {
-                size_t operator ()(
-                    slice_type const& v
-                ) const
+            size_t const        MAX_LEN =   10u;
+            size_t              r = 0;
+# if 1
+            char_type const*    p;
+            size_t              n;
+
+            if(v.len > MAX_LEN)
+            {
+                n = 10;
+                p = v.ptr + (v.len - MAX_LEN);
+            }
+            else
+            {
+                n = v.len;
+                p = v.ptr;
+            }
+
+            for(size_t i = 0; i != n; ++i, ++p)
+            {
+                r += *p;
+            }
+
+#  if 0
+                for(size_t i = 0; i != v.len; ++i)
                 {
-                    size_t const    MAX_LEN =   10u;
-
-                    size_t                      r = 0;
-#if 1
-                    char_type const*    p;
-                    size_t                      n;
-
-                    if(v.len > MAX_LEN)
-                    {
-                        n = 10;
-                        p = v.ptr + (v.len - MAX_LEN);
-                    }
-                    else
-                    {
-                        n = v.len;
-                        p = v.ptr;
-                    }
-
-                    for(size_t i = 0; i != n; ++i, ++p)
-                    {
-                        r += *p;
-                    }
-
-#if 0
-                        for(size_t i = 0; i != v.len; ++i)
-                        {
-                            r += v.ptr[i];
-                        }
-#endif /* 0 */
-#else /* ? 0 */
-
-                    if(v.len > MAX_LEN)
-                    {
-                        for(size_t i = 0; i != v.len; ++i)
-                        {
-                            r += v.ptr[i];
-                        }
-                    }
-#endif /* 0 */
-
-                    return r;
+                    r += v.ptr[i];
                 }
+#  endif /* 0 */
+# else /* ? 0 */
 
-                bool operator ()(
-                    slice_type const& lhs
-                ,   slice_type const& rhs
-                ) const
+            if(v.len > MAX_LEN)
+            {
+                for(size_t i = 0; i != v.len; ++i)
                 {
-                    return lhs == rhs;
+                    r += v.ptr[i];
                 }
-        };
+            }
+# endif /* 0 */
+
+            return r;
+        }
+
+        bool operator ()(
+            slice_type const& lhs
+        ,   slice_type const& rhs
+        ) const
+        {
+            return lhs == rhs;
+        }
+    };
     typedef stlsoft::insert_ordered_map<
         slice_type
     ,   mapped_type_
-        ,       compare_slice_type_
-        ,       compare_slice_type_
-    >                             map_type_;
-#else /* ? STLSOFT_STRING_REGISTRY_USE_IOM */
+    ,   compare_slice_type_
+    ,   compare_slice_type_
+    >                               map_type_;
+#elif defined(STLSOFT_STRING_REGISTRY_USE_VC1500_HASH_MAP)
+    struct slice_compare_
+    {
+        enum
+        {
+                bucket_size = 4
+            ,   min_buckets = 8
+        };
+
+        size_t operator() (
+            slice_type const& key
+        ) const
+        {
+            size_t n = 0;
+
+            n ^= stdext::hash_value(key.len);
+            n ^= stdext::_Hash_value(key.ptr, key.ptr + key.len);
+
+            return n;
+        }
+        bool operator()(
+            slice_type const& lhs
+        ,   slice_type const& rhs
+        ) const
+        {
+            size_type const cmp_len =   (lhs.len < rhs.len) ? lhs.len : rhs.len;
+            int const       result  =   ::strncmp(lhs.ptr, rhs.ptr, cmp_len);
+
+            if(result < 0)
+            {
+                return true;
+            }
+            if( 0 == result &&
+                lhs.len < rhs.len)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    };
+
+    typedef stdext::hash_map<
+        slice_type
+    ,   mapped_type_
+    ,   slice_compare_
+    >                               map_type_;
+#else /* ? map */
     typedef std::map<
         slice_type
     ,   mapped_type_
-    >                             map_type_;
-#endif /* STLSOFT_STRING_REGISTRY_USE_IOM */
+    >                               map_type_;
+#endif /* map */
 
     strings_type_   m_strings;
     map_type_       m_map;
 };
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Operators
+ */
+
+inline
+bool
+operator ==(
+    string_registry::const_iterator const&  lhs
+,   string_registry::const_iterator const&  rhs
+)
+{
+    return lhs.equal(rhs);
+}
+
+inline
+bool
+operator !=(
+    string_registry::const_iterator const&  lhs
+,   string_registry::const_iterator const&  rhs
+)
+{
+    return !lhs.equal(rhs);
+}
 
 /* /////////////////////////////////////////////////////////////////////////
  * Specialisations

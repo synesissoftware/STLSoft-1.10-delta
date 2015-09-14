@@ -5,11 +5,11 @@
  *              os-specific file handles.
  *
  * Created:     7th July 2010
- * Updated:     27th August 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT     2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION 2
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PLATFORMSTL
 # include <platformstl/platformstl.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_PLATFORMSTL */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 # ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE

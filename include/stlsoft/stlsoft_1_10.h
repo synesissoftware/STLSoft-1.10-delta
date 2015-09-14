@@ -6,11 +6,11 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     14th October 2010
+ * Updated:     23rd August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,9 +62,27 @@
  * Library version verification
  */
 
-#if _STLSOFT_VER >= 0x010a0000
+#if _STLSOFT_VER >= 0x010a01ff
 # error This file - stlsoft_1_10.h - is now obsolete, because STLSoft version is 1.10+
 #endif /* _STLSOFT_VER */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Feature Management - 1
+ */
+
+#if defined(SYNESIS_ALL_FOSS_TRACE_INCLUDE) && \
+    !defined(STLSOFT_TRACE_INCLUDE)
+# define STLSOFT_TRACE_INCLUDE
+#endif /* SYNESIS_ALL_FOSS_TRACE_INCLUDE && !STLSOFT_TRACE_INCLUDE */
+
+#if defined(STLSOFT_TRACE_INCLUDE) && \
+    !defined(STLSOFT_PPF_pragma_message_SUPPORT)
+# undef STLSOFT_TRACE_INCLUDE
+#endif /* STLSOFT_TRACE_INCLUDE */
+
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft 1.10 version
@@ -121,12 +139,16 @@
 # define _STLSOFT_1_10_VER_1_10_1_A13       0x010a010d  /*!< Version 1.10.1 alpha 13 (19th Jan 2010) */
 # define _STLSOFT_1_10_VER_1_10_1_A14       0x010a010e  /*!< Version 1.10.1 alpha 14 (27th Apr 2010) */
 # define _STLSOFT_1_10_VER_1_10_1_A15       0x010a010f  /*!< Version 1.10.1 alpha 15 (14th October 2010) */
+# define _STLSOFT_1_10_VER_1_10_1_A16       0x010a0110  /*!< Version 1.10.1 alpha 16 (30th July 2012) */
+# define _STLSOFT_1_10_VER_1_10_1_A17       0x010a0111  /*!< Version 1.10.1 alpha 17 (16th November 2013) */
+# define _STLSOFT_1_10_VER_1_10_1_A18       0x010a0112  /*!< Version 1.10.1 alpha 18 (13th May 2014) */
+# define _STLSOFT_1_10_VER_1_10_1_A19       0x010a0113  /*!< Version 1.10.1 alpha 18 (23rd August 2015) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_1_10_VER_MAJOR         1
 #define _STLSOFT_1_10_VER_MINOR         10
 #define _STLSOFT_1_10_VER_REVISION      0
-#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A15
+#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A19
 
 /* /////////////////////////////////////////////////////////////////////////
  * Symbol Management

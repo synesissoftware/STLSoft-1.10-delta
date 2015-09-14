@@ -77,70 +77,70 @@ typedef std::string     string_t;
 
 static int main_(int argc, char** argv)
 {
-	if(2 != argc)
-	{
-		fprintf(stderr, "USAGE: %s <file>\n", "test.scratch.platformstl.filesystem.file_lines");
+    if(2 != argc)
+    {
+        fprintf(stderr, "USAGE: %s <file>\n", "test.scratch.platformstl.filesystem.file_lines");
 
-		return EXIT_FAILURE;
-	}
-	else
-	{
+        return EXIT_FAILURE;
+    }
+    else
+    {
 #if 0
-		{
-			char const*	path	=	argv[1];
-			HANDLE		hFile	=	::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
+        {
+            char const* path    =   argv[1];
+            HANDLE      hFile   =   ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
 
-			if(INVALID_HANDLE_VALUE != hFile)
-			{
-				stlsoft::scoped_handle<HANDLE> scoper1(hFile, ::CloseHandle, INVALID_HANDLE_VALUE);
+            if(INVALID_HANDLE_VALUE != hFile)
+            {
+                stlsoft::scoped_handle<HANDLE> scoper1(hFile, ::CloseHandle, INVALID_HANDLE_VALUE);
 
-				HANDLE hMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0, 0, NULL);
+                HANDLE hMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0, 0, NULL);
 
-				if(NULL != hMap)
-				{
-					stlsoft::scoped_handle<HANDLE> scoper2(hMap, ::CloseHandle);
+                if(NULL != hMap)
+                {
+                    stlsoft::scoped_handle<HANDLE> scoper2(hMap, ::CloseHandle);
 
-					ULARGE_INTEGER size;
+                    ULARGE_INTEGER size;
 
-					size.LowPart = ::GetFileSize(hFile, &size.HighPart);
+                    size.LowPart = ::GetFileSize(hFile, &size.HighPart);
 
-					fprintf(stdout, "mapping from %s, of %lu bytes\n", path, static_cast<unsigned long>(size.QuadPart));
+                    fprintf(stdout, "mapping from %s, of %lu bytes\n", path, static_cast<unsigned long>(size.QuadPart));
 
-					std::set<DWORD> errors;
+                    std::set<DWORD> errors;
 
-					{ for(size_t i = 0; i != stlsoft::minimum(0xFFFFF800, static_cast<size_t>(size.QuadPart)); i += 2048u)
-					{
-						void* pv = MapViewOfFile(hMap, FILE_MAP_READ, 0, 0, i);
+                    { for(size_t i = 0; i != stlsoft::minimum(0xFFFFF800, static_cast<size_t>(size.QuadPart)); i += 2048u)
+                    {
+                        void* pv = MapViewOfFile(hMap, FILE_MAP_READ, 0, 0, i);
 
-						if(NULL != pv)
-						{
-							UnmapViewOfFile(pv);
-						}
-						else
-						{
-							DWORD				e = ::GetLastError();
-							winstl::error_desc	ed(e);
+                        if(NULL != pv)
+                        {
+                            UnmapViewOfFile(pv);
+                        }
+                        else
+                        {
+                            DWORD               e = ::GetLastError();
+                            winstl::error_desc  ed(e);
 
-							if(errors.end() == errors.find(e))
-							{
-								fprintf(stderr, "failed at 0x%08x: %d: %s\n", i, e, ed.c_str());
+                            if(errors.end() == errors.find(e))
+                            {
+                                fprintf(stderr, "failed at 0x%08x: %d: %s\n", i, e, ed.c_str());
 
-								errors.insert(e);
-							}
-						}
-					}}
-				}
-			}
-		}
+                                errors.insert(e);
+                            }
+                        }
+                    }}
+                }
+            }
+        }
 #endif /* 0 */
 
 
-		{
-			platformstl::file_lines lines(argv[1]);
-		}
+        {
+            platformstl::file_lines lines(argv[1]);
+        }
 
-	    return EXIT_SUCCESS;
-	}
+        return EXIT_SUCCESS;
+    }
 }
 
 int main(int argc, char** argv)

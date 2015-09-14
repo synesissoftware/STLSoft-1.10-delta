@@ -145,8 +145,8 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
         VARIANT varDecimal_;
 
         VariantInit(&varDecimal_);
-        COMSTL_ACCESS_VARIANT_vt_BYREF(varDecimal_)			=   VT_I4;
-        COMSTL_ACCESS_VARIANT_MEM_BYREF(varDecimal_, lVal)	=   VT_DECIMAL_VALUE;
+        COMSTL_ACCESS_VARIANT_vt_BYREF(varDecimal_)         =   VT_I4;
+        COMSTL_ACCESS_VARIANT_MEM_BYREF(varDecimal_, lVal)  =   VT_DECIMAL_VALUE;
 
         COMSTL_ACCESS_VARIANT_vt_BYPTR(pvarR8)          =   VT_R8;
         COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarR8, dblVal) =   VT_R8_VALUE;
@@ -167,8 +167,8 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
 
                 VariantInit(&varDISPATCH_);
 
-                COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH_)		=   VT_I4;
-                COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCH_, lVal)	=   VT_DISPATCH_VALUE;
+                COMSTL_ACCESS_VARIANT_vt_BYREF(varDISPATCH_)        =   VT_I4;
+                COMSTL_ACCESS_VARIANT_MEM_BYREF(varDISPATCH_, lVal) =   VT_DISPATCH_VALUE;
 
                 hr = comstl_C_IDispatch_put_property(COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarDISPATCH, pdispVal), 1, 1, &varDISPATCH_, NULL, NULL, LOCALE_USER_DEFAULT);
 
@@ -192,10 +192,10 @@ HRESULT setup_VARIANTs(VARIANT* pvarEMPTY, VARIANT* pvarNULL, VARIANT* pvarI4, V
 
                             VariantInit(&varUNKNOWN_);
 
-                            COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN_)				=   VT_BSTR;
-                            COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWN_, bstrVal)	=   SysAllocString(VT_UNKNOWN_VALUE);
+                            COMSTL_ACCESS_VARIANT_vt_BYREF(varUNKNOWN_)             =   VT_BSTR;
+                            COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWN_, bstrVal)   =   SysAllocString(VT_UNKNOWN_VALUE);
 
-                            COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarUNKNOWN, punkVal)	=	(LPUNKNOWN)pdispUnk;
+                            COMSTL_ACCESS_VARIANT_MEM_BYPTR(pvarUNKNOWN, punkVal)   =   (LPUNKNOWN)pdispUnk;
 
                             if(NULL == COMSTL_ACCESS_VARIANT_MEM_BYREF(varUNKNOWN_, bstrVal))
                             {

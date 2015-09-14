@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     10th August 2010
+ * Updated:     20th May 2014
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        95
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    5
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,9 @@ STLSOFT_COMPILER_IS_WATCOM:
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -97,9 +100,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
@@ -114,10 +117,10 @@ STLSOFT_COMPILER_IS_WATCOM:
  * Namespace
  */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 namespace stlsoft
 {
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -340,19 +343,19 @@ public:
     ///
     /// \note If the view's parameterisation is with a no-throw allocator, behaviour
     /// is undefined in con
-    value_type const        *c_str() const;
+    value_type const*       c_str() const;
 #if 0
     /// Facility for calling refresh() followed by c_str()
     ///
     /// \param bRefresh call refresh() before c_str()
     ///
     /// \note If bRefresh is \c false has identical semantics to c_str()
-    value_type const        *c_str(ss_bool_t bRefresh) const;
+    value_type const*       c_str(ss_bool_t bRefresh) const;
 #endif /* 0 */
     /// Returns non-mutable (const) pointer to string data
-    value_type const        *data() const stlsoft_throw_0();
+    value_type const*       data() const stlsoft_throw_0();
     /// Returns value of base pointer
-    value_type const        *base() const stlsoft_throw_0();
+    value_type const*       base() const stlsoft_throw_0();
 
 #if 0
     /// Returns the first character in the string
@@ -423,11 +426,7 @@ public:
 
 /// \name Invariant
 /// @{
-#ifdef STLSOFT_UNITTEST
-public:
-#else
 private:
-#endif /* STLSOFT_UNITTEST */
     ss_bool_t is_valid() const;
 
 /// \name Implementation
@@ -444,14 +443,22 @@ private:
 
     // Closes the m_cstr member and sets to NULL
     void close_set_null_() stlsoft_throw_0();
+
+    // 
+    const_iterator          begin_() const;
+    const_iterator          end_() const;
+#if 0
+    iterator                begin_();
+    iterator                end_();
+#endif /* 0 */
 /// @}
 
 /// \name Members
 /// @{
 private:
-    size_type       m_length;   // The number of elements in the view
-    char_type const* m_base;    // Pointer to the first element in the view, or NULL for a null view
-    char_type       *m_cstr;    // Pointer to a nul-terminated copy of the view, at the time of the c_str() call. Will be NULL before c_str() is called
+    size_type           m_length;  // The number of elements in the view
+    char_type const*    m_base;    // Pointer to the first element in the view, or NULL for a null view
+    char_type*          m_cstr;    // Pointer to a nul-terminated copy of the view, at the time of the c_str() call. Will be NULL before c_str() is called
 /// @}
 };
 
@@ -931,14 +938,6 @@ inline S& operator <<(S& s, basic_string_view<C, T, A> const& str)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * Unit-testing
- */
-
-#ifdef STLSOFT_UNITTEST
-# include "./unittest/string_view_unittest_.h"
-#endif /* STLSOFT_UNITTEST */
-
-/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -998,7 +997,7 @@ inline /* static */ void basic_string_view<C, T, A>::close_() stlsoft_throw_0()
 
     STLSOFT_ASSERT(NULL != m_cstr);
 
-    allocator_type  &ator   =   *this;
+    allocator_type& ator = *this;
 
     ator.deallocate(m_cstr, 1 + m_length);
 
@@ -1023,6 +1022,24 @@ inline /* static */ void basic_string_view<C, T, A>::close_set_null_() stlsoft_t
 
         m_cstr = NULL;
     }
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::begin_() const
+{
+    return m_base;
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_string_view<C, T, A>::end_() const
+{
+    return begin_() + m_length;
 }
 
 /** \brief Invariant
@@ -1366,7 +1383,7 @@ template<   ss_typename_param_k C
         >
 inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic_string_view<C, T, A>::size_type          pos
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const   *rhs
+                                                    ,   ss_typename_type_k basic_string_view<C, T, A>::value_type const*  rhs
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs) const stlsoft_throw_0()
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1755,8 +1772,8 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::value_type const* basi
             STLSOFT_COVER_MARK_LINE();
 
             // Must allocate the m_cstr member
-            allocator_type  &ator   =   const_cast<class_type&>(*this);
-            char_type       *s      =   ator.allocate(1 + length(), NULL);
+            allocator_type& ator   =   const_cast<class_type&>(*this);
+            char_type*      s      =   ator.allocate(1 + length(), NULL);
 
             STLSOFT_SUPPRESS_UNUSED(ator);  // Need this for silly old Borland
 
@@ -1888,9 +1905,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::copy(   ss_typename_type_k basic_string_view<C, T, A>::value_type     *dest
-                                                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type      cch
-                                                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type      pos /* = 0 */) const
+inline ss_typename_type_ret_k basic_string_view<C, T, A>::size_type basic_string_view<C, T, A>::copy(   ss_typename_type_k basic_string_view<C, T, A>::value_type*  dest
+                                                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type        cch
+                                                                                                ,   ss_typename_type_k basic_string_view<C, T, A>::size_type        pos /* = 0 */) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1936,7 +1953,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_s
 
     STLSOFT_ASSERT(is_valid());
 
-    return m_base;
+    return begin_();
 }
 
 template<   ss_typename_param_k C
@@ -1949,7 +1966,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_iterator basic_s
 
     STLSOFT_ASSERT(is_valid());
 
-    return begin() + m_length;
+    return end_();
 }
 
 #if 0
@@ -1963,7 +1980,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::iterator basic_string_
 
     STLSOFT_ASSERT(is_valid());
 
-    return m_base;
+    return begin_();
 }
 
 template<   ss_typename_param_k C
@@ -1976,7 +1993,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::iterator basic_string_
 
     STLSOFT_ASSERT(is_valid());
 
-    return begin() + m_length;
+    return end_();
 }
 #endif /* 0 */
 
@@ -1991,7 +2008,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reverse_iterator
 
     STLSOFT_ASSERT(is_valid());
 
-    return const_reverse_iterator(end());
+    return const_reverse_iterator(end_());
 }
 
 template<   ss_typename_param_k C
@@ -2004,7 +2021,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::const_reverse_iterator
 
     STLSOFT_ASSERT(is_valid());
 
-    return const_reverse_iterator(begin());
+    return const_reverse_iterator(begin_());
 }
 
 #if 0
@@ -2018,7 +2035,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic
 
     STLSOFT_ASSERT(is_valid());
 
-    return reverse_iterator(end());
+    return reverse_iterator(end_());
 }
 
 template<   ss_typename_param_k C
@@ -2031,7 +2048,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic
 
     STLSOFT_ASSERT(is_valid());
 
-    return reverse_iterator(begin());
+    return reverse_iterator(begin_());
 }
 #endif /* 0 */
 #endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
@@ -2203,9 +2220,9 @@ inline ss_char_w_t const* c_str_ptr_null_w(stlsoft_ns_qual(basic_string_view)<ss
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* STLSOFT_NO_NAMESPACE */
 
 /* In the special case of Intel behaving as VC++ 7.0 or earlier on Win32, we
  * illegally insert into the std namespace.

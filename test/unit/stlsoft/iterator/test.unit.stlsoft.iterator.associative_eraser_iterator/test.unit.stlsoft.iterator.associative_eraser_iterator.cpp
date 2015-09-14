@@ -463,7 +463,7 @@ static void test_multimap_4()
     XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(8u, c.size()));
 
     typedef std::multimap<string_t, int>::value_type    value_t;
-    typedef stlsoft::select_first_const<value_t>		function_t;
+    typedef stlsoft::select_first_const<value_t>        function_t;
 
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(STLSOFT_COMPILER_IS_BORLAND)

@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     8th June 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    7
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     259
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     260
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

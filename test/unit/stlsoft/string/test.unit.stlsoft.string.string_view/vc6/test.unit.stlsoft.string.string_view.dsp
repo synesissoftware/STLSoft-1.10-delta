@@ -7,20 +7,20 @@
 CFG=test.unit.stlsoft.string.string_view - Win32 Debug pseudoUNIX
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "test.unit.stlsoft.string.string_view.mak".
-!MESSAGE
+!MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
-!MESSAGE
+!MESSAGE 
 !MESSAGE NMAKE /f "test.unit.stlsoft.string.string_view.mak" CFG="test.unit.stlsoft.string.string_view - Win32 Debug pseudoUNIX"
-!MESSAGE
+!MESSAGE 
 !MESSAGE Possible choices for configuration are:
-!MESSAGE
+!MESSAGE 
 !MESSAGE "test.unit.stlsoft.string.string_view - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.stlsoft.string.string_view - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "test.unit.stlsoft.string.string_view - Win32 Debug pseudoUNIX" (based on "Win32 (x86) Application")
-!MESSAGE
+!MESSAGE 
 
 # Begin Project
 # PROP AllowPerConfigDependencies 0
@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /c
-# ADD CPP /nologo /W3 /WX /GR /GX /O2 /I "$(STLSOFT_1_10)/include" /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_CONSOLE" /YX /FD /c
+# ADD CPP /nologo /W3 /WX /GR /GX /O2 /I "$(STLSOFT_1_10)/include" /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_CONSOLE" /FR /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0xc09 /d "NDEBUG" /d "_AFXDLL"
@@ -108,7 +108,7 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(STLSOFT_1_10)" /libpath:"$(XTESTS_C_ROOT)/lib"
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept /libpath:"$(STLSOFT_1_10)" /libpath:"$(XTESTS_C_ROOT)/lib" /libpath:"$(UNIXEM)/lib"
 
-!ENDIF
+!ENDIF 
 
 # Begin Target
 
@@ -163,6 +163,14 @@ SOURCE="$(STLSOFT)\include\stlsoft\string\char_traits.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\collections\util\collections.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\cover.h"
 # End Source File
 # Begin Source File
 
@@ -222,6 +230,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\stlsoft_1_10.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string.hpp"
 # End Source File
 # Begin Source File
@@ -235,18 +247,6 @@ SOURCE="$(STLSOFT_1_10)\include\stlsoft\string\string_view.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\yesno.hpp"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\cover.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\stlsoft_1_10.h"
 # End Source File
 # End Group
 # Begin Group "PlatformSTL"

@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating COM Type Libraries.
  *
  * Created:     5th April 2005
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MAJOR      1
 # define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_MINOR      3
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_REVISION   2
-# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       77
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_REVISION   3
+# define COMSTL_VER_COMSTL_TYPELIB_HPP_FUNCTIONS_EDIT       78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
  */
 
 #include <comstl/comstl_1_10.h> /* Requires STLSoft 1.10 alpha header */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>

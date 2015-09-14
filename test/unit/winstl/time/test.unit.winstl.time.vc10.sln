@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.winstl.time.format_functions", "test.unit.winstl.time.format_functions\vc10\test.unit.winstl.time.format_functions.vcxproj", "{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Multithreaded|Win32 = Debug Multithreaded|Win32
+		Debug Multithreaded|x64 = Debug Multithreaded|x64
+		Release Multithreaded|Win32 = Release Multithreaded|Win32
+		Release Multithreaded|x64 = Release Multithreaded|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Debug Multithreaded|x64.ActiveCfg = Debug Multithreaded|x64
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Debug Multithreaded|x64.Build.0 = Debug Multithreaded|x64
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Release Multithreaded|x64.ActiveCfg = Release Multithreaded|x64
+		{8C173CAC-B7D6-308A-3EF1-55D7E56BFC59}.Release Multithreaded|x64.Build.0 = Release Multithreaded|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

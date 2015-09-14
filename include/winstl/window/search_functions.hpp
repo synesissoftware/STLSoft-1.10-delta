@@ -4,11 +4,11 @@
  * Purpose:     Window search functions.
  *
  * Created:     20th October 1994
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_MINOR    3
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_EDIT     38
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_REVISION 3
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SEARCH_FUNCTIONS_EDIT     39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

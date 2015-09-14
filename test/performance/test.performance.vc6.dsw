@@ -15,6 +15,30 @@ Package=<4>
 
 ###############################################################################
 
+Project: "test.performance.stlsoft.string.string_registry"=.\stlsoft\string\test.performance.stlsoft.string.string_registry\vc6\test.performance.stlsoft.string.string_registry.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.performance.str_fs_compare"=.\test.performance.str_fs_compare\vc6\test.performance.str_fs_compare.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Global:
 
 Package=<5>

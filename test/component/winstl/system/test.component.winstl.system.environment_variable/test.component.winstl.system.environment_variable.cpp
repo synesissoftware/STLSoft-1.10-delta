@@ -69,12 +69,12 @@
 namespace
 {
 
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
-	static void test_1_20(void);
-	static void test_1_21(void);
-	static void test_1_22(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
+    static void test_1_20(void);
+    static void test_1_21(void);
+    static void test_1_22(void);
 
 } // anonymous namespace
 
@@ -89,17 +89,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.winstl.system.environment_variable", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
-		XTESTS_RUN_CASE(test_1_20);
-		XTESTS_RUN_CASE(test_1_21);
-		XTESTS_RUN_CASE(test_1_22);
+    if(XTESTS_START_RUNNER("test.component.winstl.system.environment_variable", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
+        XTESTS_RUN_CASE(test_1_20);
+        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(test_1_22);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/environment_variable.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/environment_variable.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -117,42 +117,42 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef std::basic_string<TCHAR>		string_t;
+    typedef std::basic_string<TCHAR>        string_t;
 
-	static string_t get_env_var(TCHAR const* name)
-	{
-		stlsoft::auto_buffer<TCHAR> buffer(1u);
+    static string_t get_env_var(TCHAR const* name)
+    {
+        stlsoft::auto_buffer<TCHAR> buffer(1u);
 
-		for(;;)
-		{
-			DWORD n = ::GetEnvironmentVariable(name, &buffer[0], buffer.size());
+        for(;;)
+        {
+            DWORD n = ::GetEnvironmentVariable(name, &buffer[0], buffer.size());
 
-			if(n < buffer.size())
-			{
-				return string_t(buffer.data(), n);
-			}
-			else
-			{
-				buffer.resize(2u * buffer.size());
-			}
-		}
-	}
+            if(n < buffer.size())
+            {
+                return string_t(buffer.data(), n);
+            }
+            else
+            {
+                buffer.resize(2u * buffer.size());
+            }
+        }
+    }
 
 
 static void test_1_17()
 {
-	winstl::environment_variable PATH(_T("PATH"));
+    winstl::environment_variable PATH(_T("PATH"));
 
-	if(PATH.empty())
-	{
-		XTESTS_TEST_INTEGER_EQUAL(0u, PATH.size());
-	}
-	else
-	{
-		XTESTS_TEST_INTEGER_NOT_EQUAL(0u, PATH.size());
-	}
+    if(PATH.empty())
+    {
+        XTESTS_TEST_INTEGER_EQUAL(0u, PATH.size());
+    }
+    else
+    {
+        XTESTS_TEST_INTEGER_NOT_EQUAL(0u, PATH.size());
+    }
 
-	XTESTS_TEST_STRING_EQUAL(get_env_var(_T("PATH")), PATH);
+    XTESTS_TEST_STRING_EQUAL(get_env_var(_T("PATH")), PATH);
 }
 
 static void test_1_18()

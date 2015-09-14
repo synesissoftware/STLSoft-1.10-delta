@@ -66,6 +66,7 @@ LINK32=link.exe
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "Debug"
 # PROP Intermediate_Dir "Debug"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /YX /FD /GZ /c
 # ADD CPP /nologo /MDd /W3 /WX /Gm /GR /GX /Zi /Od /I "$(STLSOFT_1_10)/include" /I "$(XTESTS_C_ROOT)/include" /I "$(STLSOFT)/include" /D "WIN32" /D "_DEBUG" /D "_AFXDLL" /D "_MBCS" /D "_CONSOLE" /FR /YX /FD /GZ /c
@@ -179,11 +180,31 @@ SOURCE="$(STLSOFT)\include\stlsoft\util\constraints.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\string\copy_functions.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\cover.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\std\exception.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\util\exception_string.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\exceptions.hpp"
 # End Source File
 # Begin Source File
 
@@ -192,6 +213,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string\fwd.h"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\is_integral_type.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\meta\is_pointer_type.hpp"
 # End Source File
 # Begin Source File
 
@@ -215,11 +240,23 @@ SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\msvc.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\meta\n_types.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\internal\cccap\obsolete.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\error\os_exception.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\algorithms\pod.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\project_exception.hpp"
 # End Source File
 # Begin Source File
 
@@ -231,7 +268,15 @@ SOURCE="$(STLSOFT)\include\stlsoft\conversion\sap_cast.hpp"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\smartptr\scoped_handle.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\meta\select_first_type_if.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\string\shim_string.hpp"
 # End Source File
 # Begin Source File
 
@@ -255,28 +300,32 @@ SOURCE="$(STLSOFT)\include\stlsoft\stlsoft.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\stlsoft_1_10.h"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\shims\access\string.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\string\string_slice.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\stlsoft\error\throw_policies.hpp"
 # End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\yesno.hpp"
 # End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\cover.h"
-# End Source File
-# Begin Source File
-
-SOURCE="$(STLSOFT_1_10)\include\stlsoft\stlsoft_1_10.h"
-# End Source File
 # End Group
 # Begin Group "PlatformSTL"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\platformstl\error\exceptions.hpp"
+# End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\platformstl\filesystem\file_path_buffer.hpp"
@@ -297,14 +346,22 @@ SOURCE="$(STLSOFT)\include\platformstl\platformstl.h"
 
 SOURCE="$(STLSOFT)\include\platformstl\platformstl.hpp"
 # End Source File
-# End Group
-# Begin Group "UNIXSTL"
+# Begin Source File
 
-# PROP Default_Filter ""
+SOURCE="$(STLSOFT_1_10)\include\platformstl\platformstl_1_10.h"
+# End Source File
 # End Group
 # Begin Group "WinSTL"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\error\error_functions.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT)\include\winstl\error\exceptions.hpp"
+# End Source File
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\winstl\filesystem\file_path_buffer.hpp"
@@ -328,6 +385,10 @@ SOURCE="$(STLSOFT)\include\winstl\system\system_traits.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\winstl\winstl.h"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\winstl\winstl_1_10.h"
 # End Source File
 # End Group
 # End Group

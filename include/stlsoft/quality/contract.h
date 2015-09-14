@@ -5,7 +5,7 @@
  *              STLSoft libraries.
  *
  * Created:     13th October 2008
- * Updated:     13th October 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://www.stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_MINOR       1
-# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_REVISION    1
-# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_EDIT        7
+# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_REVISION    2
+# define STLSOFT_VER_STLSOFT_QUALITY_H_CONTRACT_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>

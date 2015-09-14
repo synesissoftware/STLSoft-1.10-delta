@@ -5,11 +5,11 @@
  *              Windows file handles.
  *
  * Created:     7th July 2010
- * Updated:     27th August 2010
+ * Updated:     20th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_MINOR      0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION   1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_REVISION   3
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_OS_FILE_HANDLE_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -78,8 +81,8 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
+#ifndef WINSTL_NO_NAMESPACE
+# if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -93,14 +96,14 @@ namespace stlsoft
 namespace winstl_project
 {
 
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+# endif /* STLSOFT_NO_NAMESPACE */
+#endif /* !WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/** A Handle::Ref+Wrapper handle class template for FILE streams
+/** A Handle::Ref+Wrapper handle class template for Windows' (HANDLE) files.
  */
 template <ss_typename_param_k R>
 struct os_file_handle
@@ -174,35 +177,39 @@ private:
  * Shims
  */
 
-/** Elicits a file-stream handle (<code>FILE*</code>) from the given
- * instance.
+/** Elicits an underlying file-stream handle (<code>HANDLE</code>) from the
+ * given instance.
  */
 template <ss_typename_param_k R>
-inline HANDLE get_os_file_handle(os_file_handle<R>& h)
+inline
+ss_typename_type_k handle_type<R>::handle_type
+get_os_file_handle(os_file_handle<R>& h)
 {
     return h.handle;
 }
 
-/** Elicits a file-stream handle (<code>FILE*</code>) from the given
- * instance.
+/** Elicits an underlying file-stream handle (<code>HANDLE</code>) from the
+ * given instance.
  */
 template <ss_typename_param_k R>
-inline HANDLE get_os_file_handle(os_file_handle<R>* h)
+inline
+ss_typename_type_k handle_type<R>::handle_type
+get_os_file_handle(os_file_handle<R>* h)
 {
     return (NULL != h) ? h->handle : INVALID_HANDLE_VALUE;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
+#ifndef WINSTL_NO_NAMESPACE
+# if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace winstl */
 # else
 } /* namespace winstl_project */
 } /* namespace stlsoft */
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+# endif /* STLSOFT_NO_NAMESPACE */
+#endif /* !WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

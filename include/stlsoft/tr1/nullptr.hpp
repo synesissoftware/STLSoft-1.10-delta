@@ -4,11 +4,11 @@
  * Purpose:     Include for defining nullptr to be the NULL_v template class.
  *
  * Created:     28th April 2010
- * Updated:     31st May 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 
 /** \file stlsoft/tr1/nullptr.hpp
  *
- * \brief [C++ only] Defines the \c nullptr pre-processor symbol as
+ * \brief [C++ only] Defines the \c nullptr preprocessor symbol as
  *   stlsoft::NULL_v() (except for compilers that support C++ 0x)
  *   (\ref group__library__utility "Utility" Library).
  */
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_MINOR    0
-# define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_REVISION 1
-# define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_EDIT     2
+# define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_REVISION 2
+# define STLSOFT_VER_STLSOFT_TR1_HPP_NULLPTR_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -68,6 +68,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

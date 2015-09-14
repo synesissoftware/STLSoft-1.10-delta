@@ -66,12 +66,12 @@
 namespace
 {
 
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
-	static void test_1_20(void);
-	static void test_1_21(void);
-	static void test_1_22(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
+    static void test_1_20(void);
+    static void test_1_21(void);
+    static void test_1_22(void);
 
 } // anonymous namespace
 
@@ -86,17 +86,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.winstl.system.console_functions", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
-		XTESTS_RUN_CASE(test_1_20);
-		XTESTS_RUN_CASE(test_1_21);
-		XTESTS_RUN_CASE(test_1_22);
+    if(XTESTS_START_RUNNER("test.component.winstl.system.console_functions", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
+        XTESTS_RUN_CASE(test_1_20);
+        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(test_1_22);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/console_functions.h", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/console_functions.h", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -114,19 +114,19 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef std::basic_string<TCHAR>		string_t;
+    typedef std::basic_string<TCHAR>        string_t;
 
 
 static void test_1_17()
 {
-	XTESTS_TEST_INTEGER_EQUAL(winstl::winstl__get_console_width(), winstl::winstl_C_get_console_width());
-	XTESTS_TEST_INTEGER_EQUAL(winstl::winstl__get_console_width(), winstl::get_console_width());
+    XTESTS_TEST_INTEGER_EQUAL(winstl::winstl__get_console_width(), winstl::winstl_C_get_console_width());
+    XTESTS_TEST_INTEGER_EQUAL(winstl::winstl__get_console_width(), winstl::get_console_width());
 }
 
 static void test_1_18()
 {
-	XTESTS_TEST_POINTER_EQUAL(winstl::winstl__get_console_window(), winstl::winstl_C_get_console_window());
-	XTESTS_TEST_POINTER_EQUAL(winstl::winstl__get_console_window(), winstl::get_console_window());
+    XTESTS_TEST_POINTER_EQUAL(winstl::winstl__get_console_window(), winstl::winstl_C_get_console_window());
+    XTESTS_TEST_POINTER_EQUAL(winstl::winstl__get_console_window(), winstl::get_console_window());
 }
 
 static void test_1_19()

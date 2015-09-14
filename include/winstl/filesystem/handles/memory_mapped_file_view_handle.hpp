@@ -5,11 +5,11 @@
  *              Windows memory mapped file view handles.
  *
  * Created:     30th August 2010
- * Updated:     7th September 2010
+ * Updated:     20th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_MINOR      0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION   1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT       1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_REVISION   4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HANDLES_HPP_MEMORY_MAPPED_FILE_VIEW_HANDLE_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -78,8 +81,8 @@
  * Namespace
  */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
+#ifndef WINSTL_NO_NAMESPACE
+# if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 /* There is no stlsoft namespace, so must define ::winstl */
 namespace winstl
@@ -92,19 +95,24 @@ namespace stlsoft
 namespace winstl_project
 {
 
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+# endif /* STLSOFT_NO_NAMESPACE */
+#endif /* !WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
+/** Raw structure that represents a memory-mapped file view state
+ */
 struct memory_mapped_file_view_state_t
 {
+    /// Pointer to the base of the view, or NULL if not mapped
     void* const         memory;
+    /// Size of the view
     ws_uintptr_t const  size;
 
 public:
+    /// Constructs an instance of the view
     memory_mapped_file_view_state_t(void* p, ws_uintptr_t n)
         : memory(p)
         , size(n)
@@ -113,7 +121,11 @@ private:
     memory_mapped_file_view_state_t& operator =(memory_mapped_file_view_state_t const&);
 };
 
-/** A Handle::Ref+Wrapper handle class template for memory mapped file views.
+/** A Handle::Ref+Wrapper handle adaptor class template for memory mapped
+ * file views.
+ *
+ * \param R The reference counting policy that determines how the type's
+ *   reference count will be manipulated.
  */
 template <ss_typename_param_k R>
 struct memory_mapped_file_view_handle
@@ -153,7 +165,7 @@ public: // Construction
     /// Destroys an instance of the underlying handle type
     static void destroy(handle_type h)
     {
-        if(0 != h.size)
+        if(NULL != h.memory)
         {
             ::UnmapViewOfFile(h.memory);
         }
@@ -206,7 +218,11 @@ private:
  * instance.
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type const get_memory_mapped_file_view_handle(memory_mapped_file_view_handle<R>& h)
+inline
+ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type const
+get_memory_mapped_file_view_handle(
+    memory_mapped_file_view_handle<R>& h
+)
 {
     return h.handle;
 }
@@ -215,22 +231,26 @@ inline ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type const g
  * instance.
  */
 template <ss_typename_param_k R>
-inline ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type const get_memory_mapped_file_view_handle(memory_mapped_file_view_handle<R>* h)
+inline
+ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type const
+get_memory_mapped_file_view_handle(
+    memory_mapped_file_view_handle<R>* h
+)
 {
     return (NULL != h) ? h->handle : ss_typename_type_k memory_mapped_file_view_handle<R>::handle_type(NULL, 0u);
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#ifndef _WINSTL_NO_NAMESPACE
-# if defined(_STLSOFT_NO_NAMESPACE) || \
+#ifndef WINSTL_NO_NAMESPACE
+# if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 } /* namespace winstl */
 # else
 } /* namespace winstl_project */
 } /* namespace stlsoft */
-# endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
+# endif /* STLSOFT_NO_NAMESPACE */
+#endif /* !WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

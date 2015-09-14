@@ -1108,18 +1108,18 @@ static void test_VT_ERROR()
     ::VariantInit(&var);
 
     const LONG errors[] = {
-		ERROR_SUCCESS
-	,	ERROR_OUTOFMEMORY
-	,	E_FAIL
-	,	E_UNEXPECTED
-	,	E_OUTOFMEMORY
-	,	DISP_E_BADINDEX
-	,	0x80092001L
-	,	0x800B010AL
-	,	0x800B010BL
-	,	0x800B010CL
-	,	0x800B010DL
-	};
+        ERROR_SUCCESS
+    ,   ERROR_OUTOFMEMORY
+    ,   E_FAIL
+    ,   E_UNEXPECTED
+    ,   E_OUTOFMEMORY
+    ,   DISP_E_BADINDEX
+    ,   0x80092001L
+    ,   0x800B010AL
+    ,   0x800B010BL
+    ,   0x800B010CL
+    ,   0x800B010DL
+    };
 
     var.vt = VT_ERROR;
 

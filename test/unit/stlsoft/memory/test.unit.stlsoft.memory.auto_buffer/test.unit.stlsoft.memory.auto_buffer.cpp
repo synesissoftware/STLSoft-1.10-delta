@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.stlsoft.memory.auto_buffer project.
  *
  * Created:     25th February 2009
- * Updated:     19th January 2010
+ * Updated:     26th August 2015
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2015, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -58,6 +58,10 @@ namespace
     static void test_1_04(void);
     static void test_1_05(void);
     static void test_1_06(void);
+    static void test_1_07(void);
+    static void test_1_08(void);
+    static void test_1_09(void);
+    static void test_1_10(void);
 
 } // anonymous namespace
 
@@ -80,6 +84,10 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_04);
         XTESTS_RUN_CASE(test_1_05);
         XTESTS_RUN_CASE(test_1_06);
+        XTESTS_RUN_CASE(test_1_07);
+        XTESTS_RUN_CASE(test_1_08);
+        XTESTS_RUN_CASE(test_1_09);
+        XTESTS_RUN_CASE(test_1_10);
 
 #ifdef STLSOFT_USE_XCOVER
         XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/auto_buffer.hpp", NULL);
@@ -193,6 +201,290 @@ static void test_1_05()
 }
 
 static void test_1_06()
+{
+
+}
+
+static void test_1_07()
+{
+    // ab1.swap(ab2)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(10);
+        stlsoft::auto_buffer<int, 10>   ab2(8);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab1.swap(ab2);
+
+        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+
+    // ab2.swap(ab1)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(10);
+        stlsoft::auto_buffer<int, 10>   ab2(8);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab2.swap(ab1);
+
+        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+}
+
+static void test_1_08()
+{
+    // ab1.swap(ab2)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(50);
+        stlsoft::auto_buffer<int, 10>   ab2(8);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(50u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab1.swap(ab2);
+
+        XTESTS_TEST_INTEGER_EQUAL(8u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(50u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+
+    // ab2.swap(ab1)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(10);
+        stlsoft::auto_buffer<int, 10>   ab2(8);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab2.swap(ab1);
+
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+}
+
+static void test_1_09()
+{
+    // ab1.swap(ab2)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(50);
+        stlsoft::auto_buffer<int, 10>   ab2(8);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(50u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab1.swap(ab2);
+
+        XTESTS_TEST_INTEGER_EQUAL(8u,  ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(50u, ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+
+    // ab2.swap(ab1)
+    {
+        stlsoft::auto_buffer<int, 10>   ab1(10);
+        stlsoft::auto_buffer<int, 10>   ab2(18);
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            ab1[i] = int(i);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            ab2[i] = -int(i);
+        }}
+
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(18u, ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab2[i]);
+        }}
+
+
+        ab2.swap(ab1);
+
+        XTESTS_TEST_INTEGER_EQUAL(18u, ab1.size());
+        XTESTS_TEST_INTEGER_EQUAL(10u, ab2.size());
+
+        { for(size_t i = 0; i != ab1.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(-int(i), ab1[i]);
+        }}
+
+        { for(size_t i = 0; i != ab2.size(); ++i)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(int(i), ab2[i]);
+        }}
+    }
+}
+
+static void test_1_10()
 {
 
 }

@@ -16,9 +16,9 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
+			Name="Debug Multithreaded|Win32"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -115,9 +115,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			Name="Release Multithreaded|Win32"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -213,8 +213,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug xCover|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -322,7 +322,7 @@
 				RelativePath="..\implicit_link.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug Multithreaded|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -331,7 +331,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release Multithreaded|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -353,7 +353,7 @@
 				RelativePath="..\test.unit.stlsoft.string.shim_string.cpp"
 				>
 				<FileConfiguration
-					Name="Debug|Win32"
+					Name="Debug Multithreaded|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -362,7 +362,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Release Multithreaded|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"

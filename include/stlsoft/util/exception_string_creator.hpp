@@ -4,11 +4,11 @@
  * Purpose:     Contains the exception_string_creator class.
  *
  * Created:     25th May 2010
- * Updated:     21st June 2010
+ * Updated:     16th November 2013
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2013, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 4
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     5
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_CREATOR_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -69,9 +72,14 @@
 #ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING
 # include <stlsoft/conversion/integer_to_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR
+#  include <stlsoft/error/conversion_error.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_CONVERSION_ERROR */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
@@ -209,34 +217,52 @@ public:
 /// \name Operations
 /// @{
 public:
+    /// Appends a multibyte C-style string
     class_type& append(ss_char_a_t const* s)
     {
         return append_(s, stlsoft_ns_qual(c_str_len_a)(s));
     }
+    /// Appends \c n characters of the multibyte C-style string \c s
     class_type& append(ss_char_a_t const* s, size_type n)
     {
         return append_(s, n);
     }
+    /// Appends a wide C-style string
+    ///
+    /// \exception stlsoft::conversion_error If \c s points to a wide-string
+    ///    that contains a character that cannot be converted.
     class_type& append(ss_char_w_t const* s)
     {
         return append_(s, stlsoft_ns_qual(c_str_len_w)(s));
     }
+    /// Appends \c n characters of the wide C-style string \c s
+    ///
+    /// \exception stlsoft::conversion_error If \c s points to a wide-string
+    ///    that contains a character that cannot be converted (within the
+    ///    range <code>[0, n)</code>).
     class_type& append(ss_char_w_t const* s, size_type n)
     {
         return append_(s, n);
     }
+    /// Appends a single multibyte character
     class_type& append(ss_char_a_t ch)
     {
         return append_(&ch, 1u);
     }
+    /// Appends a single wide character
     class_type& append(ss_char_w_t ch)
     {
         return append_(&ch, 1u);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append(int i)
     {
         return append_integer_(i);
     }
+    /// Appends the string form of the given parameter, which is accessed
+    /// via application of the string access shims
+    /// <strong>stlsoft::c_str_data</strong> and
+    /// <strong>stlsoft::c_str_len</strong>.
     template <ss_typename_param_k S>
     class_type& append(S const& s)
     {
@@ -251,20 +277,24 @@ public:
     }
 
 #ifdef STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_sint8_t const& i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_uint8_t const& i)
     {
         return append_integer_(i);
     }
 #endif // STLSOFT_CF_8BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 #ifdef STLSOFT_CF_16BIT_INT_EXTENDED_TYPE_IS_DISTINCT
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_sint16_t const& i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_uint16_t const& i)
     {
         return append_integer_(i);
@@ -273,43 +303,51 @@ public:
 #if defined(STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT) || \
     ( defined(STLSOFT_COMPILER_IS_MSVC) && \
       _MSC_VER == 1200) /* NOTE: This is a hack, and should be updated when STLSoft 1.10 is released */
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_sint32_t const& i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_uint32_t const& i)
     {
         return append_integer_(i);
     }
 #endif // STLSOFT_CF_32BIT_INT_EXTENDED_TYPE_IS_DISTINCT
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_sint64_t const& i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(ss_uint64_t const& i)
     {
         return append_integer_(i);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(int i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(unsigned int i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(long i)
     {
         return append_integer_(i);
     }
+    /// Appends the string-ified form of the integer \c i
     class_type& append_number(unsigned long i)
     {
         return append_integer_(i);
     }
 
-    /// Appends the given value to the message, 
+    /// Appends the given value to the message,
     template <ss_typename_param_k V>
     void operator += (V const& v)
     {
@@ -356,6 +394,8 @@ public:
 /// \name Implementation
 /// @{
 private:
+    enum { UnicodeMaxMultiplier = (2 == sizeof(ss_char_w_t)) ? 3 : 6 };
+
     class_type& append_(ss_char_a_t const* s, size_type n)
     {
         m_message.append(s, n);
@@ -364,9 +404,9 @@ private:
     }
     class_type& append_(ss_char_w_t const* s, size_type n)
     {
-        stlsoft::auto_buffer<ss_char_a_t, 256>  buff(n * 4);
+        stlsoft::auto_buffer<ss_char_a_t, 256>  buff(n * UnicodeMaxMultiplier);
 
-        return append_(buff.data(), ::wcstombs(&buff[0], s, n));
+        return append_(buff.data(), wide_to_multibyte_or_throw_(s, n, &buff[0], buff.size()));
     }
     template <ss_typename_param_k I>
     class_type& append_integer_(I const& i)
@@ -390,16 +430,58 @@ private:
     ,   size_type           n
     )
     {
-        stlsoft::auto_buffer<ss_char_a_t, 256>  buff(n * 4);
+        stlsoft::auto_buffer<ss_char_a_t, 256>  buff(n * UnicodeMaxMultiplier);
 
-        return create_(buff.data(), ::wcstombs(&buff[0], s, n));
+        return create_(buff.data(), wide_to_multibyte_or_throw_(s, n, &buff[0], buff.size()));
+    }
+    static size_t wide_to_multibyte_or_throw_(
+        ss_char_w_t const*  src
+    ,   size_type           cchSrc
+    ,   ss_char_a_t*        dest
+    ,   size_type           cbDest
+    )
+    {
+        STLSOFT_CONTRACT_ENFORCE_PRECONDITION_STATE_INTERNAL(cbDest >= cchSrc * UnicodeMaxMultiplier, "insufficient destination buffer size");
+
+        int         err;
+        ss_size_t   numConverted;
+#ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
+
+        err = ::wcstombs_s(&numConverted, dest, cbDest, src, cchSrc);
+
+        if(0 == err)
+        {
+            // wcstombs_s() always included nul-terminator in count
+            --numConverted;
+        }
+        else
+        {
+#else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+        numConverted = ::wcstombs(dest, src, cchSrc);
+
+        STLSOFT_SUPPRESS_UNUSED(cbDest);
+
+        if(static_cast<ss_size_t>(-1) == numConverted)
+        {
+            err = errno;
+#endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+            STLSOFT_THROW_X(conversion_error("failed to convert wide string to multibyte string", err));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+            return 0u;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+        }
+
+        return numConverted;
     }
 /// @}
 
 /// \name Fields
 /// @{
 private:
-    string_type_    m_message;
+    string_type_ m_message;
 /// @}
 };
 
@@ -433,55 +515,73 @@ typedef exception_string_creator_w                          exception_wstring_cr
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::char_type const* c_str_data(basic_exception_string_creator<C, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::char_type const*
+c_str_data(basic_exception_string_creator<C, T, A> const& xs)
 {
     return xs.data();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::size_type c_str_len(basic_exception_string_creator<C, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::size_type
+c_str_len(basic_exception_string_creator<C, T, A> const& xs)
 {
     return xs.size();
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::char_type const* c_str_ptr(basic_exception_string_creator<C, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<C, T, A>::char_type const*
+c_str_ptr(basic_exception_string_creator<C, T, A> const& xs)
 {
     return xs.c_str();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::char_type const* c_str_data_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::char_type const*
+c_str_data_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
 {
     return xs.data();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::size_type c_str_len_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::size_type
+c_str_len_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
 {
     return xs.size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::char_type const* c_str_ptr_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_a_t, T, A>::char_type const*
+c_str_ptr_a(basic_exception_string_creator<ss_char_a_t, T, A> const& xs)
 {
     return xs.c_str();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::char_type const* c_str_data_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::char_type const*
+c_str_data_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
 {
     return xs.data();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::size_type c_str_len_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::size_type
+c_str_len_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
 {
     return xs.size();
 }
 
 template <ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::char_type const* c_str_ptr_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
+inline
+ss_typename_type_ret_k basic_exception_string_creator<ss_char_w_t, T, A>::char_type const*
+c_str_ptr_w(basic_exception_string_creator<ss_char_w_t, T, A> const& xs)
 {
     return xs.c_str();
 }

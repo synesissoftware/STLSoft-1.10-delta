@@ -4,11 +4,11 @@
  * Purpose:     Window relationship functions.
  *
  * Created:     20th October 1994
- * Updated:     31st May 2010
+ * Updated:     8th August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_MINOR    1
-# define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_EDIT     88
+# define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_WINDOW_H_RELATIONSHIP_FUNCTIONS_EDIT     90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -127,9 +130,9 @@ STLSOFT_INLINE HWND winstl_C_get_window_parent(HWND hwnd)
  */
 STLSOFT_INLINE DWORD winstl_C_get_window_process_id(HWND hwnd)
 {
-    WINSTL_ASSERT(::IsWindow(hwnd));
-
     DWORD pid = 0;
+
+    WINSTL_ASSERT(::IsWindow(hwnd));
 
     STLSOFT_NS_GLOBAL(GetWindowThreadProcessId)(hwnd, &pid);
 

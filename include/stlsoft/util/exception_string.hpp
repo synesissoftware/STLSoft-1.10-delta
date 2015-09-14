@@ -4,11 +4,11 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     27th August 2010
+ * Updated:     25th September 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 5
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     31
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 9
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,15 +59,18 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
-# include <stlsoft/memory/allocator_selector.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR
+# include <stlsoft/memory/util/allocator_selector.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_UTIL_HPP_ALLOCATOR_SELECTOR */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
@@ -78,9 +81,10 @@
 # include <stlsoft/util/std_swap.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
-#ifdef STLSOFT_UNITTEST
-# include <string.h>
-#endif /* STLSOFT_UNITTEST */
+#ifndef STLSOFT_INCL_H_STDLIB
+# define STLSOFT_INCL_H_STDLIB
+# include <stdlib.h>                     // for abort()
+#endif /* !STLSOFT_INCL_H_STDLIB */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -101,7 +105,6 @@ namespace stlsoft
  * - small string optimisation (SSO)
  * - shared state (when SSO does not apply)
  * - immutable
- *
  *
  * \ingroup group__library__string
  */
@@ -213,20 +216,21 @@ private:
 
             return pv;
         }
-        void operator delete(void* pv)
+    private:
+        void operator delete(void* /* pv */)
         {
-            allocator_type  ator;
+            STLSOFT_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL("execution should never reach this point");
 
+            ::abort();
+        }
 # ifndef __BORLANDC__
-            operator delete(pv, ator, NULL);
-        }
-        void operator delete(void* pv, allocator_type& ator, void* )
+        void operator delete(void* /* pv */, allocator_type& /* ator */, void* )
         {
-# endif /* compiler */
-            ss_byte_t* py = static_cast<ss_byte_t*>(pv);
+            STLSOFT_CONTRACT_ENFORCE_UNEXPECTED_CONDITION_INTERNAL("execution should never reach this point");
 
-            ator.deallocate(py, 0u);
+            ::abort();
         }
+# endif /* compiler */
 
     public: // Reference-counting
         void AddRef()
@@ -556,7 +560,7 @@ public: // Construction
         STLSOFT_CONTRACT_ENFORCE_CLASS_INVARIANT_INTERNAL(    is_valid(), "invariant does not hold before swap");
         STLSOFT_CONTRACT_ENFORCE_CLASS_INVARIANT_INTERNAL(rhs.is_valid(), "invariant does not hold before swap");
 
-        // Swapping the m_shard and m_internal members are
+        // Swapping the m_shared and m_internal members are
         // straightforward. By contrast, swapping m_slice is complex, since
         // it might refer to the internal buffer or the shared buffer.
 
@@ -746,6 +750,27 @@ typedef exception_string_a                                  exception_string;
 typedef exception_string_w                                  exception_wstring;
 
 /* /////////////////////////////////////////////////////////////////////////
+ * swap()
+ */
+
+/** Swaps the state of
+ * two \ref stlsoft::exception_string_base exception_string\endlink
+ * instances.
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+inline void swap(
+    exception_string_base<C, T, A>& lhs
+,   exception_string_base<C, T, A>& rhs
+)
+{
+    lhs.swap(rhs);
+}
+
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -864,6 +889,53 @@ inline exception_string_base<C, T, A> operator +(exception_string_base<C, T, A> 
 #ifndef STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* STLSOFT_NO_NAMESPACE */
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+/* VC++ 6 requires this to be (illegally) placed in namespace std, otherwise
+ * it's not picked up.
+ */
+#if defined(STLSOFT_CF_std_NAMESPACE)
+namespace std
+{
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER < 1300
+
+    inline void swap(
+        stlsoft_ns_qual(exception_string_a)& lhs
+    ,   stlsoft_ns_qual(exception_string_a)& rhs
+    )
+    {
+        lhs.swap(rhs);
+    }
+    inline void swap(
+        stlsoft_ns_qual(exception_string_w)& lhs
+    ,   stlsoft_ns_qual(exception_string_w)& rhs
+    )
+    {
+        lhs.swap(rhs);
+    }
+
+# else /* ? VC++ 6- */
+
+    template<
+        ss_typename_param_k C
+    ,   ss_typename_param_k T
+    ,   ss_typename_param_k A
+    >
+    inline void swap(
+        stlsoft_ns_qual(exception_string_base)<C, T, A>&  lhs
+    ,   stlsoft_ns_qual(exception_string_base)<C, T, A>&  rhs
+    )
+    {
+        lhs.swap(rhs);
+    }
+
+# endif /* VC++ 6- */
+
+} // namespace std
+#endif /* STLSOFT_CF_std_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

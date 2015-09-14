@@ -2,7 +2,7 @@
 STLSoft -  Changes
 
 ; Created:  29th March 2002
-; Updated:  14th October 2010
+; Updated:  14th September 2015
 
 ============================================================================
 
@@ -16,6 +16,255 @@ STLSoft -  Changes
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+14th September 2015 - 1.10.1 alpha 19 (delta)
+=============================================
+
+Summary:
+--------
+
+ * added many new components
+ * ported many components over from STLSoft 1.9
+ * adding in trace-include facility wholesale
+ * ensuring C-compatibility of all .h files
+
+Details:
+--------
+
+STLSoft:
+
+ + stlsoft/container/circular_queue_static.hpp
+
+ + stlsoft/container/frequency_map.hpp
+
+ + stlsoft/container/insert_ordered_map.hpp
+
+ + stlsoft/container/insert_ordered_set.hpp
+
+ - stlsoft/conversion/integer_to_hex_string.hpp
+
+ + stlsoft/conversion/integer_to_string.hpp
+ + stlsoft/conversion/integer_to_string/integer_to_decimal_string.hpp
+ + stlsoft/conversion/integer_to_string/integer_to_hexadecimal_string.hpp
+ + stlsoft/conversion/integer_to_string/integer_to_lc_string.hpp
+ + stlsoft/conversion/integer_to_string/integer_to_octal_string.hpp
+ + stlsoft/conversion/integer_to_string/integer_to_string.hpp
+
+ + stlsoft/conversion/string_to_bool.hpp
+
+ + stlsoft/diagnostics/logging/selector.hpp
+
+ + stlsoft/exception/unrecoverable.hpp
+
+ + stlsoft/exception/special/errno_exception.hpp
+
+ + stlsoft/exception/special/thread_completion_exception.hpp
+
+ + stlsoft/internal/lead_version.h
+
+ + stlsoft/iterator/string_back_insert_iterator.hpp
+
+ ~ stlsoft/iterator/string_insert_iterator.hpp:
+    ~ supports copy-assignment
+
+ + stlsoft/iterator/string_insert_iterator.hpp
+
+ + stlsoft/limits/integral_format_width_traits.hpp
+
+ + stlsoft/limits/integral_limits.h
+
+ + stlsoft/limits/integral_limits.hpp
+
+ + stlsoft/memory/allocator_features.hpp
+
+ + stlsoft/memory/allocator_selector.hpp
+
+ + stlsoft/memory/auto_buffer.h
+
+ + stlsoft/memory/util/allocator_features.hpp
+
+ + stlsoft/memory/util/allocator_selector.hpp
+
+ + stlsoft/shims/access/string.hpp
+
+ + stlsoft/shims/access/std/type_info.hpp
+
+ + stlsoft/shims/conversion/to_signed.hpp
+
+ + stlsoft/shims/conversion/to_unsigned.hpp
+
+ + stlsoft/shims/conversion/to_signed/to_signed.hpp
+
+ + stlsoft/shims/conversion/to_unsigned/to_unsigned.hpp
+
+ - stlsoft/string/comparison_functions.hpp
+
+ + stlsoft/string/plural_functions.hpp
+
+ + stlsoft/string/slice_functions.hpp
+
+ + stlsoft/string/split_functions.hpp
+
+ + stlsoft/string/string_lookup.hpp
+
+ + stlsoft/string/slice/container_functions.hpp
+
+ + stlsoft/string/slice/view_functions.hpp
+
+ + stlsoft/system/environment/functions.h
+
+ + stlsoft/test/util/files/std/input_file.hpp
+
+ + stlsoft/test/util/files/std/output_file.hpp
+
+ + stlsoft/test/util/files/std/ximpl/base_file.hpp
+
+ + stlsoft/time/timespan.hpp
+
+ + stlsoft/traits/integral_printf_format_traits.hpp
+
+ + stlsoft/util/bitwise_zero_init.hpp
+
+ + stlsoft/util/count_digits.hpp
+
+ + stlsoft/util/integral_printf_traits.hpp
+
+ + stlsoft/util/limit_traits.h
+
+ + stlsoft/util/string/snprintf.h
+
+ + stlsoft/util/string/vsnprintf.h
+
+ATLSTL:
+
+ ~ atlsoft/automation/property_method_helpers.hpp:
+    + overloads of get_MemberValue() for obtaining types of size_t
+
+PlatformSTL:
+
+ ~ platformstl/filesystem/file_lines.hpp:
+    ~ handles mutating C-style strings
+
+ - platformstl/filesystem/os_file.hpp:
+    - deleted file
+
+ + platformstl/filesystem/path_functions.h
+
+ ~ platformstl/filesystem/properties_file.hpp:
+    ~ handles arbitrary string type in subscript operator
+
+ + platformstl/filesystem/readonly_memory_mapped_file.hpp
+
+ + platformstl/system/console_functions.h
+
+ + platformst/system/temporary_directory.hpp
+
+ + platformstl/test/filesystem/temporary_directory_contents.hpp
+
+ + platformstl/time/datetime.hpp
+
+UNIXSTL:
+
+ + unixstl/filesystem/readdir_sequence.hpp
+
+ + unixstl/shims/access/string/timeval.hpp
+
+ + unixstl/system/console_functions.h
+
+ + unixstl/system/temporary_directory.hpp
+
+WinSTL:
+
+ + winstl/conversion/a2w.hpp
+
+ + winstl/conversion/w2a.hpp
+
+ + winstl/diagnostics/output_debug_line.h
+
+ + winstl/diagnostics/output_debug_line.hpp
+
+ + winstl/filesystem/directory.hpp
+
+ + winstl/filesystem/file_information_functions.h
+
+ + winstl/filesystem/filesystem_traits.hpp
+
+ + winstl/filesystem/link_functions.h
+
+ + winstl/registry/external/registry.h
+
+ + winstl/registry/util/key_functions.h
+ + winstl/registry/util/key_functions.hpp
+ + winstl/registry/util/properties_file_functions.hpp
+ + winstl/registry/util/value_functions.h
+ + winstl/registry/util/value_functions.hpp
+
+ + winstl/security/security_functions.h
+
+ + winstl/shims/access/string/time.hpp
+ + winstl/shims/access/string/time/FILETIME.hpp
+ + winstl/shims/access/string/time/SYSTEMTIME.hpp
+ + winstl/shims/access/string/time/UDATE.hpp
+
+ + winstl/shims/access/conversion/to_UDATE.hpp
+ + winstl/shims/access/conversion/to_UDATE/DATE.hpp
+ + winstl/shims/access/conversion/to_UDATE/FILETIME.hpp
+ + winstl/shims/access/conversion/to_UDATE/SYSTEMTIME.hpp
+ + winstl/shims/access/conversion/to_UDATE/UDATE.hpp
+
+ ~ winstl/synch/exceptions.hpp:
+    + synchronisation_logic_exception
+    + synchronisation_runtime_exception
+    + ... many more ...
+
+ + winstl/synch/Synchronisation_status_code.h
+
+ ~ winstl/synch/waitable_timer.hpp:
+    ~ full implementation of class
+
+ + winstl/synch/waitable_timer_functions.h
+
+ + winstl/system/console_functions.h
+
+ + winstl/system/directory_functions.h
+
+ + winstl/system/home_directory.hpp
+
+ + winstl/system/host_name.hpp
+
+ + winstl/system/memory_functions.h
+
+ + winstl/system/native_system_info.hpp
+
+ + winstl/system/os_version.h
+
+ + winstl/system/spi_functions.h
+
+ + winstl/system/system_info.hpp
+
+ + winstl/system/system_traits.hpp
+
+ + winstl/system/temporary_file_name.hpp
+
+ + winstl/system/user_name.hpp
+
+ + winstl/time/comparison_functions.h
+
+ + winstl/time/comparison_operators.hpp
+
+ + winstl/time/elicitation_functions.h
+
+ + winstl/time/localisation_functions.h
+
+ + winstl/time/modification_functions.h
+
+ + winstl/time/time_cast.hpp
+
+ + winstl/time/validation_functions.h
+
+ + winstl/util/resource_id.hpp
+
 
 
 14th October 2010 - 1.10.1 alpha 15 (delta)

@@ -3,6 +3,18 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "test.component.platformstl.filesystem.readdir_sequence"=..\component\platformstl\filesystem\test.component.platformstl.filesystem.readdir_sequence\vc6\test.component.platformstl.filesystem.readdir_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "test.unit.atlstl.automation.property_method_helpers"=.\atlstl\automation\test.unit.atlstl.automation.property_method_helpers\vc6\test.unit.atlstl.automation.property_method_helpers.dsp - Package Owner=<4>
 
 Package=<5>
@@ -472,6 +484,18 @@ Package=<4>
 ###############################################################################
 
 Project: "test.unit.unixstl.system.system_traits.2"=.\unixstl\system\test.unit.unixstl.system.system_traits.2\vc6\test.unit.unixstl.system.system_traits.2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.error.error_desc"=.\winstl\error\test.unit.winstl.error.error_desc\vc6\test.unit.winstl.error.error_desc.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

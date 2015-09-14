@@ -4,11 +4,11 @@
  * Purpose:     Window text functions.
  *
  * Created:     20th October 1994
- * Updated:     31st May 2010
+ * Updated:     8th August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_EDIT     32
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_REVISION 4
+# define WINSTL_VER_WINSTL_WINDOW_H_TEXT_FUNCTIONS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -105,32 +108,32 @@ namespace winstl_project
 
 STLSOFT_INLINE size_t winstl_C_get_window_class_a(HWND hwnd, ws_char_a_t* dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetClassNameA(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetClassNameA)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 STLSOFT_INLINE size_t winstl_C_get_window_class_w(HWND hwnd, ws_char_w_t* dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetClassNameW(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetClassNameW)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 STLSOFT_INLINE size_t winstl_C_get_window_class(HWND hwnd, LPTSTR dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetClassName(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetClassName)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 STLSOFT_INLINE size_t winstl_C_get_window_text_a(HWND hwnd, ws_char_a_t* dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetWindowTextA(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetWindowTextA)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 STLSOFT_INLINE size_t winstl_C_get_window_text_w(HWND hwnd, ws_char_w_t* dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetWindowTextW(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetWindowTextW)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 STLSOFT_INLINE size_t winstl_C_get_window_text(HWND hwnd, LPTSTR dest, size_t cchDest)
 {
-    return stlsoft_static_cast(size_t, ::GetWindowText(hwnd, dest, stlsoft_static_cast(int, cchDest)));
+    return stlsoft_static_cast(size_t, STLSOFT_NS_GLOBAL(GetWindowText)(hwnd, dest, stlsoft_static_cast(int, cchDest)));
 }
 
 /* /////////////////////////////////////////////////////////////////////////

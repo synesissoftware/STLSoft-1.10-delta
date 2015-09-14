@@ -85,7 +85,7 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_1_09);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/union_cast.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/union_cast.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -102,43 +102,43 @@ int main(int argc, char **argv)
 
 namespace
 {
-	struct struct1
-	{
-	} s1;
-	struct struct2
-	{
-	}s2;
+    struct struct1
+    {
+    } s1;
+    struct struct2
+    {
+    }s2;
 
 static void test_1_01()
 {
-	int f = 10;
-	int t = stlsoft::union_cast<int>(f);
+    int f = 10;
+    int t = stlsoft::union_cast<int>(f);
 
-	XTESTS_TEST_INTEGER_EQUAL(10, t);
+    XTESTS_TEST_INTEGER_EQUAL(10, t);
 }
 
 static void test_1_02()
 {
-	wchar_t const*	ws	=	L"0";
-	char const*		mbs	=	stlsoft::union_cast<char const*>(ws);
+    wchar_t const*  ws  =   L"0";
+    char const*     mbs =   stlsoft::union_cast<char const*>(ws);
 
-	XTESTS_TEST_POINTER_EQUAL(static_cast<void const*>(ws), static_cast<void const*>(mbs));
+    XTESTS_TEST_POINTER_EQUAL(static_cast<void const*>(ws), static_cast<void const*>(mbs));
 }
 
 static void test_1_03()
 {
-	stlsoft::sint16_t f = 10;
-	stlsoft::uint16_t t = stlsoft::union_cast<stlsoft::uint16_t>(f);
+    stlsoft::sint16_t f = 10;
+    stlsoft::uint16_t t = stlsoft::union_cast<stlsoft::uint16_t>(f);
 
-	XTESTS_TEST_INTEGER_EQUAL(10u, t);
+    XTESTS_TEST_INTEGER_EQUAL(10u, t);
 }
 
 static void test_1_04()
 {
-	struct1 const* f = &s1;
-	struct2 const* t = stlsoft::union_cast<struct2 const*>(f);
+    struct1 const* f = &s1;
+    struct2 const* t = stlsoft::union_cast<struct2 const*>(f);
 
-	XTESTS_TEST_POINTER_EQUAL(static_cast<void const*>(f), static_cast<void const*>(t));
+    XTESTS_TEST_POINTER_EQUAL(static_cast<void const*>(f), static_cast<void const*>(t));
 }
 
 static void test_1_05()

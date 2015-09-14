@@ -124,13 +124,13 @@ int main(int argc, char **argv)
 
 static char const   TEST_FILE_NAME[]    =   "test.component.unixstl.filesystem.memory_map_functions.C.DATAFILE";
 #ifdef __cplusplus
-static size_t const	TEST_BUFFER_SIZE	=	0x1000;
-static size_t const	TEST_NUM_BUFFERS	=	0x100;
-static size_t const	TEST_FILE_SIZE		=	TEST_BUFFER_SIZE * TEST_NUM_BUFFERS;
+static size_t const TEST_BUFFER_SIZE    =   0x1000;
+static size_t const TEST_NUM_BUFFERS    =   0x100;
+static size_t const TEST_FILE_SIZE      =   TEST_BUFFER_SIZE * TEST_NUM_BUFFERS;
 #else /* ? __cplusplus */
-# define TEST_BUFFER_SIZE					(0x1000)
-# define TEST_NUM_BUFFERS					(0x100)
-# define TEST_FILE_SIZE						stlsoft_c_cast(size_t, TEST_BUFFER_SIZE * TEST_NUM_BUFFERS)
+# define TEST_BUFFER_SIZE                   (0x1000)
+# define TEST_NUM_BUFFERS                   (0x100)
+# define TEST_FILE_SIZE                     stlsoft_c_cast(size_t, TEST_BUFFER_SIZE * TEST_NUM_BUFFERS)
 #endif /* __cplusplus */
 
 static int setup(void* param)
@@ -251,49 +251,49 @@ static void test_1_1()
 
 static void test_1_2()
 {
-	ws_uint32_t requestSize;
-	for(requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
-	{
-		ws_uintptr_t    viewSize;
-		ws_uintptr_t    offset      =   65536;
-		void*           view        =   unixstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
-		DWORD           err         =   GetLastError();
+    ws_uint32_t requestSize;
+    for(requestSize = 0; requestSize <= (65536 * 1024); requestSize = (0 == requestSize) ? 0x1 : (requestSize << 1))
+    {
+        ws_uintptr_t    viewSize;
+        ws_uintptr_t    offset      =   65536;
+        void*           view        =   unixstl_C_map_readonly_view_of_file_by_name_a(TEST_FILE_NAME, GENERIC_READ, 0, offset, requestSize, &viewSize);
+        DWORD           err         =   GetLastError();
 
-		XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
-		if(0 == requestSize)
-		{
-			XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
-		}
-		else if(requestSize <= TEST_FILE_SIZE - offset)
-		{
-			XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
-		}
-		else
-		{
-			XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
-		}
+        XTESTS_TEST_POINTER_NOT_EQUAL(NULL, view);
+        if(0 == requestSize)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+        }
+        else if(requestSize <= TEST_FILE_SIZE - offset)
+        {
+            XTESTS_TEST_INTEGER_EQUAL(requestSize, viewSize);
+        }
+        else
+        {
+            XTESTS_TEST_INTEGER_EQUAL(TEST_FILE_SIZE - offset, viewSize);
+        }
 
-		if(NULL != view)
-		{
-			ss_uint8_t      buffer[TEST_BUFFER_SIZE];
-			int             i;
-			ws_uintptr_t    base;
+        if(NULL != view)
+        {
+            ss_uint8_t      buffer[TEST_BUFFER_SIZE];
+            int             i;
+            ws_uintptr_t    base;
 
-			for(i = (offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
-			{
-				memset(buffer, i, sizeof(buffer));
+            for(i = (offset / TEST_BUFFER_SIZE), base = 0; base < viewSize; base += TEST_BUFFER_SIZE, ++i)
+            {
+                memset(buffer, i, sizeof(buffer));
 
-				{ size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
-				{
-					ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
+                { size_t j; for(j = 0; j != STLSOFT_NUM_ELEMENTS(buffer); ++j)
+                {
+                    ss_uint8_t const* v = stlsoft_static_cast(ss_uint8_t const*, view) + base;
 
-					XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
-				}}
-			}
+                    XTESTS_TEST_INTEGER_EQUAL((int)buffer[j], (int)*v);
+                }}
+            }
 
-			unixstl_C_unmap_view_of_file(view);
-		}
-	}
+            unixstl_C_unmap_view_of_file(view);
+        }
+    }
 }
 
 static void test_1_3()

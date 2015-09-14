@@ -59,12 +59,12 @@
 namespace
 {
 
-	static void test_ints(void);
-	static void test_doubles(void);
-	static void test_1_03(void);
-	static void test_1_04(void);
-	static void test_1_05(void);
-	static void test_1_06(void);
+    static void test_ints(void);
+    static void test_doubles(void);
+    static void test_1_03(void);
+    static void test_1_04(void);
+    static void test_1_05(void);
+    static void test_1_06(void);
 
 } // anonymous namespace
 
@@ -79,17 +79,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.stlsoft.iterator.FILE_iterator", verbosity))
-	{
-		XTESTS_RUN_CASE(test_ints);
-		XTESTS_RUN_CASE(test_doubles);
-		XTESTS_RUN_CASE(test_1_03);
-		XTESTS_RUN_CASE(test_1_04);
-		XTESTS_RUN_CASE(test_1_05);
-		XTESTS_RUN_CASE(test_1_06);
+    if(XTESTS_START_RUNNER("test.component.stlsoft.iterator.FILE_iterator", verbosity))
+    {
+        XTESTS_RUN_CASE(test_ints);
+        XTESTS_RUN_CASE(test_doubles);
+        XTESTS_RUN_CASE(test_1_03);
+        XTESTS_RUN_CASE(test_1_04);
+        XTESTS_RUN_CASE(test_1_05);
+        XTESTS_RUN_CASE(test_1_06);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/FILE_iterator.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*stlsoft/*/FILE_iterator.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -108,102 +108,102 @@ namespace
 {
 
 #if defined(STLSOFT_COMPILER_IS_MWERKS)
-	void remove(char const* path)
-	{
-		::remove(path);
-	}
+    void remove(char const* path)
+    {
+        ::remove(path);
+    }
 #endif /* compiler */
 
 static void test_ints()
 {
-	char const*	fileName = "abc.txt";
+    char const* fileName = "abc.txt";
 
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-	FILE*	f;
+    FILE*   f;
 
     if(0 != fopen_s(&f, fileName, "w"))
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-    FILE*	f = ::fopen(fileName, "w");
+    FILE*   f = ::fopen(fileName, "w");
 
     if(NULL == f)
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-	{
+    {
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-		XTESTS_FAIL("failed to open text file for writing");
+        XTESTS_FAIL("failed to open text file for writing");
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-		XTESTS_FAIL_WITH_QUALIFIER("failed to open text file for writing", ::strerror(errno));
+        XTESTS_FAIL_WITH_QUALIFIER("failed to open text file for writing", ::strerror(errno));
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-	}
-	else
-	{
-		stlsoft::scoped_handle<char const*> scoper1(fileName, remove);
+    }
+    else
+    {
+        stlsoft::scoped_handle<char const*> scoper1(fileName, remove);
 
-		{
-			stlsoft::scoped_handle<FILE*> scoper2(f, ::fclose);
+        {
+            stlsoft::scoped_handle<FILE*> scoper2(f, ::fclose);
 
-			std::vector<int> values;
+            std::vector<int> values;
 
-			values.push_back(1);
-			values.push_back(2);
-			values.push_back(3);
+            values.push_back(1);
+            values.push_back(2);
+            values.push_back(3);
 
-			stlsoft::std_copy(	values.begin(), values.end()
-							,	stlsoft::FILE_iterator<int>(f, "\t%d\n"));
-		}
+            stlsoft::std_copy(  values.begin(), values.end()
+                            ,   stlsoft::FILE_iterator<int>(f, "\t%d\n"));
+        }
 
-		platformstl::file_lines	lines(fileName);
+        platformstl::file_lines lines(fileName);
 
-		XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, lines.size()));
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t1", lines[0]);
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t2", lines[1]);
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t3", lines[2]);
-	}
+        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, lines.size()));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t1", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t2", lines[1]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t3", lines[2]);
+    }
 }
 
 static void test_doubles()
 {
-	char const*	fileName = "abc.txt";
+    char const* fileName = "abc.txt";
 
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-	FILE*	f;
+    FILE*   f;
 
     if(0 != fopen_s(&f, fileName, "w"))
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-    FILE*	f = ::fopen(fileName, "w");
+    FILE*   f = ::fopen(fileName, "w");
 
     if(NULL == f)
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-	{
+    {
 # ifdef STLSOFT_USING_SAFE_STR_FUNCTIONS
-		XTESTS_FAIL("failed to open text file for writing");
+        XTESTS_FAIL("failed to open text file for writing");
 # else /* ? STLSOFT_USING_SAFE_STR_FUNCTIONS */
-		XTESTS_FAIL_WITH_QUALIFIER("failed to open text file for writing", ::strerror(errno));
+        XTESTS_FAIL_WITH_QUALIFIER("failed to open text file for writing", ::strerror(errno));
 # endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
-	}
-	else
-	{
-		stlsoft::scoped_handle<char const*> scoper1(fileName, remove);
+    }
+    else
+    {
+        stlsoft::scoped_handle<char const*> scoper1(fileName, remove);
 
-		{
-			stlsoft::scoped_handle<FILE*> scoper2(f, ::fclose);
+        {
+            stlsoft::scoped_handle<FILE*> scoper2(f, ::fclose);
 
-			std::vector<double> values;
+            std::vector<double> values;
 
-			values.push_back(0.102);
-			values.push_back(123.456);
-			values.push_back(-123.456);
+            values.push_back(0.102);
+            values.push_back(123.456);
+            values.push_back(-123.456);
 
-			stlsoft::std_copy(	values.begin(), values.end()
-							,	stlsoft::FILE_iterator<double>(f, "\t%3.3f\n"));
-		}
+            stlsoft::std_copy(  values.begin(), values.end()
+                            ,   stlsoft::FILE_iterator<double>(f, "\t%3.3f\n"));
+        }
 
-		platformstl::file_lines	lines(fileName);
+        platformstl::file_lines lines(fileName);
 
-		XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, lines.size()));
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t0.102", lines[0]);
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t123.456", lines[1]);
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t-123.456", lines[2]);
-	}
+        XTESTS_REQUIRE(XTESTS_TEST_INTEGER_EQUAL(3u, lines.size()));
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t0.102", lines[0]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t123.456", lines[1]);
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("\t-123.456", lines[2]);
+    }
 }
 
 static void test_1_03()

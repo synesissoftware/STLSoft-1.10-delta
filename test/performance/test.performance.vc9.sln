@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.performance.stlsoft.string.string_registry", "stlsoft\string\test.performance.stlsoft.string.string_registry\vc9\test.performance.stlsoft.string.string_registry.vcproj", "{D6D5B480-1392-46E1-A1E5-9F2A6A7B0792}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Multithreaded|Win32 = Debug Multithreaded|Win32
+		Release Multithreaded|Win32 = Release Multithreaded|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6D5B480-1392-46E1-A1E5-9F2A6A7B0792}.Debug Multithreaded|Win32.ActiveCfg = Debug Multithreaded|Win32
+		{D6D5B480-1392-46E1-A1E5-9F2A6A7B0792}.Debug Multithreaded|Win32.Build.0 = Debug Multithreaded|Win32
+		{D6D5B480-1392-46E1-A1E5-9F2A6A7B0792}.Release Multithreaded|Win32.ActiveCfg = Release Multithreaded|Win32
+		{D6D5B480-1392-46E1-A1E5-9F2A6A7B0792}.Release Multithreaded|Win32.Build.0 = Release Multithreaded|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

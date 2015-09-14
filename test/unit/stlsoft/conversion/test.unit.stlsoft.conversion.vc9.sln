@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.conversion.string_to_integer", "test.unit.stlsoft.conversion.string_to_integer\vc9\test.unit.stlsoft.conversion.string_to_integer.vcproj", "{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.conversion.integer_to_array", "test.unit.stlsoft.conversion.integer_to_array\vc9\test.unit.stlsoft.conversion.integer_to_array.vcproj", "{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test.unit.stlsoft.conversion.union_cast", "test.unit.stlsoft.conversion.union_cast\vc9\test.unit.stlsoft.conversion.union_cast.vcproj", "{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug xCover|Win32 = Debug xCover|Win32
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Debug|Win32.Build.0 = Debug|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Release|Win32.ActiveCfg = Release|Win32
+		{520E11E5-2CC0-4D21-B2E1-C4519B2013FD}.Release|Win32.Build.0 = Release|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Debug|Win32.Build.0 = Debug|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Release|Win32.ActiveCfg = Release|Win32
+		{2AD6E96B-FF0D-4CB3-84A3-59E4774E553F}.Release|Win32.Build.0 = Release|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Debug xCover|Win32.ActiveCfg = Debug xCover|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Debug xCover|Win32.Build.0 = Debug xCover|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Debug|Win32.Build.0 = Debug|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Release|Win32.ActiveCfg = Release|Win32
+		{15009CF0-6FDB-4CD8-91CB-4C544E1EE463}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

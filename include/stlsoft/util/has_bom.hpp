@@ -1,14 +1,14 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:                stlsoft/util/has_bom.hpp
+ * File:        stlsoft/util/has_bom.hpp
  *
- * Purpose:         bit-wise function classes.
+ * Purpose:     Functions for searching for byte-headers in a byte range.
  *
- * Created:         19th March 2010
- * Updated:         31st May 2010
+ * Created:     19th March 2010
+ * Updated:     21st August 2015
  *
- * Home:                http://stlsoft.org/
+ * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_MAJOR     1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_MINOR     0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_REVISION  2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_EDIT      4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_REVISION  4
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_HAS_BOM_EDIT      7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -80,7 +83,9 @@ namespace stlsoft
  * Functions
  */
 
-inline bool has_bom(
+inline
+bool
+has_bom(
     byte_t              b0
 ,   byte_t              b1
 ,   byte_t              b2
@@ -128,7 +133,9 @@ inline bool has_bom(
     return true;
 }
 
-inline bool has_bom(
+inline
+bool
+has_bom(
     byte_t              b0
 ,   byte_t              b1
 ,   byte_t              b2
@@ -166,7 +173,9 @@ inline bool has_bom(
     return true;
 }
 
-inline bool has_bom(
+inline
+bool
+has_bom(
     byte_t              b0
 ,   byte_t              b1
 ,   byte_t const*       from

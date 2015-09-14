@@ -1,0 +1,125 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.filesystem_traits.1"=.\test.unit.winstl.filesystem.filesystem_traits.1\vc6\test.unit.winstl.filesystem.filesystem_traits.1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.filesystem_traits.2"=.\test.unit.winstl.filesystem.filesystem_traits.2\vc6\test.unit.winstl.filesystem.filesystem_traits.2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.findvolume_sequence"=.\test.unit.winstl.filesystem.findvolume_sequence\vc6\test.unit.winstl.filesystem.findvolume_sequence.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.is_valid_path"=.\test.unit.winstl.filesystem.is_valid_path\vc6\test.unit.winstl.filesystem.is_valid_path.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.is_valid_path.C"=.\test.unit.winstl.filesystem.is_valid_path.C\vc6\test.unit.winstl.filesystem.is_valid_path.C.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.memory_mapped_file"=.\test.unit.winstl.filesystem.memory_mapped_file\vc6\test.unit.winstl.filesystem.memory_mapped_file.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.memory_mapped_file.no_int64"=.\test.unit.winstl.filesystem.memory_mapped_file.no_int64\vc6\test.unit.winstl.filesystem.memory_mapped_file.no_int64.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.path"=.\test.unit.winstl.filesystem.path\vc6\test.unit.winstl.filesystem.path.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.winstl.filesystem.path_functions"=.\test.unit.winstl.filesystem.path_functions\vc6\test.unit.winstl.filesystem.path_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

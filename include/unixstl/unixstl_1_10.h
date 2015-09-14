@@ -1,5 +1,8 @@
 
 #include <stlsoft/stlsoft_1_10.h>
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #include <unixstl/unixstl.h>
 

@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="2"
@@ -47,7 +47,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -59,10 +59,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				WarnAsError="true"
@@ -83,12 +83,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.exe"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -106,203 +106,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="1"
-				TypeLibraryName=".\Release/test.unit.winstl.filesystem.memory_mapped_file.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="$(STLSOFT_1_10)/include,$(XTESTS_C_ROOT)/include,$(STLSOFT)/include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
-				WarningLevel="3"
-				WarnAsError="true"
-				SuppressStartupBanner="true"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="3081"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.exe"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
-				ProgramDatabaseFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.pdb"
-				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.bsc"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug NoX|Win32"
-			OutputDirectory=".\DebugNoX"
-			IntermediateDirectory=".\DebugNoX"
-			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="false"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="true"
-				SuppressStartupBanner="true"
-				TargetEnvironment="1"
-				TypeLibraryName=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.tlb"
-				HeaderFileName=""
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="$(STLSOFT_1_10)/include,$(XTESTS_C_ROOT)/include,,$(XCOVER_C_ROOT)/include,$(STLSOFT)/include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;STLSOFT_USE_XCOVER"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\DebugNoX/"
-				ObjectFile=".\DebugNoX/"
-				ProgramDataBaseFileName=".\DebugNoX/"
-				BrowseInformation="1"
-				WarningLevel="3"
-				WarnAsError="true"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="3081"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.exe"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.pdb"
-				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="1"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -316,8 +120,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="2"
@@ -342,7 +146,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="3"
-				TypeLibraryName=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -354,10 +158,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				WarnAsError="true"
@@ -378,12 +182,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.exe"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -401,7 +205,104 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Debug/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="2"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="$(STLSOFT_1_10)/include,$(XTESTS_C_ROOT)/include,$(STLSOFT)/include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
+				WarningLevel="3"
+				WarnAsError="true"
+				SuppressStartupBanner="true"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="3081"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -415,8 +316,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="2"
@@ -441,7 +342,7 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="3"
-				TypeLibraryName=".\Release/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -454,10 +355,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
 				WarningLevel="3"
 				WarnAsError="true"
 				SuppressStartupBanner="true"
@@ -476,11 +377,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.exe"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
-				ProgramDatabaseFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -498,7 +399,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\Release/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -511,9 +412,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug NoX|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			Name="Debug NoX|Win32"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="2"
@@ -537,23 +438,23 @@
 				PreprocessorDefinitions="_DEBUG"
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
-				TargetEnvironment="3"
-				TypeLibraryName=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				TargetEnvironment="1"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(STLSOFT_1_10)/include,$(XTESTS_C_ROOT)/include,,$(XCOVER_C_ROOT)/include,$(STLSOFT)/include"
-				PreprocessorDefinitions="WIN64;_DEBUG;_CONSOLE;STLSOFT_USE_XCOVER"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;STLSOFT_USE_XCOVER"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.pch"
-				AssemblerListingLocation=".\DebugNoX/"
-				ObjectFile=".\DebugNoX/"
-				ProgramDataBaseFileName=".\DebugNoX/"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				WarnAsError="true"
@@ -574,12 +475,111 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
-				OutputFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.exe"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
+				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug NoX|x64"
+			OutputDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="2"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="$(STLSOFT_1_10)/include,$(XTESTS_C_ROOT)/include,,$(XCOVER_C_ROOT)/include,$(STLSOFT)/include"
+				PreprocessorDefinitions="WIN64;_DEBUG;_CONSOLE;STLSOFT_USE_XCOVER"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="true"
+				PrecompiledHeaderFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pch"
+				AssemblerListingLocation=".\$(PlatformName)\$(ConfigurationName)/"
+				ObjectFile=".\$(PlatformName)\$(ConfigurationName)/"
+				ProgramDataBaseFileName=".\$(PlatformName)\$(ConfigurationName)/"
+				BrowseInformation="1"
+				WarningLevel="3"
+				WarnAsError="true"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="3081"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="kernel32.lib advapi32.lib ole32.lib oleaut32.lib"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)\test.unit.winstl.filesystem.memory_mapped_file.exe"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="$(STLSOFT_1_10),$(XTESTS_C_ROOT)/lib"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -597,7 +597,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\DebugNoX/test.unit.winstl.filesystem.memory_mapped_file.bsc"
+				OutputFile=".\$(PlatformName)\$(ConfigurationName)/test.unit.winstl.filesystem.memory_mapped_file.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -630,24 +630,6 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug NoX|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Debug|x64"
 					>
 					<Tool
@@ -657,7 +639,25 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug NoX|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -688,24 +688,6 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug NoX|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="Debug|x64"
 					>
 					<Tool
@@ -715,7 +697,25 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug NoX|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -901,15 +901,15 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\..\..\..\..\include\winstl\synch\error\exceptions.hpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\..\..\..\include\winstl\synch\exceptions.hpp"
+						RelativePath="$(STLSOFT)\include\winstl\synch\exceptions.hpp"
 						>
 					</File>
 					<File
 						RelativePath="$(STLSOFT)\include\winstl\error\exceptions.hpp"
+						>
+					</File>
+					<File
+						RelativePath="$(STLSOFT)\include\winstl\synch\error\exceptions.hpp"
 						>
 					</File>
 					<File
@@ -929,7 +929,7 @@
 						>
 					</File>
 					<File
-						RelativePath="..\..\..\..\..\..\include\winstl\synch\wait_functions.hpp"
+						RelativePath="$(STLSOFT)\include\winstl\synch\wait_functions.hpp"
 						>
 					</File>
 					<File

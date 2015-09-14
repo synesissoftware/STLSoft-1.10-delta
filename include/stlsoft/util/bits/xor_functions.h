@@ -4,11 +4,11 @@
  * Purpose:     Bit XOR functions
  *
  * Created:     2nd June 2010
- * Updated:     6th July 2010
+ * Updated:     8th August 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_EDIT     2
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_REVISION 3
+# define STLSOFT_VER_STLSOFT_UTIL_BITS_H_XOR_FUNCTIONS_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,6 +60,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -80,9 +83,36 @@ namespace stlsoft
  * Functions
  */
 
+/** Calculates the XOR over a range of 64-bit unsigned integers
+ */
+STLSOFT_INLINE
+ss_uint64_t
+calculate_xor_over_64bit_unsigned_range(
+    ss_uint64_t const*  p
+,   size_t              n
+)
+{
+    ss_uint64_t r = 0;
+
+    STLSOFT_COVER_MARK_LINE();
+
+    { for(; 0u != n; ++p, --n)
+    {
+        STLSOFT_COVER_MARK_LINE();
+
+        r ^= *p;
+    }}
+
+    STLSOFT_COVER_MARK_LINE();
+
+    return r;
+}
+
 /** Calculates the XOR over a range of 32-bit unsigned integers
  */
-STLSOFT_INLINE ss_uint32_t calculate_xor_over_32bit_unsigned_range(
+STLSOFT_INLINE
+ss_uint32_t
+calculate_xor_over_32bit_unsigned_range(
     ss_uint32_t const*  p
 ,   size_t              n
 )
@@ -103,9 +133,36 @@ STLSOFT_INLINE ss_uint32_t calculate_xor_over_32bit_unsigned_range(
     return r;
 }
 
+/** Calculates the XOR over a range of 16-bit unsigned integers
+ */
+STLSOFT_INLINE
+ss_uint16_t
+calculate_xor_over_16bit_unsigned_range(
+    ss_uint16_t const*  p
+,   size_t              n
+)
+{
+    ss_uint16_t r = 0;
+
+    STLSOFT_COVER_MARK_LINE();
+
+    { for(; 0u != n; ++p, --n)
+    {
+        STLSOFT_COVER_MARK_LINE();
+
+        r ^= *p;
+    }}
+
+    STLSOFT_COVER_MARK_LINE();
+
+    return r;
+}
+
 /** Calculates the XOR over a range of 8-bit unsigned integers
  */
-STLSOFT_INLINE ss_uint8_t calculate_xor_over_8bit_unsigned_range(
+STLSOFT_INLINE
+ss_uint8_t
+calculate_xor_over_8bit_unsigned_range(
     ss_uint8_t const*   p
 ,   size_t              n
 )
@@ -129,8 +186,16 @@ STLSOFT_INLINE ss_uint8_t calculate_xor_over_8bit_unsigned_range(
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
+} /* namespace stlsoft */
 #endif /* STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Inclusion
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+# pragma once
+#endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

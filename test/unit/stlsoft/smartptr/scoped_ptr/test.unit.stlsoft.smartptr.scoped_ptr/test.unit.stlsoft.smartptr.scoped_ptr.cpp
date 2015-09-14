@@ -49,26 +49,26 @@
 namespace
 {
 
-	static void test_ctor(void);
-	static void test_swap_1(void);
-	static void test_swap_2(void);
-	static void test_shim_get_ptr(void);
-	static void test_detach(void);
-	static void test_reset_1(void);
-	static void test_deref_pointer(void);
-	static void test_deref_reference(void);
-	static void test_1_8(void);
-	static void test_1_9(void);
-	static void test_1_10(void);
-	static void test_1_11(void);
-	static void test_1_12(void);
-	static void test_1_13(void);
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_ctor(void);
+    static void test_swap_1(void);
+    static void test_swap_2(void);
+    static void test_shim_get_ptr(void);
+    static void test_detach(void);
+    static void test_reset_1(void);
+    static void test_deref_pointer(void);
+    static void test_deref_reference(void);
+    static void test_1_8(void);
+    static void test_1_9(void);
+    static void test_1_10(void);
+    static void test_1_11(void);
+    static void test_1_12(void);
+    static void test_1_13(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
 } // anonymous namespace
 
@@ -78,44 +78,44 @@ namespace
 
 int main(int argc, char **argv)
 {
-	int retCode = EXIT_SUCCESS;
-	int verbosity = 2;
+    int retCode = EXIT_SUCCESS;
+    int verbosity = 2;
 
-	XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
+    XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.stlsoft.smartptr.scoped_ptr", verbosity))
-	{
-		XTESTS_RUN_CASE(test_ctor);
-		XTESTS_RUN_CASE(test_swap_1);
-		XTESTS_RUN_CASE(test_swap_2);
-		XTESTS_RUN_CASE(test_shim_get_ptr);
-		XTESTS_RUN_CASE(test_detach);
-		XTESTS_RUN_CASE(test_reset_1);
-		XTESTS_RUN_CASE(test_deref_pointer);
-		XTESTS_RUN_CASE(test_deref_reference);
-		XTESTS_RUN_CASE(test_1_8);
-		XTESTS_RUN_CASE(test_1_9);
-		XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_1_11);
-		XTESTS_RUN_CASE(test_1_12);
-		XTESTS_RUN_CASE(test_1_13);
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.unit.stlsoft.smartptr.scoped_ptr", verbosity))
+    {
+        XTESTS_RUN_CASE(test_ctor);
+        XTESTS_RUN_CASE(test_swap_1);
+        XTESTS_RUN_CASE(test_swap_2);
+        XTESTS_RUN_CASE(test_shim_get_ptr);
+        XTESTS_RUN_CASE(test_detach);
+        XTESTS_RUN_CASE(test_reset_1);
+        XTESTS_RUN_CASE(test_deref_pointer);
+        XTESTS_RUN_CASE(test_deref_reference);
+        XTESTS_RUN_CASE(test_1_8);
+        XTESTS_RUN_CASE(test_1_9);
+        XTESTS_RUN_CASE(test_1_10);
+        XTESTS_RUN_CASE(test_1_11);
+        XTESTS_RUN_CASE(test_1_12);
+        XTESTS_RUN_CASE(test_1_13);
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_ALIAS_COVERAGE("scoped_ptr", NULL);
+        XCOVER_REPORT_ALIAS_COVERAGE("scoped_ptr", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
-		XTESTS_PRINT_RESULTS();
+        XTESTS_PRINT_RESULTS();
 
-		XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
-	}
+        XTESTS_END_RUNNER_UPDATE_EXITCODE(&retCode);
+    }
 
-	return retCode;
+    return retCode;
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,256 +125,256 @@ int main(int argc, char **argv)
 namespace
 {
 
-	class Class
-	{
-	public:
-		Class()
-		{
-			++NumCtors;
-		}
-		~Class()
-		{
-			++NumDtors;
-		}
+    class Class
+    {
+    public:
+        Class()
+        {
+            ++NumCtors;
+        }
+        ~Class()
+        {
+            ++NumDtors;
+        }
 
-	public:
-		void ResetCounters()
-		{
-			NumCtors	=	0;
-			NumDtors	=	0;
-		}
+    public:
+        void ResetCounters()
+        {
+            NumCtors    =   0;
+            NumDtors    =   0;
+        }
 
-	public:
-		static int NumCtors;
-		static int NumDtors;
-	};
+    public:
+        static int NumCtors;
+        static int NumDtors;
+    };
 
-	/* static */ int Class::NumCtors = 0;
-	/* static */ int Class::NumDtors = 0;
+    /* static */ int Class::NumCtors = 0;
+    /* static */ int Class::NumDtors = 0;
 
 
 
 static void test_ctor()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		if(scoper)
-		{
-			XTESTS_TEST_PASSED();
-		}
-		else
-		{
-			XTESTS_TEST_FAIL("scoped_ptr<>::operator bool_type failed");
-		}
+        if(scoper)
+        {
+            XTESTS_TEST_PASSED();
+        }
+        else
+        {
+            XTESTS_TEST_FAIL("scoped_ptr<>::operator bool_type failed");
+        }
 
-		XTESTS_TEST_BOOLEAN_FALSE(!scoper);
-	}
+        XTESTS_TEST_BOOLEAN_FALSE(!scoper);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 static void test_swap_1()
 {
-	{
-		Class::NumCtors	=	0;
-		Class::NumDtors	=	0;
+    {
+        Class::NumCtors =   0;
+        Class::NumDtors =   0;
 
-		{
-			stlsoft::tr1::scoped_ptr<Class>	scoper2(new Class());
+        {
+            stlsoft::tr1::scoped_ptr<Class> scoper2(new Class());
 
-			XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-			XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-		}
+            XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+            XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        }
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    }
 
-	{
-		Class::NumCtors	=	0;
-		Class::NumDtors	=	0;
+    {
+        Class::NumCtors =   0;
+        Class::NumDtors =   0;
 
-		stlsoft::tr1::scoped_ptr<Class>	scoper1(NULL);
+        stlsoft::tr1::scoped_ptr<Class> scoper1(NULL);
 
-		{
-			stlsoft::tr1::scoped_ptr<Class>	scoper2(new Class());
+        {
+            stlsoft::tr1::scoped_ptr<Class> scoper2(new Class());
 
-			scoper1.swap(scoper2);
+            scoper1.swap(scoper2);
 
-			XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-			XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-		}
+            XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+            XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        }
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 static void test_swap_2()
 {
-	{
-		Class::NumCtors	=	0;
-		Class::NumDtors	=	0;
+    {
+        Class::NumCtors =   0;
+        Class::NumDtors =   0;
 
-		{
-			stlsoft::tr1::scoped_ptr<Class>	scoper2(new Class());
+        {
+            stlsoft::tr1::scoped_ptr<Class> scoper2(new Class());
 
-			XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-			XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-		}
+            XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+            XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        }
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    }
 
-	{
-		Class::NumCtors	=	0;
-		Class::NumDtors	=	0;
+    {
+        Class::NumCtors =   0;
+        Class::NumDtors =   0;
 
-		stlsoft::tr1::scoped_ptr<Class>	scoper1(NULL);
+        stlsoft::tr1::scoped_ptr<Class> scoper1(NULL);
 
-		{
-			stlsoft::tr1::scoped_ptr<Class>	scoper2(new Class());
+        {
+            stlsoft::tr1::scoped_ptr<Class> scoper2(new Class());
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-	_MSC_VER <= 1200
-			using stlsoft::tr1::swap;
+    _MSC_VER <= 1200
+            using stlsoft::tr1::swap;
 #endif
 
-			swap(scoper1, scoper2);
+            swap(scoper1, scoper2);
 
-			XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-			XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-		}
+            XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+            XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        }
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 static void test_shim_get_ptr()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		Class* cls = stlsoft::get_ptr(scoper);
+        Class* cls = stlsoft::get_ptr(scoper);
 
-		STLSOFT_SUPPRESS_UNUSED(cls);
-	}
+        STLSOFT_SUPPRESS_UNUSED(cls);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 static void test_detach()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	Class* cls = NULL;
+    Class* cls = NULL;
 
     STLSOFT_SUPPRESS_UNUSED(cls);
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		cls = scoper.detach();
-	}
+        cls = scoper.detach();
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-	delete cls;
+    delete cls;
 }
 
 static void test_reset_1()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	Class* cls = NULL;
+    Class* cls = NULL;
 
     STLSOFT_SUPPRESS_UNUSED(cls);
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		cls = scoper.reset();
-	}
+        cls = scoper.reset();
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-	delete cls;
+    delete cls;
 }
 
 static void test_deref_pointer()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		scoper->ResetCounters();
+        scoper->ResetCounters();
 
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 
 static void test_deref_reference()
 {
-	Class::NumCtors	=	0;
-	Class::NumDtors	=	0;
+    Class::NumCtors =   0;
+    Class::NumDtors =   0;
 
-	{
-		stlsoft::tr1::scoped_ptr<Class>	scoper(new Class());
+    {
+        stlsoft::tr1::scoped_ptr<Class> scoper(new Class());
 
-		XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+        XTESTS_TEST_INTEGER_EQUAL(1, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
 
-		(*scoper).ResetCounters();
+        (*scoper).ResetCounters();
 
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
-		XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
+        XTESTS_TEST_INTEGER_EQUAL(0, Class::NumDtors);
+    }
 
-	XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
-	XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
+    XTESTS_TEST_INTEGER_EQUAL(0, Class::NumCtors);
+    XTESTS_TEST_INTEGER_EQUAL(1, Class::NumDtors);
 }
 
 static void test_1_8()

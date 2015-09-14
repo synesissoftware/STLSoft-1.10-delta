@@ -107,180 +107,180 @@ namespace
 
 static void test_maximum_2()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	r	=	stlsoft::maximum(i1, i2);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int r   =   stlsoft::maximum(i1, i2);
 
-		XTESTS_TEST_INTEGER_EQUAL(2, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(2, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	r	=	stlsoft::maximum(i1, i2);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string r   =   stlsoft::maximum(i1, i2);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("2", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("2", r);
+    }
 
 }
 
 static void test_minimum_2()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	r	=	stlsoft::minimum(i1, i2);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int r   =   stlsoft::minimum(i1, i2);
 
-		XTESTS_TEST_INTEGER_EQUAL(1, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	r	=	stlsoft::minimum(i1, i2);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string r   =   stlsoft::minimum(i1, i2);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
+    }
 
 }
 
 static void test_maximum_3()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	r	=	stlsoft::maximum(i1, i2, i3);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int r   =   stlsoft::maximum(i1, i2, i3);
 
-		XTESTS_TEST_INTEGER_EQUAL(3, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(3, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	r	=	stlsoft::maximum(i1, i2, i3);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string r   =   stlsoft::maximum(i1, i2, i3);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("3", r);
+    }
 }
 
 static void test_minimum_3()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	r	=	stlsoft::minimum(i1, i2, i3);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int r   =   stlsoft::minimum(i1, i2, i3);
 
-		XTESTS_TEST_INTEGER_EQUAL(1, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	r	=	stlsoft::minimum(i1, i2, i3);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string r   =   stlsoft::minimum(i1, i2, i3);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
+    }
 }
 
 static void test_maximum_4()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	i4	=	4;
-		int	r	=	stlsoft::maximum(i1, i2, i3, i4);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int i4  =   4;
+        int r   =   stlsoft::maximum(i1, i2, i3, i4);
 
-		XTESTS_TEST_INTEGER_EQUAL(4, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(4, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	i4	=	"4";
-		std::string	r	=	stlsoft::maximum(i1, i2, i3, i4);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string i4  =   "4";
+        std::string r   =   stlsoft::maximum(i1, i2, i3, i4);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("4", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("4", r);
+    }
 }
 
 static void test_minimum_4()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	i4	=	4;
-		int	r	=	stlsoft::minimum(i1, i2, i3, i4);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int i4  =   4;
+        int r   =   stlsoft::minimum(i1, i2, i3, i4);
 
-		XTESTS_TEST_INTEGER_EQUAL(1, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	i4	=	"4";
-		std::string	r	=	stlsoft::minimum(i1, i2, i3, i4);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string i4  =   "4";
+        std::string r   =   stlsoft::minimum(i1, i2, i3, i4);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
+    }
 }
 
 static void test_maximum_5()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	i4	=	4;
-		int	i5	=	5;
-		int	r	=	stlsoft::maximum(i1, i2, i3, i4, i5);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int i4  =   4;
+        int i5  =   5;
+        int r   =   stlsoft::maximum(i1, i2, i3, i4, i5);
 
-		XTESTS_TEST_INTEGER_EQUAL(5, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(5, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	i4	=	"4";
-		std::string	i5	=	"5";
-		std::string	r	=	stlsoft::maximum(i1, i2, i3, i4, i5);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string i4  =   "4";
+        std::string i5  =   "5";
+        std::string r   =   stlsoft::maximum(i1, i2, i3, i4, i5);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("5", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("5", r);
+    }
 }
 
 static void test_minimum_5()
 {
-	{
-		int	i1	=	1;
-		int	i2	=	2;
-		int	i3	=	3;
-		int	i4	=	4;
-		int	i5	=	5;
-		int	r	=	stlsoft::minimum(i1, i2, i3, i4, i5);
+    {
+        int i1  =   1;
+        int i2  =   2;
+        int i3  =   3;
+        int i4  =   4;
+        int i5  =   5;
+        int r   =   stlsoft::minimum(i1, i2, i3, i4, i5);
 
-		XTESTS_TEST_INTEGER_EQUAL(1, r);
-	}
+        XTESTS_TEST_INTEGER_EQUAL(1, r);
+    }
 
-	{
-		std::string	i1	=	"1";
-		std::string	i2	=	"2";
-		std::string	i3	=	"3";
-		std::string	i4	=	"4";
-		std::string	i5	=	"5";
-		std::string	r	=	stlsoft::minimum(i1, i2, i3, i4, i5);
+    {
+        std::string i1  =   "1";
+        std::string i2  =   "2";
+        std::string i3  =   "3";
+        std::string i4  =   "4";
+        std::string i5  =   "5";
+        std::string r   =   stlsoft::minimum(i1, i2, i3, i4, i5);
 
-		XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
-	}
+        XTESTS_TEST_MULTIBYTE_STRING_EQUAL("1", r);
+    }
 }
 
 } // anonymous namespace

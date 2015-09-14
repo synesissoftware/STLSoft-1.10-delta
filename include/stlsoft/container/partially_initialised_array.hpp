@@ -4,11 +4,11 @@
  * Purpose:     Contains the partially_initialised_array class.
  *
  * Created:     23rd May 2010
- * Updated:     11th June 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_EDIT       5
+# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_REVISION   5
+# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_PARTIALLY_INITIALISED_ARRAY_EDIT       6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,9 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 

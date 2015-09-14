@@ -66,197 +66,197 @@ using stlsoft::uint64_t;
 unsigned nibble_index(uint16_t const& i)
 {
          if(i > 0xfff)
-	{
-		return 3;
-	}
-	else if(i > 0xff)
-	{
-		return 2;
-	}
-	else if(i > 0xf)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+    {
+        return 3;
+    }
+    else if(i > 0xff)
+    {
+        return 2;
+    }
+    else if(i > 0xf)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 unsigned nibble_index(uint32_t const& i)
 {
-	     if(i > 0xfffffff)
-	{
-		return 7;
-	}
-	else if(i > 0xffffff)
-	{
-		return 6;
-	}
-	else if(i > 0xfffff)
-	{
-		return 5;
-	}
-	else if(i > 0xffff)
-	{
-		return 4;
-	}
-	else if(i > 0xfff)
-	{
-		return 3;
-	}
-	else if(i > 0xff)
-	{
-		return 2;
-	}
-	else if(i > 0xf)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+         if(i > 0xfffffff)
+    {
+        return 7;
+    }
+    else if(i > 0xffffff)
+    {
+        return 6;
+    }
+    else if(i > 0xfffff)
+    {
+        return 5;
+    }
+    else if(i > 0xffff)
+    {
+        return 4;
+    }
+    else if(i > 0xfff)
+    {
+        return 3;
+    }
+    else if(i > 0xff)
+    {
+        return 2;
+    }
+    else if(i > 0xf)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 unsigned nibble_index(uint64_t const& i)
 {
-	     if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffffffff))
-	{
-		return 15;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffffffff))
-	{
-		return 14;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffffff))
-	{
-		return 6;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffffff))
-	{
-		return 12;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffff))
-	{
-		return 11;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffff))
-	{
-		return 10;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffff))
-	{
-		return 9;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffff))
-	{
-		return 8;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffff))
-	{
-		return 7;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffff))
-	{
-		return 6;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffff))
-	{
-		return 5;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffff))
-	{
-		return 4;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfff))
-	{
-		return 3;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xff))
-	{
-		return 2;
-	}
-	else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xf))
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+         if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffffffff))
+    {
+        return 15;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffffffff))
+    {
+        return 14;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffffff))
+    {
+        return 6;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffffff))
+    {
+        return 12;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffffff))
+    {
+        return 11;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffffff))
+    {
+        return 10;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffffff))
+    {
+        return 9;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffffff))
+    {
+        return 8;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffffff))
+    {
+        return 7;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffffff))
+    {
+        return 6;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfffff))
+    {
+        return 5;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xffff))
+    {
+        return 4;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xfff))
+    {
+        return 3;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xff))
+    {
+        return 2;
+    }
+    else if(i > STLSOFT_GEN_UINT64_SUFFIX(0xf))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
 
 static int main_(int /* argc */, char** /*argv*/)
 {
-	// Do nibble frequency analyses
+    // Do nibble frequency analyses
 
-	typedef stlsoft::frequency_map<unsigned>	fmap_t;
+    typedef stlsoft::frequency_map<unsigned>    fmap_t;
 
-	fmap_t freqsRAND_MAX;
-	fmap_t freqs16;
-	fmap_t freqs32;
-	fmap_t freqs64;
+    fmap_t freqsRAND_MAX;
+    fmap_t freqs16;
+    fmap_t freqs32;
+    fmap_t freqs64;
 
 #ifdef _DEBUG
-	{ for(unsigned i = 0; i != 2; ++i)
+    { for(unsigned i = 0; i != 2; ++i)
 #else
-	{ for(unsigned i = 0; i != 10000000; ++i)
+    { for(unsigned i = 0; i != 10000000; ++i)
 #endif
-	{
-		freqsRAND_MAX.push(nibble_index(static_cast<uint64_t>(::rand())));
-		freqs16.push(nibble_index(stlsoft::rand<uint16_t>()));
-		freqs32.push(nibble_index(stlsoft::rand<uint32_t>()));
-		freqs64.push(nibble_index(stlsoft::rand<uint64_t>()));
-	}}
+    {
+        freqsRAND_MAX.push(nibble_index(static_cast<uint64_t>(::rand())));
+        freqs16.push(nibble_index(stlsoft::rand<uint16_t>()));
+        freqs32.push(nibble_index(stlsoft::rand<uint32_t>()));
+        freqs64.push(nibble_index(stlsoft::rand<uint64_t>()));
+    }}
 
-	ff::writeln(std::cout, "16:");
-	{ for(unsigned i = 0; 4 != i; ++i)
-	{
-		ff::fmtln(
-			std::cout
-		,	"{0}\t{1}"
-		,	i
-		,	freqs16[i]
-		);
-	}}
-	ff::writeln(std::cout);
+    ff::writeln(std::cout, "16:");
+    { for(unsigned i = 0; 4 != i; ++i)
+    {
+        ff::fmtln(
+            std::cout
+        ,   "{0}\t{1}"
+        ,   i
+        ,   freqs16[i]
+        );
+    }}
+    ff::writeln(std::cout);
 
-	ff::writeln(std::cout, "RAND_MAX:");
-	{ for(unsigned i = 0; 4 != i; ++i)
-	{
-		ff::fmtln(
-			std::cout
-		,	"{0}\t{1}"
-		,	i
-		,	freqsRAND_MAX[i]
-		);
-	}}
-	ff::writeln(std::cout);
+    ff::writeln(std::cout, "RAND_MAX:");
+    { for(unsigned i = 0; 4 != i; ++i)
+    {
+        ff::fmtln(
+            std::cout
+        ,   "{0}\t{1}"
+        ,   i
+        ,   freqsRAND_MAX[i]
+        );
+    }}
+    ff::writeln(std::cout);
 
-	ff::writeln(std::cout, "32:");
-	{ for(unsigned i = 0; 8 != i; ++i)
-	{
-		ff::fmtln(
-			std::cout
-		,	"{0}\t{1}"
-		,	i
-		,	freqs32[i]
-		);
-	}}
-	ff::writeln(std::cout);
+    ff::writeln(std::cout, "32:");
+    { for(unsigned i = 0; 8 != i; ++i)
+    {
+        ff::fmtln(
+            std::cout
+        ,   "{0}\t{1}"
+        ,   i
+        ,   freqs32[i]
+        );
+    }}
+    ff::writeln(std::cout);
 
-	ff::writeln(std::cout, "64:");
-	{ for(unsigned i = 0; 16 != i; ++i)
-	{
-		ff::fmtln(
-			std::cout
-		,	"{0}\t{1}"
-		,	i
-		,	freqs64[i]
-		);
-	}}
-	ff::writeln(std::cout);
+    ff::writeln(std::cout, "64:");
+    { for(unsigned i = 0; 16 != i; ++i)
+    {
+        ff::fmtln(
+            std::cout
+        ,   "{0}\t{1}"
+        ,   i
+        ,   freqs64[i]
+        );
+    }}
+    ff::writeln(std::cout);
 
     return EXIT_SUCCESS;
 }

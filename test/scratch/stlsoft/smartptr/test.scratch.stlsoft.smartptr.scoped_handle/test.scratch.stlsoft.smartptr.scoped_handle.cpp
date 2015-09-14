@@ -43,7 +43,7 @@ namespace
 
 char const* String_Init()
 {
-	return "";
+    return "";
 }
 void String_Uninit(char const*)
 {}
@@ -66,10 +66,10 @@ void Reserved_Uninit(void*)
 static int main_(int /* argc */, char** /*argv*/)
 {
     {
-		char const* h = String_Init();
+        char const* h = String_Init();
 
-		stlsoft::scoped_handle<char const*>	scoper(h, String_Uninit);
-	}
+        stlsoft::scoped_handle<char const*> scoper(h, String_Uninit);
+    }
 
 # if !defined(STLSOFT_COMPILER_IS_GCC) || \
      __GNUC__ > 4 || \
@@ -77,22 +77,22 @@ static int main_(int /* argc */, char** /*argv*/)
          __GNUC_MINOR__ > 4)
 
     {
-		Void_Init();
+        Void_Init();
 
-		stlsoft::scoped_handle<void>	scoper(Void_Uninit);
-	}
-
-    {
-		Reserved_Init(NULL);
-
-		stlsoft::scoped_handle<void*>	scoper(NULL, Reserved_Uninit);
-	}
+        stlsoft::scoped_handle<void>    scoper(Void_Uninit);
+    }
 
     {
-		Reserved_Init(nullptr);
+        Reserved_Init(NULL);
 
-		stlsoft::scoped_handle<void*>	scoper(nullptr, Reserved_Uninit);
-	}
+        stlsoft::scoped_handle<void*>   scoper(NULL, Reserved_Uninit);
+    }
+
+    {
+        Reserved_Init(nullptr);
+
+        stlsoft::scoped_handle<void*>   scoper(nullptr, Reserved_Uninit);
+    }
 
 # endif /* compiler */
 

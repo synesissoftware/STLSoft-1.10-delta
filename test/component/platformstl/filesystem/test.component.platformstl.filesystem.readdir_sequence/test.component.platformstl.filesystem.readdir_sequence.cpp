@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.component.platformstl.filesystem.readdir_sequence project.
  *
  * Created:     24th January 2009
- * Updated:     24th February 2009
+ * Updated:     20th May 2012
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2009, Synesis Software Pty Ltd.
+ *              Copyright (c) 2009-2012, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -53,12 +53,15 @@
 namespace
 {
 
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
-	static void test_1_20(void);
-	static void test_1_21(void);
-	static void test_1_22(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
+    static void test_1_20(void);
+    static void test_1_21(void);
+    static void test_1_22(void);
+    static void test_1_23(void);
+    static void test_1_24(void);
+    static void test_1_25(void);
 
 } // anonymous namespace
 
@@ -73,17 +76,20 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.component.platformstl.filesystem.readdir_sequence", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
-		XTESTS_RUN_CASE(test_1_20);
-		XTESTS_RUN_CASE(test_1_21);
-		XTESTS_RUN_CASE(test_1_22);
+    if(XTESTS_START_RUNNER("test.component.platformstl.filesystem.readdir_sequence", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
+        XTESTS_RUN_CASE(test_1_20);
+        XTESTS_RUN_CASE(test_1_21);
+        XTESTS_RUN_CASE(test_1_22);
+        XTESTS_RUN_CASE(test_1_23);
+        XTESTS_RUN_CASE(test_1_24);
+        XTESTS_RUN_CASE(test_1_25);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*platformstl/*/readdir_sequence.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*platformstl/*/readdir_sequence.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -101,84 +107,162 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef platformstl::readdir_sequence				readdir_sequence_t;
+    typedef platformstl::readdir_sequence               readdir_sequence_t;
 
-	typedef platformstl::filesystem_traits<char>		traits_m_t;
+    typedef platformstl::filesystem_traits<char>        traits_m_t;
 
 static void test_1_17()
 {
-	readdir_sequence_t	files(".");
+    readdir_sequence_t files(".");
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
 
-	XTESTS_TEST_PASSED();
+#ifdef _WIN32
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_directory(stlsoft::c_str_ptr(*b))
+			);
+#else /* ? _WIN32 */
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_directory(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_socket(stlsoft::c_str_ptr(*b)
+			);
+#endif /* _WIN32 */
+    }}
+
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_18()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::absolutePath);
+    readdir_sequence_t files(".", readdir_sequence_t::absolutePath);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
 
-	XTESTS_TEST_PASSED();
+#ifdef _WIN32
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_directory(stlsoft::c_str_ptr(*b))
+			);
+#else /* ? _WIN32 */
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_directory(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_socket(stlsoft::c_str_ptr(*b)
+			);
+#endif /* _WIN32 */
+    }}
+
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_19()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+    readdir_sequence_t files(".", readdir_sequence_t::files);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_20()
 {
-	readdir_sequence_t	directories(".", readdir_sequence_t::directories);
+    readdir_sequence_t directories(".", readdir_sequence_t::directories);
 
-	{ for(readdir_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = directories.begin(); b != directories.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_directory(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_21()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+#ifndef _WIN32
+    readdir_sequence_t files(".", readdir_sequence_t::sockets);
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_socket(stlsoft::c_str_ptr(*b)));
+    }}
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
+#endif /* !_WIN32 */
 }
 
 static void test_1_22()
 {
-	readdir_sequence_t	files(".", readdir_sequence_t::files);
+#ifndef _WIN32
+puts("");
+puts("");
 
-	{ for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
-	{
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
-		XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_file(stlsoft::c_str_ptr(*b)));
-	}}
+    readdir_sequence_t files(".", readdir_sequence_t::showLinks);
 
-	XTESTS_TEST_PASSED();
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+		puts(*b);
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+//        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::is_link(stlsoft::c_str_ptr(*b)));
+    }}
+
+puts("");
+puts("");
+
+    XTESTS_TEST_PASSED();
+#endif /* !_WIN32 */
+}
+
+static void test_1_23()
+{
+    readdir_sequence_t files(".", readdir_sequence_t::files | readdir_sequence_t::directories);
+
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+			||	traits_m_t::is_directory(stlsoft::c_str_ptr(*b))
+		);
+    }}
+
+    XTESTS_TEST_PASSED();
+}
+
+static void test_1_24()
+{
+#ifndef _WIN32
+    readdir_sequence_t files(".", readdir_sequence_t::files | readdir_sequence_t::sockets);
+
+    { for(readdir_sequence_t::const_iterator b = files.begin(); b != files.end(); ++b)
+    {
+        XTESTS_TEST_BOOLEAN_TRUE(traits_m_t::file_exists(stlsoft::c_str_ptr(*b)));
+        XTESTS_TEST_BOOLEAN_TRUE(
+				traits_m_t::is_file(stlsoft::c_str_ptr(*b))
+#ifndef _WIN32
+			||	traits_m_t::is_socket(stlsoft::c_str_ptr(*b)
+#endif /* !_WIN32 */
+			)
+		);
+    }}
+
+    XTESTS_TEST_PASSED();
+#endif /* !_WIN32 */
+}
+
+static void test_1_25()
+{
 }
 
 

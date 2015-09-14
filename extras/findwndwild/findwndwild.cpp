@@ -1,14 +1,14 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        ../extras/findwndwild/findwndwild.cpp
  *
  * Purpose:     Window searching using (shwild) wildcards.
  *
  * Created:     4th August 2006
- * Updated:     11th March 2007
+ * Updated:     29th January 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,10 +35,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
 
@@ -47,7 +47,7 @@
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -57,12 +57,16 @@
 # include <findwndwild/findwndwild.h>
 #endif /* STLSOFT_EXTRAS_NO_NESTED_INCLUDES */
 
-#include <stlsoft/stlsoft.h>
+/* STLSoft Header Files */
+
+#include <winstl/conversion/char_conversions.hpp>
 #include <stlsoft/conversion/union_cast.hpp>
 
-#include <shwild/shwild.hpp>	// Download the shwild project from http://shwild.org/
+/* shwild Header Files */
 
-/* /////////////////////////////////////////////////////////////////////////////
+#include <shwild/shwild.hpp>    // Download the shwild project from http://shwild.org/
+
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -129,4 +133,55 @@ HWND FindWindowWildA(LPCSTR classNamePattern, LPCSTR windowNamePattern)
     return info.hwndResult;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+HWND FindWindowWildW(LPCWSTR classNamePattern, LPCWSTR windowNamePattern)
+{
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    try
+    {
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+    if(NULL == classNamePattern)
+    {
+        if(NULL == windowNamePattern)
+        {
+            return FindWindowWildA(NULL, NULL);
+        }
+        else
+        {
+            return FindWindowWildA(NULL, winstl::w2a(windowNamePattern));
+        }
+    }
+    else
+    {
+        if(NULL == windowNamePattern)
+        {
+            return FindWindowWildA(winstl::w2a(classNamePattern), NULL);
+        }
+        else
+        {
+            return FindWindowWildA(winstl::w2a(classNamePattern), winstl::w2a(windowNamePattern));
+        }
+    }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    }
+    catch(std::bad_alloc&)
+    {
+        ::SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+    }
+    catch(std::exception& x)
+    {
+#ifdef _DEBUG
+        ::OutputDebugStringA(x.what());
+#else /* ? _DEBUG */
+        STLSOFT_SUPPRESS_UNUSED(x);
+#endif /* _DEBUG */
+
+        ::SetLastError(E_FAIL);
+    }
+
+    return NULL;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+}
+
+/* ///////////////////////////// end of file //////////////////////////// */

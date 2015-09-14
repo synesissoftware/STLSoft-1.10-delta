@@ -1,0 +1,53 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.component.unixstl.filesystem.directory_functions"=.\test.component.unixstl.filesystem.directory_functions\vc6\test.component.unixstl.filesystem.directory_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.unixstl.filesystem.memory_map_functions"=.\test.component.unixstl.filesystem.memory_map_functions\vc6\test.component.unixstl.filesystem.memory_map_functions.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.component.unixstl.filesystem.memory_map_functions.C"=.\test.component.unixstl.filesystem.memory_map_functions.C\vc6\test.component.unixstl.filesystem.memory_map_functions.C.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

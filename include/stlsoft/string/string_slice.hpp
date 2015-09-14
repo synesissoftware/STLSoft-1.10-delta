@@ -4,11 +4,11 @@
  * Purpose:     Defines the string_slice class template.
  *
  * Created:     22nd February 2010
- * Updated:     21st June 2010
+ * Updated:     2nd November 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MAJOR      1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MINOR      1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       9
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MINOR      3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -60,12 +60,18 @@
  */
 
 #include <stlsoft/stlsoft_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE
+# include <stlsoft/string/string_slice.h>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_H_STRING_SLICE */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING
 # include <stlsoft/shims/access/string/std/c_string.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_STD_H_C_STRING */
@@ -89,49 +95,49 @@ namespace stlsoft
 /// A type for describing string slices
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T = stlsoft_char_traits<C>
+        ,   ss_typename_param_k P = ss_typename_type_def_k string_slice_selection_traits_t<C>::slice_type
         >
 struct string_slice
+    : public P
 {
 public: // Member Types
     /// The character type
     typedef C                                       char_type;
     /// The traits type
     typedef T                                       traits_type;
+private:
+    typedef P                                       parent_class_type;
+public:
     /// The size type
     typedef ss_size_t                               size_type;
     /// The class type
-    typedef string_slice<char_type, traits_type>    class_type;
+    typedef string_slice<char_type, traits_type, P> class_type;
     /// The boolean type
     typedef ss_bool_t                               bool_type;
     /// The comparison type
     typedef int                                     int_type;
 
-public: // Member Variables
-    size_type           len;    /*!< The length of the slice */
-    char_type const*    ptr;    /*!< The pointer of the slice */
+    typedef C                                       value_type;
+    typedef C const*                                const_iterator;
 
 public: // Construction
     /// Default constructor
     string_slice()
-        : len(0u)
-        , ptr(NULL)
+        : parent_class_type()
     {}
     /// Constructs instance from string pointer and length
     string_slice(char_type const* s, size_type n)
-        : len(n)
-        , ptr(s)
+        : parent_class_type(s, n)
     {
         STLSOFT_ASSERT(0u == n || NULL != s);
     }
     /// Constructs instance from string pointer and length
     ss_explicit_k string_slice(char_type const* s)
-        : ptr( stlsoft_ns_qual(c_str_data)(s))
-        , len( stlsoft_ns_qual(c_str_len)(s))
+        : parent_class_type( stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s))
     {}
     /// Copy constructor
     string_slice(string_slice const& rhs)
-        : len(rhs.len)
-        , ptr(rhs.ptr)
+        : parent_class_type(rhs.ptr, rhs.len)
     {}
 
     /// Copy assignment operator
@@ -185,6 +191,23 @@ public: // Comparison
     {
         return compare(class_type(s));
     }
+
+
+public: // Iteration
+    /// Begins the iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the start of the sequence
+    const_iterator          begin() const
+    {
+        return ptr;
+    }
+    /// Ends the iteration
+    ///
+    /// \return A non-mutable (const) iterator representing the end of the sequence
+    const_iterator          end() const
+    {
+        return ptr + len;
+    }
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,55 +216,67 @@ public: // Comparison
 
 /* slice const& */
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator ==(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator ==(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return lhs.equals(rhs);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator !=(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator !=(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return !lhs.equals(rhs);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator <(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator <(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return lhs.compare(rhs) < 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator >(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator >(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return lhs.compare(rhs) > 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator <=(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator <=(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return lhs.compare(rhs) <= 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator >=(
-    string_slice<C, T> const& lhs
-,   string_slice<C, T> const& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator >=(
+    string_slice<C, T, P> const& lhs
+,   string_slice<C, T, P> const& rhs
 )
 {
     return lhs.compare(rhs) >= 0;
@@ -249,55 +284,67 @@ inline ss_typename_type_k string_slice<C, T>::bool_type operator >=(
 
 /* char_type const* */
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator ==(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator ==(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return lhs.equals(rhs);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator !=(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator !=(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return !lhs.equals(rhs);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator <(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator <(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return lhs.compare(rhs) < 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator >(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator >(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return lhs.compare(rhs) > 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator <=(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator <=(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return lhs.compare(rhs) <= 0;
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_typename_type_k string_slice<C, T>::bool_type operator >=(
-    string_slice<C, T> const&                               lhs
-,   ss_typename_type_k string_slice<C, T>::char_type const* rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+ss_typename_type_k string_slice<C, T, P>::bool_type
+operator >=(
+    string_slice<C, T, P> const&                               lhs
+,   ss_typename_type_k string_slice<C, T, P>::char_type const* rhs
 )
 {
     return lhs.compare(rhs) >= 0;
@@ -307,84 +354,15 @@ inline ss_typename_type_k string_slice<C, T>::bool_type operator >=(
  * swapping
  */
 
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline void swap(
-    string_slice<C, T>& lhs
-,   string_slice<C, T>& rhs
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k P>
+inline
+void
+swap(
+    string_slice<C, T, P>& lhs
+,   string_slice<C, T, P>& rhs
 )
 {
     lhs.swap(rhs);
-}
-
-/* /////////////////////////////////////////////////////////////////////////
- * Shims
- */
-
-/* string_slice<ss_char_a_t> const& */
-
-inline ss_char_a_t const* c_str_data_a(string_slice<ss_char_a_t> const& slice)
-{
-    return (0u == slice.len) ? "" : slice.ptr;
-}
-inline ss_size_t c_str_len_a(string_slice<ss_char_a_t> const& slice)
-{
-    return slice.len;
-}
-
-inline ss_char_w_t const* c_str_data_w(string_slice<ss_char_w_t> const& slice)
-{
-    return (0u == slice.len) ? L"" : slice.ptr;
-}
-inline ss_size_t c_str_len_w(string_slice<ss_char_w_t> const& slice)
-{
-    return slice.len;
-}
-
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const* c_str_data(string_slice<C, T> const& slice)
-{
-    static C const empty = '\0';
-
-    return (0u == slice.len) ? &empty : slice.ptr;
-}
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_size_t c_str_len(string_slice<C, T> const& slice)
-{
-    return slice.len;
-}
-
-
-/* string_slice<ss_char_a_t> const* */
-
-inline ss_char_a_t const* c_str_data_a(string_slice<ss_char_a_t> const* slice)
-{
-    return (NULL == slice) ? "" : c_str_data_a(*slice);
-}
-inline ss_size_t c_str_len_a(string_slice<ss_char_a_t> const* slice)
-{
-    return (NULL == slice) ? 0u : c_str_len_a(*slice);
-}
-
-inline ss_char_w_t const* c_str_data_w(string_slice<ss_char_w_t> const* slice)
-{
-    return (NULL == slice) ? L"" : c_str_data_w(*slice);
-}
-inline ss_size_t c_str_len_w(string_slice<ss_char_w_t> const* slice)
-{
-    return (NULL == slice) ? 0u : c_str_len_w(*slice);
-}
-
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline C const* c_str_data(string_slice<C, T> const* slice)
-{
-    static C const empty = '\0';
-
-    return (NULL == slice) ? &empty : c_str_data(*slice);
-}
-template <ss_typename_param_k C, ss_typename_param_k T>
-inline ss_size_t c_str_len(string_slice<C, T> const* slice)
-{
-    return (NULL == slice) ? 0u : c_str_len(*slice);
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

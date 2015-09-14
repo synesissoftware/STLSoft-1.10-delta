@@ -61,12 +61,12 @@
 namespace
 {
 
-	static void test_1_14(void);
-	static void test_1_15(void);
-	static void test_1_16(void);
-	static void test_1_17(void);
-	static void test_1_18(void);
-	static void test_1_19(void);
+    static void test_1_14(void);
+    static void test_1_15(void);
+    static void test_1_16(void);
+    static void test_1_17(void);
+    static void test_1_18(void);
+    static void test_1_19(void);
 
 } // anonymous namespace
 
@@ -81,17 +81,17 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-	if(XTESTS_START_RUNNER("test.unit.winstl.system.searchpath_sequence", verbosity))
-	{
-		XTESTS_RUN_CASE(test_1_14);
-		XTESTS_RUN_CASE(test_1_15);
-		XTESTS_RUN_CASE(test_1_16);
-		XTESTS_RUN_CASE(test_1_17);
-		XTESTS_RUN_CASE(test_1_18);
-		XTESTS_RUN_CASE(test_1_19);
+    if(XTESTS_START_RUNNER("test.unit.winstl.system.searchpath_sequence", verbosity))
+    {
+        XTESTS_RUN_CASE(test_1_14);
+        XTESTS_RUN_CASE(test_1_15);
+        XTESTS_RUN_CASE(test_1_16);
+        XTESTS_RUN_CASE(test_1_17);
+        XTESTS_RUN_CASE(test_1_18);
+        XTESTS_RUN_CASE(test_1_19);
 
 #ifdef STLSOFT_USE_XCOVER
-		XCOVER_REPORT_FILE_COVERAGE("*winstl/*/searchpath_sequence.hpp", NULL);
+        XCOVER_REPORT_FILE_COVERAGE("*winstl/*/searchpath_sequence.hpp", NULL);
 #endif /* STLSOFT_USE_XCOVER */
 
         XTESTS_PRINT_RESULTS();
@@ -109,81 +109,81 @@ int main(int argc, char **argv)
 namespace
 {
 
-	typedef winstl::filesystem_traits<char>		traits_m_t;
-	typedef winstl::filesystem_traits<wchar_t>	traits_w_t;
+    typedef winstl::filesystem_traits<char>     traits_m_t;
+    typedef winstl::filesystem_traits<wchar_t>  traits_w_t;
 
-	typedef std::basic_string<char>				string_m_t;
-	typedef std::basic_string<wchar_t>			string_w_t;
+    typedef std::basic_string<char>             string_m_t;
+    typedef std::basic_string<wchar_t>          string_w_t;
 
-	typedef std::vector<string_m_t>				strings_m_t;
-	typedef std::vector<string_w_t>				strings_w_t;
+    typedef std::vector<string_m_t>             strings_m_t;
+    typedef std::vector<string_w_t>             strings_w_t;
 
 static void test_1_14()
 {
-	winstl::searchpath_sequence_a	searchpaths;
+    winstl::searchpath_sequence_a   searchpaths;
 
-	XTESTS_TEST_PASSED();
+    XTESTS_TEST_PASSED();
 }
 
 static void test_1_15()
 {
-	winstl::searchpath_sequence_a	searchpaths;
-	strings_m_t						results;
+    winstl::searchpath_sequence_a   searchpaths;
+    strings_m_t                     results;
 
-	std::copy(	searchpaths.begin(), searchpaths.end()
-			,	std::back_inserter(results));
+    std::copy(  searchpaths.begin(), searchpaths.end()
+            ,   std::back_inserter(results));
 
-	XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(5u, results.size());
+    XTESTS_TEST_INTEGER_GREATER_OR_EQUAL(5u, results.size());
 }
 
 static void test_1_16()
 {
-	winstl::searchpath_sequence_a	searchpaths;
-	strings_m_t						results;
-	strings_m_t						expected;
+    winstl::searchpath_sequence_a   searchpaths;
+    strings_m_t                     results;
+    strings_m_t                     expected;
 
-	std::copy(	searchpaths.begin(), searchpaths.end()
-			,	std::back_inserter(results));
+    std::copy(  searchpaths.begin(), searchpaths.end()
+            ,   std::back_inserter(results));
 
-	expected.push_back(stlsoft::c_str_ptr(winstl::module_directory(NULL)));
+    expected.push_back(stlsoft::c_str_ptr(winstl::module_directory(NULL)));
 
-	expected.push_back(stlsoft::c_str_ptr(winstl::current_directory()));
+    expected.push_back(stlsoft::c_str_ptr(winstl::current_directory()));
 
-	expected.push_back(stlsoft::c_str_ptr(winstl::system_directory()));
+    expected.push_back(stlsoft::c_str_ptr(winstl::system_directory()));
 
-	if(winstl::system_version::winnt())
-	{
-        CHAR	system16[_MAX_PATH + 1];
-        CHAR*	file_part;
+    if(winstl::system_version::winnt())
+    {
+        CHAR    system16[_MAX_PATH + 1];
+        CHAR*   file_part;
 
-		traits_m_t::get_full_path_name(winstl::system_directory().c_str(), STLSOFT_NUM_ELEMENTS(system16), system16, &file_part);
-		traits_m_t::char_copy(file_part, "SYSTEM", 7);
+        traits_m_t::get_full_path_name(winstl::system_directory().c_str(), STLSOFT_NUM_ELEMENTS(system16), system16, &file_part);
+        traits_m_t::char_copy(file_part, "SYSTEM", 7);
 
-		expected.push_back(system16);
-	}
+        expected.push_back(system16);
+    }
 
-	expected.push_back(stlsoft::c_str_ptr(winstl::windows_directory()));
+    expected.push_back(stlsoft::c_str_ptr(winstl::windows_directory()));
 
-	string_m_t						PATH(winstl::environment_variable("PATH"));
+    string_m_t                      PATH(winstl::environment_variable("PATH"));
 
-	stlsoft::string_tokeniser<string_m_t, char>	PATHs(PATH, ';');
+    stlsoft::string_tokeniser<string_m_t, char> PATHs(PATH, ';');
 
-	{ for(stlsoft::string_tokeniser<string_m_t, char>::const_iterator b = PATHs.begin(); b != PATHs.end(); ++b)
-	{
-		expected.push_back((*b));
-	}}
+    { for(stlsoft::string_tokeniser<string_m_t, char>::const_iterator b = PATHs.begin(); b != PATHs.end(); ++b)
+    {
+        expected.push_back((*b));
+    }}
 
-//	std::for_each(PATHs.begin(), PATHs.end()
-//			,	std::back_inserter(expected));
+//  std::for_each(PATHs.begin(), PATHs.end()
+//          ,   std::back_inserter(expected));
 
-	XTESTS_TEST_INTEGER_EQUAL(expected.size(), results.size());
-	if(expected.size() == results.size())
-	{
-		{ for(size_t i = 0; i != expected.size(); ++i)
-		{
-			XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX(expected[i], results[i]);
-		}}
-	}
+    XTESTS_TEST_INTEGER_EQUAL(expected.size(), results.size());
+    if(expected.size() == results.size())
+    {
+        { for(size_t i = 0; i != expected.size(); ++i)
+        {
+            XTESTS_TEST_MULTIBYTE_STRING_EQUAL_APPROX(expected[i], results[i]);
+        }}
+    }
 }
 
 static void test_1_17()

@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.scratch.comstl.conversion.method_cast project.
  *
  * Created:     29th November 2008
- * Updated:     11th August 2010
+ * Updated:     9th December 2013
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2013, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -134,7 +134,7 @@ static int main_(int /* argc */, char** /*argv*/)
     BSTR    bstrVal =   comstl::method_cast<BSTR>(&instance, &Class1::get_BSTR);
 
 #if !defined(STLSOFT_COMPILER_IS_GCC) || \
-	__GNUC__ > 3
+    __GNUC__ > 3
     comstl::variant varVal  =   comstl::method_cast<comstl::variant>(&instance, &Class1::get_VARIANT);
 #endif
 

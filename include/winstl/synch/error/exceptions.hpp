@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation API exception(s).
  *
  * Created:     30th May 2006
- * Updated:     27th April 2010
+ * Updated:     24th July 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_MAJOR     3
 # define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_EDIT      14
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYNCH_ERROR_HPP_EXCEPTIONS_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 
 #ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EXCEPTIONS
 # include <winstl/synch/exceptions.hpp>

@@ -4,11 +4,11 @@
  * Purpose:     Windows memory mapping functions.
  *
  * Created:     15th December 1996
- * Updated:     6th September 2010
+ * Updated:     6th June 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MAJOR      5
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      0
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_REVISION   2
-# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       99
+# define WINSTL_VER_WINSTL_FILESYSTEM_H_MEMORY_MAP_FUNCTIONS_EDIT       103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,6 +58,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -94,7 +97,9 @@ namespace winstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 /* NOTE: The offset params are reversed from Windows API! */
-STLSOFT_INLINE void* winstl_C_call_MapViewOfFile_offset_32_(
+STLSOFT_INLINE
+void*
+winstl_C_call_MapViewOfFile_offset_32_(
     HANDLE          hMap
 ,   DWORD           access
 ,   ws_uint32_t     offset
@@ -110,7 +115,9 @@ STLSOFT_INLINE void* winstl_C_call_MapViewOfFile_offset_32_(
     );
 }
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-STLSOFT_INLINE void* winstl_C_call_MapViewOfFile_offset_64_(
+STLSOFT_INLINE
+void*
+winstl_C_call_MapViewOfFile_offset_64_(
     HANDLE          hMap
 ,   DWORD           access
 ,   ws_uint64_t     offset
@@ -129,7 +136,9 @@ STLSOFT_INLINE void* winstl_C_call_MapViewOfFile_offset_64_(
 
 
 #if 0
-STLSOFT_INLINE void* winstl_C_create_stub_map_view_(void) stlsoft_throw_0()
+STLSOFT_INLINE
+void*
+winstl_C_create_stub_map_view_(void) stlsoft_throw_0()
 {
     HANDLE hmap = STLSOFT_NS_GLOBAL(CreateFileMappingA)(
         INVALID_HANDLE_VALUE
@@ -161,7 +170,9 @@ STLSOFT_INLINE void* winstl_C_create_stub_map_view_(void) stlsoft_throw_0()
 }
 #endif /* 0 */
 
-STLSOFT_INLINE void* winstl_C_map_view_of_file_by_handle_(
+STLSOFT_INLINE
+void*
+winstl_C_map_view_of_file_by_handle_(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -206,7 +217,9 @@ STLSOFT_INLINE void* winstl_C_map_view_of_file_by_handle_(
  *
  * \pre (INVALID_HANDLE_VALUE != hFile)
  */
-STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_handle(
+STLSOFT_INLINE
+void*
+winstl_C_map_readonly_view_of_file_by_handle(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -219,7 +232,9 @@ STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_handle(
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-STLSOFT_INLINE void* winstl_C_map_view_of_file_by_handle_(
+STLSOFT_INLINE
+void*
+winstl_C_map_view_of_file_by_handle_(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -393,9 +408,64 @@ STLSOFT_INLINE void* winstl_C_map_view_of_file_by_handle_(
     }
 }
 
+STLSOFT_INLINE
+void*
+winstl_C_map_view_on_pagefile_(
+    ws_uintptr_t    requestSize
+) stlsoft_throw_0()
+{
+    ws_uint64_t mapSize     =   requestSize;
+    DWORD       mapSizeHi   =   stlsoft_static_cast(DWORD, mapSize >> 32);
+    DWORD       mapSizeLo   =   stlsoft_static_cast(DWORD, mapSize);
+
+    HANDLE  hmap = STLSOFT_NS_GLOBAL(CreateFileMappingA)(
+                INVALID_HANDLE_VALUE
+            ,   NULL
+            ,   PAGE_READWRITE
+            ,   mapSizeHi
+            ,   mapSizeLo
+            ,   NULL
+            );
+
+    if(NULL == hmap)
+    {
+        return NULL;
+    }
+    else
+    {
+# ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+        void* memory = winstl_C_call_MapViewOfFile_offset_64_(
+# else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+        void* memory = winstl_C_call_MapViewOfFile_offset_32_(
+# endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+                hmap
+            ,   FILE_MAP_WRITE
+            ,   0
+            ,   requestSize
+            );
+
+        DWORD e = STLSOFT_NS_GLOBAL(GetLastError)();
+
+        STLSOFT_NS_GLOBAL(CloseHandle)(hmap);
+
+        STLSOFT_NS_GLOBAL(SetLastError)(e);
+
+        if(NULL == memory)
+        {
+            return NULL;
+        }
+        else
+        {
+            return memory;
+        }
+    }
+}
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-STLSOFT_INLINE void* winstl_C_map_readwrite_view_of_file_by_handle(
+STLSOFT_INLINE
+void*
+winstl_C_map_readwrite_view_of_file_by_handle(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -403,6 +473,15 @@ STLSOFT_INLINE void* winstl_C_map_readwrite_view_of_file_by_handle(
 ) stlsoft_throw_0()
 {
     return winstl_C_map_view_of_file_by_handle_(hFile, offset, requestSize, viewSize, FALSE);
+}
+
+STLSOFT_INLINE
+void*
+winstl_C_map_view_on_pagefile(
+    ws_uintptr_t    requestSize
+) stlsoft_throw_0()
+{
+    return winstl_C_map_view_on_pagefile_(requestSize);
 }
 
 /** Unmaps a file mapping view, and releases any associated mapping
@@ -416,7 +495,9 @@ STLSOFT_INLINE void* winstl_C_map_readwrite_view_of_file_by_handle(
  *   <code>NULL</code> view, even though the underlying operating system API
  *   function, <code>UnmapViewOfFile()</code>, is not.
  */
-STLSOFT_INLINE void winstl_C_unmap_view_of_file(
+STLSOFT_INLINE
+void
+winstl_C_unmap_view_of_file(
     void*           view
 ) stlsoft_throw_0()
 {
@@ -426,7 +507,9 @@ STLSOFT_INLINE void winstl_C_unmap_view_of_file(
     }
 }
 
-STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_name_a(
+STLSOFT_INLINE
+void*
+winstl_C_map_readonly_view_of_file_by_name_a(
     ws_char_a_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -460,7 +543,9 @@ STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_name_a(
     }
 }
 
-STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_name_w(
+STLSOFT_INLINE
+void*
+winstl_C_map_readonly_view_of_file_by_name_w(
     ws_char_w_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -497,7 +582,9 @@ STLSOFT_INLINE void* winstl_C_map_readonly_view_of_file_by_name_w(
 
 #ifdef __cplusplus
 
-inline void* winstl_C_map_readonly_view_of_file_by_name(
+inline
+void*
+winstl_C_map_readonly_view_of_file_by_name(
     ws_char_a_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -509,7 +596,9 @@ inline void* winstl_C_map_readonly_view_of_file_by_name(
     return winstl_C_map_readonly_view_of_file_by_name_a(path, access, shareMode, offset, requestSize, actualSize);
 }
 
-inline void* winstl_C_map_readonly_view_of_file_by_name(
+inline
+void*
+winstl_C_map_readonly_view_of_file_by_name(
     ws_char_w_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -541,7 +630,9 @@ inline void* winstl_C_map_readonly_view_of_file_by_name(
 
 #ifdef __cplusplus
 
-inline void* map_readonly_view_of_file_by_handle(
+inline
+void*
+map_readonly_view_of_file_by_handle(
     HANDLE          hFile
 ,   ws_uintptr_t*   actualSize
 )
@@ -554,7 +645,9 @@ inline void* map_readonly_view_of_file_by_handle(
     );
 }
 
-inline void* map_readonly_view_of_file_by_handle(
+inline
+void*
+map_readonly_view_of_file_by_handle(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -564,7 +657,9 @@ inline void* map_readonly_view_of_file_by_handle(
     return winstl_C_map_readonly_view_of_file_by_handle(hFile, offset, requestSize, actualSize);
 }
 
-inline void* map_readwrite_view_of_file_by_handle(
+inline
+void*
+map_readwrite_view_of_file_by_handle(
     HANDLE          hFile
 ,   ws_uint64_t     offset
 ,   ws_uintptr_t    requestSize
@@ -574,14 +669,27 @@ inline void* map_readwrite_view_of_file_by_handle(
     return winstl_C_map_readwrite_view_of_file_by_handle(hFile, offset, requestSize, actualSize);
 }
 
-inline void unmap_view_of_file(
+inline
+void*
+map_view_on_pagefile(
+    ws_uintptr_t    requestSize
+)
+{
+    return winstl_C_map_view_on_pagefile(requestSize);
+}
+
+inline
+void
+unmap_view_of_file(
     void* view
 )
 {
     winstl_C_unmap_view_of_file(view);
 }
 
-inline void* map_readonly_view_of_file_by_name(
+inline
+void*
+map_readonly_view_of_file_by_name(
     ws_char_a_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -593,7 +701,9 @@ inline void* map_readonly_view_of_file_by_name(
     return winstl_C_map_readonly_view_of_file_by_name_a(path, access, shareMode, offset, requestSize, actualSize);
 }
 
-inline void* map_readonly_view_of_file_by_name(
+inline
+void*
+map_readonly_view_of_file_by_name(
     ws_char_w_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -605,7 +715,9 @@ inline void* map_readonly_view_of_file_by_name(
     return winstl_C_map_readonly_view_of_file_by_name_w(path, access, shareMode, offset, requestSize, actualSize);
 }
 
-inline void* map_readonly_view_of_file_by_name(
+inline
+void*
+map_readonly_view_of_file_by_name(
     ws_char_a_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode
@@ -615,7 +727,9 @@ inline void* map_readonly_view_of_file_by_name(
     return winstl_C_map_readonly_view_of_file_by_name_a(path, access, shareMode, 0, 0, actualSize);
 }
 
-inline void* map_readonly_view_of_file_by_name(
+inline
+void*
+map_readonly_view_of_file_by_name(
     ws_char_w_t const*  path
 ,   DWORD               access
 ,   DWORD               shareMode

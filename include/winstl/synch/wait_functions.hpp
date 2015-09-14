@@ -5,11 +5,11 @@
  *              function template suite
  *
  * Created:     30th May 2006
- * Updated:     12th August 2010
+ * Updated:     20th May 2014
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        18
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_REVISION    6
+# define WINSTL_VER_WINSTL_SYNCH_HPP_WAIT_FUNCTIONS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,9 @@
  */
 
 #include <winstl/winstl_1_10.h> /* Requires STLSoft 1.10 alpha header during alpha phase */
+#ifdef STLSOFT_TRACE_INCLUDE
+# pragma message(__FILE__)
+#endif /* STLSOFT_TRACE_INCLUDE */
 #include <stlsoft/quality/contract.h>
 #include <stlsoft/quality/cover.h>
 
@@ -130,7 +133,9 @@ namespace
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k H>
-inline HANDLE w4mo_verify_and_get_discriminator(H& h, H const*)
+inline
+HANDLE
+w4mo_verify_and_get_discriminator(H& h, H const*)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -152,7 +157,9 @@ inline HANDLE w4mo_verify_and_get_discriminator(H& h, H const*)
     return (*pfn)(h);
 }
 
-inline HANDLE w4mo_verify_and_get_discriminator(HANDLE h, HANDLE const*)
+inline
+HANDLE
+w4mo_verify_and_get_discriminator(HANDLE h, HANDLE const*)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -160,7 +167,9 @@ inline HANDLE w4mo_verify_and_get_discriminator(HANDLE h, HANDLE const*)
 }
 
 template <ss_typename_param_k H>
-inline HANDLE w4mo_verify_and_get(H& h)
+inline
+HANDLE
+w4mo_verify_and_get(H& h)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -172,7 +181,9 @@ inline HANDLE w4mo_verify_and_get(H& h)
 #else /* ? WINSTL_WAIT_FUNCTIONS_NO_USE_SHIM_VERIFIER */
 
 template <ss_typename_param_k H>
-inline HANDLE w4mo_verify_and_get(H& h)
+inline
+HANDLE
+w4mo_verify_and_get(H& h)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -183,7 +194,14 @@ inline HANDLE w4mo_verify_and_get(H& h)
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-inline bool w4mo_helper_find_first_duplicate_(ws_size_t numHandles, HANDLE *handles, ws_size_t* i0, ws_size_t* i1)
+inline
+bool
+w4mo_helper_find_first_duplicate_(
+    ws_size_t   numHandles
+,   HANDLE*     handles
+,   ws_size_t*  i0
+,   ws_size_t*  i1
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -219,7 +237,9 @@ inline bool w4mo_helper_find_first_duplicate_(ws_size_t numHandles, HANDLE *hand
  *
  * \ingroup group__library__synch
  */
-inline DWORD w4mo_helper_N(
+inline
+DWORD
+w4mo_helper_N(
     ws_dword_t  timeout     /* time out */
 ,   ws_bool_t   waitsForAll /* indicates whether a wait-all or wait-first operation is requested */
 ,   ws_size_t   numHandles  /* number of handles passed into function */
@@ -248,7 +268,7 @@ inline DWORD w4mo_helper_N(
         {
             STLSOFT_COVER_MARK_LINE();
 
-            STLSOFT_THROW_X(null_wait_handle_exception("synchronisation handle may not be null", ERROR_INVALID_HANDLE, int(i)));
+            STLSOFT_THROW_X(null_wait_handle_exception(ERROR_INVALID_HANDLE, int(i)));
         }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         WINSTL_MESSAGE_ASSERT("synchronisation handle may not be null", NULL != h);
@@ -267,7 +287,7 @@ inline DWORD w4mo_helper_N(
     {
         STLSOFT_COVER_MARK_LINE();
 
-        STLSOFT_THROW_X(duplicate_wait_handle_exception("synchronisation handle may not be null", ERROR_INVALID_PARAMETER, i0, i1));
+        STLSOFT_THROW_X(duplicate_wait_handle_exception(ERROR_INVALID_PARAMETER, i0, i1));
     }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
     WINSTL_MESSAGE_ASSERT("synchronisation handles must be unique", !w4mo_helper_find_first_duplicate_(numHandles, &handles[0], &i0, &i1));
@@ -292,7 +312,22 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L8
         ,   ss_typename_param_k L9
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, L5& l5, L6& l6, L7& l7, L8& l8, L9& l9, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   L5&         l5
+,   L6&         l6
+,   L7&         l7
+,   L8&         l8
+,   L9&         l9
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -337,7 +372,21 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L7
         ,   ss_typename_param_k L8
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, L5& l5, L6& l6, L7& l7, L8& l8, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   L5&         l5
+,   L6&         l6
+,   L7&         l7
+,   L8&         l8
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -380,7 +429,20 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L6
         ,   ss_typename_param_k L7
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, L5& l5, L6& l6, L7& l7, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   L5&         l5
+,   L6&         l6
+,   L7&         l7
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -421,7 +483,19 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L5
         ,   ss_typename_param_k L6
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, L5& l5, L6& l6, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   L5&         l5
+,   L6&         l6
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -460,7 +534,18 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L4
         ,   ss_typename_param_k L5
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, L5& l5, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   L5&         l5
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -497,7 +582,17 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L3
         ,   ss_typename_param_k L4
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, L4& l4, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   L4&         l4
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -532,7 +627,16 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L2
         ,   ss_typename_param_k L3
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, L3& l3, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   L3&         l3
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -565,7 +669,15 @@ template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         ,   ss_typename_param_k L2
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   L2&         l2
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -596,7 +708,14 @@ inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, L2& l2, ws_bool_t waitsFo
 template<   ss_typename_param_k L0
         ,   ss_typename_param_k L1
         >
-inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, ws_bool_t waitsForAll, ws_dword_t timeout)
+inline
+DWORD
+wait_for_multiple_objects(
+    L0&         l0
+,   L1&         l1
+,   ws_bool_t   waitsForAll
+,   ws_dword_t  timeout
+)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -624,10 +743,10 @@ inline DWORD wait_for_multiple_objects(L0& l0, L1& l1, ws_bool_t waitsForAll, ws
 #ifndef WINSTL_NO_NAMESPACE
 # if defined(STLSOFT_NO_NAMESPACE) || \
      defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace winstl
+} /* namespace winstl */
 # else
-} // namespace winstl_project
-} // namespace stlsoft
+} /* namespace winstl_project */
+} /* namespace stlsoft */
 # endif /* STLSOFT_NO_NAMESPACE */
 #endif /* !WINSTL_NO_NAMESPACE */
 

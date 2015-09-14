@@ -216,6 +216,10 @@ SOURCE="$(STLSOFT_1_10)\include\stlsoft\quality\contract.h"
 # End Source File
 # Begin Source File
 
+SOURCE="$(STLSOFT)\include\stlsoft\error\conversion_error.hpp"
+# End Source File
+# Begin Source File
+
 SOURCE="$(STLSOFT)\include\stlsoft\string\copy_functions.hpp"
 # End Source File
 # Begin Source File
@@ -309,6 +313,10 @@ SOURCE="$(STLSOFT)\include\stlsoft\smartptr\scoped_handle.hpp"
 # Begin Source File
 
 SOURCE="$(STLSOFT)\include\stlsoft\meta\select_first_type_if.hpp"
+# End Source File
+# Begin Source File
+
+SOURCE="$(STLSOFT_1_10)\include\stlsoft\string\shim_string.hpp"
 # End Source File
 # Begin Source File
 

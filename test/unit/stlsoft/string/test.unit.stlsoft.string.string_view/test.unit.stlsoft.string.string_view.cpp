@@ -4,13 +4,13 @@
  * Purpose:     Implementation file for the test.unit.stlsoft.string.string_view project.
  *
  * Created:     4th November 2008
- * Updated:     10th August 2010
+ * Updated:     2nd November 2014
  *
  * Status:      Wizard-generated
  *
  * License:     (Licensed under the Synesis Software Open License)
  *
- *              Copyright (c) 2008-2010, Synesis Software Pty Ltd.
+ *              Copyright (c) 2008-2014, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              www:        http://www.synesis.com.au/software
@@ -59,6 +59,8 @@
 namespace
 {
 
+    static void test_types_exist(void);
+    static void test_type_sizes(void);
     static void test_ctor_default(void);
     static void test_ctor_copy(void);
     static void test_ctor_range_1(void);
@@ -129,6 +131,8 @@ int main(int argc, char **argv)
         xcover::init();
 #endif /* STLSOFT_USE_XCOVER */
 
+        XTESTS_RUN_CASE(test_types_exist);
+        XTESTS_RUN_CASE(test_type_sizes);
         XTESTS_RUN_CASE(test_ctor_default);
         XTESTS_RUN_CASE(test_ctor_copy);
         XTESTS_RUN_CASE(test_ctor_range_1);
@@ -140,14 +144,14 @@ int main(int argc, char **argv)
         XTESTS_RUN_CASE(test_swap_3);
         XTESTS_RUN_CASE(test_clear);
         XTESTS_RUN_CASE(test_1_10);
-		XTESTS_RUN_CASE(test_get_allocator);
+        XTESTS_RUN_CASE(test_get_allocator);
         XTESTS_RUN_CASE(test_1_14);
         XTESTS_RUN_CASE(test_front);
         XTESTS_RUN_CASE(test_back);
         XTESTS_RUN_CASE(test_1_19);
         XTESTS_RUN_CASE(test_refresh);
         XTESTS_RUN_CASE(test_1_22);
-		XTESTS_RUN_CASE(test_reverse_iterators);
+        XTESTS_RUN_CASE(test_reverse_iterators);
         XTESTS_RUN_CASE(test_1_23);
         XTESTS_RUN_CASE(test_copy);
 #if STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR > 3 || \
@@ -201,6 +205,16 @@ int main(int argc, char **argv)
 
 namespace
 {
+
+static void test_types_exist(void)
+{
+    typeid(stlsoft::basic_string_view<char>);
+    typeid(stlsoft::basic_string_view<wchar_t>);
+    typeid(stlsoft::string_view);
+    typeid(stlsoft::wstring_view);
+
+}
+
     typedef stlsoft::string_view            string_v_t;
     typedef stlsoft::wstring_view           wstring_v_t;
     typedef stlsoft::basic_string_view<
@@ -208,6 +222,12 @@ namespace
     ,   stlsoft::stlsoft_char_traits_safe<char>
     >                                       string_v_null_t;
 
+
+static void test_type_sizes(void)
+{
+    STLSOFT_STATIC_ASSERT(sizeof(stlsoft::string_view) == 4 * sizeof(void*));
+    STLSOFT_STATIC_ASSERT(sizeof(stlsoft::wstring_view) == 4 * sizeof(void*));
+}
 
 static void test_ctor_default()
 {
@@ -279,10 +299,10 @@ static void test_ctor_range_1()
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s3);
     XTESTS_TEST_MULTIBYTE_STRING_EQUAL(alphabet, s4);
 
-	XTESTS_TEST_POINTER_EQUAL(alphabet, s1.base());
-	XTESTS_TEST_POINTER_EQUAL(alphabet, s2.base());
-	XTESTS_TEST_POINTER_EQUAL(alphabet, s3.base());
-	XTESTS_TEST_POINTER_EQUAL(alphabet, s4.base());
+    XTESTS_TEST_POINTER_EQUAL(alphabet, s1.base());
+    XTESTS_TEST_POINTER_EQUAL(alphabet, s2.base());
+    XTESTS_TEST_POINTER_EQUAL(alphabet, s3.base());
+    XTESTS_TEST_POINTER_EQUAL(alphabet, s4.base());
 }
 
 static void test_ctor_range_2()
@@ -381,8 +401,8 @@ static void test_swap_2()
 static void test_swap_3()
 {
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
-	_MSC_VER < 1310
-	using stlsoft::swap;
+    _MSC_VER < 1310
+    using stlsoft::swap;
 #endif
 
     {
@@ -443,7 +463,7 @@ static void test_get_allocator()
 {
     string_v_t s;
 
-	XTESTS_TEST(s.get_allocator() == string_v_t::allocator_type());
+    XTESTS_TEST(s.get_allocator() == string_v_t::allocator_type());
 }
 
 static void test_1_14()
@@ -452,24 +472,24 @@ static void test_1_14()
 
 static void test_front()
 {
-	{
-		string_v_t s1("abc");
-		string_v_t s2(s1, 2);
+    {
+        string_v_t s1("abc");
+        string_v_t s2(s1, 2);
 
-		XTESTS_TEST_CHARACTER_EQUAL('a', s1.front());
-		XTESTS_TEST_CHARACTER_EQUAL('c', s2.front());
-	}
+        XTESTS_TEST_CHARACTER_EQUAL('a', s1.front());
+        XTESTS_TEST_CHARACTER_EQUAL('c', s2.front());
+    }
 }
 
 static void test_back()
 {
-	{
-		string_v_t s1("abc");
-		string_v_t s2(s1, 2);
+    {
+        string_v_t s1("abc");
+        string_v_t s2(s1, 2);
 
-		XTESTS_TEST_CHARACTER_EQUAL('c', s1.back());
-		XTESTS_TEST_CHARACTER_EQUAL('c', s2.back());
-	}
+        XTESTS_TEST_CHARACTER_EQUAL('c', s1.back());
+        XTESTS_TEST_CHARACTER_EQUAL('c', s2.back());
+    }
 }
 
 static void test_1_19(void)
@@ -478,23 +498,23 @@ static void test_1_19(void)
 
 static void test_refresh(void)
 {
-	{
-		string_v_t			s1("abcdefghijklmnopqrstuvwxyz");
-		string_v_t			s2("abcdefghijklmnopqrstuvwxyz");
+    {
+        string_v_t          s1("abcdefghijklmnopqrstuvwxyz");
+        string_v_t          s2("abcdefghijklmnopqrstuvwxyz");
 
-		char const* const	p1a	=	s1.c_str();
+        char const* const   p1a =   s1.c_str();
 
-		s1.refresh();
+        s1.refresh();
 
-		char const* const	p2a	=	s2.c_str();
+        char const* const   p2a =   s2.c_str();
 
-		char const* const	p1b	=	s1.c_str();
+        char const* const   p1b =   s1.c_str();
 
-		if(p2a == p1a)
-		{
-			XTESTS_TEST_POINTER_NOT_EQUAL(p1a, p1b);
-		}
-	}
+        if(p2a == p1a)
+        {
+            XTESTS_TEST_POINTER_NOT_EQUAL(p1a, p1b);
+        }
+    }
 }
 
 static void test_1_22(void)
@@ -503,29 +523,29 @@ static void test_1_22(void)
 
 static void test_reverse_iterators(void)
 {
-	{
-		string_v_t s("abcd");
+    {
+        string_v_t s("abcd");
 
-		string_v_t::const_reverse_iterator ri = s.rbegin();
+        string_v_t::const_reverse_iterator ri = s.rbegin();
 
-		XTESTS_TEST(s.rend() != ri);
-		XTESTS_TEST_CHARACTER_EQUAL('d', *ri);
+        XTESTS_TEST(s.rend() != ri);
+        XTESTS_TEST_CHARACTER_EQUAL('d', *ri);
 
-		++ri;
-		XTESTS_TEST(s.rend() != ri);
-		XTESTS_TEST_CHARACTER_EQUAL('c', *ri);
+        ++ri;
+        XTESTS_TEST(s.rend() != ri);
+        XTESTS_TEST_CHARACTER_EQUAL('c', *ri);
 
-		ri++;
-		XTESTS_TEST(s.rend() != ri);
-		XTESTS_TEST_CHARACTER_EQUAL('b', *ri);
+        ri++;
+        XTESTS_TEST(s.rend() != ri);
+        XTESTS_TEST_CHARACTER_EQUAL('b', *ri);
 
-		++ri;
-		XTESTS_TEST(s.rend() != ri);
-		XTESTS_TEST_CHARACTER_EQUAL('a', *ri);
+        ++ri;
+        XTESTS_TEST(s.rend() != ri);
+        XTESTS_TEST_CHARACTER_EQUAL('a', *ri);
 
-		++ri;
-		XTESTS_TEST(s.rend() == ri);
-	}
+        ++ri;
+        XTESTS_TEST(s.rend() == ri);
+    }
 }
 
 static void test_1_23(void)

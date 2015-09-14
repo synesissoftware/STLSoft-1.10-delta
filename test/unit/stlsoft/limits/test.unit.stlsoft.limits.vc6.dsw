@@ -1,0 +1,53 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "test.unit.stlsoft.limits.integral_format_width_limits"=.\test.unit.stlsoft.limits.integral_format_width_limits\vc6\test.unit.stlsoft.limits.integral_format_width_limits.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.limits.integral_limits"=.\test.unit.stlsoft.limits.integral_limits\vc6\test.unit.stlsoft.limits.integral_limits.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "test.unit.stlsoft.limits.integral_printf_width_limits"=.\test.unit.stlsoft.limits.integral_printf_width_limits\vc6\test.unit.stlsoft.limits.integral_printf_width_limits.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
