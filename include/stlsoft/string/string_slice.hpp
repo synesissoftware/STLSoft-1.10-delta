@@ -4,11 +4,11 @@
  * Purpose:     Defines the string_slice class template.
  *
  * Created:     22nd February 2010
- * Updated:     2nd November 2014
+ * Updated:     30th September 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_MINOR      3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       15
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_REVISION   2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_SLICE_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -143,8 +143,8 @@ public: // Construction
     /// Copy assignment operator
     string_slice& operator =(string_slice const& rhs)
     {
-        len = rhs.len;
-        ptr = rhs.ptr;
+        this->len = rhs.len;
+        this->ptr = rhs.ptr;
 
         return *this;
     }
@@ -152,8 +152,8 @@ public: // Construction
     /// Swaps the contents of this slice with \c rhs
     void swap(class_type& rhs) stlsoft_throw_0()
     {
-        std_swap(len, rhs.len);
-        std_swap(ptr, rhs.ptr);
+        std_swap(this->len, rhs.len);
+        std_swap(this->ptr, rhs.ptr);
     }
 
 public: // Comparison
@@ -161,7 +161,7 @@ public: // Comparison
     /// instance
     bool_type equals(class_type const& rhs) const
     {
-        return len == rhs.len && (ptr == rhs.ptr || 0 == traits_type::compare(ptr, rhs.ptr, len));
+        return this->len == rhs.len && (this->ptr == rhs.ptr || 0 == traits_type::compare(this->ptr, rhs.ptr, this->len));
     }
 
     /// Determines whether the current instance is equal to the given
@@ -174,13 +174,13 @@ public: // Comparison
     /// Compares the current instance with the given instance
     int_type compare(class_type const& rhs) const
     {
-        size_type   n   =   (len < rhs.len) ? len : rhs.len;
-        int_type    r   =   traits_type::compare(ptr, rhs.ptr, n);
+        size_type   n   =   (this->len < rhs.len) ? this->len : rhs.len;
+        int_type    r   =   traits_type::compare(this->ptr, rhs.ptr, n);
 
         if( 0 == r &&
-            (len != rhs.len))
+            (this->len != rhs.len))
         {
-            return (len < rhs.len) ? -1 : +1;
+            return (this->len < rhs.len) ? -1 : +1;
         }
 
         return r;
@@ -199,14 +199,14 @@ public: // Iteration
     /// \return A non-mutable (const) iterator representing the start of the sequence
     const_iterator          begin() const
     {
-        return ptr;
+        return this->ptr;
     }
     /// Ends the iteration
     ///
     /// \return A non-mutable (const) iterator representing the end of the sequence
     const_iterator          end() const
     {
-        return ptr + len;
+        return this->ptr + this->len;
     }
 };
 
