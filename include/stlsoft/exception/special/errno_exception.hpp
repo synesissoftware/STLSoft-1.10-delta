@@ -4,11 +4,11 @@
  * Purpose:     Defines the errno_exception exception class.
  *
  * Created:     17th May 2014
- * Updated:     6th August 2015
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MAJOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_MINOR       1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_REVISION    3
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        7
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_SPECIAL_HPP_ERRNO_EXCEPTION_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,8 @@ public: // Types
 
 public: // Construction
     /// Constructs an instance from the given errno value
-    explicit errno_exception(int e)
+    ss_explicit_k
+    errno_exception(int e)
         : parent_class_type(make_message_(e))
         , ErrnoValue(e)
     {

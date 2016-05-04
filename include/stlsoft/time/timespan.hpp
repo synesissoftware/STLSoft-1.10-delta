@@ -4,11 +4,11 @@
  * Purpose:     Definition of the stlsoft::timespan class.
  *
  * Created:     9th May 2014
- * Updated:     8th October 2014
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_TIME_HPP_TIMESPAN_MAJOR    0
 # define STLSOFT_VER_STLSOFT_TIME_HPP_TIMESPAN_MINOR    0
 # define STLSOFT_VER_STLSOFT_TIME_HPP_TIMESPAN_REVISION 2
-# define STLSOFT_VER_STLSOFT_TIME_HPP_TIMESPAN_EDIT     2
+# define STLSOFT_VER_STLSOFT_TIME_HPP_TIMESPAN_EDIT     3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,44 +91,45 @@ namespace stlsoft
 class timespan
 {
 public: // Types
-	typedef timespan		class_type;
-	typedef ss_sint64_t		span_type;
+    typedef timespan        class_type;
+    typedef ss_sint64_t     span_type;
 
 public: // Construction
-	explicit timespan(
-		span_type microseconds
-	);
+    ss_explicit_k
+    timespan(
+        span_type microseconds
+    );
 
 private:
     class_type& operator =(class_type const&); // proscribed
 
 public: // Generators
-	static
-	timespan
-	seconds(
-		span_type seconds
-	);
+    static
+    timespan
+    seconds(
+        span_type seconds
+    );
 
-	static
-	timespan
-	milliseconds(
-		span_type seconds
-	);
+    static
+    timespan
+    milliseconds(
+        span_type seconds
+    );
 
-	static
-	timespan
-	microseconds(
-		span_type seconds
-	);
+    static
+    timespan
+    microseconds(
+        span_type seconds
+    );
 
 public: // Comparison
-	span_type
-	compare(
-		class_type const& rhs
-	) const;
+    span_type
+    compare(
+        class_type const& rhs
+    ) const;
 
 public: // Fields
-	span_type const		Microseconds;
+    span_type const     Microseconds;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,81 +139,81 @@ public: // Fields
 inline
 bool
 operator ==(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return 0 == lhs.compare(rhs);
+    return 0 == lhs.compare(rhs);
 }
 
 inline
 bool
 operator !=(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return 0 != lhs.compare(rhs);
+    return 0 != lhs.compare(rhs);
 }
 
 inline
 bool
 operator <(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return lhs.compare(rhs) < 0;
+    return lhs.compare(rhs) < 0;
 }
 
 inline
 bool
 operator <=(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return lhs.compare(rhs) <= 0;
+    return lhs.compare(rhs) <= 0;
 }
 
 inline
 bool
 operator >(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return lhs.compare(rhs) > 0;
+    return lhs.compare(rhs) > 0;
 }
 
 inline
 bool
 operator >=(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return lhs.compare(rhs) >= 0;
+    return lhs.compare(rhs) >= 0;
 }
 
 inline
 timespan
 operator +(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return timespan(lhs.Microseconds + rhs.Microseconds);
+    return timespan(lhs.Microseconds + rhs.Microseconds);
 }
 
 inline
 timespan
 operator -(
-	timespan const& lhs
-,	timespan const& rhs
+    timespan const& lhs
+,   timespan const& rhs
 )
 {
-	return timespan(lhs.Microseconds - rhs.Microseconds);
+    return timespan(lhs.Microseconds - rhs.Microseconds);
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -223,48 +224,48 @@ operator -(
 
 inline
 timespan::timespan(
-	timespan::span_type microseconds
+    timespan::span_type microseconds
 )
-	: Microseconds(microseconds)
+    : Microseconds(microseconds)
 {}
 
 inline
 /* static */
 timespan
 timespan::seconds(
-	timespan::span_type seconds
+    timespan::span_type seconds
 )
 {
-	return timespan(seconds * 1000000);
+    return timespan(seconds * 1000000);
 }
 
 inline
 /* static */
 timespan
 timespan::milliseconds(
-	timespan::span_type seconds
+    timespan::span_type seconds
 )
 {
-	return timespan(seconds * 1000);
+    return timespan(seconds * 1000);
 }
 
 inline
 /* static */
 timespan
 timespan::microseconds(
-	timespan::span_type seconds
+    timespan::span_type seconds
 )
 {
-	return timespan(seconds);
+    return timespan(seconds);
 }
 
 inline
 timespan::span_type
 timespan::compare(
-	timespan const& rhs
+    timespan const& rhs
 ) const
 {
-	return Microseconds - rhs.Microseconds;
+    return Microseconds - rhs.Microseconds;
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

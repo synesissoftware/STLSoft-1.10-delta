@@ -4,11 +4,11 @@
  * Purpose:     Eraser iterator for unsorted sequence containers.
  *
  * Created:     28th January 2005
- * Updated:     24th July 2012
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_UNSORTED_ERASE_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_UNSORTED_ERASE_ITERATOR_MINOR     2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_UNSORTED_ERASE_ITERATOR_REVISION  3
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_UNSORTED_ERASE_ITERATOR_EDIT      20
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_UNSORTED_ERASE_ITERATOR_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,8 @@ private:
 /// \name Construction
 /// @{
 public:
-    explicit unsorted_eraser_iterator(
+    ss_explicit_k
+    unsorted_eraser_iterator(
         container_type& container
     ,   size_type*      hits
     ,   size_type*      misses
@@ -256,7 +257,8 @@ private:
     friend class deref_proxy;
 
 public:
-    explicit unsorted_eraser_iterator_0(
+    ss_explicit_k
+    unsorted_eraser_iterator_0(
         container_type& container
     )
         : m_container(container)

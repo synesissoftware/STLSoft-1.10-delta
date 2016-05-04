@@ -106,7 +106,8 @@ namespace impl
         : public method_invoker<C>
     {
     public:
-        explicit method_invoker_0(void (C::*method)())
+        ss_explicit_k
+        method_invoker_0(void (C::*method)())
             : m_method(method)
         {}
 
@@ -125,7 +126,8 @@ namespace impl
         : public method_invoker<C>
     {
     public:
-        explicit method_invoker_1(void (C::*method)(A0), A0 a0)
+        ss_explicit_k
+        method_invoker_1(void (C::*method)(A0), A0 a0)
             : m_method(method)
             , m_a0(a0)
         {}
@@ -148,7 +150,8 @@ namespace impl
         : public method_invoker<C>
     {
     public:
-        explicit method_invoker_2(void (C::*method)(A0, A1), A0 a0, A1 a1)
+        ss_explicit_k
+        method_invoker_2(void (C::*method)(A0, A1), A0 a0, A1 a1)
             : m_method(method)
             , m_a0(a0)
             , m_a1(a1)

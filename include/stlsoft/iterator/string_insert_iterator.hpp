@@ -5,11 +5,11 @@
  *              form via string access shims.
  *
  * Created:     6th April 2005
- * Updated:     25th July 2015
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_REVISION   5
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       25
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_STRING_INSERT_ITERATOR_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,8 @@ private:
 /// \name Construction
 /// @{
 public:
-    explicit string_insert_iterator(
+    ss_explicit_k
+    string_insert_iterator(
         container_type& container
     )
         : m_container(&container)
@@ -192,7 +193,9 @@ private:
 /** Creator function for string_insert_iterator
  */
 template <ss_typename_param_k C>
-inline string_insert_iterator<C> make_string_insert_iterator(
+inline
+string_insert_iterator<C>
+make_string_insert_iterator(
     C& container
 )
 {
@@ -202,7 +205,9 @@ inline string_insert_iterator<C> make_string_insert_iterator(
 /** Creator function for string_insert_iterator
  */
 template <ss_typename_param_k C>
-inline string_insert_iterator<C> string_inserter(
+inline
+string_insert_iterator<C>
+string_inserter(
     C& container
 )
 {

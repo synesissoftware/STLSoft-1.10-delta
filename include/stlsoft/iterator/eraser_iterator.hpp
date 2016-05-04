@@ -4,11 +4,11 @@
  * Purpose:     Eraser iterator.
  *
  * Created:     16th June 2010
- * Updated:     24th July 2012
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010-2012, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASE_ITERATOR_MAJOR      1
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASE_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASE_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASE_ITERATOR_EDIT       4
+# define STLSOFT_VER_STLSOFT_ITERATOR_HPP_ERASE_ITERATOR_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,7 +165,8 @@ private:
 /// \name Construction
 /// @{
 public:
-    explicit erase_iterator(container_type& container)
+    ss_explicit_k
+    erase_iterator(container_type& container)
         : m_container(container)
     {}
 private:

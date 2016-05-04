@@ -4,11 +4,11 @@
  * Purpose:     Abstraction of Windows' API resource identifier.
  *
  * Created:     30th August 2014
- * Updated:     31st August 2014
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_RESOURCE_ID_MAJOR      1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_RESOURCE_ID_MINOR      0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_RESOURCE_ID_REVISION   1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_RESOURCE_ID_EDIT       3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_RESOURCE_ID_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ public: // Member Values
 public: // Construction
 private:
     /// \exception std::out_of_range
-    explicit
+    ss_explicit_k
     resource_id(
         UINT            id
     ,   representation  repr
@@ -142,7 +142,7 @@ public:
     ///  number.
     ///
     /// \see from_number()
-    explicit
+    ss_explicit_k
     resource_id(
         LPCTSTR name
     );

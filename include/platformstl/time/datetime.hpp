@@ -4,11 +4,11 @@
  * Purpose:     Definition of the platformstl::datetime class
  *
  * Created:     7th May 2014
- * Updated:     9th October 2015
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_MAJOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_EDIT     8
+# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,8 @@ public:
         friend class datetime;
 
     private:
-        explicit current_date_type(time_locality locality)
+        ss_explicit_k
+        current_date_type(time_locality locality)
             : Locality(locality)
         {}
 
@@ -173,7 +174,8 @@ public:
         friend class datetime;
 
     private:
-        explicit current_time_type(time_locality locality)
+        ss_explicit_k
+        current_time_type(time_locality locality)
             : Locality(locality)
         {}
 
@@ -187,7 +189,8 @@ public:
         friend class datetime;
 
     private:
-        explicit second_fragment_type(int microseconds)
+        ss_explicit_k
+        second_fragment_type(int microseconds)
             : Microseconds(microseconds)
         {}
 
