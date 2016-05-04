@@ -4,11 +4,11 @@
  * Purpose:     winstl::time_cast<>.
  *
  * Created:     26th May 2014
- * Updated:     9th October 2014
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MAJOR     1
 # define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_MINOR     0
-# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_REVISION  2
-# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      2
+# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_REVISION  3
+# define WINSTL_VER_WINSTL_TIME_HPP_TIME_CAST_EDIT      3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,11 +159,11 @@ namespace ximpl_winstl_time_cast
             {
                 DWORD const e = ::GetLastError();
 
-#ifdef _DEBUG
-#else /* ? _DEBUG */
+#ifdef STLSOFT_DEBUG
+#else /* ? STLSOFT_DEBUG */
 # error
                 STLSOFT_THROW_X(bad_time_cast(e));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
             }
 
             return ft;
@@ -186,11 +186,11 @@ namespace ximpl_winstl_time_cast
             {
                 DWORD const e = ::GetLastError();
 
-#ifdef _DEBUG
-#else /* ? _DEBUG */
+#ifdef STLSOFT_DEBUG
+#else /* ? STLSOFT_DEBUG */
 # error
                 STLSOFT_THROW_X(bad_time_cast(e));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
             }
 
             return st;

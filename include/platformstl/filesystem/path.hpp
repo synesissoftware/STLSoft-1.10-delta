@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     17th November 2013
+ * Updated:     9th October 2015
  *
  * Thanks:      To Adi Shavit for requesting pop_file(), which provided the
  *              final impetus to tackle the migration of the operating two
@@ -15,7 +15,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      7
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       276
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   4
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       278
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1564,9 +1564,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ss_bool_t bRemoveT
 
     class_type  newPath(*this);
 
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
     memset(&newPath.m_buffer[0], '~', newPath.m_buffer.size());
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
 
     // Basically we scan through the path looking for ./ .\ ..\ and ../
 
@@ -1732,9 +1732,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(ss_bool_t bRemoveT
 
     // 3. Write out all the parts back into the new path instance
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ::memset(dest, '~', newPath.m_buffer.size() - (dest - &newPath.m_buffer[0]));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
 
         for(size_type i = 0; i < parts.size(); ++i)
         {

@@ -4,7 +4,7 @@
  * Purpose:     Windows console functions.
  *
  * Created:     3rd December 2005
- * Updated:     30th July 2015
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      23
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -181,9 +181,9 @@ winstl_C_get_console_width(void)
         }
     }
 
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
     STLSOFT_NS_GLOBAL(GetLastError)();
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
 
     return ~stlsoft_static_cast(ws_size_t, 0);
 }

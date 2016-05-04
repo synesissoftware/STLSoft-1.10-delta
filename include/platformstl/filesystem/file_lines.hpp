@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     21st August 2015
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    0
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     30
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 7
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/file_lines.hpp
@@ -133,12 +133,12 @@ namespace platformstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# ifdef _DEBUG
+# ifdef STLSOFT_DEBUG
 inline int plstl_file_lines_debug_hook_()
 {
     return 1;
 }
-# endif /* _DEBUG */
+# endif /* STLSOFT_DEBUG */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -376,9 +376,9 @@ private: // Implementation
         // This can work with EOL of CRLF or of LF, or a combination of the
         // two.
 
-# ifdef _DEBUG
+# ifdef STLSOFT_DEBUG
         plstl_file_lines_debug_hook_();
-# endif /* _DEBUG */
+# endif /* STLSOFT_DEBUG */
 
         char_type const* const  base1   =   m_contents.data();
         char_type const*        begin   =   base1;
@@ -408,9 +408,9 @@ private: // Implementation
         }}
         if(s0 != end)
         {
-# ifdef _DEBUG
+# ifdef STLSOFT_DEBUG
             plstl_file_lines_debug_hook_();
-# endif /* _DEBUG */
+# endif /* STLSOFT_DEBUG */
 
             char_type const* eol = begin;
 

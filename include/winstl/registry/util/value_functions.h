@@ -1,7 +1,7 @@
 
 /*
  *
- * Updated: 6th November 2014
+ * Updated: 9th October 2015
  */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_util_h_value_functions
@@ -68,7 +68,7 @@ winstl_C_registry_value_read_and_expand_string_a_(
 ,   LPDWORD     pcchValue
 )
 {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
     STLSOFT_C_AUTO_BUFFER_DECLARE(CHAR, 8, buff);
     STLSOFT_C_AUTO_BUFFER_DECLARE(CHAR, 32, buff2);
 #else

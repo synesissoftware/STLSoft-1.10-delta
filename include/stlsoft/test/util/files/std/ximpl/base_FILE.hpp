@@ -4,7 +4,7 @@
  * Purpose:     Definition of the stlsoft::test::util::ximpl::base_FILE class.
  *
  * Created:     9th February 2012
- * Updated:     24th July 2012
+ * Updated:     9th October 2015
  *
  * Author:      Matthew Wilson
  *
@@ -22,8 +22,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_MAJOR      1
 # define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_MINOR      0
-# define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_REVISION   3
-# define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_EDIT       3
+# define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_REVISION   4
+# define STLSOFT_VER_STLSOFT_TEST_UTIL_FILES_XIMPL_STD_HPP_BASE_FILE_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,10 +87,10 @@ protected: // Implementation
     ,   int         e
     )
     {
-#ifdef _DEBUG
-#else /* ? _DEBUG */
+#ifdef STLSOFT_DEBUG
+#else /* ? STLSOFT_DEBUG */
         throw ...;
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
     }
 
     FILE* open_temp_for_readwrite_or_throw_()

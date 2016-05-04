@@ -4,11 +4,11 @@
  * Purpose:     Definition of the platformstl::datetime class
  *
  * Created:     7th May 2014
- * Updated:     20th July 2014
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_MAJOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_MINOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_REVISION 5
-# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_EDIT     7
+# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_REVISION 6
+# define PLATFORMSTL_VER_PLATFORMSTL_TIME_HPP_DATETIME_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -332,11 +332,11 @@ public: // Accessors
 
         if(-1 == tv.tv_sec)
         {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
             // TODO: throw
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
 # error 
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         }
 
         return tv;
@@ -618,15 +618,15 @@ datetime::make_date_context_(
 
     if(0 != e)
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         dc->year        =   0;
         dc->month       =   0;
         dc->day         =   0;
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ::free(dc);
 
         STLSOFT_THROW_X(conversion_error("could not convert time value", EINVAL));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
     }
     else
     {
@@ -660,16 +660,16 @@ datetime::make_time_context_(
 
     if(0 != e)
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         tc->hour        =   0;
         tc->minute      =   0;
         tc->second      =   0;
         tc->microsecond =   0;
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ::free(tc);
 
         STLSOFT_THROW_X(conversion_error("could not convert time value", EINVAL));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
     }
     else
     {
@@ -704,7 +704,7 @@ datetime::make_context_datetime_(
 
     if(0 != e)
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         dtc->year           =   0;
         dtc->month          =   0;
         dtc->day            =   0;
@@ -713,11 +713,11 @@ datetime::make_context_datetime_(
         dtc->minute         =   0;
         dtc->second         =   0;
         dtc->microsecond    =   0;
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ::free(dtc);
 
         throw ????;
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
     }
     else
     {
@@ -755,7 +755,7 @@ datetime::make_context_SYSTEMTIME_(
 
     if(!::FileTimeToSystemTime(&ft, &st))
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         dtc->year           =   0;
         dtc->month          =   0;
         dtc->day            =   0;
@@ -764,11 +764,11 @@ datetime::make_context_SYSTEMTIME_(
         dtc->minute         =   0;
         dtc->second         =   0;
         dtc->microsecond    =   0;
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ::free(dtc);
 
         STLSOFT_THROW_X(conversion_error("could not convert time value", EINVAL));
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
     }
     else
     {

@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     16th November 2013
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    7
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     263
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     264
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@
 
 #if defined(__BORLANDC__) && \
     __BORLANDC__ > 0x0580 && \
-    defined(_DEBUG)
+    defined(STLSOFT_DEBUG)
 # include <stdio.h>
 #endif /* compiler */
 
@@ -1979,7 +1979,7 @@ inline basic_simple_string<C, T, A>::~basic_simple_string() stlsoft_throw_0()
 {
 #if defined(__BORLANDC__) && \
     __BORLANDC__ > 0x0580 && \
-    defined(_DEBUG)
+    defined(STLSOFT_DEBUG)
 
     /* NOTE: this quite unbelievable call sequence is required with Borland
      * 6.1 to prevent the class invariant assertion from firing. It first

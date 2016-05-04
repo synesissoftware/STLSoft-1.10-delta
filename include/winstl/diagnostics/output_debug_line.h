@@ -4,11 +4,11 @@
  * Purpose:     Functions to write lines to the Windows debugger.
  *
  * Created:     5th January 2011
- * Updated:     7th November 2014
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2011-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2011-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_MAJOR    1
 # define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_MINOR    1
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_REVISION 4
-# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_EDIT     7
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_REVISION 5
+# define WINSTL_VER_WINSTL_DIAGNOSTICS_H_OUTPUT_DEBUG_LINE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,11 +218,11 @@ winstl_C_diagnostics_output_debug_line_1_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 2u, s0, "\n"))
@@ -249,11 +249,11 @@ winstl_C_diagnostics_output_debug_line_2_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 3u, s0, s1, "\n"))
@@ -282,11 +282,11 @@ winstl_C_diagnostics_output_debug_line_3_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 4u, s0, s1, s2, "\n"))
@@ -317,11 +317,11 @@ winstl_C_diagnostics_output_debug_line_4_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 5u, s0, s1, s2, s3, "\n"))
@@ -354,11 +354,11 @@ winstl_C_diagnostics_output_debug_line_5_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 6u, s0, s1, s2, s3, s4, "\n"))
@@ -393,11 +393,11 @@ winstl_C_diagnostics_output_debug_line_6_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 7u, s0, s1, s2, s3, s4, s5, "\n"))
@@ -434,11 +434,11 @@ winstl_C_diagnostics_output_debug_line_7_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 8u, s0, s1, s2, s3, s4, s5, s6, "\n"))
@@ -477,11 +477,11 @@ winstl_C_diagnostics_output_debug_line_8_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 9u, s0, s1, s2, s3, s4, s5, s6, s7, "\n"))
@@ -522,11 +522,11 @@ winstl_C_diagnostics_output_debug_line_9_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 10u, s0, s1, s2, s3, s4, s5, s6, s7, s8, "\n"))
@@ -569,11 +569,11 @@ winstl_C_diagnostics_output_debug_line_10_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 11u, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, "\n"))
@@ -618,11 +618,11 @@ winstl_C_diagnostics_output_debug_line_11_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 12u, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, "\n"))
@@ -669,11 +669,11 @@ winstl_C_diagnostics_output_debug_line_12_m(
     winstl_ns_using(ws_char_a_t);
 
     {
-#ifdef _DEBUG
+#ifdef STLSOFT_DEBUG
         ws_char_a_t         buff[10];
-#else /* ? _DEBUG */
+#else /* ? STLSOFT_DEBUG */
         ws_char_a_t         buff[1000];
-#endif /* _DEBUG */
+#endif /* STLSOFT_DEBUG */
         ws_char_a_t const*  psz;
 
         if(0 == stlsoft_C_concatenate_N_m(buff, STLSOFT_NUM_ELEMENTS(buff), &psz, 13u, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, "\n"))
