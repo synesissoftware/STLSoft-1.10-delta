@@ -18,6 +18,25 @@ STLSoft -  Changes
     ************************************
 
 
+4th May 2016 - 1.10.1 alpha 22 (delta)
+======================================
+
+Summary:
+--------
+
+ * added winstl/system/module_functions.h
+
+
+Details:
+--------
+
+WinSTL:
+
+ + winstl/system/module_functions.h:
+    + added winstl/system/module_functions.h
+
+
+
 4th May 2016 - 1.10.1 alpha 21 (delta)
 ======================================
 
