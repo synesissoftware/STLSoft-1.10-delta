@@ -2,7 +2,7 @@
 STLSoft -  Changes
 
 ; Created:  29th March 2002
-; Updated:  14th September 2015
+; Updated:  4th May 2016
 
 ============================================================================
 
@@ -16,6 +16,79 @@ STLSoft -  Changes
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+4th May 2016 - 1.10.1 alpha 20 (delta)
+======================================
+
+Summary:
+--------
+
+ * Clang compatibility
+ * instances of _DEBUG now changed to STLSOFT_DEBUG
+
+
+Details:
+--------
+
+STLSoft:
+
+ ~ stlsoft/container/insert_ordered_map.hpp:
+ ~ stlsoft/container/insert_ordered_set.hpp:
+ ~ stlsoft/conversion/conversion_flags.hpp:
+ ~ stlsoft/limits/integral_limits.h:
+ ~ stlsoft/memory/util/allocator_features.hpp:
+ ~ stlsoft/string/string_slice.hpp:
+ ~ stlsoft/traits/integral_printf_format_traits.hpp:
+    ~ Clang compatibility
+
+ ~ stlsoft/string/simple_string.hpp:
+ ~ stlsoft/string/static_string.hpp:
+ ~ stlsoft/test/util/files/std/ximpl/base_FILE.hpp:
+ ~ stlsoft/util/exception_string.hpp:
+    + STLSOFT_DEBUG
+
+COMSTL:
+
+ ~ comstl/string/BSTR_functions.h:
+    + STLSOFT_DEBUG
+
+PlatformSTL:
+
+ ~ platformstl/filesystem/file_lines.hpp:
+ ~ platformstl/time/datetime.hpp:
+    + STLSOFT_DEBUG
+
+ ~ platformstl/filesystem/path.hpp:
+    + STLSOFT_DEBUG
+    ~ Clang compatibility
+
+UNIXSTL:
+
+WinSTL:
+
+ ~ winstl/diagnostics/output_debug_line.h:
+ ~ winstl/filesystem/resizable_memory_mapped_file.hpp:
+ ~ winstl/registry/util/value_functions.h:
+ ~ winstl/system/console_functions.h:
+ ~ winstl/time/time_cast.hpp:
+    + STLSOFT_DEBUG
+
+ ~ winstl/filesystem/filesystem_traits.hpp:
+    + added get_file_attributes()
+    + added set_file_attributes()
+    ~ now implemented in terms of INVALID_FILE_ATTRIBUTES
+
+ ~ winstl/shell/file_operations.hpp:
+    ~ refactored worker functions into implementation namespace
+    ~ preparatory refactoring
+
+ ~ winstl/shims/access/string/time/FILETIME.hpp:
+    + FILETIME (const)* overloads of string access shims
+
+ ~ winstl/shims/access/string/time/SYSTEMTIME.hpp:
+    + provides canonical representation of invalid dates (rather than throwing an exception)
+
 
 
 14th September 2015 - 1.10.1 alpha 19 (delta)

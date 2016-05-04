@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  14th June 2010
+; Updated:  4th May 2016
 
 ============================================================================
 
@@ -57,6 +57,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Mateusz Loskot
     Mikael Pahmp
     Mike Batten
+    Mikko Koivunalho
     Neal Becker
     Nevin Liber
     Pablo Aguilar

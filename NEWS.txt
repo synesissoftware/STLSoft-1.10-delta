@@ -2,13 +2,15 @@
 STLSoft - README
 
 ; Created:  29th March 2002
-; Updated:  14th September 2015
+; Updated:  4th May 2016
 
 ============================================================================
 
 
 News:
 -----
+
+  4th May 2016          -   STLSoft 1.10.1 alpha 20 (delta) released
 
   14th September 2015   -   STLSoft 1.10.1 alpha 19 (delta) released
 
