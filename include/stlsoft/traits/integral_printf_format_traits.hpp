@@ -4,7 +4,7 @@
  * Purpose:     integral_printf_format_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     30th September 2015
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
@@ -94,7 +94,8 @@ namespace stlsoft
 # undef STLSOFT_CF_64_BIT_PRINTF_USES_LL
 #endif /* STLSOFT_CF_64_BIT_PRINTF_USES_LL */
 
-# if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_BORLAND) || \
      (  defined(STLSOFT_COMPILER_IS_COMO) && \
         defined(_MSC_VER)) || \
      (  defined(WIN32) && \
@@ -105,8 +106,9 @@ namespace stlsoft
      defined(STLSOFT_COMPILER_IS_VECTORC) || \
      defined(STLSOFT_COMPILER_IS_WATCOM)
 #  define STLSOFT_CF_64_BIT_PRINTF_USES_I64
-# elif defined(STLSOFT_COMPILER_IS_COMO) || \
+# elif 0 || \
        defined(STLSOFT_COMPILER_IS_CLANG) || \
+       defined(STLSOFT_COMPILER_IS_COMO) || \
        defined(STLSOFT_COMPILER_IS_DMC) || \
        defined(STLSOFT_COMPILER_IS_GCC) || \
        defined(STLSOFT_COMPILER_IS_INTEL) || \

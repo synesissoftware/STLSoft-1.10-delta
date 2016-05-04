@@ -4,11 +4,11 @@
  * Purpose:     Memory functions.
  *
  * Created:     5th November 2014
- * Updated:     5th November 2014
+ * Updated:     4th May 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2014-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 /** \file winstl/system/memory_functions.h
  *
- * \brief [C++ only] Memory functions
+ * \brief [C, C++] Memory functions
  *   (\ref group__library__system "System" Library).
  */
 
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       1
+# define WINSTL_VER_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -206,6 +206,6 @@ get_physical_memory_size()
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* WINSTL_INCL_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS */
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_H_MEMORY_FUNCTIONS */
 
 /* ///////////////////////////// end of file //////////////////////////// */

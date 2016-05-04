@@ -4,11 +4,11 @@
  * Purpose:     Contains the insert_ordered_set container class template.
  *
  * Created:     27th May 2010
- * Updated:     16th November 2013
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010-2013, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_MAJOR     1
 # define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_MINOR     6
-# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_EDIT      26
+# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONTAINER_HPP_INSERT_ORDERED_SET_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -261,11 +261,14 @@ public:
         }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# if defined(STLSOFT_COMPILER_IS_BORLAND) || \
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_BORLAND) || \
+     defined(STLSOFT_COMPILER_IS_CLANG) || \
      defined(STLSOFT_COMPILER_IS_GCC) || \
      defined(STLSOFT_COMPILER_IS_MWERKS) || \
      (   defined(STLSOFT_COMPILER_IS_MSVC) && \
-         _MSC_VER >= 1500)
+         _MSC_VER >= 1500) || \
+     0
         bool operator ==(class_type const& rhs) const
         {
             return equal(rhs);

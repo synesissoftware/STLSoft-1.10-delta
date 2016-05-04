@@ -4,7 +4,7 @@
  * Purpose:     Defines the string_slice class template.
  *
  * Created:     22nd February 2010
- * Updated:     30th September 2015
+ * Updated:     7th October 2015
  *
  * Home:        http://stlsoft.org/
  *

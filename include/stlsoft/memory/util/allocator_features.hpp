@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     30th September 2015
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *

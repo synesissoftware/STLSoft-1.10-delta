@@ -5,11 +5,11 @@
  *              form via string access shims.
  *
  * Created:     6th April 2005
- * Updated:     13th September 2015
+ * Updated:     14th February 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,19 +42,19 @@
 
 /** \file stlsoft/iterator/ximpl/string_insert_iterator_base.hpp
  *
- * \brief [C++ only] Definition of the stlsoft::string_insert_iterator
+ * \brief [C++ only] Definition of the stlsoft::string_insert_iterator_base
  *   class template
  *   (\ref group__library__iterators "Iterators" Library).
  */
 
-#ifndef STLSOFT_INCL_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE
-#define STLSOFT_INCL_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE
+#ifndef STLSOFT_INCL_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE
+#define STLSOFT_INCL_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE_MAJOR       2
-# define STLSOFT_VER_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE_MINOR       0
-# define STLSOFT_VER_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE_REVISION    5
-# define STLSOFT_VER_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE_EDIT        25
+# define STLSOFT_VER_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE_MAJOR      2
+# define STLSOFT_VER_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE_MINOR      1
+# define STLSOFT_VER_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE_REVISION   1
+# define STLSOFT_VER_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,8 +99,8 @@ namespace stlsoft
  */
 
 template <ss_typename_param_k C>
-// [[synesis:class:iterator: string_insert_iterator<C>]]
-class string_insert_iterator
+// [[synesis:class:iterator: string_insert_iterator_base<C>]]
+class string_insert_iterator_base
     : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
 /// \name Member Types
@@ -109,7 +109,7 @@ public:
     /// The container type
     typedef C                                               container_type;
     /// This type
-    typedef string_insert_iterator<container_type>          class_type;
+    typedef string_insert_iterator_base<container_type>     class_type;
 private:
     typedef ss_typename_type_k container_type::value_type   string_type_;
 //    typedef ss_typename_type_k container_type::iterator     iterator_;
@@ -122,7 +122,8 @@ private:
 /// \name Construction
 /// @{
 public:
-    explicit string_insert_iterator(
+    ss_explicit_k
+    string_insert_iterator_base(
         container_type& container
     )
         : m_container(container)
@@ -190,20 +191,24 @@ private:
 /// @}
 };
 
-/** Creator function for string_insert_iterator
+/** Creator function for string_insert_iterator_base
  */
 template <ss_typename_param_k C>
-inline string_insert_iterator<C> make_string_insert_iterator(
+inline
+string_insert_iterator_base<C>
+make_string_insert_iterator(
     C& container
 )
 {
-    return string_insert_iterator<C>(container);
+    return string_insert_iterator_base<C>(container);
 }
 
-/** Creator function for string_insert_iterator
+/** Creator function for string_insert_iterator_base
  */
 template <ss_typename_param_k C>
-inline string_insert_iterator<C> string_inserter(
+inline
+string_insert_iterator_base<C>
+string_inserter(
     C& container
 )
 {
@@ -218,6 +223,6 @@ inline string_insert_iterator<C> string_inserter(
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_STLSOFT_XIMPL_ITERATOR_HPP_STRING_INSERT_ITERATOR_BASE */
+#endif /* !STLSOFT_INCL_STLSOFT_ITERATOR_XIMPL_HPP_STRING_INSERT_ITERATOR_BASE */
 
 /* ///////////////////////////// end of file //////////////////////////// */

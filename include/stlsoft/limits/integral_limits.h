@@ -4,13 +4,13 @@
  * Purpose:     Integral constants.
  *
  * Created:     16th January 2002
- * Updated:     20th May 2014
+ * Updated:     9th October 2015
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MAJOR     5
 # define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_MINOR     0
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  3
-# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      63
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_REVISION  4
+# define STLSOFT_VER_STLSOFT_LIMITS_H_INTEGRAL_LIMITS_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -149,8 +149,9 @@ namespace stlsoft
 
 #if (   (   defined(STLSOFT_COMPILER_IS_BORLAND) && \
             __BORLANDC__ >= 0x0582) || \
-        defined(STLSOFT_COMPILER_IS_DMC) || \
+        defined(STLSOFT_COMPILER_IS_CLANG) || \
         defined(STLSOFT_COMPILER_IS_COMO) || \
+        defined(STLSOFT_COMPILER_IS_DMC) || \
         defined(STLSOFT_COMPILER_IS_GCC) || \
         defined(STLSOFT_COMPILER_IS_MWERKS) || \
         defined(STLSOFT_COMPILER_IS_SUNPRO))

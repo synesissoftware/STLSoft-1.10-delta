@@ -5,11 +5,11 @@
  *              various elements in the Conversion library.
  *
  * Created:     16th July 2012
- * Updated:     20th May 2014
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_REVISION   5
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_EDIT       9
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_REVISION   6
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CONVERSION_FLAGS_EDIT       10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -148,7 +148,10 @@ namespace ximpl_conversion
         enum {  base        =   cb_none     };
         enum {  decorations =   cd_none     };
 
-#if defined(STLSOFT_COMPILER_IS_GCC)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
     public:
         conversion_flag()
         {}
@@ -165,7 +168,10 @@ namespace ximpl_conversion
         enum {  base        =   B           };
         enum {  decorations =   D           };
 
-#if defined(STLSOFT_COMPILER_IS_GCC)
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
     public:
         conversion_flag()
         {}

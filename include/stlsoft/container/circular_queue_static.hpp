@@ -4,7 +4,7 @@
  * Purpose:     Definition of the circular_queue_static class template.
  *
  * Created:     23rd May 2014
- * Updated:     13th September 2015
+ * Updated:     9th October 2015
  *
  * Home:        http://stlsoft.org/
  *
