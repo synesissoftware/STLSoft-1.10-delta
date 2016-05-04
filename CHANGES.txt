@@ -18,6 +18,30 @@ STLSoft -  Changes
     ************************************
 
 
+4th May 2016 - 1.10.1 alpha 21 (delta)
+======================================
+
+Summary:
+--------
+
+ * Clang compatibility
+
+
+Details:
+--------
+
+STLSoft:
+
+ ~ stlsoft/container/insert_ordered_map.hpp:
+ ~ stlsoft/container/insert_ordered_set.hpp:
+ ~ stlsoft/limits/integral_limits.h:
+ ~ stlsoft/memory/util/allocator_features.hpp:
+ ~ stlsoft/string/string_slice.hpp:
+ ~ stlsoft/traits/integral_printf_format_traits.hpp:
+    ~ Clang compatibility
+
+
+
 4th May 2016 - 1.10.1 alpha 20 (delta)
 ======================================
 

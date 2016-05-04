@@ -23,9 +23,9 @@ STLSoft - Install
 
   Then, download and unzip the STLSoft 1.10 delta, and define an
   STLSOFT_1_10 environment variable pointing to the directory. For example,
-  if you you install to /usr/local/stlsoft/stlsoft-1.10.1-alpha-20-delta,
+  if you you install to /usr/local/stlsoft/stlsoft-1.10.1-alpha-21-delta,
   then you should set STLSOFT_1_10 to
-  /usr/local/stlsoft/stlsoft-1.10.1-alpha-20-delta. In that case,
+  /usr/local/stlsoft/stlsoft-1.10.1-alpha-21-delta. In that case,
   the file stlsoft/stlsoft_1_10.h will be located in
   $STLSOFT_1_10/include/stlsoft/stlsoft_1_10.h
 

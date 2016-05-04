@@ -270,7 +270,17 @@ public:
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const& s)
     {
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
+        STLSOFT_NS_USING(c_str_data);
+        STLSOFT_NS_USING(c_str_len);
+
+        init_(c_str_data(s), c_str_len(s));
+#else
         init_(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
+#endif
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// Constructs a path from a slice of a character string.
@@ -301,7 +311,17 @@ public:
     template<ss_typename_param_k S>
     class_type& operator =(S const& s)
     {
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
+        STLSOFT_NS_USING(c_str_data);
+        STLSOFT_NS_USING(c_str_len);
+
+        return operator_equal_(c_str_data(s), c_str_len(s));
+#else
         return operator_equal_(stlsoft_ns_qual(c_str_data)(s), stlsoft_ns_qual(c_str_len)(s));
+#endif
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
@@ -381,7 +401,17 @@ public:
     template <ss_typename_param_k S>
     class_type& operator /=(S const& rhs)
     {
+#if 0 || \
+    defined(STLSOFT_COMPILER_IS_CLANG) || \
+    defined(STLSOFT_COMPILER_IS_GCC) || \
+    0
+        STLSOFT_NS_USING(c_str_data);
+        STLSOFT_NS_USING(c_str_len);
+
+        return push_(c_str_data(rhs), c_str_len(rhs), false);
+#else
         return push_(stlsoft_ns_qual(c_str_data)(rhs), stlsoft_ns_qual(c_str_len)(rhs), false);
+#endif
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 

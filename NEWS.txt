@@ -10,6 +10,8 @@ STLSoft - README
 News:
 -----
 
+  4th May 2016          -   STLSoft 1.10.1 alpha 21 (delta) released
+
   4th May 2016          -   STLSoft 1.10.1 alpha 20 (delta) released
 
   14th September 2015   -   STLSoft 1.10.1 alpha 19 (delta) released
