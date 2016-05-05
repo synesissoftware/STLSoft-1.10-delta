@@ -2,7 +2,7 @@
 STLSoft -  Changes
 
 ; Created:  29th March 2002
-; Updated:  4th May 2016
+; Updated:  5th May 2016
 
 ============================================================================
 
@@ -16,6 +16,15 @@ STLSoft -  Changes
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+4th May 2016 - 1.10.1 alpha 23 (delta)
+======================================
+
+Summary:
+--------
+
+ * added scripts/combine.cmd
 
 
 4th May 2016 - 1.10.1 alpha 22 (delta)

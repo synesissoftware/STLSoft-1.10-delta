@@ -4,14 +4,14 @@
  * Purpose:     Helper functions for the Windows time types.
  *
  * Created:     2nd December 2004
- * Updated:     29th May 2014
+ * Updated:     9th October 2015
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       3
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       0
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        58
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    3
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -155,17 +155,14 @@ void
 stream_insert(S &stm, SYSTEMTIME const& t)
 {
     typedef stlsoft_ns_qual(basic_shim_string)<ws_char_a_t>     string_t;
-    typedef ximpl_winstl_shims_access_string_time               impl_t;
+    typedef ximpl_winstl_shims_access_string_time_SYSTEMTIME    impl_t;
 
+    DWORD           e;
     ws_size_t       cchDate     =   0;
     ws_size_t       cchTime     =   0;
-    const ws_size_t cchTotal    =   impl_t::calc_sizes(t, ::GetDateFormatA, ::GetTimeFormatA, cchDate, cchTime);
+    const ws_size_t cchTotal    =   impl_t::calc_sizes(t, ::GetDateFormatA, ::GetTimeFormatA, cchDate, cchTime, &e);
 
-#ifdef STLSOFT_CD_EXCEPTION_SUPPORT
-    WINSTL_ASSERT(0 != cchTotal);
-#else /* ? STLSOFT_CD_EXCEPTION_SUPPORT */
-    if(0 != cchTotal)
-#endif /* STLSOFT_CD_EXCEPTION_SUPPORT */
+    if(ERROR_SUCCESS != e)
     {
         string_t s(cchTotal);
 
