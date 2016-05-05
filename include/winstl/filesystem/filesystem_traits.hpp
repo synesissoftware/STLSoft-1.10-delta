@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     5th August 2015
+ * Updated:     15th October 2015
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       12
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        135
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        137
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1226,21 +1226,21 @@ public:
 
     static bool_type file_exists(char_type const* fileName)
     {
-        return 0xFFFFFFFF != ::GetFileAttributesA(fileName);
+        return INVALID_FILE_ATTRIBUTES != ::GetFileAttributesA(fileName);
     }
 
     static bool_type is_file(char_type const* path)
     {
         DWORD   attr = ::GetFileAttributesA(path);
 
-        return 0xFFFFFFFF != attr && 0 == (attr & FILE_ATTRIBUTE_DIRECTORY);
+        return INVALID_FILE_ATTRIBUTES != attr && 0 == (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
     static bool_type is_directory(char_type const* path)
     {
         DWORD   attr = ::GetFileAttributesA(path);
 
-        return 0xFFFFFFFF != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
+        return INVALID_FILE_ATTRIBUTES != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
 private:
@@ -1274,7 +1274,7 @@ private:
                 stat_data->cAlternateFileName[i]    =   path[i];
             }}
 
-            return 0xFFFFFFFF != stat_data->dwFileAttributes;
+            return INVALID_FILE_ATTRIBUTES != stat_data->dwFileAttributes;
         }
 
         WINSTL_ASSERT(NULL != path);
@@ -1979,21 +1979,21 @@ public:
 
     static bool_type file_exists(char_type const* fileName)
     {
-        return 0xFFFFFFFF != ::GetFileAttributesW(fileName);
+        return INVALID_FILE_ATTRIBUTES != ::GetFileAttributesW(fileName);
     }
 
     static bool_type is_file(char_type const* path)
     {
         DWORD   attr = ::GetFileAttributesW(path);
 
-        return 0xFFFFFFFF != attr && 0 == (attr & FILE_ATTRIBUTE_DIRECTORY);
+        return INVALID_FILE_ATTRIBUTES != attr && 0 == (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
     static bool_type is_directory(char_type const* path)
     {
         DWORD   attr = ::GetFileAttributesW(path);
 
-        return 0xFFFFFFFF != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
+        return INVALID_FILE_ATTRIBUTES != attr && 0 != (attr & FILE_ATTRIBUTE_DIRECTORY);
     }
 
 private:
@@ -2027,7 +2027,7 @@ private:
                 stat_data->cAlternateFileName[i]    =   path[i];
             }}
 
-            return 0xFFFFFFFF != stat_data->dwFileAttributes;
+            return INVALID_FILE_ATTRIBUTES != stat_data->dwFileAttributes;
         }
 
         WINSTL_ASSERT(NULL != path);

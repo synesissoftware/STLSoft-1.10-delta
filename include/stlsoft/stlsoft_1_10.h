@@ -146,12 +146,13 @@
 # define _STLSOFT_1_10_VER_1_10_1_A20       0x010a0114  /*!< Version 1.10.1 alpha 20 (4th May 2016) */
 # define _STLSOFT_1_10_VER_1_10_1_A21       0x010a0115  /*!< Version 1.10.1 alpha 21 (4th May 2016) */
 # define _STLSOFT_1_10_VER_1_10_1_A22       0x010a0116  /*!< Version 1.10.1 alpha 22 (4th May 2016) */
+# define _STLSOFT_1_10_VER_1_10_1_A23       0x010a0117  /*!< Version 1.10.1 alpha 23 (4th May 2016) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_1_10_VER_MAJOR         1
 #define _STLSOFT_1_10_VER_MINOR         10
 #define _STLSOFT_1_10_VER_REVISION      0
-#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A22
+#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A23
 
 /* /////////////////////////////////////////////////////////////////////////
  * Symbol Management
