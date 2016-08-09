@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     4th May 2016
+ * Updated:     9th August 2016
  *
  * Home:        http://stlsoft.org/
  *
@@ -147,12 +147,13 @@
 # define _STLSOFT_1_10_VER_1_10_1_A21       0x010a0115  /*!< Version 1.10.1 alpha 21 (4th May 2016) */
 # define _STLSOFT_1_10_VER_1_10_1_A22       0x010a0116  /*!< Version 1.10.1 alpha 22 (4th May 2016) */
 # define _STLSOFT_1_10_VER_1_10_1_A23       0x010a0117  /*!< Version 1.10.1 alpha 23 (4th May 2016) */
+# define _STLSOFT_1_10_VER_1_10_1_A24       0x010a0118  /*!< Version 1.10.1 alpha 24 (9th August 2016) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_1_10_VER_MAJOR         1
 #define _STLSOFT_1_10_VER_MINOR         10
 #define _STLSOFT_1_10_VER_REVISION      0
-#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A23
+#define _STLSOFT_1_10_VER               _STLSOFT_1_10_VER_1_10_1_A24
 
 /* /////////////////////////////////////////////////////////////////////////
  * Symbol Management

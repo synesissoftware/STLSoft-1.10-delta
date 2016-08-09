@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     9th October 2015
+ * Updated:     9th August 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2015, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    7
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     264
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     265
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -979,7 +979,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator ==(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator ==(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -991,9 +993,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator ==(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator ==(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator ==(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator ==(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1006,9 +1012,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator ==(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator ==(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator ==(C *lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator ==(C *lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1022,7 +1032,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator !=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator !=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1033,9 +1045,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator !=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator !=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator !=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator !=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1047,9 +1063,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator !=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator !=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator !=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator !=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1063,7 +1083,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator <(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1075,9 +1097,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator <(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator <(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator <(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator <(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1090,9 +1116,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator <(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator <(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1106,7 +1136,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator <=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1117,9 +1149,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator <=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator <=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator <=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator <=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1131,9 +1167,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator <=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator <=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator <=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1147,7 +1187,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator >(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1158,9 +1200,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator >(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator >(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator >(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator >(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1172,9 +1218,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator >(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator >(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1188,7 +1238,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t operator >=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >=(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1199,9 +1251,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator >=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+ss_bool_t
+operator >=(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator >=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+ss_bool_t
+operator >=(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1213,9 +1269,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline ss_bool_t operator >=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >=(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline ss_bool_t operator >=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+ss_bool_t
+operator >=(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1229,7 +1289,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A> operator +(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(basic_simple_string<C, T, A> const& lhs, basic_simple_string<C, T, A> const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1240,9 +1302,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline basic_simple_string<C, T, A> operator +(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type const* rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline basic_simple_string<C, T, A> operator +(basic_simple_string<C, T, A> const& lhs, C const* rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(basic_simple_string<C, T, A> const& lhs, C const* rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1254,9 +1320,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline basic_simple_string<C, T, A> operator +(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline basic_simple_string<C, T, A> operator +(C const* lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(C const* lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1268,9 +1338,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline basic_simple_string<C, T, A> operator +(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(basic_simple_string<C, T, A> const& lhs, ss_typename_type_k basic_simple_string<C, T, A>::char_type rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline basic_simple_string<C, T, A> operator +(basic_simple_string<C, T, A> const& lhs, C rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(basic_simple_string<C, T, A> const& lhs, C rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1282,9 +1356,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
 #ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
-inline basic_simple_string<C, T, A> operator +(ss_typename_type_k basic_simple_string<C, T, A>::char_type lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(ss_typename_type_k basic_simple_string<C, T, A>::char_type lhs, basic_simple_string<C, T, A> const& rhs)
 #else /* ? STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-inline basic_simple_string<C, T, A> operator +(C lhs, basic_simple_string<C, T, A> const& rhs)
+inline
+basic_simple_string<C, T, A>
+operator +(C lhs, basic_simple_string<C, T, A> const& rhs)
 #endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1308,7 +1386,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const* c_str_ptr_null(basic_simple_string<C, T, A> const& s)
+inline
+C const*
+c_str_ptr_null(basic_simple_string<C, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1319,7 +1399,9 @@ inline C const* c_str_ptr_null(basic_simple_string<C, T, A> const& s)
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_a_t const* c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A> const& s)
+inline
+ss_char_a_t const*
+c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1330,7 +1412,9 @@ inline ss_char_a_t const* c_str_ptr_null_a(basic_simple_string<ss_char_a_t, T, A
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_w_t const* c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A> const& s)
+inline
+ss_char_w_t const*
+c_str_ptr_null_w(basic_simple_string<ss_char_w_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1347,7 +1431,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const* c_str_ptr(basic_simple_string<C, T, A> const& s)
+inline
+C const*
+c_str_ptr(basic_simple_string<C, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1358,7 +1444,9 @@ inline C const* c_str_ptr(basic_simple_string<C, T, A> const& s)
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_a_t const* c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const& s)
+inline
+ss_char_a_t const*
+c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1369,7 +1457,9 @@ inline ss_char_a_t const* c_str_ptr_a(basic_simple_string<ss_char_a_t, T, A> con
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_w_t const* c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const& s)
+inline
+ss_char_w_t const*
+c_str_ptr_w(basic_simple_string<ss_char_w_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1386,7 +1476,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline C const* c_str_data(basic_simple_string<C, T, A> const& s)
+inline
+C const*
+c_str_data(basic_simple_string<C, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1397,7 +1489,9 @@ inline C const* c_str_data(basic_simple_string<C, T, A> const& s)
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_a_t const* c_str_data_a(basic_simple_string<ss_char_a_t, T, A> const& s)
+inline
+ss_char_a_t const*
+c_str_data_a(basic_simple_string<ss_char_a_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1408,7 +1502,9 @@ inline ss_char_a_t const* c_str_data_a(basic_simple_string<ss_char_a_t, T, A> co
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_char_w_t const* c_str_data_w(basic_simple_string<ss_char_w_t, T, A> const& s)
+inline
+ss_char_w_t const*
+c_str_data_w(basic_simple_string<ss_char_w_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1425,7 +1521,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_size_t c_str_len(basic_simple_string<C, T, A> const& s)
+inline
+ss_size_t
+c_str_len(basic_simple_string<C, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1436,7 +1534,9 @@ inline ss_size_t c_str_len(basic_simple_string<C, T, A> const& s)
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const& s)
+inline
+ss_size_t
+c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1447,7 +1547,9 @@ inline ss_size_t c_str_len_a(basic_simple_string<ss_char_a_t, T, A> const& s)
  * \ingroup group__library__string
  */
 template<ss_typename_param_k T, ss_typename_param_k A>
-inline ss_size_t c_str_len_w(basic_simple_string<ss_char_w_t, T, A> const& s)
+inline
+ss_size_t
+c_str_len_w(basic_simple_string<ss_char_w_t, T, A> const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1462,7 +1564,9 @@ template<   ss_typename_param_k S
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline S& operator <<(S& s, basic_simple_string<C, T, A> const& str)
+inline
+S&
+operator <<(S& s, basic_simple_string<C, T, A> const& str)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1482,7 +1586,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void swap(basic_simple_string<C, T, A>& lhs, basic_simple_string<C, T, A>& rhs)
+inline
+void
+swap(basic_simple_string<C, T, A>& lhs, basic_simple_string<C, T, A>& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1501,7 +1607,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::char_type* basic_simple_string<C, T, A>::char_pointer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::char_type*
+basic_simple_string<C, T, A>::char_pointer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1517,7 +1626,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer* basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer*
+basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1534,7 +1646,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const* basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_const_pointer m)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const*
+basic_simple_string<C, T, A>::string_buffer_from_member_pointer_(ss_typename_type_k basic_simple_string<C, T, A>::member_const_pointer m)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1551,7 +1666,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer basic_simple_string<C, T, A>::member_pointer_from_string_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* b)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer
+basic_simple_string<C, T, A>::member_pointer_from_string_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* b)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1563,7 +1681,10 @@ inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::get_length_and_buffer_(ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer m, ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer** pp)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::get_length_and_buffer_(ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer m, ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer** pp)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1588,7 +1709,10 @@ inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::size_ty
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::get_length_and_buffer_(ss_typename_type_ret_k basic_simple_string<C, T, A>::member_const_pointer m, ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const** pp)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::get_length_and_buffer_(ss_typename_type_ret_k basic_simple_string<C, T, A>::member_const_pointer m, ss_typename_type_ret_k basic_simple_string<C, T, A>::string_buffer const** pp)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1613,7 +1737,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer basic_simple_string<C, T, A>::alloc_buffer_(
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer
+basic_simple_string<C, T, A>::alloc_buffer_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type capacity
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type length
@@ -1668,7 +1795,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer basic_simple_string<C, T, A>::alloc_buffer_(
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer
+basic_simple_string<C, T, A>::alloc_buffer_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type        cch
 )
@@ -1703,7 +1833,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer basic_simple_string<C, T, A>::alloc_buffer_(
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer
+basic_simple_string<C, T, A>::alloc_buffer_(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
 )
 {
@@ -1733,7 +1866,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer basic_simple_string<C, T, A>::copy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::member_pointer
+basic_simple_string<C, T, A>::copy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::member_pointer m)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1764,7 +1900,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ void basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer)
+inline
+/* static */
+void
+basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::string_buffer* buffer)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1777,7 +1916,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ void basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
+inline
+/* static */
+void
+basic_simple_string<C, T, A>::destroy_buffer_(ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1788,7 +1930,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::pointer basic_simple_string<C, T, A>::begin_()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::pointer
+basic_simple_string<C, T, A>::begin_()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1799,7 +1943,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::pointer basic_simple_string<C, T, A>::end_()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::pointer
+basic_simple_string<C, T, A>::end_()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1810,7 +1956,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::is_valid() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1848,7 +1996,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::char_type const* basic_simple_string<C, T, A>::empty_string_()
+inline
+/* static */
+ss_typename_type_ret_k basic_simple_string<C, T, A>::char_type const*
+basic_simple_string<C, T, A>::empty_string_()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -1868,7 +2019,8 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string()
+inline
+basic_simple_string<C, T, A>::basic_simple_string()
     : m_buffer(NULL)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1880,7 +2032,8 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(class_type const& rhs)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(class_type const& rhs)
     : m_buffer(copy_buffer_(rhs.m_buffer))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1893,8 +2046,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(
+    ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+)
     : m_buffer(alloc_buffer_(&rhs[pos]))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1906,9 +2062,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(
+    ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
+)
     : m_buffer(alloc_buffer_(&rhs[pos], cch, minimum(cch, rhs.length() - pos)))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1920,7 +2079,8 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) // No, not explicit. Sigh
+inline
+basic_simple_string<C, T, A>::basic_simple_string(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s) // No, not explicit. Sigh
     : m_buffer(alloc_buffer_(s))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1932,8 +2092,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*  s
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type         cch
+)
     : m_buffer(alloc_buffer_(s, cch))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1945,8 +2108,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
+)
     : m_buffer(NULL)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1961,8 +2127,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::basic_simple_string(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   first
-                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   last)
+inline
+basic_simple_string<C, T, A>::basic_simple_string(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   first
+,   ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   last
+)
     : m_buffer(alloc_buffer_(first, last - first))
 {
     STLSOFT_COVER_MARK_LINE();
@@ -1975,7 +2144,8 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_simple_string<C, T, A>::~basic_simple_string() stlsoft_throw_0()
+inline
+basic_simple_string<C, T, A>::~basic_simple_string() stlsoft_throw_0()
 {
 #if defined(__BORLANDC__) && \
     __BORLANDC__ > 0x0580 && \
@@ -2017,7 +2187,8 @@ template<
 ,   ss_typename_param_k T
 ,   ss_typename_param_k A
 >
-inline ss_typename_type_k basic_simple_string<C, T, A>::bool_type
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::bool_type
   basic_simple_string<C, T, A>::equal(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs
 ) const
@@ -2032,7 +2203,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline /* static */ ss_sint_t basic_simple_string<C, T, A>::compare_(
+inline
+/* static */
+ss_sint_t basic_simple_string<C, T, A>::compare_(
     ss_typename_type_k basic_simple_string<C, T, A>::value_type const* lhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type lhs_len
 ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const* rhs
@@ -2058,10 +2231,14 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare( ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs) const
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cchRhs
+) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2103,9 +2280,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare( ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs) const
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_simple_string<C, T, A>::value_type const*  rhs
+) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2140,7 +2321,11 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare(ss_typename_type_k basic_simple_string<C, T, A>::value_type const* rhs) const
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(
+    ss_typename_type_k basic_simple_string<C, T, A>::value_type const* rhs
+) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2154,7 +2339,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare(
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(
     ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
@@ -2219,9 +2406,13 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare( ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
-                                                    ,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs) const
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(
+    ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
+,   ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
+) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2256,7 +2447,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_sint_t basic_simple_string<C, T, A>::compare(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs) const
+inline
+ss_sint_t
+basic_simple_string<C, T, A>::compare(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2266,9 +2459,13 @@ inline ss_sint_t basic_simple_string<C, T, A>::compare(ss_typename_type_k basic_
     return compare_(char_pointer_from_member_pointer_(m_buffer), lhs_len, char_pointer_from_member_pointer_(rhs.m_buffer), rhs_len);
 }
 
-
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find(
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2304,8 +2501,13 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
     return ~size_type(0);
 }
 
-template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find(
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2354,7 +2556,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2367,7 +2571,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2381,7 +2587,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::rfind(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::rfind(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2438,7 +2646,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::rfind(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::rfind(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2506,7 +2716,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::rfind(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::rfind(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2519,7 +2731,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::rfind(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::rfind(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2531,7 +2745,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2542,7 +2758,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2587,7 +2805,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2601,7 +2821,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_of(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2613,10 +2835,10 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
     return find_first_of(s.data(), pos, s.length());
 }
 
-
-
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2627,7 +2849,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2681,7 +2905,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2694,7 +2920,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_of(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2707,7 +2935,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2753,7 +2983,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2800,7 +3032,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2813,7 +3047,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_first_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_first_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2826,7 +3062,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type  pos
 ) const
@@ -2883,7 +3121,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -2937,7 +3177,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2950,7 +3192,9 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_s
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::find_last_not_of(
+inline
+ss_typename_type_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::find_last_not_of(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ) const
@@ -2965,7 +3209,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reference basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reference
+basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2980,7 +3226,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
+basic_simple_string<C, T, A>::operator [](ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -2996,7 +3244,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reference basic_simple_string<C, T, A>::at(ss_typename_type_k basic_simple_string<C, T, A>::size_type index)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reference
+basic_simple_string<C, T, A>::at(ss_typename_type_k basic_simple_string<C, T, A>::size_type index)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3018,7 +3268,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference basic_simple_string<C, T, A>::at(ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
+basic_simple_string<C, T, A>::at(ss_typename_type_k basic_simple_string<C, T, A>::size_type index) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3040,7 +3292,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type basic_simple_string<C, T, A>::substr(ss_typename_type_k basic_simple_string<C, T, A>::size_type pos, ss_typename_type_k basic_simple_string<C, T, A>::size_type cch) const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type
+basic_simple_string<C, T, A>::substr(ss_typename_type_k basic_simple_string<C, T, A>::size_type pos, ss_typename_type_k basic_simple_string<C, T, A>::size_type cch) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3069,7 +3323,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type basic_simple_string<C, T, A>::substr(ss_typename_type_k basic_simple_string<C, T, A>::size_type pos) const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type
+basic_simple_string<C, T, A>::substr(ss_typename_type_k basic_simple_string<C, T, A>::size_type pos) const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3091,7 +3347,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type basic_simple_string<C, T, A>::substr() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type
+basic_simple_string<C, T, A>::substr() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3103,7 +3361,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::value_type const* basic_simple_string<C, T, A>::c_str() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::value_type const*
+basic_simple_string<C, T, A>::c_str() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3114,7 +3374,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::value_type const* basic_simple_string<C, T, A>::data() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::value_type const*
+basic_simple_string<C, T, A>::data() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3125,7 +3387,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reference basic_simple_string<C, T, A>::front()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reference
+basic_simple_string<C, T, A>::front()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3136,7 +3400,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reference basic_simple_string<C, T, A>::back()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reference
+basic_simple_string<C, T, A>::back()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3147,7 +3413,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference basic_simple_string<C, T, A>::front() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
+basic_simple_string<C, T, A>::front() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3158,7 +3426,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference basic_simple_string<C, T, A>::back() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reference
+basic_simple_string<C, T, A>::back() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3169,7 +3439,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::copy(
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::copy(
     ss_typename_type_k basic_simple_string<C, T, A>::value_type*    dest
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type      cch
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type      pos /* = 0 */
@@ -3209,7 +3481,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_iterator basic_simple_string<C, T, A>::begin() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_iterator
+basic_simple_string<C, T, A>::begin() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3220,7 +3494,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_iterator basic_simple_string<C, T, A>::end() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_iterator
+basic_simple_string<C, T, A>::end() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3232,7 +3508,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator basic_simple_string<C, T, A>::begin()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator
+basic_simple_string<C, T, A>::begin()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3243,7 +3521,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator basic_simple_string<C, T, A>::end()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator
+basic_simple_string<C, T, A>::end()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3255,7 +3535,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reverse_iterator basic_simple_string<C, T, A>::rbegin() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reverse_iterator
+basic_simple_string<C, T, A>::rbegin() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3266,7 +3548,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reverse_iterator basic_simple_string<C, T, A>::rend() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::const_reverse_iterator
+basic_simple_string<C, T, A>::rend() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3277,7 +3561,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reverse_iterator basic_simple_string<C, T, A>::rbegin()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reverse_iterator
+basic_simple_string<C, T, A>::rbegin()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3288,7 +3574,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::reverse_iterator basic_simple_string<C, T, A>::rend()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::reverse_iterator
+basic_simple_string<C, T, A>::rend()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3301,7 +3589,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch
 )
@@ -3383,7 +3673,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3394,7 +3686,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -3439,7 +3733,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3450,7 +3746,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -3467,7 +3765,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     first
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     first
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator     last)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -3482,7 +3782,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const& basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const&
+basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3493,7 +3795,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const& basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const&
+basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3504,7 +3808,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const& basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type const&
+basic_simple_string<C, T, A>::operator =(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3519,7 +3825,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(
     ss_typename_type_k basic_simple_string<C, T, A>::char_type const*   s
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
 )
@@ -3606,7 +3914,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3617,7 +3927,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(
     ss_typename_type_k basic_simple_string<C, T, A>::class_type const&  rhs
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          pos
 ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type          cch
@@ -3666,7 +3978,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(ss_typename_type_k basic_simple_string<C, T, A>::class_type const& s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3677,7 +3991,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::char_type  ch)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -3707,7 +4023,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator first
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::append(   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator first
                                                                                                         ,   ss_typename_type_k basic_simple_string<C, T, A>::const_iterator last)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -3722,7 +4040,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::operator +=(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3733,7 +4053,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::char_type* s)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3744,7 +4066,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::class_type& rhs)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::operator +=(const ss_typename_type_k basic_simple_string<C, T, A>::class_type& rhs)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3755,7 +4079,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::push_back(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
+inline
+void
+basic_simple_string<C, T, A>::push_back(ss_typename_type_k basic_simple_string<C, T, A>::char_type ch)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3767,7 +4093,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::reserve(ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
+inline
+void
+basic_simple_string<C, T, A>::reserve(ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3812,7 +4140,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::swap(ss_typename_type_k basic_simple_string<C, T, A>::class_type& other)
+inline
+void
+basic_simple_string<C, T, A>::swap(ss_typename_type_k basic_simple_string<C, T, A>::class_type& other)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3826,7 +4156,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::resize(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
+inline
+void
+basic_simple_string<C, T, A>::resize(   ss_typename_type_k basic_simple_string<C, T, A>::size_type  cch
                                                 ,   ss_typename_type_k basic_simple_string<C, T, A>::value_type ch)
 {
     STLSOFT_COVER_MARK_LINE();
@@ -3862,7 +4194,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline void basic_simple_string<C, T, A>::clear()
+inline
+void
+basic_simple_string<C, T, A>::clear()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3884,7 +4218,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator from, ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator to)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator
+basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator from, ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator to)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3902,7 +4238,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator from)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator
+basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::iterator from)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3918,7 +4256,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type pos, ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type cch)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type pos, ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type cch)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3951,7 +4291,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type pos)
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::erase(ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type pos)
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3972,7 +4314,9 @@ inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_si
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::erase()
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type&
+basic_simple_string<C, T, A>::erase()
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -3990,7 +4334,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::size() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::size() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -4003,7 +4349,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::max_size() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::max_size() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -4016,7 +4364,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::length() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::length() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -4029,7 +4379,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type basic_simple_string<C, T, A>::capacity() const
+inline
+ss_typename_type_ret_k basic_simple_string<C, T, A>::size_type
+basic_simple_string<C, T, A>::capacity() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -4042,7 +4394,9 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_bool_t basic_simple_string<C, T, A>::empty() const
+inline
+ss_bool_t
+basic_simple_string<C, T, A>::empty() const
 {
     STLSOFT_COVER_MARK_LINE();
 
@@ -4072,7 +4426,9 @@ namespace std
             ,   ss_typename_param_k T
             ,   ss_typename_param_k A
             >
-    inline void swap(stlsoft_ns_qual(basic_simple_string)<C, T, A>& lhs, stlsoft_ns_qual(basic_simple_string)<C, T, A>& rhs)
+    inline
+    void
+    swap(stlsoft_ns_qual(basic_simple_string)<C, T, A>& lhs, stlsoft_ns_qual(basic_simple_string)<C, T, A>& rhs)
     {
         STLSOFT_COVER_MARK_LINE();
 
