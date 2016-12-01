@@ -4,11 +4,11 @@
  * Purpose:     String-switch functions.
  *
  * Created:     10th May 2010
- * Updated:     12th May 2014
+ * Updated:     2nd December 2016
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2010-2014, Matthew Wilson and Synesis Software
+ * Copyright (c) 2010-2016, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    2
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION 4
-# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     20
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_MINOR    3
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,15 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
+# include <stlsoft/shims/access/string/fwd.h>
+
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS
 # include <stlsoft/string/char_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS
+# include <stlsoft/string/string_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS */
+
 
 #ifndef STLSOFT_INCL_H_STRING
 # define STLSOFT_INCL_H_STRING
@@ -247,7 +253,7 @@ inline ximpl::string_case_item_array_t<C, E, 3>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -286,7 +292,7 @@ inline ximpl::string_case_item_array_t<C, E, 4>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -330,7 +336,7 @@ inline ximpl::string_case_item_array_t<C, E, 5>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -379,7 +385,7 @@ inline ximpl::string_case_item_array_t<C, E, 6>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -433,7 +439,7 @@ inline ximpl::string_case_item_array_t<C, E, 7>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -492,7 +498,7 @@ inline ximpl::string_case_item_array_t<C, E, 8>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -556,7 +562,7 @@ inline ximpl::string_case_item_array_t<C, E, 9>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -625,7 +631,7 @@ inline ximpl::string_case_item_array_t<C, E, 10>
     STLSOFT_COVER_MARK_LINE();
 
     ximpl::string_case_item_t<C, E> items[] =
-    { 
+    {
         { name0, value0 }
       , { name1, value1 }
       , { name2, value2 }
@@ -641,6 +647,549 @@ inline ximpl::string_case_item_array_t<C, E, 10>
     return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
 }
 
+/** Defines a set of eleven string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 11>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+/** Defines a set of twelve string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ * \param name11 The name of the twelfth case
+ * \param value11 The value of the twelfth case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 12>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+,   C const*  name11
+,   E         value11
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+      , { name11, value11 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+/** Defines a set of thirteen string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ * \param name11 The name of the twelfth case
+ * \param value11 The value of the twelfth case
+ * \param name12 The name of the thirteenth case
+ * \param value12 The value of the thirteenth case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 13>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+,   C const*  name11
+,   E         value11
+,   C const*  name12
+,   E         value12
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+      , { name11, value11 }
+      , { name12, value12 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+/** Defines a set of fourteen string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ * \param name11 The name of the twelfth case
+ * \param value11 The value of the twelfth case
+ * \param name12 The name of the thirteenth case
+ * \param value12 The value of the thirteenth case
+ * \param name13 The name of the fourteenth case
+ * \param value13 The value of the fourteenth case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 14>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+,   C const*  name11
+,   E         value11
+,   C const*  name12
+,   E         value12
+,   C const*  name13
+,   E         value13
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+      , { name11, value11 }
+      , { name12, value12 }
+      , { name13, value13 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+/** Defines a set of fifteen string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ * \param name11 The name of the twelfth case
+ * \param value11 The value of the twelfth case
+ * \param name12 The name of the thirteenth case
+ * \param value12 The value of the thirteenth case
+ * \param name13 The name of the fourteenth case
+ * \param value13 The value of the fourteenth case
+ * \param name14 The name of the fifteenth case
+ * \param value14 The value of the fifteenth case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 15>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+,   C const*  name11
+,   E         value11
+,   C const*  name12
+,   E         value12
+,   C const*  name13
+,   E         value13
+,   C const*  name14
+,   E         value14
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+      , { name11, value11 }
+      , { name12, value12 }
+      , { name13, value13 }
+      , { name14, value14 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+/** Defines a set of sixteen string-switch cases, to be consumed by string_switch()
+ *
+ * \param name0 The name of the first case
+ * \param value0 The value of the first case
+ * \param name1 The name of the second case
+ * \param value1 The value of the second case
+ * \param name2 The name of the third case
+ * \param value2 The value of the third case
+ * \param name3 The name of the fourth case
+ * \param value3 The value of the fourth case
+ * \param name4 The name of the fifth case
+ * \param value4 The value of the fifth case
+ * \param name5 The name of the sixth case
+ * \param value5 The value of the sixth case
+ * \param name6 The name of the seventh case
+ * \param value6 The value of the seventh case
+ * \param name7 The name of the eighth case
+ * \param value7 The value of the eighth case
+ * \param name8 The name of the ninth case
+ * \param value8 The value of the ninth case
+ * \param name9 The name of the tenth case
+ * \param value9 The value of the tenth case
+ * \param name10 The name of the eleventh case
+ * \param value10 The value of the eleventh case
+ * \param name11 The name of the twelfth case
+ * \param value11 The value of the twelfth case
+ * \param name12 The name of the thirteenth case
+ * \param value12 The value of the thirteenth case
+ * \param name13 The name of the fourteenth case
+ * \param value13 The value of the fourteenth case
+ * \param name14 The name of the fifteenth case
+ * \param value14 The value of the fifteenth case
+ * \param name15 The name of the sixteenth case
+ * \param value15 The value of the sixteenth case
+ */
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k E
+>
+inline ximpl::string_case_item_array_t<C, E, 16>
+  string_cases(
+    C const*  name0
+,   E         value0
+,   C const*  name1
+,   E         value1
+,   C const*  name2
+,   E         value2
+,   C const*  name3
+,   E         value3
+,   C const*  name4
+,   E         value4
+,   C const*  name5
+,   E         value5
+,   C const*  name6
+,   E         value6
+,   C const*  name7
+,   E         value7
+,   C const*  name8
+,   E         value8
+,   C const*  name9
+,   E         value9
+,   C const*  name10
+,   E         value10
+,   C const*  name11
+,   E         value11
+,   C const*  name12
+,   E         value12
+,   C const*  name13
+,   E         value13
+,   C const*  name14
+,   E         value14
+,   C const*  name15
+,   E         value15
+)
+{
+    STLSOFT_COVER_MARK_LINE();
+
+    ximpl::string_case_item_t<C, E> items[] =
+    {
+        { name0, value0 }
+      , { name1, value1 }
+      , { name2, value2 }
+      , { name3, value3 }
+      , { name4, value4 }
+      , { name5, value5 }
+      , { name6, value6 }
+      , { name7, value7 }
+      , { name8, value8 }
+      , { name9, value9 }
+      , { name10, value10 }
+      , { name11, value11 }
+      , { name12, value12 }
+      , { name13, value13 }
+      , { name14, value14 }
+      , { name15, value15 }
+    };
+
+    return ximpl::string_case_item_array_t<C, E, STLSOFT_NUM_ELEMENTS(items)>(items, STLSOFT_NUM_ELEMENTS(items));
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k R
+,   ss_size_t           N
+,   ss_typename_param_k V
+>
+inline bool string_switch_(
+    C const*                                        s
+,   size_t                                          len
+,   R*                                              result
+,   ximpl::string_case_item_array_t<C, V, N> const& cases
+,   R                                               resultBase
+)
+;
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 /** Conducts a string-switch over the given string \c s, according to the
  * given cases, putting the matching value into the given \c result
  *
@@ -651,19 +1200,37 @@ inline ximpl::string_case_item_array_t<C, E, 10>
  *   tested against
  * \param resultBase The value to which the result is set before being
  *   combined with the result, if any, of the matched cases. This allows
- *   the function to act as 
+ *   the function to act in a bit-flag combination mode
  */
+template<
+    ss_typename_param_k S
+,   ss_typename_param_k R
+,   ss_typename_param_k C
+>
+inline bool string_switch(
+    S const&                                        s
+,   R*                                              result
+,   C const&                                        cases
+,   R                                               resultBase = R()
+)
+{
+    return string_switch_(stlsoft::c_str_data(s), stlsoft::c_str_len(s), result, cases, resultBase);
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template<
     ss_typename_param_k C
 ,   ss_typename_param_k R
 ,   ss_size_t           N
 ,   ss_typename_param_k V
 >
-inline bool string_switch(
+inline bool string_switch_(
     C const*                                        s
+,   size_t                                          len
 ,   R*                                              result
 ,   ximpl::string_case_item_array_t<C, V, N> const& cases
-,   R                                               resultBase = R()
+,   R                                               resultBase
 )
 {
     STLSOFT_ASSERT(NULL != s);
@@ -671,8 +1238,6 @@ inline bool string_switch(
     STLSOFT_COVER_MARK_LINE();
 
     typedef stlsoft_char_traits<C> char_traits_t;
-
-    size_t const len = char_traits_t::length(s);
 
     { for(ss_size_t i = 0; i != cases.size(); ++i)
     {
@@ -695,6 +1260,7 @@ inline bool string_switch(
 
     return false;
 }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -707,3 +1273,4 @@ inline bool string_switch(
 #endif /* STLSOFT_INCL_STLSOFT_UTIL_INCL_HPP_STRING_SWITCH */
 
 /* ///////////////////////////// end of file //////////////////////////// */
+
